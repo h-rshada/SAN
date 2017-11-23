@@ -42,8 +42,21 @@ public class MenuType extends AppCompatActivity {
             case R.id.txtFlexible:
                 type=txtFlexible.getText().toString();
                 txtMenuType.setText(type);
+                txtPrice.setText("Rs.120");
+                txtPrice1.setText("Rs.150");
                 break;
-
+            case R.id.txtSemiFlexible:
+                type=txtSemiFlexible.getText().toString();
+                txtMenuType.setText(type);
+                txtPrice.setText("Rs.100");
+                txtPrice1.setText("Rs.110");
+                break;
+            case R.id.txtFixed:
+                type=txtFixed.getText().toString();
+                txtMenuType.setText(type);
+                txtPrice.setText("Rs.60");
+                txtPrice1.setText("Rs.90");
+                break;
         }
     }
 }
