@@ -34,7 +34,11 @@
         </activity>
         <activity android:name=".AboutUs" />
         <activity android:name=".FindUs" />
-        <activity android:name=".MenuType" />
+        <activity android:name=".MenuType">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

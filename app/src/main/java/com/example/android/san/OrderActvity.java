@@ -1,8 +1,8 @@
 package com.example.android.san;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,7 +33,7 @@ public class OrderActvity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_actvity);
         ButterKnife.inject(OrderActvity.this);
-        intent=new Intent(OrderActvity.this,TabActivity.class);
+        intent = new Intent(OrderActvity.this, MenuType.class);
     }
     @OnClick({ R.id.header1,R.id.header2,R.id.header3,R.id.txtBasicDabba,R.id.txtHeavyDabba,R.id.txtBasicDabba1,R.id.txtHeavyDabba1,R.id.txtBasicDabba2,R.id.txtHeavyDabba2})
     public void onClick(View view)

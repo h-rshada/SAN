@@ -1,130 +1,73 @@
 package com.example.android.san;
 
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.transition.Explode;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TabActivity extends AppCompatActivity {
 
-    public TabLayout tabLayout;
-    Toast toast;
-    private Toolbar toolbar;
-    private ViewPager viewPager;
-    private long back_pressed = 0;
+   String type,tiffintype="basic";
+   String meal="veg";
+   String day="Sunday";
+   RecyclerView recyclerView;
+   AdapterRadioButton adapter;
+   ArrayList<DataSubji> arrayList;
+   DataSubji dataSubji;
+   UrlRequest urlRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
-        actionBarSetup();
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setSelectedTabIndicatorHeight(5);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#ffffff"));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                // tab.getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-                tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#ffffff"));
-            }
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+        type=getIntent().getStringExtra("Type").toLowerCase();
+        tiffintype = getIntent().getStringExtra("TiffinType").toLowerCase();
+        Log.d("Type", type);
+        Log.d("TiffinType", tiffintype);
+        getData();
 
-                tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#ffffff"));
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new VegFragment(), "Veg");
-        adapter.addFragment(new NonVegFragment(), "NonVeg");
-
-        viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(0);
-    }
-/*
-    @Override
-    public void onBackPressed() {
-        if (back_pressed + 2000 > System.currentTimeMillis()) {
-            // need to cancel the toast here
-            toast.cancel();
-            // code for exit
-            startActivity(new Intent(this, TabActivity.class));
-
-        } else {
-
-            toast = Toast.makeText(getBaseContext(), "Press once again to logout!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        back_pressed = System.currentTimeMillis();
-    }*/
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void actionBarSetup() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            android.support.v7.app.ActionBar ab = getSupportActionBar();
-            ab.setTitle("Yashodeep Academy");
-            ab.setSubtitle("Home/Main");
-        }
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
     }
 
 
+   public void getData()
+   {
+       urlRequest = UrlRequest.getObject();
+       urlRequest.setContext(getBaseContext());
+       //  Log.d("URL:","http://192.168.0.22:8000/routes/server/getSabji.php?type="+type+"&dabba="+tiffintype+"&meal="+meal+"&day="+day);
+       urlRequest.setUrl("http://192.168.0.22:8000/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
+       urlRequest.getResponse(new ServerCallback()
+       {
+           @Override
+           public void onSuccess(String response)
+           {
+               Log.d("Response", response);
+               try {
+
+                   arrayList=new ArrayList<>();
+
+                   JSONArray jsonArray=new JSONArray(response);
+                   for(int i=0;i<jsonArray.length();i++){
+                       dataSubji=new DataSubji();
+                       JSONArray jsonArray1=jsonArray.getJSONArray(i);
+                       dataSubji.subji=jsonArray1.getString(1);
+                       arrayList.add(dataSubji);
+                   }
+                   Log.d("Data", String.valueOf(arrayList.size()));
+                   recyclerView = findViewById(R.id.recyclerData);
+                   adapter=new AdapterRadioButton(TabActivity.this,arrayList);
+                   recyclerView.setLayoutManager(new GridLayoutManager(TabActivity.this, 2));
+                   recyclerView.setAdapter(adapter);
+                   adapter.notifyDataSetChanged();
+               } catch (JSONException e)
+               {
+                   e.printStackTrace();
+               }
+           }
+       });
+   }
 }

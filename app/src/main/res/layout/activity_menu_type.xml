@@ -1,171 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.example.android.san.MenuType">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/layoutMenu">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtFlexible"
-            android:text="Flexible"
-            android:textAlignment="center"
-           android:background="@drawable/style1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtSemiFlexible"
-            android:text="Semi Flexible"
-            android:textAlignment="center"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/style1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtFixed"
-            android:textAlignment="center"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/style1"
-            android:text="Fixed"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtBreakfast"
-            android:textAlignment="center"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/style1"
-            android:text="Breakfast"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/layoutMenu">
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@drawable/style1"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtMenuType"
-                android:text="Flexible"
-                android:background="@drawable/style1"
-                android:layout_marginBottom="5dp"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageMenu"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_launcher"
-            />
-            </LinearLayout>
+        android:layout_height="match_parent">
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        <LinearLayout
+            android:id="@+id/layoutMenu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@drawable/style1"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtFlexible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/style1"
+                android:text="Flexible"
+                android:textAlignment="center"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/txtSemiFlexible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/style1"
+                android:text="Semi Flexible"
+                android:textAlignment="center"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/txtFixed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/style1"
+                android:text="Fixed"
+                android:textAlignment="center"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/txtBreakfast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/style1"
+                android:text="Breakfast"
+                android:textAlignment="center"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutMenu"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/style1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtMenuType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/style1"
+                        android:text="Flexible"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imageMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:src="@mipmap/ic_launcher" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardBasic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/style1">
 
                 <TextView
+                    android:id="@+id/txtPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/txtPrice"
+                    android:layout_gravity="center|end"
                     android:layout_marginRight="10dp"
                     android:text="Rs.60"
-                    android:textStyle="bold"
-                    android:drawableLeft="@+id/layoutDesc"
-                    android:layout_gravity="end"
-                    />
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/style1"
-                android:id="@+id/layoutDesc">
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/layoutDesc"
+                    android:layout_width="260dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtTiffinType"
-                    android:text="Basic Dabba"
-                   android:textSize="15dp"
+                    android:background="@drawable/style1"
+                    android:orientation="vertical">
 
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtDabbaDesc"
-                    android:text="@string/BasicDesc"
-                    android:src="@mipmap/ic_launcher"
-                    android:textSize="13dp"
-                    />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtTiffinType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Basic Dabba"
+                        android:textSize="25dp"
+                        android:textStyle="bold"/>
 
+                    <TextView
+                        android:id="@+id/txtDabbaDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_launcher"
+                        android:text="@string/BasicDesc"
+                        android:textSize="17dp" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@drawable/style1"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardHeavy"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/txtPrice1"
-                android:layout_marginRight="10dp"
-                android:text="Rs.80"
-                android:textStyle="bold"
-                android:drawableLeft="@+id/layoutDesc"
-                android:layout_gravity="end"
-                />
+                android:layout_margin="10dp"
+                android:background="@drawable/style1">
 
-            <LinearLayout
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/style1"
-                android:layout_marginRight="@+id/layoutPrice"
-                android:id="@+id/layoutDesc1">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/txtPrice1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center|end"
+                    android:layout_marginRight="10dp"
+                    android:text="Rs.80"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDesc1"
+                    android:layout_width="260dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txtTiffinType1"
-                    android:text="Heavy Dabba"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtDabbaDesc1"
-                    android:text="@string/HeavyDesc"
-                    android:src="@mipmap/ic_launcher"
-                    android:textSize="13dp"
-                    />
-            </LinearLayout>
+                    android:background="@drawable/style1"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/txtTiffinType1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Heavy Dabba"
+                        android:textSize="25dp"
+                        android:textStyle="bold"/>
 
-        </android.support.v7.widget.CardView>
+                    <TextView
+                        android:id="@+id/txtDabbaDesc1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_launcher"
+                        android:text="@string/HeavyDesc"
+                        android:textSize="17dp" />
+                </LinearLayout>
 
-    </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-</RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
