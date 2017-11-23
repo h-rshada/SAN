@@ -1,0 +1,365 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.san.VegFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout1"
+                android:padding="5dp">
+
+                <Spinner
+                    android:id="@+id/spinner_indianBread"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/spinner_title"
+                    />
+                <Spinner
+                    android:id="@+id/spinner_rice"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/spinner_title"
+                    android:layout_toRightOf="@+id/spinner_indianBread"
+                    />
+                <Spinner
+                    android:id="@+id/spinner_dal"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/spinner_title"
+                    android:layout_toRightOf="@+id/spinner_rice"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/layout1"
+                android:id="@+id/layout2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txt_heat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/spinner_indianBread"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingTop="5dp"
+                        android:text="Heat "
+                        android:textSize="15dp" />
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="90dp"
+                        android:focusable="true"
+                        android:layout_toRightOf="@+id/txt_heat"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="4">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <RadioButton
+                                    android:id="@+id/radio_spicey"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:checked="true"
+                                    android:inputType="textAutoComplete"
+                                    android:text="Spicey" />
+                                <RadioButton
+                                    android:id="@+id/radio_mediumspicey"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:inputType="textAutoComplete"
+                                    android:text="Medium" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <RadioButton
+                                    android:id="@+id/radio_neutral"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:inputType="textAutoComplete"
+                                    android:text="Neutral" />
+                                <RadioButton
+                                    android:id="@+id/radio_sweet"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:inputType="textAutoComplete"
+                                    android:text="sweet" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </RadioGroup>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/txt_Oil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_heat"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingTop="5dp"
+                        android:text="Amount of oil "
+                        android:textSize="15dp" />
+                    <RadioGroup
+                        android:id="@+id/radioGroup_oil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:focusable="true"
+                        android:layout_marginTop="10dp"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <RadioButton
+                            android:id="@+id/radio_minimaloil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:inputType="textAutoComplete"
+                            android:text="Spicey" />
+                        <RadioButton
+                            android:id="@+id/radio_regularoil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="textAutoComplete"
+                            android:text="Medium" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/txt_OilTypes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_heat"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingTop="5dp"
+                        android:text="Type of oil "
+                        android:textSize="15dp" />
+                    <RadioGroup
+                        android:id="@+id/radioGroup_OilTypes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="53dp"
+                        android:focusable="true"
+                        android:layout_marginTop="10dp"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <RadioButton
+                            android:id="@+id/radio_oliveoil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:inputType="textAutoComplete"
+                            android:text="Olive oil" />
+                        <RadioButton
+                            android:id="@+id/radio_soyabinoil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="textAutoComplete"
+                            android:text="Soyabin oil" />
+
+                    </RadioGroup>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/txt_salt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_heat"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingTop="5dp"
+                        android:text="Salt "
+                        android:textSize="15dp" />
+                    <RadioGroup
+                        android:id="@+id/radioGroup_salt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="95dp"
+                        android:focusable="true"
+                        android:layout_marginTop="10dp"
+                        android:focusableInTouchMode="true"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <RadioButton
+                            android:id="@+id/radio_lowSalt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:inputType="textAutoComplete"
+                            android:text="Low" />
+                        <RadioButton
+                            android:id="@+id/radio_regularSalt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:inputType="textAutoComplete"
+                            android:text="Regular" />
+                        <RadioButton
+                            android:id="@+id/radio_highSalt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="textAutoComplete"
+                            android:text="High" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Menu"
+                android:layout_below="@+id/layout2"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:background="#f4a9d8"
+                android:textStyle="bold"
+                android:id="@+id/txt_menu"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_menu"
+                android:id="@+id/layout_days"
+                android:padding="2dp">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mon"
+                    android:id="@+id/txt_mon"
+                    android:padding="6dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/style_round"
+                    android:layout_marginLeft="2dp"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tue"
+                    android:id="@+id/txt_tue"
+                    android:padding="6dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/style_round"
+                    android:layout_marginLeft="1dp"
+                    />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Wed"
+                    android:id="@+id/txt_wed"
+                    android:padding="6dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/style_round"
+                    android:layout_marginLeft="1dp"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Thu"
+                    android:id="@+id/txt_thu"
+                    android:padding="6dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/style_round"
+                    android:layout_marginLeft="1dp"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Fri"
+                    android:id="@+id/txt_fri"
+                    android:padding="6dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/style_round"
+                    android:layout_marginLeft="1dp"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sat"
+                    android:id="@+id/txt_sat"
+                    android:padding="6dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/style_round"
+                    android:layout_marginLeft="1dp"/>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sun"
+                    android:id="@+id/txt_sun"
+                    android:padding="6dp"
+                    android:textAlignment="center"
+                    android:background="@drawable/style_round"
+                    android:layout_marginLeft="1dp"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/Listmenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="0dp"
+                android:layout_marginTop="370dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="order"
+                android:background="@color/colorAccent"
+                android:textColor="#ffffff"
+                android:layout_below="@+id/Listmenu"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
