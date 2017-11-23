@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.android.san.HomeActivity"
+    tools:showIn="@layout/app_bar_home">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardLogo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher"/>
+
+        </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardOrder"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:selectableItemBackground"
+        android:clickable="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="false">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/imageOrderOnline"/>
+
+    </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardAboutUs"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imageAboutUs"/>
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardFindUs"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imageFindUs"/>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+
+</ScrollView>
