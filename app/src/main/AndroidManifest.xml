@@ -24,7 +24,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".TabActivity" />
+        <activity android:name=".TabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home">

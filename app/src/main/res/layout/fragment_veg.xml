@@ -12,9 +12,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/layout1"
                 android:padding="5dp">
 
                 <Spinner
@@ -40,11 +40,11 @@
 
 
             <LinearLayout
+                android:id="@+id/layout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_below="@+id/layout1"
-                android:id="@+id/layout2">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -67,11 +67,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="90dp"
-                        android:focusable="true"
+                        android:layout_marginTop="10dp"
                         android:layout_toRightOf="@+id/txt_heat"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal"
-                        android:layout_marginTop="10dp"
                         android:weightSum="4">
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -93,9 +93,10 @@
                                     android:id="@+id/radio_mediumspicey"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginLeft="4dp"
                                     android:layout_weight="1"
                                     android:inputType="textAutoComplete"
-                                    android:text="Medium" />
+                                    android:text="Medium spicey" />
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -138,8 +139,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"
-                        android:focusable="true"
                         android:layout_marginTop="10dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -183,8 +184,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="53dp"
-                        android:focusable="true"
                         android:layout_marginTop="10dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -227,8 +228,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="95dp"
-                        android:focusable="true"
                         android:layout_marginTop="10dp"
+                        android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:orientation="horizontal"
                         android:weightSum="3">
@@ -263,101 +264,101 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Menu"
                 android:layout_below="@+id/layout2"
                 android:layout_marginTop="10dp"
-                android:padding="5dp"
-                android:textAlignment="center"
                 android:background="#f4a9d8"
-                android:textStyle="bold"
-                android:id="@+id/txt_menu"/>
+                android:padding="5dp"
+                android:text="Menu"
+                android:textAlignment="center"
+                android:textStyle="bold" />
             <LinearLayout
+                android:id="@+id/layout_days"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_menu"
-                android:id="@+id/layout_days"
                 android:padding="2dp">
                 <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="Mon"
                     android:id="@+id/txt_mon"
-                    android:padding="6dp"
-                    android:textAlignment="center"
-                    android:background="@drawable/style_round"
-                    android:layout_marginLeft="2dp"/>
-                <TextView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="Tue"
-                    android:id="@+id/txt_tue"
-                    android:padding="6dp"
-                    android:textAlignment="center"
+                    android:layout_marginLeft="2dp"
                     android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Mon"
+                    android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/txt_tue"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Tue"
+                    android:textAlignment="center"
                     />
                 <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="Wed"
                     android:id="@+id/txt_wed"
-                    android:padding="6dp"
-                    android:textAlignment="center"
-                    android:background="@drawable/style_round"
-                    android:layout_marginLeft="1dp"/>
-                <TextView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="Thu"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Wed"
+                    android:textAlignment="center" />
+                <TextView
                     android:id="@+id/txt_thu"
-                    android:padding="6dp"
-                    android:textAlignment="center"
-                    android:background="@drawable/style_round"
-                    android:layout_marginLeft="1dp"/>
-                <TextView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="Fri"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Thu"
+                    android:textAlignment="center" />
+                <TextView
                     android:id="@+id/txt_fri"
-                    android:padding="6dp"
-                    android:textAlignment="center"
-                    android:background="@drawable/style_round"
-                    android:layout_marginLeft="1dp"/>
-                <TextView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="Sat"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Fri"
+                    android:textAlignment="center" />
+                <TextView
                     android:id="@+id/txt_sat"
-                    android:padding="6dp"
-                    android:textAlignment="center"
-                    android:background="@drawable/style_round"
-                    android:layout_marginLeft="1dp"/>
-                <TextView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="Sun"
-                    android:id="@+id/txt_sun"
-                    android:padding="6dp"
-                    android:textAlignment="center"
+                    android:layout_marginLeft="1dp"
                     android:background="@drawable/style_round"
-                    android:layout_marginLeft="1dp"/>
+                    android:padding="6dp"
+                    android:text="Sat"
+                    android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/txt_sun"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Sun"
+                    android:textAlignment="center" />
             </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/Listmenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="0dp"
-                android:layout_marginTop="370dp"/>
+                android:layout_marginTop="370dp"
+                android:paddingTop="0dp" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="order"
+                android:layout_below="@+id/Listmenu"
                 android:background="@color/colorAccent"
-                android:textColor="#ffffff"
-                android:layout_below="@+id/Listmenu"/>
+                android:text="order"
+                android:textColor="#ffffff" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
