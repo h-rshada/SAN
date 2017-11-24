@@ -47,23 +47,28 @@ public class MenuType extends AppCompatActivity {
         setContentView(R.layout.activity_menu_type);
         ButterKnife.inject(MenuType.this);
         intent = new Intent(MenuType.this, TabActivity.class);
+        txtFlexible.setSelected(true);
+        type = txtFlexible.getText().toString();
+        onClick(txtFlexible);
+
     }
 
     @OnClick({R.id.txtFlexible, R.id.txtSemiFlexible, R.id.txtFixed, R.id.txtBreakfast, R.id.cardBasic, R.id.cardHeavy})
     public void onClick(View view) {
+
         switch (view.getId()) {
 
             case R.id.txtFlexible:
                 type=txtFlexible.getText().toString();
                 intent.putExtra("Type", type);
                 txtMenuType.setText(type);
-                if (type.equals("Flexible")) {
+                if (txtFlexible.isSelected()) {
                     txtFlexible.setBackgroundColor(Color.RED);
-                    txtSemiFlexible.setBackgroundColor(Color.WHITE);
-                    txtFixed.setBackgroundColor(Color.WHITE);
-                    txtBreakfast.setBackgroundColor(Color.WHITE);
+                    txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtFixed.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtBreakfast.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 } else {
-                    txtFlexible.setBackgroundColor(Color.WHITE);
+                    txtFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
                 txtPrice.setText("Rs.120");
                 txtPrice1.setText("Rs.150");
@@ -73,11 +78,11 @@ public class MenuType extends AppCompatActivity {
                 intent.putExtra("Type", type);
                 if (type.equals("Semi Flexible")) {
                     txtSemiFlexible.setBackgroundColor(Color.RED);
-                    txtFlexible.setBackgroundColor(Color.WHITE);
-                    txtFixed.setBackgroundColor(Color.WHITE);
-                    txtBreakfast.setBackgroundColor(Color.WHITE);
+                    txtFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtFixed.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtBreakfast.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 } else {
-                    txtSemiFlexible.setBackgroundColor(Color.WHITE);
+                    txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
                 txtMenuType.setText(type);
                 txtPrice.setText("Rs.100");
@@ -88,12 +93,12 @@ public class MenuType extends AppCompatActivity {
                 intent.putExtra("Type", type);
                 if (type.equals("Fixed")) {
                     txtFixed.setBackgroundColor(Color.RED);
-                    txtSemiFlexible.setBackgroundColor(Color.WHITE);
-                    txtFlexible.setBackgroundColor(Color.WHITE);
-                    txtBreakfast.setBackgroundColor(Color.WHITE);
+                    txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtBreakfast.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 } else {
 
-                    txtFixed.setBackgroundColor(Color.WHITE);
+                    txtFixed.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
                 txtMenuType.setText(type);
                 txtPrice.setText("Rs.60");
@@ -104,20 +109,22 @@ public class MenuType extends AppCompatActivity {
                 intent.putExtra("Type", type);
                 if (type.equals("Breakfast")) {
                     txtBreakfast.setBackgroundColor(Color.RED);
-                    txtFlexible.setBackgroundColor(Color.WHITE);
-                    txtFixed.setBackgroundColor(Color.WHITE);
-                    txtSemiFlexible.setBackgroundColor(Color.WHITE);
+                    txtFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtFixed.setBackgroundColor(getResources().getColor(R.color.light_blue));
+                    txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 } else {
-                    txtBreakfast.setBackgroundColor(Color.WHITE);
+                    txtBreakfast.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
                 txtMenuType.setText(type);
                 txtPrice.setText("Rs.100");
                 txtPrice1.setText("Rs.110");
                 break;
             case R.id.cardBasic:
+
                 tiffinType = txtTiffinType.getText().toString();
                 intent.putExtra("TiffinType", tiffinType);
                 startActivity(intent);
+
                 break;
             case R.id.cardHeavy:
                 tiffinType = txtTiffinType1.getText().toString();

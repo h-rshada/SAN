@@ -20,7 +20,6 @@
                 android:id="@+id/txtFlexible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/style1"
                 android:text="Flexible"
                 android:textAlignment="center"
                 android:textSize="25dp" />

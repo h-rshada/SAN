@@ -16,7 +16,7 @@ public class OrderActvity extends AppCompatActivity {
     @InjectView(R.id.header1)TextView header1;
     @InjectView(R.id.header2)TextView header2;
     @InjectView(R.id.header3)TextView header3;
-    @InjectView(R.id.txtHeavyDabba)TextView txtHeavyDabba;
+    /*@InjectView(R.id.txtHeavyDabba)TextView txtHeavyDabba;
     @InjectView(R.id.txtBasicDabba)TextView txtBasicDabba;
     @InjectView(R.id.txtHeavyDabba1)TextView txtHeavyDabba1;
     @InjectView(R.id.txtBasicDabba1)TextView txtBasicDabba1;
@@ -24,7 +24,7 @@ public class OrderActvity extends AppCompatActivity {
     @InjectView(R.id.txtBasicDabba2)TextView txtBasicDabba2;
     @InjectView(R.id.section1)View section1;
     @InjectView(R.id.section2)View section2;
-    @InjectView(R.id.section3)View section3;
+    @InjectView(R.id.section3)View section3;*/
     Intent intent;
     String type,tiffintype;
 
@@ -35,15 +35,17 @@ public class OrderActvity extends AppCompatActivity {
         ButterKnife.inject(OrderActvity.this);
         intent = new Intent(OrderActvity.this, MenuType.class);
     }
-    @OnClick({ R.id.header1,R.id.header2,R.id.header3,R.id.txtBasicDabba,R.id.txtHeavyDabba,R.id.txtBasicDabba1,R.id.txtHeavyDabba1,R.id.txtBasicDabba2,R.id.txtHeavyDabba2})
+
+    @OnClick({R.id.header1, R.id.header2, R.id.header3/*R.id.txtBasicDabba,R.id.txtHeavyDabba,R.id.txtBasicDabba1,R.id.txtHeavyDabba1,R.id.txtBasicDabba2,R.id.txtHeavyDabba2*/})
     public void onClick(View view)
     {
         switch (view.getId())
         {
 
             case R.id.header1:
+                startActivity(intent);
 
-                if (section1.getVisibility() == View.GONE)
+              /*  if (section1.getVisibility() == View.GONE)
                 {
                     type=header1.getText().toString();
                     intent.putExtra("Type",type);
@@ -54,10 +56,11 @@ public class OrderActvity extends AppCompatActivity {
                 else
                 {
                     section1.setVisibility(View.GONE);
-                }
+                }*/
                 break;
             case R.id.header2:
-
+                startActivity(intent);
+/*
                 if (section2.getVisibility() == View.GONE)
                 {
                     type=header2.getText().toString();
@@ -70,10 +73,11 @@ public class OrderActvity extends AppCompatActivity {
                 {
                     section2.setVisibility(View.GONE);
 
-                }
+                }*/
                 break;
             case R.id.header3:
-
+                startActivity(intent);
+/*
                 if (section3.getVisibility() == View.GONE)
                 {
                     type=header3.getText().toString();
@@ -85,9 +89,9 @@ public class OrderActvity extends AppCompatActivity {
                 else
                 {
                     section3.setVisibility(View.GONE);
-                }
+                }*/
                 break;
-            case R.id.txtBasicDabba:
+         /*   case R.id.txtBasicDabba:
                 tiffintype=txtBasicDabba.getText().toString();
                 intent.putExtra("TiffinType",tiffintype);
                 startActivity(intent);
@@ -116,7 +120,7 @@ public class OrderActvity extends AppCompatActivity {
                 tiffintype=txtHeavyDabba2.getText().toString();
                 intent.putExtra("TiffinType",tiffintype);
                 startActivity(intent);
-                break;
+                break;*/
         }
     }
 }
