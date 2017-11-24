@@ -15,7 +15,9 @@ import android.widget.Spinner;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -42,9 +44,10 @@ public class VegFragment extends Fragment {
     ArrayList arrayList1;
     View view;
     String item;
+    String day;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
 
-    String type, tiffintype;
+    String type, tiffintype, t[];
 
     public VegFragment() {
         // Required empty public constructor
@@ -57,8 +60,9 @@ public class VegFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
-        type = getArguments().getString("Type");
-        tiffintype = getArguments().getString("TiffinType");
+        type = getArguments().getString("Type").toLowerCase();
+        t = getArguments().getString("TiffinType").split(" ");
+        tiffintype = t[0];
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
 
@@ -113,6 +117,9 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+        day = sdf.format(d);
         //Log.d("URL:","http://192.168.0.22:8000/routes/server/getSabji.php?type="+type+"&dabba="+tiffintype+"&meal="+meal+"&day="+day);
         urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
         urlRequest.getResponse(new ServerCallback()

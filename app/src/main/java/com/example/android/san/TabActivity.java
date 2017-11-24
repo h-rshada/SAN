@@ -1,8 +1,6 @@
 package com.example.android.san;
 
-import android.annotation.TargetApi;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -32,7 +30,7 @@ public class TabActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
-        actionBarSetup();
+        //actionBarSetup();
         vegFragment = new VegFragment();
         nonVegFragment = new NonVegFragment();
         viewPager = findViewById(R.id.viewpager);
@@ -99,15 +97,15 @@ public class TabActivity extends AppCompatActivity {
         back_pressed = System.currentTimeMillis();
     }*/
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void actionBarSetup() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            android.support.v7.app.ActionBar ab = getSupportActionBar();
-            ab.setTitle("Yashodeep Academy");
-            ab.setSubtitle("Home/Main");
-        }
-    }
-
+    /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+      private void actionBarSetup() {
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+              android.support.v7.app.ActionBar ab = getSupportActionBar();
+              ab.setTitle("Yashodeep Academy");
+              ab.setSubtitle("Home/Main");
+          }
+      }
+  */
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -136,6 +134,4 @@ public class TabActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
-
 }
