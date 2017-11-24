@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,16 +21,37 @@ public class TabActivity extends AppCompatActivity {
 
     public TabLayout tabLayout;
     Toast toast;
+    String type, tiffintype;
+    VegFragment vegFragment;
+    NonVegFragment nonVegFragment;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
         actionBarSetup();
+        vegFragment = new VegFragment();
+        nonVegFragment = new NonVegFragment();
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
+        type = getIntent().getStringExtra("Type");
+        tiffintype = getIntent().getStringExtra("TiffinType");
+
+        Log.d("Type", type);
+        Log.d("TiffinType", tiffintype);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("Type", type);
+        bundle.putString("TiffinType", tiffintype);
+
+        vegFragment.setArguments(bundle);
+        nonVegFragment.setArguments(bundle);
+
+
+
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setSelectedTabIndicatorHeight(5);
         tabLayout.setupWithViewPager(viewPager);
@@ -56,9 +78,9 @@ public class TabActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new VegFragment(), "Veg");
-        adapter.addFragment(new NonVegFragment(), "NonVeg");
 
+        adapter.addFragment(vegFragment, "Veg");
+        adapter.addFragment(nonVegFragment, "NonVeg");
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
     }

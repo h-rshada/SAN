@@ -43,6 +43,9 @@ public class VegFragment extends Fragment {
     View view;
     String item;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
+
+    String type, tiffintype;
+
     public VegFragment() {
         // Required empty public constructor
     }
@@ -54,12 +57,26 @@ public class VegFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
+
       /*  ArrayList indianBread=new ArrayList();
+=======
+        type = getArguments().getString("Type");
+        tiffintype = getArguments().getString("TiffinType");
+        Log.d("Type", type);
+        Log.d("TiffinType", tiffintype);
+        ArrayList indianBread=new ArrayList();
+>>>>>>> origin/master
         indianBread.add("Indian Bread");
         indianBread.add("Roti");
         indianBread.add("Paratha");
         indianBread.add("Poori");
-        ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,indianBread);
+
+        //type=(getIntent().getStringExtra("Type"));
+        //tiffintype=getIntent().getStringExtra("TiffinType");
+       /* Log.d("Type",type);
+        Log.d("tiffinType",tiffintype);*/
+
+       /* ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,indianBread);
         spinner_indianBread.setAdapter(dataAdapter);
         ArrayList rice=new ArrayList();
         rice.add("Rice");
