@@ -57,13 +57,14 @@ public class VegFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
-
-      /*  ArrayList indianBread=new ArrayList();
-=======
         type = getArguments().getString("Type");
         tiffintype = getArguments().getString("TiffinType");
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
+
+      /*  ArrayList indianBread=new ArrayList();
+=======
+
         ArrayList indianBread=new ArrayList();
 >>>>>>> origin/master
         indianBread.add("Indian Bread");
@@ -90,17 +91,17 @@ public class VegFragment extends Fragment {
         ArrayAdapter dataAdapter2=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,dal);
         spinner_dal.setAdapter(dataAdapter2);*/
         item = "bread";
-        if (item.equals("bread")) {
-            setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread");
-        }
+
+        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
+
         item = "rice";
-        if (item.equals("rice")) {
-            setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=rice");
-        }
+
+        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=rice", item);
+
         item = "dal";
-        if (item.equals("dal")) {
-            setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=dal");
-        }
+
+        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=dal", item);
+
        /* ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,arrayList1);
         spinner_indianBread.setAdapter(dataAdapter);*/
         Log.d("onCreateView: ", arrayList1 + "");
@@ -145,7 +146,7 @@ public class VegFragment extends Fragment {
         });
     }
 
-    public void setData(String url)
+    public void setData(String url, final String item)
     {
 
         urlRequest = UrlRequest.getObject();
