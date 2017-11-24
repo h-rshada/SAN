@@ -41,6 +41,7 @@ public class VegFragment extends Fragment {
     List<Datacheckbox> arrayList;
     ArrayList arrayList1;
     View view;
+    String type, tiffintype;
     public VegFragment() {
         // Required empty public constructor
     }
@@ -52,11 +53,21 @@ public class VegFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
+        type = getArguments().getString("Type");
+        tiffintype = getArguments().getString("TiffinType");
+        Log.d("Type", type);
+        Log.d("TiffinType", tiffintype);
         ArrayList indianBread=new ArrayList();
         indianBread.add("Indian Bread");
         indianBread.add("Roti");
         indianBread.add("Paratha");
         indianBread.add("Poori");
+
+        //type=(getIntent().getStringExtra("Type"));
+        //tiffintype=getIntent().getStringExtra("TiffinType");
+       /* Log.d("Type",type);
+        Log.d("tiffinType",tiffintype);*/
+
         ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,indianBread);
         spinner_indianBread.setAdapter(dataAdapter);
         ArrayList rice=new ArrayList();
@@ -82,7 +93,7 @@ public class VegFragment extends Fragment {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
         //Log.d("URL:","http://192.168.0.22:8000/routes/server/getSabji.php?type="+type+"&dabba="+tiffintype+"&meal="+meal+"&day="+day);
-        urlRequest.setUrl("http://192.168.0.22:8000/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
