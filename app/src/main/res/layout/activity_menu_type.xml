@@ -101,20 +101,17 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/style1">
 
-                <TextView
-                    android:id="@+id/txtPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center|end"
-                    android:layout_marginRight="10dp"
-                    android:text="Rs.60"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
                 <LinearLayout
-                    android:id="@+id/layoutDesc"
-                    android:layout_width="260dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                    android:id="@+id/layoutDesc"
+                        android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                        android:layout_weight="1"
                     android:background="@drawable/style1"
                     android:orientation="vertical">
 
@@ -133,6 +130,17 @@
                         android:src="@mipmap/ic_launcher"
                         android:text="@string/BasicDesc"
                         android:textSize="17dp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|end"
+                        android:text="Rs.60"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -143,20 +151,16 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/style1">
 
-                <TextView
-                    android:id="@+id/txtPrice1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center|end"
-                    android:layout_marginRight="10dp"
-                    android:text="Rs.80"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
                 <LinearLayout
-                    android:id="@+id/layoutDesc1"
-                    android:layout_width="260dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                    android:id="@+id/layoutDesc1"
+                        android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                        android:layout_weight="1"
                     android:background="@drawable/style1"
                     android:orientation="vertical">
 
@@ -175,6 +179,16 @@
                         android:src="@mipmap/ic_launcher"
                         android:text="@string/HeavyDesc"
                         android:textSize="17dp" />
+                </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtPrice1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|end"
+                        android:text="Rs.80"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

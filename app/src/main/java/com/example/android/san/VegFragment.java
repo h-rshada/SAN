@@ -41,7 +41,11 @@ public class VegFragment extends Fragment {
     List<Datacheckbox> arrayList;
     ArrayList arrayList1;
     View view;
+    String item;
+    ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
+
     String type, tiffintype;
+
     public VegFragment() {
         // Required empty public constructor
     }
@@ -57,7 +61,12 @@ public class VegFragment extends Fragment {
         tiffintype = getArguments().getString("TiffinType");
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
+
+      /*  ArrayList indianBread=new ArrayList();
+=======
+
         ArrayList indianBread=new ArrayList();
+>>>>>>> origin/master
         indianBread.add("Indian Bread");
         indianBread.add("Roti");
         indianBread.add("Paratha");
@@ -68,7 +77,7 @@ public class VegFragment extends Fragment {
        /* Log.d("Type",type);
         Log.d("tiffinType",tiffintype);*/
 
-        ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,indianBread);
+       /* ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,indianBread);
         spinner_indianBread.setAdapter(dataAdapter);
         ArrayList rice=new ArrayList();
         rice.add("Rice");
@@ -80,10 +89,22 @@ public class VegFragment extends Fragment {
         dal.add("Dal");
         dal.add("Dal fry");
         ArrayAdapter dataAdapter2=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,dal);
-        spinner_dal.setAdapter(dataAdapter2);
-      /*  setData("http://192.168.0.22:8000/routes/server/getCommonItems.php?item=rice");
-        ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,arrayList1);
+        spinner_dal.setAdapter(dataAdapter2);*/
+        item = "bread";
+
+        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
+
+        item = "rice";
+
+        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=rice", item);
+
+        item = "dal";
+
+        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=dal", item);
+
+       /* ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,arrayList1);
         spinner_indianBread.setAdapter(dataAdapter);*/
+        Log.d("onCreateView: ", arrayList1 + "");
         getData();
         return view;
 
@@ -124,7 +145,8 @@ public class VegFragment extends Fragment {
             }
         });
     }
-    /*public void setData(String url)
+
+    public void setData(String url, final String item)
     {
 
         urlRequest = UrlRequest.getObject();
@@ -142,12 +164,30 @@ public class VegFragment extends Fragment {
                     arrayList1=new ArrayList<>();
 
                     JSONArray jsonArray=new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONArray jsonArray1=jsonArray.getJSONArray(i);
-                        String str =jsonArray1.getString(1);
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                        String str = jsonArray1.getString(1);
                         arrayList1.add(str);
+
+                        if (item.equals("bread")) {
+                            adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_indianBread.setAdapter(adapter_bread);
+                            Log.d("Bread: ", arrayList1 + "");
+                            Log.d("item:1 ", item + "" + arrayList1);
+                        } else if (item.equals("rice")) {
+                            adapter_rice = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_rice.setAdapter(adapter_rice);
+                            Log.d("Rice: ", arrayList1 + "");
+                            Log.d("item:2 ", item);
+                        } else if (item.equals("dal")) {
+                            adapter_dal = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_dal.setAdapter(adapter_dal);
+                            Log.d("Dal: ", arrayList1.toString());
+                            Log.d("item:3", item);
+                        }
                     }
+
 
                 } catch (JSONException e)
                 {
@@ -155,5 +195,5 @@ public class VegFragment extends Fragment {
                 }
             }
         });
-    }*/
+    }
 }

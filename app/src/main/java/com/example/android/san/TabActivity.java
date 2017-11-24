@@ -50,8 +50,6 @@ public class TabActivity extends AppCompatActivity {
         vegFragment.setArguments(bundle);
         nonVegFragment.setArguments(bundle);
 
-
-
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setSelectedTabIndicatorHeight(5);
         tabLayout.setupWithViewPager(viewPager);
