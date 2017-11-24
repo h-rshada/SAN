@@ -66,34 +66,6 @@ public class VegFragment extends Fragment {
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
 
-      /*  ArrayList indianBread=new ArrayList();
-=======
-
-        ArrayList indianBread=new ArrayList();
->>>>>>> origin/master
-        indianBread.add("Indian Bread");
-        indianBread.add("Roti");
-        indianBread.add("Paratha");
-        indianBread.add("Poori");
-
-        //type=(getIntent().getStringExtra("Type"));
-        //tiffintype=getIntent().getStringExtra("TiffinType");
-       /* Log.d("Type",type);
-        Log.d("tiffinType",tiffintype);*/
-
-       /* ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,indianBread);
-        spinner_indianBread.setAdapter(dataAdapter);
-        ArrayList rice=new ArrayList();
-        rice.add("Rice");
-        rice.add("Steam rice");
-        ArrayAdapter dataAdapter1=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,rice);
-        spinner_rice.setAdapter(dataAdapter1);
-
-        ArrayList dal=new ArrayList();
-        dal.add("Dal");
-        dal.add("Dal fry");
-        ArrayAdapter dataAdapter2=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,dal);
-        spinner_dal.setAdapter(dataAdapter2);*/
         item = "bread";
 
         setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
@@ -133,7 +105,7 @@ public class VegFragment extends Fragment {
                     arrayList = new ArrayList<>();
 
                     JSONArray jsonArray=new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         datacheckbox=new Datacheckbox();
                         JSONArray jsonArray1=jsonArray.getJSONArray(i);
                         datacheckbox.strMenu=jsonArray1.getString(1);

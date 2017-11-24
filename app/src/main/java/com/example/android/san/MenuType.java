@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,9 +48,22 @@ public class MenuType extends AppCompatActivity {
         setContentView(R.layout.activity_menu_type);
         ButterKnife.inject(MenuType.this);
         intent = new Intent(MenuType.this, TabActivity.class);
-        txtFlexible.setSelected(true);
-        type = txtFlexible.getText().toString();
-        onClick(txtFlexible);
+        type = getIntent().getStringExtra("Type");
+        Log.d("Type", type);
+        if (type.equals("Flexible")) {
+            txtFlexible.setSelected(true);
+            onClick(txtFlexible);
+        } else if (type.equals("SemiFlexible")) {
+            txtSemiFlexible.setSelected(true);
+            onClick(txtSemiFlexible);
+        } else if (type.equals("Fixed")) {
+            txtFixed.setSelected(true);
+            onClick(txtFixed);
+        } else if (type.equals("BreakFast")) {
+            txtBreakfast.setSelected(true);
+            onClick(txtBreakfast);
+        }
+
 
     }
 
@@ -62,7 +76,7 @@ public class MenuType extends AppCompatActivity {
                 type=txtFlexible.getText().toString();
                 intent.putExtra("Type", type);
                 txtMenuType.setText(type);
-                if (txtFlexible.isSelected()) {
+                if (type.equals("Flexible")) {
                     txtFlexible.setBackgroundColor(Color.RED);
                     txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                     txtFixed.setBackgroundColor(getResources().getColor(R.color.light_blue));
@@ -76,6 +90,7 @@ public class MenuType extends AppCompatActivity {
             case R.id.txtSemiFlexible:
                 type=txtSemiFlexible.getText().toString();
                 intent.putExtra("Type", type);
+                txtMenuType.setText(type);
                 if (type.equals("Semi Flexible")) {
                     txtSemiFlexible.setBackgroundColor(Color.RED);
                     txtFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
@@ -84,7 +99,7 @@ public class MenuType extends AppCompatActivity {
                 } else {
                     txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
-                txtMenuType.setText(type);
+
                 txtPrice.setText("Rs.100");
                 txtPrice1.setText("Rs.110");
                 break;
@@ -120,7 +135,6 @@ public class MenuType extends AppCompatActivity {
                 txtPrice1.setText("Rs.110");
                 break;
             case R.id.cardBasic:
-
                 tiffinType = txtTiffinType.getText().toString();
                 intent.putExtra("TiffinType", tiffinType);
                 startActivity(intent);
