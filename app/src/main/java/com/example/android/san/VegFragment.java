@@ -166,8 +166,6 @@ public class VegFragment extends Fragment {
                             Log.d("item:3", item);
                         }
                     }
-
-
                 } catch (JSONException e)
                 {
                     e.printStackTrace();

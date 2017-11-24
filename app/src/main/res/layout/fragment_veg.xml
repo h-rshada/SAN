@@ -10,9 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/itemCardView1"
@@ -103,22 +104,15 @@
                             android:layout_toRightOf="@+id/txt_heat"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:weightSum="4">
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
 
                                     <RadioButton
                                         android:id="@+id/radio_spicey"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="4dp"
                                         android:layout_weight="1"
                                         android:checked="true"
                                         android:inputType="textAutoComplete"
@@ -132,16 +126,13 @@
                                         android:layout_weight="1"
                                         android:inputType="textAutoComplete"
                                         android:text="Medium spicey" />
-                                </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
 
-                                    <RadioButton
+                            <RadioButton
                                         android:id="@+id/radio_neutral"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
                                         android:layout_weight="1"
                                         android:inputType="textAutoComplete"
                                         android:text="Neutral" />
@@ -150,12 +141,12 @@
                                         android:id="@+id/radio_sweet"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginLeft="4dp"
                                         android:layout_weight="1"
                                         android:inputType="textAutoComplete"
                                         android:text="sweet" />
-                                </LinearLayout>
 
-                            </LinearLayout>
+
                         </RadioGroup>
                     </LinearLayout>
 
@@ -402,12 +393,13 @@
                     android:text="Sun"
                     android:textAlignment="center" />
             </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/Listmenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="340dp"
                 android:paddingTop="0dp" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -416,6 +408,7 @@
                 android:background="@color/colorAccent"
                 android:text="order"
                 android:textColor="#ffffff" />
-        </RelativeLayout>
+
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>
