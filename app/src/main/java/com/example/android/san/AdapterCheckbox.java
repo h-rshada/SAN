@@ -66,7 +66,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked && numberOfCheckboxesChecked >= 2) {
                     myHolder.checkBox.setChecked(false);
-                    Toast.makeText(context, "You can select only 2 subji", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "You can select only 2 subjis", Toast.LENGTH_LONG).show();
                 } else {
                     // the checkbox either got unchecked
                     // or there are less than 2 other checkboxes checked
