@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +22,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     MyHolder myHolder;
     private Context context;
     private LayoutInflater inflater;
+    int count=0;
 
     // create constructor to innitilize context and data sent frm MainActivity
     public AdapterCheckbox(Context context, List<DataSubji> data) {
@@ -31,6 +33,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onClick(View v) {
+        Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -57,6 +60,21 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final int pos = position;
         DataSubji dataSubji = data.get(position);
         myHolder.checkBox.setText(dataSubji.subji);
+        if(count<2) {
+
+            myHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "clicked"+count, Toast.LENGTH_SHORT).show();
+                    count++;
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(context, "can't clicked", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -69,10 +87,24 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         CheckBox checkBox;
 
+
         public MyHolder(View itemView) {
             super(itemView);
 
             checkBox = itemView.findViewById(R.id.checkbox_menu);
+            /*if(count<2) {
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+            else
+            {
+                Toast.makeText(context, "can't clicked", Toast.LENGTH_SHORT).show();
+            }*/
         }
     }
 }

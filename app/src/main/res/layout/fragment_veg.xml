@@ -109,23 +109,23 @@
 
 
                                     <RadioButton
-                                        android:id="@+id/radio_spicey"
+                                        android:id="@+id/radio_spicy"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="4dp"
                                         android:layout_weight="1"
                                         android:checked="true"
                                         android:inputType="textAutoComplete"
-                                        android:text="Spicey" />
+                                        android:text="Spicy" />
 
                                     <RadioButton
-                                        android:id="@+id/radio_mediumspicey"
+                                        android:id="@+id/radio_mediumspicy"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="4dp"
                                         android:layout_weight="1"
                                         android:inputType="textAutoComplete"
-                                        android:text="Medium spicey" />
+                                        android:text="Medium spicy" />
 
 
                             <RadioButton
@@ -144,7 +144,7 @@
                                         android:layout_marginLeft="4dp"
                                         android:layout_weight="1"
                                         android:inputType="textAutoComplete"
-                                        android:text="sweet" />
+                                        android:text="Sweet" />
 
 
                         </RadioGroup>
@@ -187,7 +187,7 @@
                                 android:layout_weight="1"
                                 android:checked="true"
                                 android:inputType="textAutoComplete"
-                                android:text="Spicey" />
+                                android:text="Minimal" />
 
                             <RadioButton
                                 android:id="@+id/radio_regularoil"
@@ -195,7 +195,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:inputType="textAutoComplete"
-                                android:text="Medium" />
+                                android:text="Regular" />
 
                         </RadioGroup>
                     </LinearLayout>
@@ -398,7 +398,8 @@
                 android:id="@+id/Listmenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="0dp" />
+                android:paddingTop="0dp"
+                android:paddingBottom="20dp"/>
 
 
         </LinearLayout>

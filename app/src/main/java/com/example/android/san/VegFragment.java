@@ -1,6 +1,7 @@
 package com.example.android.san;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +33,20 @@ public class VegFragment extends Fragment {
 
     @InjectView(R.id.spinner_indianBread)
     Spinner spinner_indianBread;
+    @InjectView(R.id.txt_mon)
+    TextView day_monday;
+    @InjectView(R.id.txt_tue)
+    TextView day_tuesday;
+    @InjectView(R.id.txt_wed)
+    TextView day_wednesday;
+    @InjectView(R.id.txt_thu)
+    TextView day_thursday;
+    @InjectView(R.id.txt_fri)
+    TextView day_friday;
+    @InjectView(R.id.txt_sat)
+    TextView day_saturday;
+    @InjectView(R.id.txt_sun)
+    TextView day_sunday;
     @InjectView(R.id.spinner_rice)
     Spinner spinner_rice;
     @InjectView(R.id.spinner_dal)
@@ -44,7 +60,7 @@ public class VegFragment extends Fragment {
     ArrayList arrayList1;
     View view;
     String item;
-    String day;
+    String day,week_day;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
 
     String type, tiffintype, t[];
@@ -91,6 +107,54 @@ public class VegFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
+        if(day.equals("Monday"))
+        {
+            day_monday.setSelected(true);
+            day_monday.setBackgroundColor(Color.RED);
+            week_day="Monday";
+        }
+        else
+        if(day.equals("Tuesday"))
+        {
+            day_tuesday.setSelected(true);
+            day_tuesday.setBackgroundColor(Color.RED);
+            week_day="Tuesday";
+        }
+        else
+        if(day.equals("Wednesday"))
+        {
+            day_wednesday.setSelected(true);
+            day_wednesday.setBackgroundColor(Color.RED);
+            week_day="Wednesday";
+        }
+        else
+        if(day.equals("Thursday"))
+        {
+            day_thursday.setSelected(true);
+            day_thursday.setBackgroundColor(Color.RED);
+            week_day="Thursday";
+        }
+        else
+        if(day.equals("Friday"))
+        {
+            day_friday.setSelected(true);
+            day_friday.setBackgroundColor(Color.RED);
+            week_day="Friday";
+        }
+        else
+        if(day.equals("Saturday"))
+        {
+            day_saturday.setSelected(true);
+            day_saturday.setBackgroundColor(Color.RED);
+            week_day="Saturday";
+        }
+        else
+        if(day.equals("Sunday"))
+        {
+            day_sunday.setSelected(true);
+            day_sunday.setBackgroundColor(Color.RED);
+            week_day="Sunday";
+        }
         urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
         urlRequest.getResponse(new ServerCallback()
         {
