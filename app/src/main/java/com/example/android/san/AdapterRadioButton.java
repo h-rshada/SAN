@@ -1,16 +1,11 @@
 package com.example.android.san;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,10 +14,10 @@ import java.util.List;
  * Created by android on 11/22/17.
  */
 
-public class AdapterRadioButton  extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
+    public int mSelectedItem = -1;
     List<DataSubji> data = Collections.emptyList();
-
     MyHolder myHolder;
     private Context context;
     private LayoutInflater inflater;
@@ -34,14 +29,11 @@ public class AdapterRadioButton  extends RecyclerView.Adapter<RecyclerView.ViewH
         this.data = data;
     }
 
-
-
     @Override
     public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
         myHolder = (MyHolder) holder;
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -49,19 +41,14 @@ public class AdapterRadioButton  extends RecyclerView.Adapter<RecyclerView.ViewH
         MyHolder holder = new MyHolder(view);
         return holder;
     }
-
-
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-
-
         final MyHolder myHolder = (MyHolder) holder;
         final int pos = position;
         DataSubji dataSubji = data.get(position);
+        myHolder.radioSubji.setChecked(pos == mSelectedItem);
         myHolder.radioSubji.setText(dataSubji.subji);
-
     }
-
     @Override
     public int getItemCount() {
         return data.size();
@@ -77,7 +64,16 @@ public class AdapterRadioButton  extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public MyHolder(View itemView) {
             super(itemView);
-          radioSubji=itemView.findViewById(R.id.radioSubji);
+            radioSubji = itemView.findViewById(R.id.radioSubji);
+            View.OnClickListener clickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mSelectedItem = getAdapterPosition();
+                    notifyItemRangeChanged(0, data.size());
+                }
+            };
+            itemView.setOnClickListener(clickListener);
+            radioSubji.setOnClickListener(clickListener);
         }
     }
 }

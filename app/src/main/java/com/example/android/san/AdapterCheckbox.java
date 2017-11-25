@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.List;
 public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     List<DataSubji> data = Collections.emptyList();
+    int numberOfCheckboxesChecked = 0;
 
     MyHolder myHolder;
     private Context context;
@@ -55,8 +58,28 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         final MyHolder myHolder = (MyHolder) holder;
         final int pos = position;
-        DataSubji dataSubji = data.get(position);
+        final DataSubji dataSubji = data.get(position);
         myHolder.checkBox.setText(dataSubji.subji);
+
+        myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked && numberOfCheckboxesChecked >= 2) {
+                    myHolder.checkBox.setChecked(false);
+                    Toast.makeText(context, "You can select only 2 subji", Toast.LENGTH_LONG).show();
+                } else {
+                    // the checkbox either got unchecked
+                    // or there are less than 2 other checkboxes checked
+                    // change your counter accordingly
+                    if (isChecked) {
+                        numberOfCheckboxesChecked++;
+                    } else {
+                        numberOfCheckboxesChecked--;
+                    }
+                }
+            }
+        });
+
     }
 
     @Override
