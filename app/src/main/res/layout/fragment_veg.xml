@@ -400,15 +400,15 @@
                 android:layout_height="match_parent"
                 android:paddingTop="0dp" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/Listmenu"
-                android:background="@color/colorAccent"
-                android:text="order"
-                android:textColor="#ffffff" />
 
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:text="order"
+        android:textColor="#ffffff" />
+
 </RelativeLayout>
