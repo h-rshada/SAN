@@ -48,7 +48,6 @@ public class HomeActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -94,11 +93,13 @@ public class HomeActivity extends AppCompatActivity
                 intent=new Intent(HomeActivity.this,OrderActvity.class);
                 startActivity(intent);
                 break;
+
             case R.id.aboutus:
 
                 intent=new Intent(HomeActivity.this,AboutUs.class);
                 startActivity(intent);
                 break;
+
             case R.id.find:
                 intent = new Intent(HomeActivity.this, MapsActivity.class);
                 startActivity(intent);
@@ -106,7 +107,7 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-                @SuppressWarnings("StatementWithEmptyBody")
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -125,8 +126,7 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
-                    DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
