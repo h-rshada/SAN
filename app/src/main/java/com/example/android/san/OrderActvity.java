@@ -46,16 +46,19 @@ public class OrderActvity extends AppCompatActivity {
                 type = header2.getText().toString();
                 intent.putExtra("Type", type);
                 startActivity(intent);
-
                 break;
             case R.id.header3:
+
                 type = header3.getText().toString();
                 intent.putExtra("Type", type);
                 startActivity(intent);
+                break;
+
             case R.id.header4:
                 type = header4.getText().toString();
                 intent.putExtra("Type", type);
                 startActivity(intent);
+                break;
         }
     }
 }

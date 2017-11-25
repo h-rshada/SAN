@@ -63,8 +63,6 @@ public class MenuType extends AppCompatActivity {
             txtBreakfast.setSelected(true);
             onClick(txtBreakfast);
         }
-
-
     }
 
     @OnClick({R.id.txtFlexible, R.id.txtSemiFlexible, R.id.txtFixed, R.id.txtBreakfast, R.id.cardBasic, R.id.cardHeavy})
