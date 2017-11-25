@@ -172,7 +172,7 @@ public class VegFragment extends Fragment {
                         JSONArray jsonArray1=jsonArray.getJSONArray(i);
                         dataSubji.subji = jsonArray1.getString(1);
                         arrayList.add(dataSubji);
-                        Log.d("onSuccess: ","push");
+                      
                     }
                     Log.d("Data", dataSubji.subji);
                     recyclerView = view.findViewById(R.id.Listmenu);
