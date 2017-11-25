@@ -16,14 +16,14 @@ import java.util.List;
 
 public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
-    List<Datacheckbox> data = Collections.emptyList();
+    List<DataSubji> data = Collections.emptyList();
 
     MyHolder myHolder;
     private Context context;
     private LayoutInflater inflater;
 
     // create constructor to innitilize context and data sent frm MainActivity
-    public AdapterCheckbox(Context context, List<Datacheckbox> data) {
+    public AdapterCheckbox(Context context, List<DataSubji> data) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.data = data;
@@ -55,8 +55,8 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         final MyHolder myHolder = (MyHolder) holder;
         final int pos = position;
-        Datacheckbox datacheckbox = data.get(position);
-        myHolder.checkBox.setText(datacheckbox.strMenu);
+        DataSubji dataSubji = data.get(position);
+        myHolder.checkBox.setText(dataSubji.subji);
     }
 
     @Override

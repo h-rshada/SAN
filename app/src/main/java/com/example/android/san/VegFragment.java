@@ -35,12 +35,12 @@ public class VegFragment extends Fragment {
     Spinner spinner_rice;
     @InjectView(R.id.spinner_dal)
     Spinner spinner_dal;
-    AdapterCheckbox adapter;
-    /* @InjectView(R.id.Listmenu)*/
+    AdapterCheckbox adapterCheckbox;
+    AdapterRadioButton adapterRadioButton;
     RecyclerView recyclerView;
     UrlRequest urlRequest;
-    Datacheckbox datacheckbox;
-    List<Datacheckbox> arrayList;
+    DataSubji dataSubji;
+    List<DataSubji> arrayList;
     ArrayList arrayList1;
     View view;
     String item;
@@ -50,7 +50,7 @@ public class VegFragment extends Fragment {
     String type, tiffintype, t[];
 
     public VegFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -66,6 +66,7 @@ public class VegFragment extends Fragment {
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
 
+
         item = "bread";
 
         setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
@@ -78,8 +79,6 @@ public class VegFragment extends Fragment {
 
         setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=dal", item);
 
-       /* ArrayAdapter dataAdapter=new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,arrayList1);
-        spinner_indianBread.setAdapter(dataAdapter);*/
         Log.d("onCreateView: ", arrayList1 + "");
         getData();
         return view;
@@ -92,7 +91,6 @@ public class VegFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
-        //Log.d("URL:","http://192.168.0.22:8000/routes/server/getSabji.php?type="+type+"&dabba="+tiffintype+"&meal="+meal+"&day="+day);
         urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
         urlRequest.getResponse(new ServerCallback()
         {
@@ -105,18 +103,25 @@ public class VegFragment extends Fragment {
                     arrayList = new ArrayList<>();
 
                     JSONArray jsonArray=new JSONArray(response);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        datacheckbox=new Datacheckbox();
+                    for(int i=0;i<jsonArray.length();i++){
+                        dataSubji = new DataSubji();
                         JSONArray jsonArray1=jsonArray.getJSONArray(i);
-                        datacheckbox.strMenu=jsonArray1.getString(1);
-                        arrayList.add(datacheckbox);
+                        dataSubji.subji = jsonArray1.getString(1);
+                        arrayList.add(dataSubji);
+                        Log.d("onSuccess: ","push");
                     }
-                    Log.d("Data",datacheckbox.strMenu);
+                    Log.d("Data", dataSubji.subji);
                     recyclerView = view.findViewById(R.id.Listmenu);
-                    adapter=new AdapterCheckbox(getActivity(),arrayList);
                     recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                    recyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                    if (tiffintype.equals("Basic")) {
+                        adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                        recyclerView.setAdapter(adapterRadioButton);
+                        adapterRadioButton.notifyDataSetChanged();
+                    } else if (tiffintype.equals("Heavy")) {
+                        adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                        recyclerView.setAdapter(adapterCheckbox);
+                        adapterCheckbox.notifyDataSetChanged();
+                    }
                 } catch (JSONException e)
                 {
                     e.printStackTrace();
@@ -130,7 +135,6 @@ public class VegFragment extends Fragment {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        //Log.d("URL:","http://192.168.0.22:8000/routes/server/getSabji.php?type="+type+"&dabba="+tiffintype+"&meal="+meal+"&day="+day);
         urlRequest.setUrl(url);
         urlRequest.getResponse(new ServerCallback()
         {
