@@ -1,7 +1,12 @@
 package com.example.android.san;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +14,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by user on 23/11/17.
@@ -21,6 +29,12 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int SELECTION = 0;
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
+    UrlRequest urlRequest;
+    String selectedStr, type;
+    ArrayList<String> list;
+    DataSubji dataSubji, dataSubji1;
+    SharedPreferences sp;
+    Set<String> listData;
     private Context context;
     private LayoutInflater inflater;
 
@@ -57,8 +71,18 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         final MyHolder myHolder = (MyHolder) holder;
         final int pos = position;
-        DataSubji dataSubji = data.get(position);
+        final DataSubji dataSubji = data.get(position);
         myHolder.checkBox.setText(dataSubji.subji);
+        listData = new HashSet<String>();
+        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        type = sp.getString("TYPE", null);
+        selectedStr = sp.getString("SINGLE", null);
+        listData = sp.getStringSet("LIST", null);
+        List listOfNames = new ArrayList(listData);
+        Log.d("AdapterDabba***", type);
+        Log.d("Adapterstr***", selectedStr);
+        Log.d("Adapterlist***", listOfNames.get(0) + "");
+
         /*myHolder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,15 +101,40 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         });*/
         myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            public void onCheckedChanged(final CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    if (SELECTION < 2) {
-                        compoundButton.setChecked(true);
-                        SELECTION++;
-                        Toast.makeText(context, "changed" + SELECTION + b + "", Toast.LENGTH_SHORT).show();
-                    } else {
-                        compoundButton.setChecked(false);
-                        Toast.makeText(context, "You can select only 2 subji", Toast.LENGTH_SHORT).show();
+                    if (type.equals("fixed")) {
+                        if (SELECTION < 2) {
+                            compoundButton.setChecked(true);
+                            SELECTION++;
+                            Toast.makeText(context, "changed" + SELECTION + b + "" + dataSubji.selectedSubji, Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            // Toast.makeText(context, "You can select only 2 subji", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+
+                            alertDialog.setMessage("For subji you have to pay extra charges. ");
+
+                            alertDialog.setPositiveButton(
+                                    "OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            compoundButton.setChecked(true);
+                                            dialog.cancel();
+                                        /*finish();
+                                        onBackPressed();*/
+
+                                        }
+                                    });
+                            alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    compoundButton.setChecked(false);
+                                }
+                            });
+
+                            alertDialog.show();
+                        }
                     }
                 } else {
                     if (SELECTION > 0) {
@@ -114,6 +163,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             checkBox = itemView.findViewById(R.id.checkbox_menu);
         }
     }
+
 }
 
 
