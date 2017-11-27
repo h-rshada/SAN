@@ -1,7 +1,8 @@
 package com.example.android.san;
 
 
-import android.content.Intent;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,7 +22,9 @@ import org.json.JSONException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -57,14 +60,17 @@ public class VegFragment extends Fragment {
     RecyclerView recyclerView;
     UrlRequest urlRequest;
     DataSubji dataSubji;
-    List<DataSubji> arrayList,listData;
+    List<DataSubji> arrayList;
     ArrayList arrayList1;
+    Set<String> listData;
     View view;
     String item,str[],str1;
     String day,week_day,dabba1;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
-
+    String[] items = new String[]{"One"};
+    SharedPreferences sp;
     String type, tiffintype, dabba,t[];
+    SharedPreferences.Editor editor;
 
     public VegFragment() {
 
@@ -77,6 +83,11 @@ public class VegFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
+
+        sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        editor = sp.edit();
+        //type = sp.getString("TYPE", null);
+
         type = getArguments().getString("Type").toLowerCase();
         t = getArguments().getString("TiffinType").split(" ");
         tiffintype = t[0];
@@ -92,8 +103,11 @@ public class VegFragment extends Fragment {
                 dabba = type + tiffintype;
             }
 
-
         Log.d(dabba, "Dabba ");
+
+        editor.putString("TYPE", type);
+        editor.commit();
+
         item = "bread";
 
         setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
@@ -111,7 +125,6 @@ public class VegFragment extends Fragment {
         if(dabba.equals("semiHeavy") || dabba.equals("fixedBasic")|| dabba.equals("fixedHeavy")) {
             selectedData();
         }
-
         return view;
 
     }
@@ -170,7 +183,7 @@ public class VegFragment extends Fragment {
             day_sunday.setBackgroundColor(Color.RED);
             week_day="Sunday";
         }
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -187,6 +200,7 @@ public class VegFragment extends Fragment {
                         JSONArray jsonArray1=jsonArray.getJSONArray(i);
                         dataSubji.subji = jsonArray1.getString(1);
                         arrayList.add(dataSubji);
+
                     }
                     Log.d("Data", dataSubji.subji);
                     recyclerView = view.findViewById(R.id.Listmenu);
@@ -237,6 +251,7 @@ public class VegFragment extends Fragment {
 
                         if (item.equals("bread")) {
                             adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_indianBread.setPrompt("Bread");
                             spinner_indianBread.setAdapter(adapter_bread);
                             Log.d("Bread: ", arrayList1 + "");
 
@@ -271,19 +286,25 @@ public class VegFragment extends Fragment {
             public void onSuccess(String response)
             {
                 Log.d("ResponseSubji", response);
+                listData = new HashSet<String>();
+                arrayList1 = new ArrayList<>();
                 try {
 
-                    dataSubji=new DataSubji();
                     JSONArray jsonArray=new JSONArray(response);
                     Log.d("Array",jsonArray.toString());
                     for (int i = 0; i < jsonArray.length(); i++)
                     {
-                        dabba1= (String) jsonArray.get(i);
+                        dabba = (String) jsonArray.get(i);
+                        arrayList1.add(jsonArray.get(i));
+                        listData.addAll(arrayList1);
                     }
-                   dataSubji.setSelectedSubji(dabba1);
-                    dataSubji.getSelectedSubji();
-                    Log.d("Selected", dataSubji.getSelectedSubji());
-                    Log.d("DataSubji",dabba1);
+                    editor.putString("SINGLE", dabba);
+                    editor.putStringSet("LIST", listData);
+                    editor.commit();
+                    Log.d("LIst", listData + "");
+
+
+                    Log.d("DataSubji***", dabba);
                 }
                 catch (JSONException e)
                 {
@@ -293,5 +314,6 @@ public class VegFragment extends Fragment {
         });
 
     }
+
 
 }

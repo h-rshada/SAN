@@ -154,7 +154,7 @@ public class NonVegFragment extends Fragment {
                         arrayList.add(dataSubji);
 
                     }
-                    Log.d("Data", dataSubji.subji);
+                    Log.d("Data", arrayList.toString());
                     recyclerView = view.findViewById(R.id.Listmenu);
                     recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
                     if (tiffintype.equals("Basic")) {

@@ -1,6 +1,8 @@
 package com.example.android.san;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,9 +13,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.io.File;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -30,6 +35,20 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        try {
+            File f = new File("/data/data/com.xoxytech.ostello/shared_prefs/YourSharedPreference.xml");
+            if (f.exists()) {
+                Log.d("TAG", "SharedPreferences Name_of_your_preference : exist");
+                SharedPreferences sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+                // String selectedsubji = sp.getString("SELECTEDSUBJI", null);
+            } else
+                Log.d("TAG", "Setup default preferences");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ButterKnife.inject(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);

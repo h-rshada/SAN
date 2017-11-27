@@ -1,6 +1,8 @@
 package com.example.android.san;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,9 +23,13 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
     public int mSelectedItem = -1;
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
-    String selectedStr;
+    String selectedStr, type;
+    DataSubji dataSubji, dataSubji1;
+    SharedPreferences sp;
+    UrlRequest urlRequest;
     private Context context;
     private LayoutInflater inflater;
+
 
     // create constructor to innitilize context and data sent frm MainActivity
     public AdapterRadioButton(Context context, List<DataSubji> data) {
@@ -42,15 +48,19 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.container_radiobutton, parent, false);
         MyHolder holder = new MyHolder(view);
+
         return holder;
     }
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         final MyHolder myHolder = (MyHolder) holder;
+        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        type = sp.getString("TYPE", null);
+        Log.d("Dabba***", type);
         final int pos = position;
-        DataSubji dataSubji = data.get(position);
-    //  Log.d("Selected Subji",dataSubji.getSelectedSubji());
-        Toast.makeText(context,"Selected str"+selectedStr,Toast.LENGTH_LONG).show();
+        dataSubji = data.get(position);
+        dataSubji1 = new DataSubji();
+        Toast.makeText(context, "Selected str" + selectedStr, Toast.LENGTH_SHORT).show();
         myHolder.radioSubji.setChecked(pos == mSelectedItem);
         myHolder.radioSubji.setText(dataSubji.subji);
     }
@@ -81,4 +91,6 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
             radioSubji.setOnClickListener(clickListener);
         }
     }
+
+
 }

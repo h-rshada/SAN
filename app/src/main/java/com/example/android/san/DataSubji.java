@@ -8,6 +8,7 @@ public class DataSubji
 {
     String subji,selectedSubji;
 
+
     public String getSelectedSubji() {
         return selectedSubji;
     }
