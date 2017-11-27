@@ -1,6 +1,7 @@
 package com.example.android.san;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -56,15 +57,14 @@ public class VegFragment extends Fragment {
     RecyclerView recyclerView;
     UrlRequest urlRequest;
     DataSubji dataSubji;
-    List<DataSubji> arrayList;
+    List<DataSubji> arrayList,listData;
     ArrayList arrayList1;
     View view;
-    String item;
-    String day,week_day;
+    String item,str[],str1;
+    String day,week_day,dabba1;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
-    String[] items = new String[]{"One"};
 
-    String type, tiffintype, t[];
+    String type, tiffintype, dabba,t[];
 
     public VegFragment() {
 
@@ -82,8 +82,18 @@ public class VegFragment extends Fragment {
         tiffintype = t[0];
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
+        if (type.equals("semi flexible")) {
+            str = type.split(" ");
+            str1=str[0];
+            dabba = str1+ tiffintype;
+            Log.d("Split", str1);
+        }
+        else {
+                dabba = type + tiffintype;
+            }
 
 
+        Log.d(dabba, "Dabba ");
         item = "bread";
 
         setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
@@ -98,6 +108,10 @@ public class VegFragment extends Fragment {
 
         Log.d("onCreateView: ", arrayList1 + "");
         getData();
+        if(dabba.equals("semiHeavy") || dabba.equals("fixedBasic")|| dabba.equals("fixedHeavy")) {
+            selectedData();
+        }
+
         return view;
 
     }
@@ -156,7 +170,7 @@ public class VegFragment extends Fragment {
             day_sunday.setBackgroundColor(Color.RED);
             week_day="Sunday";
         }
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -166,27 +180,31 @@ public class VegFragment extends Fragment {
                 try {
 
                     arrayList = new ArrayList<>();
-
                     JSONArray jsonArray=new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
                         dataSubji = new DataSubji();
                         JSONArray jsonArray1=jsonArray.getJSONArray(i);
                         dataSubji.subji = jsonArray1.getString(1);
                         arrayList.add(dataSubji);
-
                     }
                     Log.d("Data", dataSubji.subji);
                     recyclerView = view.findViewById(R.id.Listmenu);
                     recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                    if (tiffintype.equals("Basic")) {
+                    if (tiffintype.equals("Basic"))
+                    {
                         adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
                         recyclerView.setAdapter(adapterRadioButton);
                         adapterRadioButton.notifyDataSetChanged();
-                    } else if (tiffintype.equals("Heavy")) {
+                    }
+                    else if(tiffintype.equals("Heavy"))
+                    {
+
                         adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
                         recyclerView.setAdapter(adapterCheckbox);
                         adapterCheckbox.notifyDataSetChanged();
                     }
+
                 } catch (JSONException e)
                 {
                     e.printStackTrace();
@@ -197,7 +215,6 @@ public class VegFragment extends Fragment {
 
     public void setData(String url, final String item)
     {
-
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
         urlRequest.setUrl(url);
@@ -220,27 +237,61 @@ public class VegFragment extends Fragment {
 
                         if (item.equals("bread")) {
                             adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
-                            spinner_indianBread.setPrompt("Bread");
                             spinner_indianBread.setAdapter(adapter_bread);
                             Log.d("Bread: ", arrayList1 + "");
-                            Log.d("item:1 ", item + "" + arrayList1);
+
                         } else if (item.equals("rice")) {
                             adapter_rice = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
                             spinner_rice.setAdapter(adapter_rice);
+
                             Log.d("Rice: ", arrayList1 + "");
-                            Log.d("item:2 ", item);
+
                         } else if (item.equals("dal")) {
                             adapter_dal = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
                             spinner_dal.setAdapter(adapter_dal);
                             Log.d("Dal: ", arrayList1.toString());
-                            Log.d("item:3", item);
                         }
                     }
-                } catch (JSONException e)
+                }
+                catch (JSONException e)
                 {
                     e.printStackTrace();
                 }
             }
         });
     }
+    public void selectedData()
+    {
+        urlRequest = UrlRequest.getObject();
+        urlRequest.setContext(getContext());
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba="+dabba);
+        urlRequest.getResponse(new ServerCallback()
+        {
+            @Override
+            public void onSuccess(String response)
+            {
+                Log.d("ResponseSubji", response);
+                try {
+
+                    dataSubji=new DataSubji();
+                    JSONArray jsonArray=new JSONArray(response);
+                    Log.d("Array",jsonArray.toString());
+                    for (int i = 0; i < jsonArray.length(); i++)
+                    {
+                        dabba1= (String) jsonArray.get(i);
+                    }
+                   dataSubji.setSelectedSubji(dabba1);
+                    dataSubji.getSelectedSubji();
+                    Log.d("Selected", dataSubji.getSelectedSubji());
+                    Log.d("DataSubji",dabba1);
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
 }

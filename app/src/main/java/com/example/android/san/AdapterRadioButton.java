@@ -2,10 +2,12 @@ package com.example.android.san;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +21,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
     public int mSelectedItem = -1;
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
+    String selectedStr;
     private Context context;
     private LayoutInflater inflater;
 
@@ -46,6 +49,8 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
         final MyHolder myHolder = (MyHolder) holder;
         final int pos = position;
         DataSubji dataSubji = data.get(position);
+    //  Log.d("Selected Subji",dataSubji.getSelectedSubji());
+        Toast.makeText(context,"Selected str"+selectedStr,Toast.LENGTH_LONG).show();
         myHolder.radioSubji.setChecked(pos == mSelectedItem);
         myHolder.radioSubji.setText(dataSubji.subji);
     }

@@ -109,8 +109,8 @@ public class MenuType extends AppCompatActivity {
                     txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                     txtFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                     txtBreakfast.setBackgroundColor(getResources().getColor(R.color.light_blue));
-                } else {
-
+                } else
+                    {
                     txtFixed.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
                 txtMenuType.setText(type);

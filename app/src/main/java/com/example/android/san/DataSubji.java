@@ -6,5 +6,13 @@ package com.example.android.san;
 
 public class DataSubji
 {
-    String subji;
+    String subji,selectedSubji;
+
+    public String getSelectedSubji() {
+        return selectedSubji;
+    }
+
+    public void setSelectedSubji(String selectedSubji) {
+        this.selectedSubji = selectedSubji;
+    }
 }

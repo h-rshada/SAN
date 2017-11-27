@@ -14,4 +14,7 @@
     <string name="BasicDesc">3 Chapatis(or any other Indian Bread), 100gm Rice,Dal(1 katori), 1 Subji/Bhaji(1 katori)</string>
     <string name="HeavyDesc"> 4 Chapatis (or any other Indian Bread), 150 gm Rice, Dal (1 katori), 2 Subji/Bhaji (1 katori each)</string>
     <string name="title_activity_maps">Map</string>
+    <string-array name="bread_array">
+        <item>Indian Bread</item>
+    </string-array>
 </resources>
