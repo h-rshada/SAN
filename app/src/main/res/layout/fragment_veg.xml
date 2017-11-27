@@ -34,25 +34,66 @@
                     android:padding="3dp"
                     android:paddingLeft="0dp">
 
-
-                    <Spinner
-                        android:id="@+id/spinner_indianBread"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp" />
+                        android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinner_rice"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FF8AD8F7"
+                            android:gravity="center"
+                            android:padding="0dp"
+                            android:text="Bread"
+                            android:textColor="@color/black" />
+
+
+                        <Spinner
+                            android:id="@+id/spinner_indianBread"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/spinner_indianBread" />
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FF8AD8F7"
+                            android:gravity="center"
+                            android:text="Rice"
+                            android:textColor="@color/black" />
+
+                        <Spinner
+                            android:id="@+id/spinner_rice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/spinner_indianBread" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FF8AD8F7"
+                            android:gravity="center"
+                            android:text="Dal"
+                            android:textColor="@color/black" />
                     <Spinner
                         android:id="@+id/spinner_dal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/spinner_rice" />
-
+                    </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -185,6 +226,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+
                                 android:checked="true"
                                 android:inputType="textAutoComplete"
                                 android:text="Minimal" />
@@ -398,18 +440,19 @@
                 android:id="@+id/Listmenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="0dp"
-                android:paddingBottom="20dp"/>
+                android:paddingBottom="20dp"
+                android:paddingTop="0dp" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorAccent"
+                android:text="order"
+                android:textColor="#ffffff" />
 
         </LinearLayout>
     </ScrollView>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:text="order"
-        android:textColor="#ffffff" />
+
 
 </RelativeLayout>
