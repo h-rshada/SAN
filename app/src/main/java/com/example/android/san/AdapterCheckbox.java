@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,8 +18,8 @@ import java.util.List;
 
 public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
+    public int SELECTION = 0;
     List<DataSubji> data = Collections.emptyList();
-
     MyHolder myHolder;
     private Context context;
     private LayoutInflater inflater;
@@ -57,6 +59,43 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final int pos = position;
         DataSubji dataSubji = data.get(position);
         myHolder.checkBox.setText(dataSubji.subji);
+        /*myHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SELECTION<2) 
+                {
+                    myHolder.checkBox.setChecked(true);
+                    SELECTION++;
+                }
+                else
+                {
+                    myHolder.checkBox.setChecked(false);
+
+                    Toast.makeText(context,"can't click"+SELECTION,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });*/
+        myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    if (SELECTION < 2) {
+                        compoundButton.setChecked(true);
+                        SELECTION++;
+                        Toast.makeText(context, "changed" + SELECTION + b + "", Toast.LENGTH_SHORT).show();
+                    } else {
+                        compoundButton.setChecked(false);
+                        Toast.makeText(context, "You can select only 2 subji", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if (SELECTION > 0) {
+                        compoundButton.setChecked(false);
+                        SELECTION--;
+                        Toast.makeText(context, "changed" + SELECTION + b + "", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
 
     @Override

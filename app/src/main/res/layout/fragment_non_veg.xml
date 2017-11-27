@@ -1,14 +1,423 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context="com.example.android.san.NonVegFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/itemCardView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:background="#000000"
+                android:padding="5dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:id="@+id/layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:paddingLeft="0dp">
+
+
+                    <Spinner
+                        android:id="@+id/spinner_indianBread"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_rice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/spinner_indianBread" />
+
+                    <Spinner
+                        android:id="@+id/spinner_dal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/spinner_rice" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/itemCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemCardView1"
+                android:layout_margin="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:background="#000000"
+                android:padding="5dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="8dp">
+
+
+                <LinearLayout
+                    android:id="@+id/layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:id="@+id/txt_heat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/spinner_indianBread"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="10dp"
+                            android:paddingTop="5dp"
+                            android:text="Heat "
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="85dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/txt_heat"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:orientation="vertical"
+                            android:weightSum="4">
+
+
+                            <RadioButton
+                                android:id="@+id/radio_spicy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:inputType="textAutoComplete"
+                                android:text="Spicy" />
+
+                            <RadioButton
+                                android:id="@+id/radio_mediumspicy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_weight="1"
+                                android:inputType="textAutoComplete"
+                                android:text="Medium spicy" />
+
+
+                            <RadioButton
+                                android:id="@+id/radio_neutral"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_weight="1"
+                                android:inputType="textAutoComplete"
+                                android:text="Neutral" />
+
+                            <RadioButton
+                                android:id="@+id/radio_sweet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_weight="1"
+                                android:inputType="textAutoComplete"
+                                android:text="Sweet" />
+
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:id="@+id/txt_Oil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_heat"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="5dp"
+                            android:paddingTop="5dp"
+                            android:text="Amount of oil "
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup_oil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="26dp"
+                            android:layout_marginTop="5dp"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+
+                            <RadioButton
+                                android:id="@+id/radio_minimaloil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:checked="true"
+                                android:inputType="textAutoComplete"
+                                android:text="Minimal" />
+
+                            <RadioButton
+                                android:id="@+id/radio_regularoil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="textAutoComplete"
+                                android:text="Regular" />
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:id="@+id/txt_OilTypes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_heat"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="5dp"
+                            android:paddingTop="5dp"
+                            android:text="Type of oil "
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup_OilTypes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="46dp"
+                            android:layout_marginTop="5dp"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+
+                            <RadioButton
+                                android:id="@+id/radio_oliveoil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:inputType="textAutoComplete"
+                                android:text="Olive oil" />
+
+                            <RadioButton
+                                android:id="@+id/radio_soyabinoil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="textAutoComplete"
+                                android:text="Soyabin oil" />
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:id="@+id/txt_salt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_heat"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="5dp"
+                            android:paddingTop="5dp"
+                            android:text="Salt "
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup_salt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="91dp"
+                            android:layout_marginTop="5dp"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <RadioButton
+                                android:id="@+id/radio_lowSalt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:inputType="textAutoComplete"
+                                android:text="Low" />
+
+                            <RadioButton
+                                android:id="@+id/radio_regularSalt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:inputType="textAutoComplete"
+                                android:text="Regular" />
+
+                            <RadioButton
+                                android:id="@+id/radio_highSalt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="textAutoComplete"
+                                android:text="High" />
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/txt_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itemCardView"
+                android:layout_marginTop="2dp"
+                android:background="#f4a9d8"
+                android:padding="5dp"
+                android:text="Menu"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layout_days"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_menu"
+                android:padding="2dp">
+
+                <TextView
+                    android:id="@+id/txt_mon"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Mon"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txt_tue"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Tue"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txt_wed"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Wed"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txt_thu"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Thu"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txt_fri"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Fri"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txt_sat"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Sat"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txt_sun"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:background="@drawable/style_round"
+                    android:padding="6dp"
+                    android:text="Sun"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/Listmenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="20dp"
+                android:paddingTop="0dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorAccent"
+                android:text="order"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

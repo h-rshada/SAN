@@ -62,6 +62,7 @@ public class VegFragment extends Fragment {
     String item;
     String day,week_day;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
+    String[] items = new String[]{"One"};
 
     String type, tiffintype, t[];
 
@@ -155,7 +156,7 @@ public class VegFragment extends Fragment {
             day_sunday.setBackgroundColor(Color.RED);
             week_day="Sunday";
         }
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=flexible&dabba=basic&meal=veg&day=Sunday");
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -172,7 +173,7 @@ public class VegFragment extends Fragment {
                         JSONArray jsonArray1=jsonArray.getJSONArray(i);
                         dataSubji.subji = jsonArray1.getString(1);
                         arrayList.add(dataSubji);
-                      
+
                     }
                     Log.d("Data", dataSubji.subji);
                     recyclerView = view.findViewById(R.id.Listmenu);
@@ -219,6 +220,7 @@ public class VegFragment extends Fragment {
 
                         if (item.equals("bread")) {
                             adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_indianBread.setPrompt("Bread");
                             spinner_indianBread.setAdapter(adapter_bread);
                             Log.d("Bread: ", arrayList1 + "");
                             Log.d("item:1 ", item + "" + arrayList1);
