@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,11 +94,11 @@ public class VegFragment extends Fragment {
         tiffintype = t[0];
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
-        if (type.equals("semi flexible")) {
+        if (type.equals("Semi Flexible")) {
             str = type.split(" ");
             str1 = str[0];
             str2 = str[1];
-            type = "semiFlexible";
+            type = str1 + str2;
             Log.d("Semi type", type);
             dabba = str1+ tiffintype;
             Log.d("Split", str1);
@@ -107,7 +108,7 @@ public class VegFragment extends Fragment {
             }
 
         Log.d(dabba, "Dabba ");
-        editor.putString("DABBA", dabba);
+
         editor.putString("TYPE", type);
         editor.commit();
 
@@ -187,7 +188,6 @@ public class VegFragment extends Fragment {
             week_day="Sunday";
         }
         urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
-        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -198,8 +198,9 @@ public class VegFragment extends Fragment {
 
                     arrayList = new ArrayList<>();
                     JSONArray jsonArray=new JSONArray(response);
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                    if (jsonArray.length() == 0)
+                    {
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
                             dataSubji = new DataSubji();
                             JSONArray jsonArray1 = jsonArray.getJSONArray(i);
@@ -221,6 +222,10 @@ public class VegFragment extends Fragment {
                                 adapterCheckbox.notifyDataSetChanged();
                             }
                         }
+                    } else {
+                        Toast.makeText(getActivity(), "Sorry data not available", Toast.LENGTH_LONG).show();
+                    }
+
 
 
                 } catch (JSONException e)
@@ -248,8 +253,8 @@ public class VegFragment extends Fragment {
                     arrayList1=new ArrayList<>();
 
                     JSONArray jsonArray=new JSONArray(response);
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                    if (jsonArray.length() == 0) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
                             JSONArray jsonArray1 = jsonArray.getJSONArray(i);
                             String str = jsonArray1.getString(1);
@@ -273,7 +278,9 @@ public class VegFragment extends Fragment {
                                 Log.d("Dal: ", arrayList1.toString());
                             }
                         }
-
+                    } else {
+                        Toast.makeText(getActivity(), "Sorry data not available", Toast.LENGTH_LONG).show();
+                    }
 
                 }
                 catch (JSONException e)
@@ -299,8 +306,8 @@ public class VegFragment extends Fragment {
                 arrayList1 = new ArrayList<>();
                 try {
                     JSONArray jsonArray=new JSONArray(response);
-
-                    Log.d("Array", jsonArray.toString());
+                    if (jsonArray.length() == 0) {
+                        Log.d("Array", jsonArray.toString());
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             JSONArray jsonArray1 = jsonArray.getJSONArray(i);
@@ -313,7 +320,9 @@ public class VegFragment extends Fragment {
                         editor.commit();
                         Log.d("LIst", listData + "");
                         Log.d("DataSubji***", dabba1);
-
+                    } else {
+                        Toast.makeText(getActivity(), "Sorry data not available", Toast.LENGTH_LONG).show();
+                    }
                 }
                 catch (JSONException e)
                 {
