@@ -30,7 +30,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
     UrlRequest urlRequest;
-    String selectedStr, type;
+    String selectedStr, type, str, str1, str2;
     ArrayList<String> list;
     DataSubji dataSubji, dataSubji1;
     SharedPreferences sp;
@@ -82,6 +82,22 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Log.d("AdapterDabba***", type);
         Log.d("Adapterstr***", selectedStr);
         Log.d("Adapterlist***", listOfNames.get(0) + "");
+        str = myHolder.checkBox.getText().toString();
+        Log.d("Checkbox", str);
+        str1 = listOfNames.get(0).toString();
+        Log.d("str1", str1);
+        str2 = listOfNames.get(1).toString();
+        Log.d("str2", str2);
+
+        if (type.equals("fixed")) {
+            myHolder.checkBox.setChecked(false);
+            myHolder.checkBox.setClickable(false);
+            if (str1.equals(str) || str2.equals(str)) {
+                myHolder.checkBox.setChecked(true);
+                myHolder.checkBox.setClickable(false);
+            }
+        }
+
 
         /*myHolder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
