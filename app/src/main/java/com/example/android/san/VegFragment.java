@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -198,8 +197,8 @@ public class VegFragment extends Fragment {
 
                     arrayList = new ArrayList<>();
                     JSONArray jsonArray=new JSONArray(response);
-                    if (jsonArray.length() == 0)
-                    {
+                  /*  if (jsonArray.length() == 0)
+                    {*/
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             dataSubji = new DataSubji();
@@ -222,9 +221,9 @@ public class VegFragment extends Fragment {
                                 adapterCheckbox.notifyDataSetChanged();
                             }
                         }
-                    } else {
+                   /* } else {
                         Toast.makeText(getActivity(), "Sorry data not available", Toast.LENGTH_LONG).show();
-                    }
+                    }*/
 
 
 
@@ -253,7 +252,7 @@ public class VegFragment extends Fragment {
                     arrayList1=new ArrayList<>();
 
                     JSONArray jsonArray=new JSONArray(response);
-                    if (jsonArray.length() == 0) {
+                   /* if (jsonArray.length() == 0) {*/
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             JSONArray jsonArray1 = jsonArray.getJSONArray(i);
@@ -278,9 +277,9 @@ public class VegFragment extends Fragment {
                                 Log.d("Dal: ", arrayList1.toString());
                             }
                         }
-                    } else {
+                   /* } else {
                         Toast.makeText(getActivity(), "Sorry data not available", Toast.LENGTH_LONG).show();
-                    }
+                    }*/
 
                 }
                 catch (JSONException e)
@@ -306,7 +305,7 @@ public class VegFragment extends Fragment {
                 arrayList1 = new ArrayList<>();
                 try {
                     JSONArray jsonArray=new JSONArray(response);
-                    if (jsonArray.length() == 0) {
+                 /*   if (jsonArray.length() == 0) {*/
                         Log.d("Array", jsonArray.toString());
                         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -320,9 +319,9 @@ public class VegFragment extends Fragment {
                         editor.commit();
                         Log.d("LIst", listData + "");
                         Log.d("DataSubji***", dabba1);
-                    } else {
+                    /*} else {
                         Toast.makeText(getActivity(), "Sorry data not available", Toast.LENGTH_LONG).show();
-                    }
+                    }*/
                 }
                 catch (JSONException e)
                 {
