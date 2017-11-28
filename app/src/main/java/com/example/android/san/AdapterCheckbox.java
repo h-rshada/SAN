@@ -122,8 +122,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                             compoundButton.setChecked(true);
 
                                             dialog.cancel();
-                                        /*finish();
-                                        onBackPressed();*/
+
 
                                         }
                                     });
