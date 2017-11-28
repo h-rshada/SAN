@@ -279,7 +279,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba="+dabba);
+        Log.d("URL", "http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji");
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji");
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -289,21 +290,19 @@ public class VegFragment extends Fragment {
                 listData = new HashSet<String>();
                 arrayList1 = new ArrayList<>();
                 try {
-
                     JSONArray jsonArray=new JSONArray(response);
                     Log.d("Array",jsonArray.toString());
                     for (int i = 0; i < jsonArray.length(); i++)
                     {
-                        dabba = (String) jsonArray.get(i);
-                        arrayList1.add(jsonArray.get(i));
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                        dabba = jsonArray1.getString(0);
+                        arrayList1.add(jsonArray1.getString(0));
                         listData.addAll(arrayList1);
                     }
                     editor.putString("SINGLE", dabba);
                     editor.putStringSet("LIST", listData);
                     editor.commit();
                     Log.d("LIst", listData + "");
-
-
                     Log.d("DataSubji***", dabba);
                 }
                 catch (JSONException e)

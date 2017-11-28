@@ -145,7 +145,7 @@
                             android:layout_toRightOf="@+id/txt_heat"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:orientation="vertical"
+                            android:orientation="horizontal"
                             android:weightSum="4">
 
 
