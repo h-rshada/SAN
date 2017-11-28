@@ -120,7 +120,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             compoundButton.setChecked(true);
-                                            SELECTION++;
+
                                             dialog.cancel();
                                         /*finish();
                                         onBackPressed();*/
@@ -131,7 +131,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     compoundButton.setChecked(false);
-                                    SELECTION--;
+
                                 }
                             });
 
