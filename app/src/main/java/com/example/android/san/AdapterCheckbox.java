@@ -114,22 +114,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
 
-        /*myHolder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(SELECTION<2) 
-                {
-                    myHolder.checkBox.setChecked(true);
-                    SELECTION++;
-                }
-                else
-                {
-                    myHolder.checkBox.setChecked(false);
-
-                    Toast.makeText(context,"can't click"+SELECTION,Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
         myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton compoundButton, boolean b) {
