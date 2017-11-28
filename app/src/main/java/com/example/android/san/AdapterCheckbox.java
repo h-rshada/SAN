@@ -30,7 +30,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
     UrlRequest urlRequest;
-    String selectedStr, type, str, str1, str2;
+    String selectedStr, type, str, str1, str2, dabba;
     ArrayList<String> list;
     DataSubji dataSubji, dataSubji1;
     SharedPreferences sp;
@@ -47,6 +47,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onClick(View v) {
+
     }
 
     @Override
@@ -54,6 +55,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         super.onViewAttachedToWindow(holder);
         myHolder = (MyHolder) holder;
     }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -74,33 +76,65 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         listData = new HashSet<String>();
         sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         type = sp.getString("TYPE", null);
-        selectedStr = sp.getString("SINGLE", null);
-        listData = sp.getStringSet("LIST", null);
-        List listOfNames = new ArrayList(listData);
+        dabba = sp.getString("DABBA", null);
         Log.d("AdapterDabba***", type);
-        // Log.d("Adapterstr***", selectedStr);
-        Log.d("Adapterlist***", listOfNames.get(0) + "");
         str = myHolder.checkBox.getText().toString();
         Log.d("Checkbox", str);
-        str1 = listOfNames.get(0).toString();
-        Log.d("str1", str1);
-        str2 = listOfNames.get(1).toString();
-        Log.d("str2", str2);
+        if (dabba.equals("fixedHeavy")) {
+
+            listData = sp.getStringSet("LIST", null);
+            List listOfNames = new ArrayList(listData);
+            Log.d("Adapterlist***", listOfNames.get(0) + "");
+
+            str1 = listOfNames.get(0).toString();
+            Log.d("str1", str1);
+            str2 = listOfNames.get(1).toString();
+            Log.d("str2", str2);
+        }
+        if (dabba.equals("semiHeavy")) {
+            selectedStr = sp.getString("SINGLE", null);
+            Log.d("Adapterstr***", selectedStr);
+        }
 
         if (type.equals("fixed")) {
-
             myHolder.checkBox.setChecked(false);
-            myHolder.checkBox.setClickable(false);
             if (str1.equals(str) || str2.equals(str)) {
                 myHolder.checkBox.setChecked(true);
                 myHolder.checkBox.setClickable(false);
             }
         }
+
+
+        if (type.equals("semiFlexible")) {
+            myHolder.checkBox.setChecked(false);
+            if (str.equals(selectedStr)) {
+                myHolder.checkBox.setChecked(true);
+                myHolder.checkBox.setClickable(false);
+            }
+        }
+
+
+        /*myHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SELECTION<2) 
+                {
+                    myHolder.checkBox.setChecked(true);
+                    SELECTION++;
+                }
+                else
+                {
+                    myHolder.checkBox.setChecked(false);
+
+                    Toast.makeText(context,"can't click"+SELECTION,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });*/
         myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    if (type.equals("fixed")) {
+                    if (type.equals("flexible")) {
                         if (SELECTION < 2) {
                             compoundButton.setChecked(true);
                             SELECTION++;
@@ -117,20 +151,35 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             compoundButton.setChecked(true);
-
+                                            SELECTION++;
                                             dialog.cancel();
+
+
                                         }
                                     });
                             alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     compoundButton.setChecked(false);
+                                    SELECTION++;
 
                                 }
                             });
 
                             alertDialog.show();
                         }
+                    } else if (type.equals("semiFlexible")) {
+                        if (SELECTION < 1) {
+                            compoundButton.setChecked(true);
+                            SELECTION++;
+                            //Toast.makeText(context, "changed" + SELECTION + b + "" + dataSubji.selectedSubji, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "You can select one subji only", Toast.LENGTH_SHORT).show();
+                            compoundButton.setChecked(false);
+                        }
+                    } else if (type.equals("fixed")) {
+                        compoundButton.setChecked(false);
+                        Toast.makeText(context, "You can't select more than 2 subji's", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     if (SELECTION > 0) {
