@@ -64,7 +64,7 @@ public class VegFragment extends Fragment {
     ArrayList arrayList1;
     Set<String> listData;
     View view;
-    String item,str[],str1;
+    String item, str[], str1, str2;
     String day,week_day,dabba1;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
     String[] items = new String[]{"One"};
@@ -88,14 +88,17 @@ public class VegFragment extends Fragment {
         editor = sp.edit();
         //type = sp.getString("TYPE", null);
 
-        type = getArguments().getString("Type").toLowerCase();
+        type = getArguments().getString("Type");
         t = getArguments().getString("TiffinType").split(" ");
         tiffintype = t[0];
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
-        if (type.equals("semi flexible")) {
+        if (type.equals("Semi Flexible")) {
             str = type.split(" ");
-            str1=str[0];
+            str1 = str[0].toLowerCase();
+            str2 = str[1];
+            type = str1 + str2;
+            Log.d("Semi type", type);
             dabba = str1+ tiffintype;
             Log.d("Split", str1);
         }
