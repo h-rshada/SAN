@@ -9,28 +9,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
+        <RadioButton
                 android:id="@+id/radioSubji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+            android:clickable="false"
                 android:text="Subji"/>
-        </RadioGroup>
 
-        <TextView
-            android:id="@+id/txtMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="You can't select subji"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            android:visibility="gone"
-
-            />
     </LinearLayout>
 
 </RelativeLayout>

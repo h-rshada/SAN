@@ -48,11 +48,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.container_radiobutton, parent, false);
         MyHolder holder = new MyHolder(view);
-        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-        type = sp.getString("TYPE", null);
-        selectedStr = sp.getString("SINGLE", null);
-        Log.d("Dabba***", type);
-        Log.d("Selected***", selectedStr);
+
         return holder;
     }
     @Override
@@ -60,6 +56,11 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
         final MyHolder myHolder = (MyHolder) holder;
 
         final int pos = position;
+        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        type = sp.getString("TYPE", null);
+        selectedStr = sp.getString("SINGLE", null);
+        Log.d("Dabba***", type);
+        Log.d("Selected***", selectedStr);
         dataSubji = data.get(position);
         myHolder.radioSubji.setChecked(pos == mSelectedItem);
         myHolder.radioSubji.setText(dataSubji.subji);
@@ -69,6 +70,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
             myHolder.radioSubji.setChecked(false);
             if (selectedStr.equals(str)) {
                 myHolder.radioSubji.setChecked(true);
+                myHolder.radioSubji.setClickable(false);
             }
         }
     }
@@ -88,7 +90,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
         public MyHolder(View itemView) {
             super(itemView);
             radioSubji = itemView.findViewById(R.id.radioSubji);
-            textView = itemView.findViewById(R.id.txtMsg);
+
             View.OnClickListener clickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

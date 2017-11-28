@@ -47,7 +47,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
@@ -55,7 +54,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         super.onViewAttachedToWindow(holder);
         myHolder = (MyHolder) holder;
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -80,7 +78,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         listData = sp.getStringSet("LIST", null);
         List listOfNames = new ArrayList(listData);
         Log.d("AdapterDabba***", type);
-        Log.d("Adapterstr***", selectedStr);
+        // Log.d("Adapterstr***", selectedStr);
         Log.d("Adapterlist***", listOfNames.get(0) + "");
         str = myHolder.checkBox.getText().toString();
         Log.d("Checkbox", str);
@@ -90,6 +88,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Log.d("str2", str2);
 
         if (type.equals("fixed")) {
+
             myHolder.checkBox.setChecked(false);
             myHolder.checkBox.setClickable(false);
             if (str1.equals(str) || str2.equals(str)) {
@@ -97,24 +96,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 myHolder.checkBox.setClickable(false);
             }
         }
-
-
-        /*myHolder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(SELECTION<2) 
-                {
-                    myHolder.checkBox.setChecked(true);
-                    SELECTION++;
-                }
-                else
-                {
-                    myHolder.checkBox.setChecked(false);
-
-                    Toast.makeText(context,"can't click"+SELECTION,Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
         myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton compoundButton, boolean b) {
@@ -138,8 +119,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                             compoundButton.setChecked(true);
 
                                             dialog.cancel();
-
-
                                         }
                                     });
                             alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
