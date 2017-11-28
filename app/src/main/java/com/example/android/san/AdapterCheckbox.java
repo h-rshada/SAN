@@ -103,8 +103,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 myHolder.checkBox.setClickable(false);
             }
         }
-
-
         if (type.equals("semiFlexible")) {
             myHolder.checkBox.setChecked(false);
             if (str.equals(selectedStr)) {
