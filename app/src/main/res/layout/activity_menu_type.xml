@@ -86,10 +86,10 @@
                     <ImageView
                         android:id="@+id/imageMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="200dp"
                         android:layout_marginTop="0dp"
                         android:layout_weight="1"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@drawable/food3" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

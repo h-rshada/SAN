@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,182 +13,218 @@
         android:animateLayoutChanges="true"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.0"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/header1"
+
+        <ImageView
+            android:id="@+id/imageClassroom"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="15dp"
-            android:background="@android:color/holo_red_light"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeight"
-            android:text="Flexible"
-            android:textColor="@color/white"
-            android:textSize="25dp" />
-        <!-- <LinearLayout
-             android:id="@+id/section1"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_margin="15dp"
-             android:orientation="vertical"
-             android:visibility="gone">
+            android:layout_height="175dp"
 
-             <TextView
-                 android:id="@+id/txtBasicDabba"
-                 android:layout_width="match_parent"
-                 android:layout_height="50dp"
-                 android:layout_marginTop="5dp"
-                 android:background="@android:color/holo_green_light"
-                 android:gravity="center_vertical"
-                 android:minHeight="?android:attr/listPreferredItemHeight"
-                 android:text="Basic Dabba"
-                 android:textColor="@color/white"
-                 android:textSize="25sp"
-                 android:textStyle="bold" />
+            android:cropToPadding="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/frontimage" />
 
-             <TextView
-                 android:id="@+id/txtHeavyDabba"
-                 android:layout_width="match_parent"
-                 android:layout_height="50dp"
-                 android:layout_marginTop="5dp"
-                 android:background="@android:color/holo_green_light"
-                 android:gravity="center_vertical"
-                 android:minHeight="?android:attr/listPreferredItemHeight"
-                 android:text="Heavy Dabba"
-                 android:textColor="@color/white"
-                 android:textSize="25sp"
-                 android:textStyle="bold" />
-
-
-         </LinearLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/header2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@android:color/holo_red_light"
-                android:gravity="center_vertical"
-                android:minHeight="?android:attr/listPreferredItemHeight"
-                android:text="SemiFlexible"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
-            <!--  <LinearLayout
-                  android:id="@+id/section2"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="15dp"
-                  android:orientation="vertical"
-                  android:visibility="gone">
 
-                  <TextView
-                      android:id="@+id/txtBasicDabba1"
-                      android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:layout_marginTop="5dp"
-                      android:background="@android:color/holo_green_light"
-                      android:gravity="center_vertical"
-                      android:minHeight="?android:attr/listPreferredItemHeight"
-                      android:text="Basic Dabba"
-                      android:textColor="@color/white"
-                      android:textSize="25sp"
-                      android:textStyle="bold" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/sliderlayout41"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="0.0px"
+                android:gravity="center"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false">
 
-                  <TextView
-                      android:id="@+id/txtHeavyDabba1"
-                      android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:layout_marginTop="5dp"
-                      android:background="@android:color/holo_green_light"
-                      android:gravity="center_vertical"
-                      android:minHeight="?android:attr/listPreferredItemHeight"
-                      android:text="Heavy Dabba"
-                      android:textColor="@color/white"
-                      android:textSize="25sp"
-                      android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imageflexible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cropToPadding="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/food3" />
+
+                <TextView
+                    android:id="@+id/txtFlexible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#9E9E9E"
+                    android:fontFamily="cursive"
+                    android:padding="3dp"
+                    android:text="Flexible"
+                    android:textAlignment="center"
+
+                    android:textColor="#D50000"
+                    android:textSize="20dp"
 
 
-              </LinearLayout>-->
+                    android:textStyle="normal|bold"
+                    android:typeface="serif" />
+
+
+            </android.support.v7.widget.CardView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_weight="1.0"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/header3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@android:color/holo_red_light"
-                android:gravity="center_vertical"
-                android:minHeight="?android:attr/listPreferredItemHeight"
-                android:text="Fixed"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
-            <!--  <LinearLayout
-                  android:id="@+id/section3"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="15dp"
-                  android:orientation="vertical"
-                  android:visibility="gone">
 
-                  <TextView
-                      android:id="@+id/txtBasicDabba2"
-                      android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:layout_marginTop="5dp"
-                      android:background="@android:color/holo_green_light"
-                      android:gravity="center_vertical"
-                      android:minHeight="?android:attr/listPreferredItemHeight"
-                      android:text="Basic Dabba"
-                      android:textColor="@color/white"
-                      android:textSize="25sp"
-                      android:textStyle="bold" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/sliderlayout"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="0.0px"
+                android:gravity="center"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false">
 
-                  <TextView
-                      android:id="@+id/txtHeavyDabba2"
-                      android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:layout_marginTop="5dp"
-                      android:background="@android:color/holo_green_light"
-                      android:gravity="center_vertical"
-                      android:minHeight="?android:attr/listPreferredItemHeight"
-                      android:text="Heavy Dabba"
-                      android:textColor="@color/white"
-                      android:textSize="25sp"
-                      android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imagesemiflex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cropToPadding="true"
+                    android:scaleType="fitXY"
+
+                    android:src="@drawable/food2" />
+
+                <TextView
+                    android:id="@+id/txtSemiFlexible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#9E9E9E"
+                    android:fontFamily="cursive"
+                    android:padding="3dp"
+                    android:text="SemiFlexible"
+                    android:textAlignment="center"
+                    android:textColor="#D50000"
+                    android:textSize="20dp"
+                    android:textStyle="normal|bold"
+                    android:typeface="serif" />
 
 
-              </LinearLayout>-->
+            </android.support.v7.widget.CardView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_weight="1.0"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/header4"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@android:color/holo_red_light"
-                android:gravity="center_vertical"
-                android:minHeight="?android:attr/listPreferredItemHeight"
-                android:text="BreakFast"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sliderlayout3"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="0.0px"
+                android:gravity="center"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/imagefixed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cropToPadding="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/food3" />
+
+                <TextView
+                    android:id="@+id/txtFixed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#9E9E9E"
+                    android:fontFamily="cursive"
+                    android:padding="3dp"
+                    android:text="Fixed"
+                    android:textAlignment="center"
+                    android:textColor="#D50000"
+                    android:textSize="20dp"
+                    android:textStyle="normal|bold"
+                    android:typeface="serif" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/sliderlayout4"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="0.0px"
+                android:gravity="center"
+                android:src="@drawable/food4"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp"
+
+                app:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/imagebrakfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cropToPadding="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/food4" />
+
+                <TextView
+                    android:id="@+id/txtBreakfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#9E9E9E"
+                    android:fontFamily="cursive"
+                    android:padding="3dp"
+                    android:text="BreakFast"
+                    android:textAlignment="center"
+                    android:textColor="#D50000"
+                    android:textSize="20dp"
+                    android:textStyle="normal|bold"
+                    android:typeface="serif" />
+
+            </android.support.v7.widget.CardView>
         </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
-
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>
