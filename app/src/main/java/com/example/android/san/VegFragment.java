@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +38,14 @@ public class VegFragment extends Fragment {
 
     @InjectView(R.id.spinner_indianBread)
     Spinner spinner_indianBread;
+    @InjectView(R.id.spinner_heat)
+    Spinner spinner_heat;
+    @InjectView(R.id.spinner_amountOfOil)
+    Spinner spinner_amountOfOil;
+    @InjectView(R.id.spinner_typeOfOil)
+    Spinner spinner_typeOfOil;
+    @InjectView(R.id.spinner_salt)
+    Spinner spinner_salt;
     @InjectView(R.id.txt_mon)
     TextView day_monday;
     @InjectView(R.id.txt_tue)
@@ -88,6 +97,21 @@ public class VegFragment extends Fragment {
         editor = sp.edit();
         //type = sp.getString("TYPE", null);
 
+        ArrayAdapter<CharSequence> adapter_heat = ArrayAdapter.createFromResource(getActivity(), R.array.heat, android.R.layout.simple_spinner_item);
+        adapter_heat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_heat.setAdapter(adapter_heat);
+
+        ArrayAdapter<CharSequence> adapter_Oiltype = ArrayAdapter.createFromResource(getActivity(), R.array.oil_type, android.R.layout.simple_spinner_item);
+        adapter_Oiltype.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_typeOfOil.setAdapter(adapter_Oiltype);
+
+        ArrayAdapter<CharSequence> adapter_Oilamount = ArrayAdapter.createFromResource(getActivity(), R.array.oil_amount, android.R.layout.simple_spinner_item);
+        adapter_Oilamount.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_amountOfOil.setAdapter(adapter_Oilamount);
+
+        ArrayAdapter<CharSequence> adapter_salt = ArrayAdapter.createFromResource(getActivity(), R.array.salt, android.R.layout.simple_spinner_item);
+        adapter_salt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_salt.setAdapter(adapter_salt);
         type = getArguments().getString("Type").toLowerCase();
         t = getArguments().getString("TiffinType").split(" ");
         tiffintype = t[0];
@@ -194,22 +218,22 @@ public class VegFragment extends Fragment {
             public void onSuccess(String response)
             {
                 Log.d("Response", response);
+                //if(!response.contains("-1"))
                 try {
-
                     arrayList = new ArrayList<>();
                     JSONArray jsonArray=new JSONArray(response);
-
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                            dataSubji = new DataSubji();
-                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                            dataSubji.subji = jsonArray1.getString(1);
-                            arrayList.add(dataSubji);
+                        dataSubji = new DataSubji();
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                        dataSubji.subji = jsonArray1.getString(1);
+                        arrayList.add(dataSubji);
 
 
-                            Log.d("Data", dataSubji.subji);
-                            recyclerView = view.findViewById(R.id.Listmenu);
-                            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                        Log.d("Data", dataSubji.subji);
+                        recyclerView = view.findViewById(R.id.Listmenu);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                        if (!(arrayList.size() == 0)) {
                             if (tiffintype.equals("Basic")) {
                                 adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
                                 recyclerView.setAdapter(adapterRadioButton);
@@ -220,13 +244,20 @@ public class VegFragment extends Fragment {
                                 recyclerView.setAdapter(adapterCheckbox);
                                 adapterCheckbox.notifyDataSetChanged();
                             }
+                        } else {
+                            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                         }
+                    }
 
 
                 } catch (JSONException e)
                 {
                     e.printStackTrace();
                 }
+//                else
+//                {
+//                    Toast.makeText(getActivity(),"No data available",Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }

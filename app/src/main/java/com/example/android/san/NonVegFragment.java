@@ -1,6 +1,7 @@
 package com.example.android.san;
 
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -62,6 +63,7 @@ public class NonVegFragment extends Fragment {
     View view;
     String item;
     String day, week_day;
+    ProgressDialog dialog;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
 
     String type, tiffintype, t[];
@@ -142,6 +144,7 @@ public class NonVegFragment extends Fragment {
             @Override
             public void onSuccess(String response) {
                 Log.d("Response", response);
+                //if(!response.contains("-1"))
                 try {
 
                     arrayList = new ArrayList<>();
@@ -157,18 +160,29 @@ public class NonVegFragment extends Fragment {
                     Log.d("Data", arrayList.toString());
                     recyclerView = view.findViewById(R.id.Listmenu);
                     recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                    if (tiffintype.equals("Basic")) {
-                        adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
-                        recyclerView.setAdapter(adapterRadioButton);
-                        adapterRadioButton.notifyDataSetChanged();
-                    } else if (tiffintype.equals("Heavy")) {
-                        adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
-                        recyclerView.setAdapter(adapterCheckbox);
-                        adapterCheckbox.notifyDataSetChanged();
+                    if (!(arrayList.size() == 0)) {
+                        if (tiffintype.equals("Basic")) {
+                            adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                            recyclerView.setAdapter(adapterRadioButton);
+                            adapterRadioButton.notifyDataSetChanged();
+                        } else if (tiffintype.equals("Heavy")) {
+                            adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                            recyclerView.setAdapter(adapterCheckbox);
+                            adapterCheckbox.notifyDataSetChanged();
+                        }
+                    } else {
+                        // Toast.makeText(getActivity(),"No data available",Toast.LENGTH_SHORT).show();
+                      /*  dialog = new ProgressDialog(getActivity());
+                        dialog.setMessage("Loading");
+                        dialog.show();*/
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+               /* else
+                {
+                    Toast.makeText(getActivity(),"No data available",Toast.LENGTH_SHORT).show();
+                }*/
             }
         });
     }

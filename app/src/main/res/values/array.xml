@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="heat">
+        <item>"Spicy"</item>
+        <item>"Medium spicy"</item>
+        <item>"Normal"</item>
+        <item>"Sweet"</item>
+    </array>
+
+    <array name="oil_type">
+        <item>"Olive oil"</item>
+        <item>"Soyabin oil"</item>
+
+    </array>
+    <array name="oil_amount">
+        <item>"Minimal"</item>
+        <item>"Regular"</item>
+    </array>
+    <array name="salt">
+        <item>"Low"</item>
+        <item>"Regular"</item>
+        <item>"High"</item>
+        <item>"Sweet"</item>
+    </array>
+</resources>

@@ -136,59 +136,19 @@
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
-                        <RadioGroup
-                            android:id="@+id/radioGroup"
-                            android:layout_width="wrap_content"
+                        <Spinner
+                            android:id="@+id/spinner_heat"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="85dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/txt_heat"
+                            android:layout_marginLeft="135dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="15dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:orientation="horizontal"
-                            android:weightSum="4">
+                            android:nextFocusDown="@+id/spinner_amountOfOil"
 
+                            />
 
-                                    <RadioButton
-                                        android:id="@+id/radio_spicy"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="4dp"
-                                        android:layout_weight="1"
-                                        android:checked="true"
-                                        android:inputType="textAutoComplete"
-                                        android:text="Spicy" />
-
-                                    <RadioButton
-                                        android:id="@+id/radio_mediumspicy"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="4dp"
-                                        android:layout_weight="1"
-                                        android:inputType="textAutoComplete"
-                                        android:text="Medium spicy" />
-
-
-                            <RadioButton
-                                        android:id="@+id/radio_neutral"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                android:layout_marginLeft="4dp"
-                                        android:layout_weight="1"
-                                        android:inputType="textAutoComplete"
-                                        android:text="Neutral" />
-
-                                    <RadioButton
-                                        android:id="@+id/radio_sweet"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="4dp"
-                                        android:layout_weight="1"
-                                        android:inputType="textAutoComplete"
-                                        android:text="Sweet" />
-
-
-                        </RadioGroup>
                     </LinearLayout>
 
                     <LinearLayout
@@ -209,37 +169,16 @@
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
-                        <RadioGroup
-                            android:id="@+id/radioGroup_oil"
-                            android:layout_width="wrap_content"
+                        <Spinner
+                            android:id="@+id/spinner_amountOfOil"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="26dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="75dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="15dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-
-                            <RadioButton
-                                android:id="@+id/radio_minimaloil"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-
-                                android:checked="true"
-                                android:inputType="textAutoComplete"
-                                android:text="Minimal" />
-
-                            <RadioButton
-                                android:id="@+id/radio_regularoil"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:inputType="textAutoComplete"
-                                android:text="Regular" />
-
-                        </RadioGroup>
+                            android:nextFocusDown="@+id/spinner_typeOfOil" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -260,36 +199,16 @@
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
-                        <RadioGroup
-                            android:id="@+id/radioGroup_OilTypes"
-                            android:layout_width="wrap_content"
+                        <Spinner
+                            android:id="@+id/spinner_typeOfOil"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="46dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="95dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="15dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-
-                            <RadioButton
-                                android:id="@+id/radio_oliveoil"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:checked="true"
-                                android:inputType="textAutoComplete"
-                                android:text="Olive oil" />
-
-                            <RadioButton
-                                android:id="@+id/radio_soyabinoil"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:inputType="textAutoComplete"
-                                android:text="Soyabin oil" />
-
-                        </RadioGroup>
+                            android:nextFocusDown="@+id/spinner_salt" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -310,44 +229,15 @@
                             android:textSize="15dp"
                             android:textStyle="bold" />
 
-                        <RadioGroup
-                            android:id="@+id/radioGroup_salt"
-                            android:layout_width="wrap_content"
+                        <Spinner
+                            android:id="@+id/spinner_salt"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="91dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="140dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="15dp"
                             android:focusable="true"
-                            android:focusableInTouchMode="true"
-                            android:orientation="horizontal"
-                            android:weightSum="3">
-
-                            <RadioButton
-                                android:id="@+id/radio_lowSalt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:checked="true"
-                                android:inputType="textAutoComplete"
-                                android:text="Low" />
-
-                            <RadioButton
-                                android:id="@+id/radio_regularSalt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:checked="true"
-                                android:inputType="textAutoComplete"
-                                android:text="Regular" />
-
-                            <RadioButton
-                                android:id="@+id/radio_highSalt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:inputType="textAutoComplete"
-                                android:text="High" />
-
-                        </RadioGroup>
+                            android:focusableInTouchMode="true" />
                     </LinearLayout>
 
                 </LinearLayout>
