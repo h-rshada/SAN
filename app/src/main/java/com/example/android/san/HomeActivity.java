@@ -11,12 +11,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.io.File;
 
@@ -26,9 +26,12 @@ import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-@InjectView(R.id.cardOrder)CardView cardOrder;
-    @InjectView(R.id.cardAboutUs)CardView cardAboutUs;
-    @InjectView(R.id.cardFindUs)CardView cardFindUs;
+    @InjectView(R.id.order)
+    ImageView order;
+    @InjectView(R.id.aboutus)
+    ImageView aboutus;
+    @InjectView(R.id.find)
+    ImageView find;
     Intent intent;
 
     @Override

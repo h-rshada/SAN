@@ -1,174 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.android.san.HomeActivity"
-    tools:showIn="@layout/app_bar_home">
+    android:layout_height="fill_parent">
 
-
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/container1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
 
         <LinearLayout
-            android:id="@+id/container1"
+            android:id="@+id/LinearLayout_31"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="70dp"
-            android:orientation="vertical">
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
 
-            <LinearLayout
-                android:id="@+id/LinearLayout_31"
+            <ImageView
+                android:id="@+id/imageClassroom"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:cropToPadding="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/foodimage" />
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/sliderlayout41"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="?android:selectableItemBackground"
-                    android:clickable="true"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:divider="@android:color/transparent"
-                    android:dividerHeight="0.0px"
-                    app:cardElevation="5dp"
-                    app:cardPreventCornerOverlap="false">
-
-                    <ImageView
-                        android:id="@+id/imageClassroom"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:cropToPadding="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/myclassroom" />
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearLayout_4"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-
-                android:orientation="vertical">
-
-                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/cardOrder"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@drawable/aboutus2"
-                    app:cardElevation="5dp"
-                    card_view:cardBackgroundColor="@android:color/holo_blue_light"
-                    card_view:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/order"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:src="@drawable/user" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="30dp"
-                        android:gravity="center"
-                        android:text=" Order Online" />
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearLayout_2"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="15dp"
-
-                android:orientation="vertical">
-
-                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/cardAboutUs"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/colorPrimary"
-                    app:cardElevation="5dp"
-                    card_view:cardBackgroundColor="@android:color/holo_blue_light"
-                    card_view:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/aboutus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:src="@drawable/user" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="30dp"
-                        android:gravity="center"
-                        android:text=" About Us" />
-
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearLayout_3"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/cardFindUs"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/colorPrimary"
-                    app:cardElevation="10dp"
-                    card_view:cardBackgroundColor="@android:color/holo_blue_light"
-                    card_view:cardCornerRadius="10dp">
-
-
-                    <ImageView
-                        android:id="@+id/find"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:src="@drawable/user" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="30dp"
-                        android:gravity="center"
-                        android:text=" Find Us" />
-
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/LinearLayout_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view1"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@drawable/aboutus2"
+                app:cardElevation="5dp"
+                card_view:cardBackgroundColor="@android:color/holo_blue_light"
+                card_view:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/images" />
+
+                <ImageView
+                    android:id="@+id/order1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:src="@drawable/user" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text=" Order Online"
+                    android:textColor="#D50000"
+                    android:textSize="20dp"
+                    android:textStyle="normal|bold"
+                    android:typeface="serif" />
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                card_view:cardBackgroundColor="@android:color/holo_blue_light"
+                card_view:cardCornerRadius="10dp"
+                card_view:cardElevation="5dp">
+
+                <ImageView
+                    android:id="@+id/aboutus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/images" />
+
+                <ImageView
+                    android:id="@+id/aboutus1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:src="@drawable/user" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text=" About Us"
+                    android:textColor="#D50000"
+                    android:textSize="20dp"
+                    android:textStyle="normal|bold"
+
+                    android:typeface="serif" />
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view3"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                app:cardElevation="10dp"
+                card_view:cardBackgroundColor="@android:color/holo_blue_light"
+                card_view:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/find"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/images" />
+
+                <ImageView
+                    android:id="@+id/findus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:clickable="true"
+                    android:gravity="center"
+
+                    android:src="@drawable/user" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text=" Find Us"
+                    android:textColor="#D50000"
+                    android:textSize="20dp"
+                    android:textStyle="normal|bold"
+
+                    android:typeface="serif" />
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

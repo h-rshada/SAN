@@ -84,6 +84,7 @@ public class MenuType extends AppCompatActivity {
                 }
                 txtPrice.setText("Rs.120");
                 txtPrice1.setText("Rs.150");
+                imageMenu.setImageResource(R.drawable.food1);
                 break;
             case R.id.txtSemiFlexible:
                 type=txtSemiFlexible.getText().toString();
@@ -97,7 +98,7 @@ public class MenuType extends AppCompatActivity {
                 } else {
                     txtSemiFlexible.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
-
+                imageMenu.setImageResource(R.drawable.food2);
                 txtPrice.setText("Rs.100");
                 txtPrice1.setText("Rs.110");
                 break;
@@ -113,6 +114,7 @@ public class MenuType extends AppCompatActivity {
                     {
                     txtFixed.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
+                imageMenu.setImageResource(R.drawable.food3);
                 txtMenuType.setText(type);
                 txtPrice.setText("Rs.60");
                 txtPrice1.setText("Rs.90");
@@ -128,6 +130,7 @@ public class MenuType extends AppCompatActivity {
                 } else {
                     txtBreakfast.setBackgroundColor(getResources().getColor(R.color.light_blue));
                 }
+                imageMenu.setImageResource(R.drawable.food4);
                 txtMenuType.setText(type);
                 txtPrice.setText("Rs.100");
                 txtPrice1.setText("Rs.110");
