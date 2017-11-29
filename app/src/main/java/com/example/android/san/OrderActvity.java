@@ -3,9 +3,12 @@ package com.example.android.san;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.andexert.library.RippleView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -31,7 +34,8 @@ public class OrderActvity extends AppCompatActivity {
     @InjectView(R.id.txtBreakfast)
     TextView txtBreakfast;
 
-
+    @InjectView(R.id.more)
+    RippleView rippleView;
 
     Intent intent;
     String type,tiffintype;
@@ -74,5 +78,23 @@ public class OrderActvity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
+        rippleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Sample", "Click Rect !");
+            }
+        });
+        rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+
+            @Override
+            public void onComplete(RippleView rippleView) {
+                Log.d("Sample", "Ripple completed");
+            }
+
+        });
     }
+
+
 }
+
+
