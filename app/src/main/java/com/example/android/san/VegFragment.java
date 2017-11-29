@@ -89,13 +89,12 @@ public class VegFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
 
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
-        //type = sp.getString("TYPE", null);
 
         ArrayAdapter<CharSequence> adapter_heat = ArrayAdapter.createFromResource(getActivity(), R.array.heat, android.R.layout.simple_spinner_item);
         adapter_heat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
