@@ -35,6 +35,9 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     DataSubji dataSubji, dataSubji1;
     SharedPreferences sp;
     Set<String> listData;
+    ArrayList selectedList;
+    Set<String> selectedlistData;
+    SharedPreferences.Editor editor;
     private Context context;
     private LayoutInflater inflater;
 
@@ -75,10 +78,13 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         myHolder.checkBox.setText(dataSubji.subji);
         listData = new HashSet<String>();
         sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        editor = sp.edit();
         type = sp.getString("TYPE", null);
         dabba = sp.getString("DABBA", null);
         Log.d("AdapterDabba***", type);
         str = myHolder.checkBox.getText().toString();
+        selectedlistData = new HashSet<String>();
+        selectedList = new ArrayList<>();
         Log.d("Checkbox", str);
         if (dabba.equals("fixedHeavy")) {
 
@@ -101,6 +107,9 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (str1.equals(str) || str2.equals(str)) {
                 myHolder.checkBox.setChecked(true);
                 myHolder.checkBox.setClickable(false);
+                selectedList.add(str);
+                listData.addAll(selectedList);
+                Log.d("onBindViewHolder: ", selectedList + "");
             }
         }
         if (type.equals("semiFlexible")) {
@@ -108,6 +117,9 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (str.equals(selectedStr)) {
                 myHolder.checkBox.setChecked(true);
                 myHolder.checkBox.setClickable(false);
+                selectedList.add(str);
+                listData.addAll(selectedList);
+                Log.d("onBindViewHolder: ", selectedList + "");
             }
         }
 
@@ -120,10 +132,11 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         if (SELECTION < 2) {
                             compoundButton.setChecked(true);
                             SELECTION++;
-                            Toast.makeText(context, "changed" + SELECTION + b + "" + dataSubji.selectedSubji, Toast.LENGTH_SHORT).show();
+                            addToList(compoundButton.getText().toString());
+
+                            //Toast.makeText(context, "changed" + SELECTION + b + "" + dataSubji.selectedSubji, Toast.LENGTH_SHORT).show();
                         } else {
 
-                            // Toast.makeText(context, "You can select only 2 subji", Toast.LENGTH_SHORT).show();
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
                             alertDialog.setMessage("For subji you have to pay extra charges. ");
@@ -134,6 +147,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                         public void onClick(DialogInterface dialog, int id) {
                                             compoundButton.setChecked(true);
                                             SELECTION++;
+                                            addToList(compoundButton.getText().toString());
                                             dialog.cancel();
 
 
@@ -154,7 +168,8 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         if (SELECTION < 1) {
                             compoundButton.setChecked(true);
                             SELECTION++;
-                            //Toast.makeText(context, "changed" + SELECTION + b + "" + dataSubji.selectedSubji, Toast.LENGTH_SHORT).show();
+                            str = compoundButton.getText().toString();
+                            addToList(str);
                         } else {
                             Toast.makeText(context, "You can select one subji only", Toast.LENGTH_SHORT).show();
                             compoundButton.setChecked(false);
@@ -167,11 +182,29 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     if (SELECTION > 0) {
                         compoundButton.setChecked(false);
                         SELECTION--;
+                        str = compoundButton.getText().toString();
+                        removeFromList(str);
                         Toast.makeText(context, "changed" + SELECTION + b + "", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+    }
+
+    public void addToList(String str) {
+        selectedList.add(str);
+        selectedlistData.addAll(selectedList);
+        editor.putStringSet("SELECTEDLIST", selectedlistData);
+        editor.commit();
+        Log.d("onBindViewHolder: ", selectedlistData + "");
+    }
+
+    public void removeFromList(String str) {
+        selectedList.remove(str);
+        selectedlistData.remove(str);
+        editor.putStringSet("SELECTEDLIST", selectedlistData);
+        editor.commit();
+        Log.d("onBindViewHolder: ", selectedlistData + "");
     }
 
     @Override

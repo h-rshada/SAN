@@ -49,6 +49,8 @@ public class VegFragment extends Fragment {
     @InjectView(R.id.txt_fri) TextView day_friday;
     @InjectView(R.id.txt_sat) TextView day_saturday;
     @InjectView(R.id.txt_sun) TextView day_sunday;
+    @InjectView(R.id.txt_tiffininfo)
+    TextView tiffin_tag;
     @InjectView(R.id.spinner_rice) Spinner spinner_rice;
     @InjectView(R.id.spinner_dal) Spinner spinner_dal;
     AdapterCheckbox adapterCheckbox;
@@ -191,6 +193,8 @@ public class VegFragment extends Fragment {
         editor.putString("DABBA", dabba);
         editor.putString("TYPE", type);
         editor.commit();
+        String output = type.substring(0, 1).toUpperCase() + type.substring(1);
+        tiffin_tag.setText(output + "/" + tiffintype);
 
         item = "bread";
 
@@ -218,6 +222,7 @@ public class VegFragment extends Fragment {
         switch (view.getId()) {
 
             case R.id.txt_mon:
+
                 week_day="Monday";
                 getData();
                 Toast.makeText(getActivity(),"monday",Toast.LENGTH_SHORT).show();
@@ -234,21 +239,25 @@ public class VegFragment extends Fragment {
                 break;
             case R.id.txt_thu:
                 week_day="Thursday";
+                day_thursday.setBackgroundResource(R.drawable.style_round1);
                 getData();
                 Toast.makeText(getActivity(),"thursday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_fri:
+                day_friday.setBackgroundResource(R.drawable.style_round1);
                 week_day="Friday";
                 getData();
                 Toast.makeText(getActivity(),"friday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_sat:
+                day_saturday.setBackgroundResource(R.drawable.style_round1);
                 week_day="Saturday";
                 getData();
                 Toast.makeText(getActivity(),"saturday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_sun:
                 week_day="Sunday";
+                day_sunday.setBackgroundResource(R.drawable.style_round1);
                 getData();
                 Toast.makeText(getActivity(),"sunday",Toast.LENGTH_SHORT).show();
                 break;
