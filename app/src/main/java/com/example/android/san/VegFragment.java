@@ -29,6 +29,7 @@ import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 /**
@@ -36,34 +37,20 @@ import butterknife.InjectView;
  */
 public class VegFragment extends Fragment {
 
-    @InjectView(R.id.spinner_indianBread)
-    Spinner spinner_indianBread;
-    @InjectView(R.id.spinner_heat)
-    Spinner spinner_heat;
-    @InjectView(R.id.spinner_amountOfOil)
-    Spinner spinner_amountOfOil;
-    @InjectView(R.id.spinner_typeOfOil)
-    Spinner spinner_typeOfOil;
-    @InjectView(R.id.spinner_salt)
-    Spinner spinner_salt;
-    @InjectView(R.id.txt_mon)
-    TextView day_monday;
-    @InjectView(R.id.txt_tue)
-    TextView day_tuesday;
-    @InjectView(R.id.txt_wed)
-    TextView day_wednesday;
-    @InjectView(R.id.txt_thu)
-    TextView day_thursday;
-    @InjectView(R.id.txt_fri)
-    TextView day_friday;
-    @InjectView(R.id.txt_sat)
-    TextView day_saturday;
-    @InjectView(R.id.txt_sun)
-    TextView day_sunday;
-    @InjectView(R.id.spinner_rice)
-    Spinner spinner_rice;
-    @InjectView(R.id.spinner_dal)
-    Spinner spinner_dal;
+    @InjectView(R.id.spinner_indianBread) Spinner spinner_indianBread;
+    @InjectView(R.id.spinner_heat) Spinner spinner_heat;
+    @InjectView(R.id.spinner_amountOfOil) Spinner spinner_amountOfOil;
+    @InjectView(R.id.spinner_typeOfOil) Spinner spinner_typeOfOil;
+    @InjectView(R.id.spinner_salt) Spinner spinner_salt;
+    @InjectView(R.id.txt_mon) TextView day_monday;
+    @InjectView(R.id.txt_tue) TextView day_tuesday;
+    @InjectView(R.id.txt_wed) TextView day_wednesday;
+    @InjectView(R.id.txt_thu) TextView day_thursday;
+    @InjectView(R.id.txt_fri) TextView day_friday;
+    @InjectView(R.id.txt_sat) TextView day_saturday;
+    @InjectView(R.id.txt_sun) TextView day_sunday;
+    @InjectView(R.id.spinner_rice) Spinner spinner_rice;
+    @InjectView(R.id.spinner_dal) Spinner spinner_dal;
     AdapterCheckbox adapterCheckbox;
     AdapterRadioButton adapterRadioButton;
     RecyclerView recyclerView;
@@ -76,15 +63,13 @@ public class VegFragment extends Fragment {
     String item, str[], str1, str2;
     String day,week_day,dabba1;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
-    String[] items = new String[]{"One"};
     SharedPreferences sp;
     String type, tiffintype, dabba,t[];
     SharedPreferences.Editor editor;
 
-    public VegFragment() {
-
+    public VegFragment()
+    {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,6 +80,79 @@ public class VegFragment extends Fragment {
 
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date d = new Date();
+        day = sdf.format(d);
+        if(day.equals("Monday"))
+        {
+            day_monday.setSelected(true);
+            day_monday.setBackgroundColor(Color.RED);
+            week_day="Monday";
+        }
+        else
+        if(day.equals("Tuesday"))
+        {
+            day_tuesday.setSelected(true);
+            day_tuesday.setBackgroundColor(Color.RED);
+            week_day="Tuesday";
+            day_monday.setEnabled(false);
+        }
+        else
+        if(day.equals("Wednesday"))
+        {
+            day_wednesday.setSelected(true);
+            day_wednesday.setBackgroundColor(Color.RED);
+            week_day="Wednesday";
+            day_monday.setEnabled(false);
+            day_tuesday.setEnabled(false);
+
+        }
+        else
+        if(day.equals("Thursday"))
+        {
+            day_thursday.setSelected(true);
+            day_thursday.setBackgroundColor(Color.RED);
+            week_day="Thursday";
+            day_monday.setEnabled(false);
+            day_tuesday.setEnabled(false);
+            day_wednesday.setEnabled(false);
+        }
+        else
+        if(day.equals("Friday"))
+        {
+            day_friday.setSelected(true);
+            day_friday.setBackgroundColor(Color.RED);
+            week_day="Friday";
+            day_monday.setEnabled(false);
+            day_tuesday.setEnabled(false);
+            day_wednesday.setEnabled(false);
+            day_thursday.setEnabled(false);
+        }
+        else
+        if(day.equals("Saturday"))
+        {
+            day_saturday.setSelected(true);
+            day_saturday.setBackgroundColor(Color.RED);
+            week_day="Saturday";
+            day_monday.setEnabled(false);
+            day_tuesday.setEnabled(false);
+            day_wednesday.setEnabled(false);
+            day_thursday.setEnabled(false);
+            day_friday.setEnabled(false);
+        }
+        else
+        if(day.equals("Sunday"))
+        {
+            day_sunday.setSelected(true);
+            day_sunday.setBackgroundColor(Color.RED);
+            week_day="Sunday";
+            day_monday.setEnabled(false);
+            day_tuesday.setEnabled(false);
+            day_wednesday.setEnabled(false);
+            day_thursday.setEnabled(false);
+            day_friday.setEnabled(false);
+            day_saturday.setEnabled(false);
+        }
 
         ArrayAdapter<CharSequence> adapter_heat = ArrayAdapter.createFromResource(getActivity(), R.array.heat, android.R.layout.simple_spinner_item);
         adapter_heat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -154,61 +212,52 @@ public class VegFragment extends Fragment {
         return view;
 
     }
+    @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun})
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.txt_mon:
+                week_day="Monday";
+                getData();
+                Toast.makeText(getActivity(),"monday",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txt_tue:
+                week_day="Tuesday";
+                getData();
+                Toast.makeText(getActivity(),"tuesday",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txt_wed:
+                week_day="Wednesday";
+                getData();
+                Toast.makeText(getActivity(),"wednesday",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txt_thu:
+                week_day="Thursday";
+                getData();
+                Toast.makeText(getActivity(),"thursday",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txt_fri:
+                week_day="Friday";
+                getData();
+                Toast.makeText(getActivity(),"friday",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txt_sat:
+                week_day="Saturday";
+                getData();
+                Toast.makeText(getActivity(),"saturday",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.txt_sun:
+                week_day="Sunday";
+                getData();
+                Toast.makeText(getActivity(),"sunday",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
     public void getData()
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        Date d = new Date();
-        day = sdf.format(d);
-        if(day.equals("Monday"))
-        {
-            day_monday.setSelected(true);
-            day_monday.setBackgroundColor(Color.RED);
-            week_day="Monday";
-        }
-        else
-        if(day.equals("Tuesday"))
-        {
-            day_tuesday.setSelected(true);
-            day_tuesday.setBackgroundColor(Color.RED);
-            week_day="Tuesday";
-        }
-        else
-        if(day.equals("Wednesday"))
-        {
-            day_wednesday.setSelected(true);
-            day_wednesday.setBackgroundColor(Color.RED);
-            week_day="Wednesday";
-        }
-        else
-        if(day.equals("Thursday"))
-        {
-            day_thursday.setSelected(true);
-            day_thursday.setBackgroundColor(Color.RED);
-            week_day="Thursday";
-        }
-        else
-        if(day.equals("Friday"))
-        {
-            day_friday.setSelected(true);
-            day_friday.setBackgroundColor(Color.RED);
-            week_day="Friday";
-        }
-        else
-        if(day.equals("Saturday"))
-        {
-            day_saturday.setSelected(true);
-            day_saturday.setBackgroundColor(Color.RED);
-            week_day="Saturday";
-        }
-        else
-        if(day.equals("Sunday"))
-        {
-            day_sunday.setSelected(true);
-            day_sunday.setBackgroundColor(Color.RED);
-            week_day="Sunday";
-        }
         urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
