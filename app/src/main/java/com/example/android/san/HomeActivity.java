@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.andexert.library.RippleView;
+
 import java.io.File;
 
 import butterknife.ButterKnife;
@@ -31,9 +33,11 @@ public class HomeActivity extends AppCompatActivity
     @InjectView(R.id.aboutus)
     ImageView aboutus;
     @InjectView(R.id.find)
+
     ImageView find;
     Intent intent;
-
+    @InjectView(R.id.more)
+    RippleView rippleView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +131,20 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
                 break;
         }
+        rippleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Sample", "Click Rect !");
+            }
+        });
+        rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
+
+            @Override
+            public void onComplete(RippleView rippleView) {
+                Log.d("Sample", "Ripple completed");
+            }
+
+        });
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -152,4 +170,7 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
+
+

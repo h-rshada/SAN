@@ -29,51 +29,63 @@
             android:layout_weight="1.0"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/sliderlayout41"
-                android:layout_width="250dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0.0px"
-                android:gravity="center"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false">
+            <com.andexert.library.RippleView
+                android:id="@+id/more"
+                rv_centered="true"
+                android:layout_width="match_parent"
 
-                <ImageView
-                    android:id="@+id/imageflexible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:cropToPadding="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/food3" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
 
-                <TextView
-                    android:id="@+id/txtFlexible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/sliderlayout41"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
-                    android:background="#9E9E9E"
-                    android:fontFamily="cursive"
-                    android:padding="3dp"
-                    android:text="Flexible"
-                    android:textAlignment="center"
+                    android:layout_marginTop="20dp"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.0px"
+                    android:gravity="center"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp"
+                    app:cardPreventCornerOverlap="false">
 
-                    android:textColor="#D50000"
-                    android:textSize="20dp"
+                    <ImageView
+                        android:id="@+id/imageflexible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/food3" />
+
+                    <TextView
+                        android:id="@+id/txtFlexible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#9E9E9E"
+                        android:fontFamily="cursive"
+                        android:padding="3dp"
+                        android:text="Flexible"
+                        android:textAlignment="center"
+
+                        android:textColor="#D50000"
+                        android:textSize="20dp"
 
 
-                    android:textStyle="normal|bold"
-                    android:typeface="serif" />
+                        android:textStyle="normal|bold"
+                        android:typeface="serif" />
 
 
-            </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
+            </com.andexert.library.RippleView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,49 +94,60 @@
             android:layout_weight="1.0"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/sliderlayout"
-                android:layout_width="250dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0.0px"
-                android:gravity="center"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false">
+            <com.andexert.library.RippleView
 
-                <ImageView
-                    android:id="@+id/imagesemiflex"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:cropToPadding="true"
-                    android:scaleType="fitXY"
+                rv_centered="true"
+                android:layout_width="match_parent"
 
-                    android:src="@drawable/food2" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
 
-                <TextView
-                    android:id="@+id/txtSemiFlexible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/sliderlayout"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
-                    android:background="#9E9E9E"
-                    android:fontFamily="cursive"
-                    android:padding="3dp"
-                    android:text="SemiFlexible"
-                    android:textAlignment="center"
-                    android:textColor="#D50000"
-                    android:textSize="20dp"
-                    android:textStyle="normal|bold"
-                    android:typeface="serif" />
+                    android:layout_marginTop="15dp"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.0px"
+                    android:gravity="center"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp"
+                    app:cardPreventCornerOverlap="false">
+
+                    <ImageView
+                        android:id="@+id/imagesemiflex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/food2" />
+
+                    <TextView
+                        android:id="@+id/txtSemiFlexible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#9E9E9E"
+                        android:fontFamily="cursive"
+                        android:padding="3dp"
+                        android:text="SemiFlexible"
+                        android:textAlignment="center"
+                        android:textColor="#D50000"
+                        android:textSize="20dp"
+                        android:textStyle="normal|bold"
+                        android:typeface="serif" />
 
 
-            </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
+            </com.andexert.library.RippleView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,46 +156,58 @@
             android:layout_weight="1.0"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/sliderlayout3"
-                android:layout_width="250dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0.0px"
-                android:gravity="center"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp"
-                app:cardPreventCornerOverlap="false">
+            <com.andexert.library.RippleView
 
-                <ImageView
-                    android:id="@+id/imagefixed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:cropToPadding="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/food3" />
+                rv_centered="true"
+                android:layout_width="match_parent"
 
-                <TextView
-                    android:id="@+id/txtFixed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/sliderlayout3"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
-                    android:background="#9E9E9E"
-                    android:fontFamily="cursive"
-                    android:padding="3dp"
-                    android:text="Fixed"
-                    android:textAlignment="center"
-                    android:textColor="#D50000"
-                    android:textSize="20dp"
-                    android:textStyle="normal|bold"
-                    android:typeface="serif" />
-            </android.support.v7.widget.CardView>
+                    android:layout_marginTop="15dp"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.0px"
+                    android:gravity="center"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp"
+                    app:cardPreventCornerOverlap="false">
+
+                    <ImageView
+                        android:id="@+id/imagefixed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/food3" />
+
+                    <TextView
+                        android:id="@+id/txtFixed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#9E9E9E"
+                        android:fontFamily="cursive"
+                        android:padding="3dp"
+                        android:text="Fixed"
+                        android:textAlignment="center"
+                        android:textColor="#D50000"
+                        android:textSize="20dp"
+                        android:textStyle="normal|bold"
+                        android:typeface="serif" />
+                </android.support.v7.widget.CardView>
+            </com.andexert.library.RippleView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -182,49 +217,61 @@
             android:layout_weight="1.0"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/sliderlayout4"
-                android:layout_width="250dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="?android:selectableItemBackground"
-                android:clickable="true"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0.0px"
-                android:gravity="center"
-                android:src="@drawable/food4"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp"
+            <com.andexert.library.RippleView
 
-                app:cardPreventCornerOverlap="false">
+                rv_centered="true"
+                android:layout_width="match_parent"
 
-                <ImageView
-                    android:id="@+id/imagebrakfast"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:cropToPadding="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/food4" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
 
-                <TextView
-                    android:id="@+id/txtBreakfast"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/sliderlayout4"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
-                    android:background="#9E9E9E"
-                    android:fontFamily="cursive"
-                    android:padding="3dp"
-                    android:text="BreakFast"
-                    android:textAlignment="center"
-                    android:textColor="#D50000"
-                    android:textSize="20dp"
-                    android:textStyle="normal|bold"
-                    android:typeface="serif" />
+                    android:layout_marginTop="15dp"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.0px"
+                    android:gravity="center"
+                    android:src="@drawable/food4"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp"
 
-            </android.support.v7.widget.CardView>
+                    app:cardPreventCornerOverlap="false">
+
+                    <ImageView
+                        android:id="@+id/imagebrakfast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/food4" />
+
+                    <TextView
+                        android:id="@+id/txtBreakfast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#9E9E9E"
+                        android:fontFamily="cursive"
+                        android:padding="3dp"
+                        android:text="BreakFast"
+                        android:textAlignment="center"
+                        android:textColor="#D50000"
+                        android:textSize="20dp"
+                        android:textStyle="normal|bold"
+                        android:typeface="serif" />
+
+                </android.support.v7.widget.CardView>
+            </com.andexert.library.RippleView>
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
