@@ -26,8 +26,10 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
     String selectedStr, type, str;
     DataSubji dataSubji, dataSubji1;
     SharedPreferences sp;
+    SharedPreferences.Editor editor;
     UrlRequest urlRequest;
     private Context context;
+
     private LayoutInflater inflater;
 
 
@@ -58,15 +60,17 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
         final int pos = position;
         sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         type = sp.getString("TYPE", null);
-        selectedStr = sp.getString("SINGLE", null);
-        Log.d("Dabba***", type);
-        Log.d("Selected***", selectedStr);
+
         dataSubji = data.get(position);
         myHolder.radioSubji.setChecked(pos == mSelectedItem);
         myHolder.radioSubji.setText(dataSubji.subji);
         str = myHolder.radioSubji.getText().toString();
+
         Log.d("str", str);
         if (type.equals("fixed")) {
+            selectedStr = sp.getString("SINGLE", null);
+            Log.d("Dabba***", type);
+            Log.d("Selected***", selectedStr);
             myHolder.radioSubji.setChecked(false);
             if (selectedStr.equals(str)) {
                 myHolder.radioSubji.setChecked(true);
@@ -90,12 +94,17 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
         public MyHolder(View itemView) {
             super(itemView);
             radioSubji = itemView.findViewById(R.id.radioSubji);
-
             View.OnClickListener clickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mSelectedItem = getAdapterPosition();
                     notifyItemRangeChanged(0, data.size());
+                    str = radioSubji.getText().toString();
+                    editor = sp.edit();
+                    editor.putString("BASIC", str);
+
+                    editor.commit();
+                    Log.d("RadioSubji", str);
                 }
             };
             itemView.setOnClickListener(clickListener);

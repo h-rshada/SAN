@@ -2,6 +2,7 @@ package com.example.android.san;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,7 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +56,8 @@ public class VegFragment extends Fragment {
     TextView tiffin_tag;
     @InjectView(R.id.spinner_rice) Spinner spinner_rice;
     @InjectView(R.id.spinner_dal) Spinner spinner_dal;
+    @InjectView(R.id.btnSubmit)
+    Button btnSubmit;
     AdapterCheckbox adapterCheckbox;
     AdapterRadioButton adapterRadioButton;
     RecyclerView recyclerView;
@@ -62,12 +67,81 @@ public class VegFragment extends Fragment {
     ArrayList arrayList1;
     Set<String> listData;
     View view;
-    String item, str[], str1, str2;
+    String selectedBread, selectedSalt, selectedRice, selectedDal, selectedOil, selectedAmtOil, selectedHeat, spinner_item;
+    String item, str[], str1, str2, menu;
     String day,week_day,dabba1;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
     SharedPreferences sp;
     String type, tiffintype, dabba,t[];
     SharedPreferences.Editor editor;
+    AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            if (adapterView.equals(spinner_indianBread)) {
+                selectedBread = spinner_indianBread.getSelectedItem().toString();
+                adapterView.setSelection(i);
+                Log.d("selected item", selectedBread);
+            }
+
+            if (adapterView.equals(spinner_dal)) {
+                selectedDal = spinner_dal.getSelectedItem().toString();
+                adapterView.setSelection(i);
+                Log.d("selected item", selectedDal);
+            }
+            if (adapterView.equals(spinner_rice)) {
+                selectedRice = spinner_rice.getSelectedItem().toString();
+                adapterView.setSelection(i);
+                Log.d("selected item", selectedRice);
+            }
+            if (adapterView.equals(spinner_salt)) {
+                selectedSalt = spinner_salt.getSelectedItem().toString();
+                adapterView.setSelection(i);
+                Log.d("selected item", selectedSalt);
+            }
+            if (adapterView.equals(spinner_heat)) {
+                selectedHeat = spinner_heat.getSelectedItem().toString();
+                adapterView.setSelection(i);
+                Log.d("selected item", selectedHeat);
+            }
+            if (adapterView.equals(spinner_amountOfOil)) {
+                selectedAmtOil = spinner_amountOfOil.getSelectedItem().toString();
+                adapterView.setSelection(i);
+                Log.d("selected item", selectedAmtOil);
+            }
+            if (adapterView.equals(spinner_typeOfOil)) {
+                selectedOil = spinner_typeOfOil.getSelectedItem().toString();
+                adapterView.setSelection(i);
+                Log.d("selected item", selectedOil);
+            }
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+            if (adapterView.equals(spinner_indianBread)) {
+                selectedBread = spinner_indianBread.getItemAtPosition(0).toString();
+            }
+            if (adapterView.equals(spinner_rice)) {
+                selectedRice = spinner_rice.getItemAtPosition(0).toString();
+            }
+            if (adapterView.equals(spinner_dal)) {
+                selectedDal = spinner_dal.getItemAtPosition(0).toString();
+            }
+            if (adapterView.equals(spinner_heat)) {
+                selectedHeat = spinner_heat.getItemAtPosition(0).toString();
+            }
+            if (adapterView.equals(spinner_salt)) {
+                selectedSalt = spinner_salt.getItemAtPosition(0).toString();
+            }
+            if (adapterView.equals(spinner_amountOfOil)) {
+                selectedAmtOil = spinner_amountOfOil.getItemAtPosition(0).toString();
+            }
+            if (adapterView.equals(spinner_typeOfOil)) {
+                selectedOil = spinner_typeOfOil.getItemAtPosition(0).toString();
+            }
+
+        }
+    };
 
     public VegFragment()
     {
@@ -188,9 +262,17 @@ public class VegFragment extends Fragment {
         else {
                 dabba = type + tiffintype;
             }
+        spinner_heat.setOnItemSelectedListener(itemSelectedListener);
+        spinner_indianBread.setOnItemSelectedListener(itemSelectedListener);
+        spinner_rice.setOnItemSelectedListener(itemSelectedListener);
+        spinner_dal.setOnItemSelectedListener(itemSelectedListener);
+        spinner_amountOfOil.setOnItemSelectedListener(itemSelectedListener);
+        spinner_salt.setOnItemSelectedListener(itemSelectedListener);
+        spinner_typeOfOil.setOnItemSelectedListener(itemSelectedListener);
 
         Log.d(dabba, "Dabba ");
         editor.putString("DABBA", dabba);
+        editor.putString("TIFFIN", tiffintype);
         editor.putString("TYPE", type);
         editor.commit();
         String output = type.substring(0, 1).toUpperCase() + type.substring(1);
@@ -216,7 +298,8 @@ public class VegFragment extends Fragment {
         return view;
 
     }
-    @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun})
+
+    @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun, R.id.btnSubmit})
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -261,6 +344,18 @@ public class VegFragment extends Fragment {
                 getData();
                 Toast.makeText(getActivity(),"sunday",Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.btnSubmit:
+
+                Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+                intent.putExtra("Bread", selectedBread);
+                intent.putExtra("Rice", selectedRice);
+                intent.putExtra("Dal", selectedDal);
+                intent.putExtra("Salt", selectedSalt);
+                intent.putExtra("AmtOil", selectedAmtOil);
+                intent.putExtra("OilType", selectedOil);
+                intent.putExtra("Heat", selectedHeat);
+                startActivity(intent);
+
         }
     }
     public void getData()
@@ -286,10 +381,11 @@ public class VegFragment extends Fragment {
                         dataSubji.subji = jsonArray1.getString(1);
                         arrayList.add(dataSubji);
 
-
                         Log.d("Data", dataSubji.subji);
                         recyclerView = view.findViewById(R.id.Listmenu);
                         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+
                         if (!(arrayList.size() == 0)) {
                             if (tiffintype.equals("Basic")) {
                                 adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);

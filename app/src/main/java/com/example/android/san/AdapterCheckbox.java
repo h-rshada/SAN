@@ -38,6 +38,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     ArrayList selectedList;
     Set<String> selectedlistData;
     SharedPreferences.Editor editor;
+    String menu;
     private Context context;
     private LayoutInflater inflater;
 
@@ -81,17 +82,15 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         editor = sp.edit();
         type = sp.getString("TYPE", null);
         dabba = sp.getString("DABBA", null);
-        Log.d("AdapterDabba***", type);
+        Log.d("AdapterDabba***", dabba);
         str = myHolder.checkBox.getText().toString();
         selectedlistData = new HashSet<String>();
         selectedList = new ArrayList<>();
         Log.d("Checkbox", str);
         if (dabba.equals("fixedHeavy")) {
-
             listData = sp.getStringSet("LIST", null);
             List listOfNames = new ArrayList(listData);
             Log.d("Adapterlist***", listOfNames.get(0) + "");
-
             str1 = listOfNames.get(0).toString();
             Log.d("str1", str1);
             str2 = listOfNames.get(1).toString();
@@ -106,6 +105,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             myHolder.checkBox.setChecked(false);
             if (str1.equals(str) || str2.equals(str)) {
                 myHolder.checkBox.setChecked(true);
+                menu = myHolder.checkBox.getText().toString();
                 myHolder.checkBox.setClickable(false);
                 selectedList.add(str);
                 listData.addAll(selectedList);
@@ -116,13 +116,13 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             myHolder.checkBox.setChecked(false);
             if (str.equals(selectedStr)) {
                 myHolder.checkBox.setChecked(true);
+                menu = myHolder.checkBox.getText().toString();
                 myHolder.checkBox.setClickable(false);
                 selectedList.add(str);
                 listData.addAll(selectedList);
                 Log.d("onBindViewHolder: ", selectedList + "");
             }
         }
-
 
         myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -131,6 +131,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     if (type.equals("flexible")) {
                         if (SELECTION < 2) {
                             compoundButton.setChecked(true);
+                            menu = compoundButton.getText().toString();
                             SELECTION++;
                             addToList(compoundButton.getText().toString());
 
@@ -167,6 +168,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     } else if (type.equals("semiFlexible")) {
                         if (SELECTION < 1) {
                             compoundButton.setChecked(true);
+                            menu = compoundButton.getText().toString();
                             SELECTION++;
                             str = compoundButton.getText().toString();
                             addToList(str);
@@ -194,7 +196,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void addToList(String str) {
         selectedList.add(str);
         selectedlistData.addAll(selectedList);
-        editor.putStringSet("SELECTEDLIST", selectedlistData);
+        editor.putStringSet("HEAVY", selectedlistData);
         editor.commit();
         Log.d("onBindViewHolder: ", selectedlistData + "");
     }
@@ -202,7 +204,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void removeFromList(String str) {
         selectedList.remove(str);
         selectedlistData.remove(str);
-        editor.putStringSet("SELECTEDLIST", selectedlistData);
+        editor.putStringSet("HEAVY", selectedlistData);
         editor.commit();
         Log.d("onBindViewHolder: ", selectedlistData + "");
     }
@@ -223,7 +225,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             checkBox = itemView.findViewById(R.id.checkbox_menu);
         }
     }
-
 }
 
 
