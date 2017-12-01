@@ -26,7 +26,7 @@ import java.util.Set;
 
 public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
-    public int SELECTION = 0;
+    public int SELECTION = 0,count=0;
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
     UrlRequest urlRequest;
@@ -128,44 +128,54 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             @Override
             public void onCheckedChanged(final CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    if (type.equals("flexible")) {
-                        if (SELECTION < 2) {
-                            compoundButton.setChecked(true);
-                            SELECTION++;
-                            addToList(compoundButton.getText().toString());
+                           if (type.equals("flexible"))
+                           {
+                               if (SELECTION < 2)
+                               {
+                                 compoundButton.setChecked(true);
+                                 SELECTION++;
+                                 addToList(compoundButton.getText().toString());
 
-                            //Toast.makeText(context, "changed" + SELECTION + b + "" + dataSubji.selectedSubji, Toast.LENGTH_SHORT).show();
-                        } else {
+                               }
+                               else
+                               {
+                                   if(SELECTION==2)
+                                   {
+                                       AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
-                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                                       alertDialog.setMessage("For subji you have to pay extra charges. ");
 
-                            alertDialog.setMessage("For subji you have to pay extra charges. ");
-
-                            alertDialog.setPositiveButton(
-                                    "OK",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            compoundButton.setChecked(true);
-                                            SELECTION++;
-                                            addToList(compoundButton.getText().toString());
-                                            dialog.cancel();
+                                       alertDialog.setPositiveButton(
+                                               "OK",
+                                               new DialogInterface.OnClickListener() {
+                                                   public void onClick(DialogInterface dialog, int id) {
+                                                       compoundButton.setChecked(true);
+                                                       SELECTION++;
+                                                       addToList(compoundButton.getText().toString());
+                                                       dialog.cancel();
 
 
-                                        }
-                                    });
-                            alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    compoundButton.setChecked(false);
-                                    SELECTION++;
+                                                   }
+                                               });
+                                       alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                           @Override
+                                           public void onClick(DialogInterface dialogInterface, int i) {
+                                               compoundButton.setChecked(false);
+                                               SELECTION++;
 
-                                }
-                            });
+                                           }
+                                       });
+                                       alertDialog.show();
+                                   }
+                                   else
+                                   SELECTION++;
 
-                            alertDialog.show();
-                        }
-                    } else if (type.equals("semiFlexible")) {
-                        if (SELECTION < 1) {
+                              }
+                      }
+                      else if (type.equals("semiFlexible"))
+                      {
+                        if (SELECTION < 1)
+                        {
                             compoundButton.setChecked(true);
                             SELECTION++;
                             str = compoundButton.getText().toString();
@@ -174,11 +184,14 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             Toast.makeText(context, "You can select one subji only", Toast.LENGTH_SHORT).show();
                             compoundButton.setChecked(false);
                         }
-                    } else if (type.equals("fixed")) {
+                     }
+                    else if (type.equals("fixed"))
+                    {
                         compoundButton.setChecked(false);
                         Toast.makeText(context, "You can't select more than 2 subji's", Toast.LENGTH_SHORT).show();
                     }
-                } else {
+                }
+                else {
                     if (SELECTION > 0) {
                         compoundButton.setChecked(false);
                         SELECTION--;

@@ -311,10 +311,7 @@ public class VegFragment extends Fragment {
                 {
                     e.printStackTrace();
                 }
-//                else
-//                {
-//                    Toast.makeText(getActivity(),"No data available",Toast.LENGTH_SHORT).show();
-//                }
+
             }
         });
     }
