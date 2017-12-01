@@ -137,6 +137,7 @@ public class MenuType extends AppCompatActivity {
                 break;
             case R.id.cardBasic:
                 tiffinType = txtTiffinType.getText().toString();
+                Log.d("T*********", tiffinType);
                 intent.putExtra("TiffinType", tiffinType);
                 startActivity(intent);
 

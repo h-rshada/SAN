@@ -26,7 +26,7 @@ import java.util.Set;
 
 public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
-    public int SELECTION = 0,count=0;
+    public int SELECTION = 0;
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
     UrlRequest urlRequest;
@@ -38,6 +38,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     ArrayList selectedList;
     Set<String> selectedlistData;
     SharedPreferences.Editor editor;
+    String menu;
     private Context context;
     private LayoutInflater inflater;
 
@@ -64,6 +65,10 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.container_checkbox, parent, false);
         MyHolder holder = new MyHolder(view);
+        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        editor = sp.edit();
+
+        // editor.commit();
         return holder;
     }
 
@@ -77,21 +82,17 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final DataSubji dataSubji = data.get(position);
         myHolder.checkBox.setText(dataSubji.subji);
         listData = new HashSet<String>();
-        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-        editor = sp.edit();
         type = sp.getString("TYPE", null);
         dabba = sp.getString("DABBA", null);
-        Log.d("AdapterDabba***", type);
+        Log.d("AdapterDabba***", dabba);
         str = myHolder.checkBox.getText().toString();
         selectedlistData = new HashSet<String>();
         selectedList = new ArrayList<>();
         Log.d("Checkbox", str);
         if (dabba.equals("fixedHeavy")) {
-
             listData = sp.getStringSet("LIST", null);
             List listOfNames = new ArrayList(listData);
             Log.d("Adapterlist***", listOfNames.get(0) + "");
-
             str1 = listOfNames.get(0).toString();
             Log.d("str1", str1);
             str2 = listOfNames.get(1).toString();
@@ -102,13 +103,17 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.d("Adapterstr***", selectedStr);
         }
 
+
         if (type.equals("fixed")) {
             myHolder.checkBox.setChecked(false);
             if (str1.equals(str) || str2.equals(str)) {
                 myHolder.checkBox.setChecked(true);
+                menu = myHolder.checkBox.getText().toString();
                 myHolder.checkBox.setClickable(false);
                 selectedList.add(str);
                 listData.addAll(selectedList);
+                editor.putStringSet("HEAVY", listData);
+                editor.commit();
                 Log.d("onBindViewHolder: ", selectedList + "");
             }
         }
@@ -116,67 +121,64 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             myHolder.checkBox.setChecked(false);
             if (str.equals(selectedStr)) {
                 myHolder.checkBox.setChecked(true);
+                menu = myHolder.checkBox.getText().toString();
                 myHolder.checkBox.setClickable(false);
                 selectedList.add(str);
                 listData.addAll(selectedList);
+                editor.putStringSet("HEAVY", listData);
+                editor.commit();
                 Log.d("onBindViewHolder: ", selectedList + "");
             }
         }
-
 
         myHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final CompoundButton compoundButton, boolean b) {
                 if (b) {
-                           if (type.equals("flexible"))
-                           {
-                               if (SELECTION < 2)
-                               {
-                                 compoundButton.setChecked(true);
-                                 SELECTION++;
-                                 addToList(compoundButton.getText().toString());
+                    if (type.equals("flexible")) {
 
-                               }
-                               else
-                               {
-                                   if(SELECTION==2)
-                                   {
-                                       AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-
-                                       alertDialog.setMessage("For subji you have to pay extra charges. ");
-
-                                       alertDialog.setPositiveButton(
-                                               "OK",
-                                               new DialogInterface.OnClickListener() {
-                                                   public void onClick(DialogInterface dialog, int id) {
-                                                       compoundButton.setChecked(true);
-                                                       SELECTION++;
-                                                       addToList(compoundButton.getText().toString());
-                                                       dialog.cancel();
-
-
-                                                   }
-                                               });
-                                       alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                                           @Override
-                                           public void onClick(DialogInterface dialogInterface, int i) {
-                                               compoundButton.setChecked(false);
-                                               SELECTION++;
-
-                                           }
-                                       });
-                                       alertDialog.show();
-                                   }
-                                   else
-                                   SELECTION++;
-
-                              }
-                      }
-                      else if (type.equals("semiFlexible"))
-                      {
-                        if (SELECTION < 1)
-                        {
+                        if (SELECTION < 2) {
                             compoundButton.setChecked(true);
+                            menu = compoundButton.getText().toString();
+                            SELECTION++;
+                            if (!menu.isEmpty()) {
+                                addToList(menu);
+                            } else {
+                                editor.putStringSet("HEAVY", null);
+                                editor.commit();
+                            }
+                        } else {
+
+                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+
+                            alertDialog.setMessage("For subji you have to pay extra charges. ");
+
+                            alertDialog.setPositiveButton(
+                                    "OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            compoundButton.setChecked(true);
+                                            SELECTION++;
+                                            addToList(compoundButton.getText().toString());
+                                            dialog.cancel();
+
+                                        }
+                                    });
+                            alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    compoundButton.setChecked(false);
+                                    SELECTION++;
+
+                                }
+                            });
+
+                            alertDialog.show();
+                        }
+                    } else if (type.equals("semiFlexible")) {
+                        if (SELECTION < 1) {
+                            compoundButton.setChecked(true);
+                            menu = compoundButton.getText().toString();
                             SELECTION++;
                             str = compoundButton.getText().toString();
                             addToList(str);
@@ -184,14 +186,11 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             Toast.makeText(context, "You can select one subji only", Toast.LENGTH_SHORT).show();
                             compoundButton.setChecked(false);
                         }
-                     }
-                    else if (type.equals("fixed"))
-                    {
+                    } else if (type.equals("fixed")) {
                         compoundButton.setChecked(false);
                         Toast.makeText(context, "You can't select more than 2 subji's", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     if (SELECTION > 0) {
                         compoundButton.setChecked(false);
                         SELECTION--;
@@ -207,7 +206,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void addToList(String str) {
         selectedList.add(str);
         selectedlistData.addAll(selectedList);
-        editor.putStringSet("SELECTEDLIST", selectedlistData);
+        editor.putStringSet("HEAVY", selectedlistData);
         editor.commit();
         Log.d("onBindViewHolder: ", selectedlistData + "");
     }
@@ -215,7 +214,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void removeFromList(String str) {
         selectedList.remove(str);
         selectedlistData.remove(str);
-        editor.putStringSet("SELECTEDLIST", selectedlistData);
+        editor.putStringSet("HEAVY", selectedlistData);
         editor.commit();
         Log.d("onBindViewHolder: ", selectedlistData + "");
     }
@@ -225,18 +224,14 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return data.size();
     }
 
-
     class MyHolder extends RecyclerView.ViewHolder {
 
         CheckBox checkBox;
-
         public MyHolder(View itemView) {
             super(itemView);
-
             checkBox = itemView.findViewById(R.id.checkbox_menu);
         }
     }
-
 }
 
 
