@@ -65,6 +65,10 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.container_checkbox, parent, false);
         MyHolder holder = new MyHolder(view);
+        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        editor = sp.edit();
+
+        // editor.commit();
         return holder;
     }
 
@@ -78,8 +82,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final DataSubji dataSubji = data.get(position);
         myHolder.checkBox.setText(dataSubji.subji);
         listData = new HashSet<String>();
-        sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-        editor = sp.edit();
         type = sp.getString("TYPE", null);
         dabba = sp.getString("DABBA", null);
         Log.d("AdapterDabba***", dabba);
@@ -101,6 +103,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.d("Adapterstr***", selectedStr);
         }
 
+
         if (type.equals("fixed")) {
             myHolder.checkBox.setChecked(false);
             if (str1.equals(str) || str2.equals(str)) {
@@ -109,6 +112,8 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 myHolder.checkBox.setClickable(false);
                 selectedList.add(str);
                 listData.addAll(selectedList);
+                editor.putStringSet("HEAVY", listData);
+                editor.commit();
                 Log.d("onBindViewHolder: ", selectedList + "");
             }
         }
@@ -120,6 +125,8 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 myHolder.checkBox.setClickable(false);
                 selectedList.add(str);
                 listData.addAll(selectedList);
+                editor.putStringSet("HEAVY", listData);
+                editor.commit();
                 Log.d("onBindViewHolder: ", selectedList + "");
             }
         }
@@ -129,13 +136,17 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             public void onCheckedChanged(final CompoundButton compoundButton, boolean b) {
                 if (b) {
                     if (type.equals("flexible")) {
+
                         if (SELECTION < 2) {
                             compoundButton.setChecked(true);
                             menu = compoundButton.getText().toString();
                             SELECTION++;
-                            addToList(compoundButton.getText().toString());
-
-                            //Toast.makeText(context, "changed" + SELECTION + b + "" + dataSubji.selectedSubji, Toast.LENGTH_SHORT).show();
+                            if (!menu.isEmpty()) {
+                                addToList(menu);
+                            } else {
+                                editor.putStringSet("HEAVY", null);
+                                editor.commit();
+                            }
                         } else {
 
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
@@ -150,7 +161,6 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                             SELECTION++;
                                             addToList(compoundButton.getText().toString());
                                             dialog.cancel();
-
 
                                         }
                                     });
@@ -214,14 +224,11 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return data.size();
     }
 
-
     class MyHolder extends RecyclerView.ViewHolder {
 
         CheckBox checkBox;
-
         public MyHolder(View itemView) {
             super(itemView);
-
             checkBox = itemView.findViewById(R.id.checkbox_menu);
         }
     }

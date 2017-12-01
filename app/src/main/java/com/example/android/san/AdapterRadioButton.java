@@ -59,6 +59,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         final int pos = position;
         sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        editor = sp.edit();
         type = sp.getString("TYPE", null);
 
         dataSubji = data.get(position);
@@ -99,11 +100,13 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
                 public void onClick(View v) {
                     mSelectedItem = getAdapterPosition();
                     notifyItemRangeChanged(0, data.size());
-                    str = radioSubji.getText().toString();
-                    editor = sp.edit();
-                    editor.putString("BASIC", str);
-
-                    editor.commit();
+                    if (!str.isEmpty()) {
+                        str = radioSubji.getText().toString();
+                        editor.putString("BASIC", str);
+                        editor.commit();
+                    } else {
+                        editor.putString("BASIC", null);
+                    }
                     Log.d("RadioSubji", str);
                 }
             };

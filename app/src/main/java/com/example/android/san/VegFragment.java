@@ -67,6 +67,7 @@ public class VegFragment extends Fragment {
     ArrayList arrayList1;
     Set<String> listData;
     View view;
+    Set menuset;
     String selectedBread, selectedSalt, selectedRice, selectedDal, selectedOil, selectedAmtOil, selectedHeat, spinner_item;
     String item, str[], str1, str2, menu;
     String day,week_day,dabba1;
@@ -274,6 +275,7 @@ public class VegFragment extends Fragment {
         editor.putString("DABBA", dabba);
         editor.putString("TIFFIN", tiffintype);
         editor.putString("TYPE", type);
+        //editor.putStringSet("HEAVY",null);
         editor.commit();
         String output = type.substring(0, 1).toUpperCase() + type.substring(1);
         tiffin_tag.setText(output + "/" + tiffintype);
@@ -345,17 +347,23 @@ public class VegFragment extends Fragment {
                 Toast.makeText(getActivity(),"sunday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnSubmit:
+                menuset = new HashSet<String>();
+                menuset = sp.getStringSet("HEAVY", null);
 
-                Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-                intent.putExtra("Bread", selectedBread);
-                intent.putExtra("Rice", selectedRice);
-                intent.putExtra("Dal", selectedDal);
-                intent.putExtra("Salt", selectedSalt);
-                intent.putExtra("AmtOil", selectedAmtOil);
-                intent.putExtra("OilType", selectedOil);
-                intent.putExtra("Heat", selectedHeat);
-                startActivity(intent);
-
+                //menu=sp.getString("BASIC",null);
+                if (!menuset.isEmpty()) {
+                    Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+                    intent.putExtra("Bread", selectedBread);
+                    intent.putExtra("Rice", selectedRice);
+                    intent.putExtra("Dal", selectedDal);
+                    intent.putExtra("Salt", selectedSalt);
+                    intent.putExtra("AmtOil", selectedAmtOil);
+                    intent.putExtra("OilType", selectedOil);
+                    intent.putExtra("Heat", selectedHeat);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+                }
         }
     }
     public void getData()
@@ -392,7 +400,6 @@ public class VegFragment extends Fragment {
                                 recyclerView.setAdapter(adapterRadioButton);
                                 adapterRadioButton.notifyDataSetChanged();
                             } else if (tiffintype.equals("Heavy")) {
-
                                 adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
                                 recyclerView.setAdapter(adapterCheckbox);
                                 adapterCheckbox.notifyDataSetChanged();
