@@ -51,19 +51,26 @@ public class OrderDetailsActivity extends AppCompatActivity {
             Log.d("Menu", menu);
         } else if (tiffintype.equals("Heavy"))
         {
-            menuset = sp.getStringSet("HEAVY", null);
-            List listOfNames = new ArrayList(menuset);
-            Log.d("----------->", listOfNames.size() + "");
-            if (listOfNames.size() == 0) {
-                Toast.makeText(this, "Select atleast 2 sabjis", Toast.LENGTH_SHORT).show();
+
+            if (type.equals("semiFlexible")) {
+                txtMenu.setText("1." + sp.getString("SEMISTR1", null));
+                txtMenu1.setVisibility(View.VISIBLE);
+                txtMenu1.setText("2." + sp.getString("SEMISTR2", null));
+            } else {
+                menuset = sp.getStringSet("HEAVY", null);
+                List listOfNames = new ArrayList(menuset);
+                Log.d("----------->", listOfNames.size() + "");
+                if (listOfNames.size() == 0) {
+                    Toast.makeText(this, "Select atleast 2 sabjis", Toast.LENGTH_SHORT).show();
+                }
+                menu = listOfNames.get(0).toString();
+                menu1 = listOfNames.get(1).toString();
+                txtMenu.setText("1." + menu);
+                txtMenu1.setVisibility(View.VISIBLE);
+                txtMenu1.setText("2." + menu1);
+                Log.d("Adapterlist***", listOfNames.get(0) + "");
+                Log.d("Menu**", menu);
             }
-            menu = listOfNames.get(0).toString();
-            menu1 = listOfNames.get(1).toString();
-            txtMenu.setText("1." + menu);
-            txtMenu1.setVisibility(View.VISIBLE);
-            txtMenu1.setText("2." + menu1);
-            Log.d("Adapterlist***", listOfNames.get(0) + "");
-            Log.d("Menu**",menu);
         }
         bread = getIntent().getStringExtra("Bread");
         rice = getIntent().getStringExtra("Rice");

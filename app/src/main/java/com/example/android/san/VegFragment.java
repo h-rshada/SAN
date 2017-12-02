@@ -67,6 +67,7 @@ public class VegFragment extends Fragment {
     ArrayList arrayList1;
     Set<String> listData;
     View view;
+    int count = 0;
     Set menuset;
     String selectedBread, selectedSalt, selectedRice, selectedDal, selectedOil, selectedAmtOil, selectedHeat, spinner_item;
     String item, str[], str1, str2, menu;
@@ -157,6 +158,8 @@ public class VegFragment extends Fragment {
 
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
+        editor.clear();
+        editor.commit();
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
@@ -310,6 +313,7 @@ public class VegFragment extends Fragment {
 
                 week_day="Monday";
                 getData();
+                day_monday.setBackgroundResource(R.drawable.style_round1);
                 Toast.makeText(getActivity(),"monday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_tue:
@@ -350,8 +354,9 @@ public class VegFragment extends Fragment {
                 menuset = new HashSet<String>();
                 menuset = sp.getStringSet("HEAVY", null);
 
-                //menu=sp.getString("BASIC",null);
-                if (!menuset.isEmpty()) {
+                count = sp.getInt("COUNT", 0);
+                Log.d("count ", count + "");
+                if (count > 1) {
                     Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
                     intent.putExtra("Bread", selectedBread);
                     intent.putExtra("Rice", selectedRice);

@@ -26,7 +26,7 @@ import java.util.Set;
 
 public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
-    public int SELECTION = 0;
+    public int SELECTION = 0, count = 0;
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
     UrlRequest urlRequest;
@@ -38,7 +38,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
     ArrayList selectedList;
     Set<String> selectedlistData;
     SharedPreferences.Editor editor;
-    String menu;
+    String menu, semiStr1, semiStr2;
     private Context context;
     private LayoutInflater inflater;
 
@@ -67,7 +67,8 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         MyHolder holder = new MyHolder(view);
         sp = context.getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
-
+        selectedlistData = new HashSet<String>();
+        selectedList = new ArrayList<>();
         // editor.commit();
         return holder;
     }
@@ -85,9 +86,8 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         type = sp.getString("TYPE", null);
         dabba = sp.getString("DABBA", null);
         Log.d("AdapterDabba***", dabba);
+        Log.d("TypeA", type);
         str = myHolder.checkBox.getText().toString();
-        selectedlistData = new HashSet<String>();
-        selectedList = new ArrayList<>();
         Log.d("Checkbox", str);
         if (dabba.equals("fixedHeavy")) {
             listData = sp.getStringSet("LIST", null);
@@ -112,7 +112,9 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 myHolder.checkBox.setClickable(false);
                 selectedList.add(str);
                 listData.addAll(selectedList);
+                count++;
                 editor.putStringSet("HEAVY", listData);
+                editor.putInt("COUNT", count);
                 editor.commit();
                 Log.d("onBindViewHolder: ", selectedList + "");
             }
@@ -121,13 +123,14 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
             myHolder.checkBox.setChecked(false);
             if (str.equals(selectedStr)) {
                 myHolder.checkBox.setChecked(true);
-                menu = myHolder.checkBox.getText().toString();
+                semiStr1 = myHolder.checkBox.getText().toString();
                 myHolder.checkBox.setClickable(false);
-                selectedList.add(str);
-                listData.addAll(selectedList);
-                editor.putStringSet("HEAVY", listData);
+                count++;
+                editor.putString("SEMISTR1", semiStr1);
+                editor.putInt("COUNT", count);
                 editor.commit();
-                Log.d("onBindViewHolder: ", selectedList + "");
+                //addToList(menu);
+
             }
         }
 
@@ -141,47 +144,51 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             compoundButton.setChecked(true);
                             menu = compoundButton.getText().toString();
                             SELECTION++;
-                            if (!menu.isEmpty()) {
-                                addToList(menu);
-                            } else {
-                                editor.putStringSet("HEAVY", null);
-                                editor.commit();
-                            }
+                            count++;
+                            addToList(menu);
+
                         } else {
+                            if (SELECTION == 2) {
+                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                                alertDialog.setMessage("For subji you have to pay extra charges. ");
+                                alertDialog.setPositiveButton(
+                                        "OK",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                compoundButton.setChecked(true);
+                                                SELECTION++;
+                                                count++;
+                                                addToList(compoundButton.getText().toString());
+                                                dialog.cancel();
 
-                            AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                                            }
+                                        });
+                                alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        compoundButton.setChecked(false);
+                                        SELECTION++;
 
-                            alertDialog.setMessage("For subji you have to pay extra charges. ");
+                                    }
+                                });
 
-                            alertDialog.setPositiveButton(
-                                    "OK",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            compoundButton.setChecked(true);
-                                            SELECTION++;
-                                            addToList(compoundButton.getText().toString());
-                                            dialog.cancel();
-
-                                        }
-                                    });
-                            alertDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    compoundButton.setChecked(false);
-                                    SELECTION++;
-
-                                }
-                            });
-
-                            alertDialog.show();
+                                alertDialog.show();
+                            } else {
+                                SELECTION++;
+                                count++;
+                            }
                         }
                     } else if (type.equals("semiFlexible")) {
                         if (SELECTION < 1) {
                             compoundButton.setChecked(true);
-                            menu = compoundButton.getText().toString();
+                            semiStr2 = compoundButton.getText().toString();
+                            Log.d(SELECTION + "", "SELECTION");
                             SELECTION++;
-                            str = compoundButton.getText().toString();
-                            addToList(str);
+                            count++;
+                            editor.putString("SEMISTR2", semiStr2);
+                            editor.putInt("COUNT", count);
+                            editor.commit();
+                            //addToList(menu);
                         } else {
                             Toast.makeText(context, "You can select one subji only", Toast.LENGTH_SHORT).show();
                             compoundButton.setChecked(false);
@@ -194,6 +201,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     if (SELECTION > 0) {
                         compoundButton.setChecked(false);
                         SELECTION--;
+                        count--;
                         str = compoundButton.getText().toString();
                         removeFromList(str);
                         Toast.makeText(context, "changed" + SELECTION + b + "", Toast.LENGTH_SHORT).show();
@@ -207,14 +215,16 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         selectedList.add(str);
         selectedlistData.addAll(selectedList);
         editor.putStringSet("HEAVY", selectedlistData);
+        editor.putInt("COUNT", count);
         editor.commit();
-        Log.d("onBindViewHolder: ", selectedlistData + "");
+        Log.d("onBindViewHolder: ", selectedList + "");
     }
 
     public void removeFromList(String str) {
         selectedList.remove(str);
         selectedlistData.remove(str);
         editor.putStringSet("HEAVY", selectedlistData);
+        editor.putInt("COUNT", count);
         editor.commit();
         Log.d("onBindViewHolder: ", selectedlistData + "");
     }
