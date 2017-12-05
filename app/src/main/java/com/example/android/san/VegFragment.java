@@ -71,7 +71,7 @@ public class VegFragment extends Fragment {
     Set menuset;
     String selectedBread, selectedSalt, selectedRice, selectedDal, selectedOil, selectedAmtOil, selectedHeat, spinner_item;
     String item, str[], str1, str2, menu;
-    String day,week_day,dabba1;
+    String day, week_day, dabba1, string = null;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
     SharedPreferences sp;
     String type, tiffintype, dabba,t[];
@@ -353,18 +353,20 @@ public class VegFragment extends Fragment {
             case R.id.btnSubmit:
                 menuset = new HashSet<String>();
                 menuset = sp.getStringSet("HEAVY", null);
-
+                string = sp.getString("BASIC", null);
                 count = sp.getInt("COUNT", 0);
                 Log.d("count ", count + "");
+                Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+                intent.putExtra("Bread", selectedBread);
+                intent.putExtra("Rice", selectedRice);
+                intent.putExtra("Dal", selectedDal);
+                intent.putExtra("Salt", selectedSalt);
+                intent.putExtra("AmtOil", selectedAmtOil);
+                intent.putExtra("OilType", selectedOil);
+                intent.putExtra("Heat", selectedHeat);
                 if (count > 1) {
-                    Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-                    intent.putExtra("Bread", selectedBread);
-                    intent.putExtra("Rice", selectedRice);
-                    intent.putExtra("Dal", selectedDal);
-                    intent.putExtra("Salt", selectedSalt);
-                    intent.putExtra("AmtOil", selectedAmtOil);
-                    intent.putExtra("OilType", selectedOil);
-                    intent.putExtra("Heat", selectedHeat);
+                    startActivity(intent);
+                } else if (!(string == null)) {
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();

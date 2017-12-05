@@ -23,7 +23,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
     public int mSelectedItem = -1;
     List<DataSubji> data = Collections.emptyList();
     MyHolder myHolder;
-    String selectedStr, type, str;
+    String selectedStr, type, str, string = null;
     DataSubji dataSubji, dataSubji1;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
@@ -66,6 +66,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
         myHolder.radioSubji.setChecked(pos == mSelectedItem);
         myHolder.radioSubji.setText(dataSubji.subji);
         str = myHolder.radioSubji.getText().toString();
+        // Log.d("RadioSubji", string);
 
         Log.d("str", str);
         if (type.equals("fixed")) {
@@ -76,6 +77,10 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
             if (selectedStr.equals(str)) {
                 myHolder.radioSubji.setChecked(true);
                 myHolder.radioSubji.setClickable(false);
+                string = str;
+                editor.putString("BASIC", string);
+                editor.commit();
+                Log.d("RadioSubji", string);
             }
         }
     }
@@ -101,13 +106,13 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
                     mSelectedItem = getAdapterPosition();
                     notifyItemRangeChanged(0, data.size());
                     if (!str.isEmpty()) {
-                        str = radioSubji.getText().toString();
-                        editor.putString("BASIC", str);
+                        string = radioSubji.getText().toString();
+                        editor.putString("BASIC", string);
                         editor.commit();
                     } else {
                         editor.putString("BASIC", null);
                     }
-                    Log.d("RadioSubji", str);
+                    Log.d("RadioSubji", string);
                 }
             };
             itemView.setOnClickListener(clickListener);
