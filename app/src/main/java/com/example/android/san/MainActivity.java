@@ -272,26 +272,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-/*    private void editModeOn(boolean editModeOn) {
-        if (editModeOn)
-        {
-          //   updateAddressEditText.setVisibility(View.VISIBLE);
-          //  updatePhoneEditText.setVisibility(View.VISIBLE);
-            // editProfileButton.setText(getString(R.string.save));
-          //  cancelEditionButton.setVisibility(View.VISIBLE);
-        } else {
-            editProfileButton.setText(getString(R.string.edit));
-            updateAddressEditText.setText("");
-            updatePhoneEditText.setText("");
-            updateNameEditText.setText("");
-            updatePhoneEditText.setVisibility(View.GONE);
-            updateAddressEditText.setVisibility(View.GONE);
-            updateNameEditText.setVisibility(View.GONE);
-          //  cancelEditionButton.setVisibility(View.GONE);
-        }
-    }*/
-
     private void loginAgain() {
         CredentialManager.deleteCredentials(MainActivity.this);
         startActivity(new Intent(this, LoginActivity.class));
