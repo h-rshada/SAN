@@ -33,11 +33,11 @@ public class HomeActivity extends AppCompatActivity
     @InjectView(R.id.aboutus)
     ImageView aboutus;
     @InjectView(R.id.find)
-
     ImageView find;
     Intent intent;
     @InjectView(R.id.more)
     RippleView rippleView;
+    MenuItem menuItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +78,7 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -101,9 +102,12 @@ public class HomeActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        menuItem = item;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivityForResult(intent, 100);
             return true;
         }
 
@@ -171,6 +175,22 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            if (data.getBooleanExtra("data", true)) {
+                menuItem.setTitle("Logout");
+                NavigationView navigationView = findViewById(R.id.nav_view);
+              /*SharedPreferences sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+                ((TextView) (navigationView.getHeaderView(0).findViewById(R.id.username))).setText(sp.getString("USERNAME", null));
+                ((TextView) (navigationView.getHeaderView(0).findViewById(R.id.standard))).setText(sp.getString("CLASS", null));*/
+                Menu menu = navigationView.getMenu();
+                menu.getItem(0).setTitle("Logout");
+                Log.d("****", "Item**** ");
+            }
+        }
+    }
 }
 
 

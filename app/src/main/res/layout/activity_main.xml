@@ -1,17 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.san.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-   </RelativeLayout>
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_general_margin">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/userPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_small_margin"
+            tools:ignore="ContentDescription" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userEmailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/useremail"
+                android:textColor="@android:color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/userNameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/userEmailTitle"
+                android:text="@string/username"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/userAddressTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/userNameTitle"
+                android:text="@string/userAddress"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/userPhoneTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/userAddressTitle"
+                android:text="@string/userPhone"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/updateNameEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_general_margin"
+            android:hint="Add name" />
+
+        <EditText
+            android:id="@+id/updateAddressEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_general_margin"
+            android:hint="Add address" />
+
+        <EditText
+            android:id="@+id/updatePhoneEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_general_margin"
+            android:hint="Add Phone" />
+
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/white"
+            android:enabled="true"
+            android:padding="@dimen/activity_general_margin"
+            android:text="@string/save" />
+        <!--
+                <Button
+                    android:id="@+id/cancelEditionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="@dimen/activity_general_margin"
+                    android:background="@android:color/white"
+                    android:padding="@dimen/activity_general_margin"
+                    android:text="@string/cancel"
+                    />-->
+
+
+        <Button
+            android:id="@+id/login_again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_general_margin"
+            android:background="@android:color/white"
+            android:padding="@dimen/activity_general_margin"
+            android:text="@string/login_again"
+            android:textColor="@color/blue_text" />
+
+        <Button
+            android:id="@+id/refreshTokenButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgLogo"
+
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/white"
+            android:padding="@dimen/activity_general_margin"
+            android:text="@string/refresh"
+            android:textColor="@color/blue_text" />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/refreshTokenButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_general_margin"
+            android:background="@android:color/white"
+            android:padding="@dimen/activity_general_margin"
+            android:text="@string/logout"
+
+            android:textColor="@color/blue_text" />
+    </LinearLayout>
+</ScrollView>

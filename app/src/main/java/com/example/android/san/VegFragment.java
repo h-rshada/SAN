@@ -449,42 +449,44 @@ public class VegFragment extends Fragment {
             public void onSuccess(String response)
             {
                 Log.d("Response", response);
-                //if(!response.contains("-1"))
-                try {
-                    arrayList = new ArrayList<>();
-                    JSONArray jsonArray=new JSONArray(response);
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                if (!response.contains("-1")) {
+                    try {
+                        arrayList = new ArrayList<>();
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                        dataSubji = new DataSubji();
-                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                        dataSubji.subji = jsonArray1.getString(1);
-                        arrayList.add(dataSubji);
+                            dataSubji = new DataSubji();
+                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                            dataSubji.subji = jsonArray1.getString(1);
+                            arrayList.add(dataSubji);
 
-                        Log.d("Data", dataSubji.subji);
-                        recyclerView = view.findViewById(R.id.Listmenu);
-                        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                            Log.d("Data", dataSubji.subji);
+                            recyclerView = view.findViewById(R.id.Listmenu);
+                            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-
-                        if (!(arrayList.size() == 0)) {
-                            if (tiffintype.equals("Basic")) {
-                                adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
-                                recyclerView.setAdapter(adapterRadioButton);
-                                adapterRadioButton.notifyDataSetChanged();
-                            } else if (tiffintype.equals("Heavy")) {
-                                adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
-                                recyclerView.setAdapter(adapterCheckbox);
-                                adapterCheckbox.notifyDataSetChanged();
+                            if (!(arrayList.size() == 0)) {
+                                if (tiffintype.equals("Basic")) {
+                                    adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                                    recyclerView.setAdapter(adapterRadioButton);
+                                    adapterRadioButton.notifyDataSetChanged();
+                                } else if (tiffintype.equals("Heavy")) {
+                                    adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                                    recyclerView.setAdapter(adapterCheckbox);
+                                    adapterCheckbox.notifyDataSetChanged();
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                         }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-
-                } catch (JSONException e)
-                {
-                    e.printStackTrace();
+                } else {
+                    Toast.makeText(getActivity(), "Data not available", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });

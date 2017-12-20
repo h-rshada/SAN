@@ -4,6 +4,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="refresh">Refresh the access_token</string>
+    <string name="login">Log in</string>
+    <string name="logout">Logout</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,4 +20,19 @@
     <string-array name="bread_array">
         <item>Indian Bread</item>
     </string-array>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="username">Name: %1$s </string>
+    <string name="useremail">Email: %1$s</string>
+    <string name="userPhone">Phone: %1$s</string>
+    <string name="userAddress">Address: %1$s</string>
+    <string name="edit_hint">Add the country…</string>
+    <string name="edit">Edit Profile</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel Changes</string>
+    <string name="login_again">Log In Again</string>
+
+
+    <string name="com_auth0_client_id">PlIthapA0vUc7f_SJ6R8y1DK8e2Q9YsH</string>
+    <string name="com_auth0_domain">san1.auth0.com</string>
 </resources>
