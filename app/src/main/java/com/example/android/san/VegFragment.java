@@ -449,8 +449,8 @@ public class VegFragment extends Fragment {
             public void onSuccess(String response)
             {
                 Log.d("Response", response);
-                if (!response.contains("-1")) {
-                    try {
+
+                try {
                         arrayList = new ArrayList<>();
                         JSONArray jsonArray = new JSONArray(response);
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -483,9 +483,6 @@ public class VegFragment extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                } else {
-                    Toast.makeText(getActivity(), "Data not available", Toast.LENGTH_SHORT).show();
-                }
 
 
             }
