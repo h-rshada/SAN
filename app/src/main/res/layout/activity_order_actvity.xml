@@ -18,7 +18,6 @@
             android:id="@+id/imageClassroom"
             android:layout_width="match_parent"
             android:layout_height="175dp"
-
             android:cropToPadding="true"
             android:scaleType="fitXY"
             android:src="@drawable/frontimage" />

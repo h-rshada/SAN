@@ -45,17 +45,17 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape"
+                            android:backgroundTint="#FF8AD8F7"
                             android:gravity="center"
                             android:padding="0dp"
                             android:text="Bread"
-                            android:backgroundTint="#FF8AD8F7"
                             android:textColor="@color/black" />
 
 
@@ -68,16 +68,16 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Rice"
                             android:background="@drawable/shape"
                             android:backgroundTint="#FF8AD8F7"
+                            android:gravity="center"
+                            android:text="Rice"
                             android:textColor="@color/black" />
 
                         <Spinner
@@ -89,16 +89,16 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/shape"
                             android:backgroundTint="#FF8AD8F7"
                             android:gravity="center"
                             android:text="Dal"
-                            android:background="@drawable/shape"
                             android:textColor="@color/black" />
                     <Spinner
                         android:id="@+id/spinner_dal"
@@ -270,12 +270,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_menu"
-                android:padding="2dp">
+                android:padding="2dp"
+                android:weightSum="7">
                 <TextView
                     android:id="@+id/txt_mon"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
                     android:background="@drawable/style_round"
                     android:padding="6dp"
                     android:text="Mon"
@@ -285,6 +287,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
                     android:background="@drawable/style_round"
                     android:padding="6dp"
                     android:text="Tue"
@@ -295,6 +298,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
                     android:background="@drawable/style_round"
                     android:padding="6dp"
                     android:text="Wed"
@@ -304,6 +308,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
                     android:background="@drawable/style_round"
                     android:padding="6dp"
                     android:text="Thu"
@@ -313,6 +318,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
                     android:background="@drawable/style_round"
                     android:padding="6dp"
                     android:text="Fri"
@@ -322,6 +328,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
                     android:background="@drawable/style_round"
                     android:padding="6dp"
                     android:text="Sat"
@@ -331,6 +338,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
                     android:background="@drawable/style_round"
                     android:padding="6dp"
                     android:text="Sun"
@@ -348,6 +356,12 @@
                 app:cardCornerRadius="2dp"
                 app:cardElevation="8dp">
 
+                <TextView
+                    android:id="@+id/txt_menuNotavailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/Listmenu"
                     android:layout_width="match_parent"
@@ -360,14 +374,31 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnSubmit"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:text="order"
-        android:textColor="#ffffff" />
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:text="submit"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:text="add to cart"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
 
 </RelativeLayout>

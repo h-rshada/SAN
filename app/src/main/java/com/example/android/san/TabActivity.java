@@ -19,7 +19,7 @@ public class TabActivity extends AppCompatActivity {
 
     public TabLayout tabLayout;
     Toast toast;
-    String type, tiffintype;
+    String type, tiffintype, price;
     VegFragment vegFragment;
     NonVegFragment nonVegFragment;
     private Toolbar toolbar;
@@ -37,14 +37,14 @@ public class TabActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         type = getIntent().getStringExtra("Type");
         tiffintype = getIntent().getStringExtra("TiffinType");
-
+        price = getIntent().getStringExtra("Price");
         Log.d("Type", type);
         Log.d("TiffinType", tiffintype);
-
+        Log.d("priceTab", price);
         Bundle bundle = new Bundle();
         bundle.putString("Type", type);
         bundle.putString("TiffinType", tiffintype);
-
+        bundle.putString("Price", price);
         vegFragment.setArguments(bundle);
         nonVegFragment.setArguments(bundle);
 

@@ -67,7 +67,9 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".OrderDetailsActivity"></activity>
+        <activity android:name=".OrderDetailsActivity" />
+        <activity android:name=".addToCart" />
+        <activity android:name=".GoToCart"></activity>
     </application>
 
 </manifest>

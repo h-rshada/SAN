@@ -20,8 +20,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,10 +63,14 @@ public class VegFragment extends Fragment {
     @InjectView(R.id.txt_sun) TextView day_sunday;
     @InjectView(R.id.txt_tiffininfo)
     TextView tiffin_tag;
+    @InjectView(R.id.txt_menuNotavailable)
+    TextView menuNotAvailable;
     @InjectView(R.id.spinner_rice) Spinner spinner_rice;
     @InjectView(R.id.spinner_dal) Spinner spinner_dal;
     @InjectView(R.id.btnSubmit)
     Button btnSubmit;
+    @InjectView(R.id.btnCart)
+    Button btnCart;
     AdapterCheckbox adapterCheckbox;
     AdapterRadioButton adapterRadioButton;
     RecyclerView recyclerView;
@@ -74,7 +87,7 @@ public class VegFragment extends Fragment {
     String day, week_day, dabba1, string = null;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
     SharedPreferences sp;
-    String type, tiffintype, dabba,t[];
+    String type, tiffintype, dabba, t[], price;
     SharedPreferences.Editor editor;
     AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
@@ -233,6 +246,7 @@ public class VegFragment extends Fragment {
             day_friday.setEnabled(false);
             day_saturday.setEnabled(false);
         }
+        btnCart.setText("ADD TO CART");
 
         ArrayAdapter<CharSequence> adapter_heat = ArrayAdapter.createFromResource(getActivity(), R.array.heat, android.R.layout.simple_spinner_item);
         adapter_heat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -250,10 +264,12 @@ public class VegFragment extends Fragment {
         adapter_salt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_salt.setAdapter(adapter_salt);
         type = getArguments().getString("Type").toLowerCase();
+        price = getArguments().getString("Price");
         t = getArguments().getString("TiffinType").split(" ");
         tiffintype = t[0];
-        Log.d("Type", type);
+        Log.d("Typeveg", type);
         Log.d("TiffinType", tiffintype);
+        Log.d("priceVeg", price);
         if (type.equals("semi flexible")) {
             str = type.split(" ");
             str1 = str[0];
@@ -278,6 +294,7 @@ public class VegFragment extends Fragment {
         editor.putString("DABBA", dabba);
         editor.putString("TIFFIN", tiffintype);
         editor.putString("TYPE", type);
+        editor.putString("PRICE", price);
         //editor.putStringSet("HEAVY",null);
         editor.commit();
         String output = type.substring(0, 1).toUpperCase() + type.substring(1);
@@ -304,51 +321,38 @@ public class VegFragment extends Fragment {
 
     }
 
-    @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun, R.id.btnSubmit})
+    @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun, R.id.btnSubmit, R.id.btnCart})
     public void onClick(View view) {
 
         switch (view.getId()) {
 
             case R.id.txt_mon:
-
                 week_day="Monday";
                 getData();
-                day_monday.setBackgroundResource(R.drawable.style_round1);
-                Toast.makeText(getActivity(),"monday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_tue:
                 week_day="Tuesday";
                 getData();
-                Toast.makeText(getActivity(),"tuesday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_wed:
                 week_day="Wednesday";
                 getData();
-                Toast.makeText(getActivity(),"wednesday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_thu:
                 week_day="Thursday";
-                day_thursday.setBackgroundResource(R.drawable.style_round1);
                 getData();
-                Toast.makeText(getActivity(),"thursday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_fri:
-                day_friday.setBackgroundResource(R.drawable.style_round1);
                 week_day="Friday";
                 getData();
-                Toast.makeText(getActivity(),"friday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_sat:
-                day_saturday.setBackgroundResource(R.drawable.style_round1);
                 week_day="Saturday";
                 getData();
-                Toast.makeText(getActivity(),"saturday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txt_sun:
                 week_day="Sunday";
-                day_sunday.setBackgroundResource(R.drawable.style_round1);
                 getData();
-                Toast.makeText(getActivity(),"sunday",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnSubmit:
                 menuset = new HashSet<String>();
@@ -364,6 +368,7 @@ public class VegFragment extends Fragment {
                 intent.putExtra("AmtOil", selectedAmtOil);
                 intent.putExtra("OilType", selectedOil);
                 intent.putExtra("Heat", selectedHeat);
+                intent.putExtra("Price", price);
                 if (count > 1) {
                     startActivity(intent);
                 } else if (!(string == null)) {
@@ -371,6 +376,65 @@ public class VegFragment extends Fragment {
                 } else {
                     Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.btnCart:
+                menuset = new HashSet<String>();
+                if (dabba.equals("semiHeavy")) {
+                    menuset.add(sp.getString("SEMISTR1", null));
+                    menuset.add(sp.getString("SEMISTR2", null));
+                } else {
+                    menuset = sp.getStringSet("HEAVY", null);
+                }
+
+                Log.d("HeavyMenu", menuset + "");
+                string = sp.getString("BASIC", null);
+                //Log.d("BasicMenu",string);
+                final JSONObject orderData = new JSONObject();
+                try {
+                    String typetext = type.substring(0, 1).toUpperCase();
+
+                    orderData.put("tiffinPlan", typetext + type.substring(1));
+                    orderData.put("tiffinType", tiffintype);
+                    orderData.put("IndianBread", selectedBread);
+                    orderData.put("Rice", selectedRice);
+                    orderData.put("Dal", selectedDal);
+                    orderData.put("Price", price);
+                    orderData.put("Quantity", "1");
+                    orderData.put("Heat", selectedHeat);
+                    orderData.put("Salt", selectedSalt);
+                    orderData.put("AmountOfOil", selectedAmtOil);
+                    orderData.put("OilType", selectedOil);
+                    if (tiffintype.equals("Heavy")) {
+                        orderData.put("menu", menuset);
+                    } else {
+                        orderData.put("menu", string);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                        Request.Method.POST, "http://192.168.0.22:8001/routes/server/requestFromApp.php", orderData,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("ResponseOrder", response.toString());
+
+
+                            }
+                        }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d("Error: ", error.getMessage());
+
+                    }
+                });
+                requestQueue.add(jsonObjReq);
+                btnCart.setText("GO TO CART");
+                break;
+
         }
     }
     public void getData()
@@ -478,6 +542,8 @@ public class VegFragment extends Fragment {
             }
         });
     }
+
+
     public void selectedData()
     {
         urlRequest = UrlRequest.getObject();

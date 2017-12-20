@@ -36,7 +36,7 @@ public class MenuType extends AppCompatActivity {
     TextView txtTiffinType1;
     @InjectView(R.id.txtPrice1)
     TextView txtPrice1;
-    String type, tiffinType;
+    String type, tiffinType, priceHeavy, priceBasic;
     @InjectView(R.id.cardBasic)
     CardView cardBasic;
     @InjectView(R.id.cardHeavy)
@@ -137,14 +137,20 @@ public class MenuType extends AppCompatActivity {
                 break;
             case R.id.cardBasic:
                 tiffinType = txtTiffinType.getText().toString();
+                priceBasic = txtPrice.getText().toString();
                 Log.d("T*********", tiffinType);
+                Log.d("price", priceBasic);
                 intent.putExtra("TiffinType", tiffinType);
+                intent.putExtra("Price", priceBasic);
                 startActivity(intent);
 
                 break;
             case R.id.cardHeavy:
                 tiffinType = txtTiffinType1.getText().toString();
                 intent.putExtra("TiffinType", tiffinType);
+                priceHeavy = txtPrice1.getText().toString();
+                intent.putExtra("Price", priceHeavy);
+                Log.d("price", priceHeavy);
                 startActivity(intent);
                 break;
         }
