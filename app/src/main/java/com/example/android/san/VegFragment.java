@@ -378,61 +378,67 @@ public class VegFragment extends Fragment {
                 }
                 break;
             case R.id.btnCart:
-                menuset = new HashSet<String>();
-                if (dabba.equals("semiHeavy")) {
-                    menuset.add(sp.getString("SEMISTR1", null));
-                    menuset.add(sp.getString("SEMISTR2", null));
-                } else {
-                    menuset = sp.getStringSet("HEAVY", null);
-                }
 
-                Log.d("HeavyMenu", menuset + "");
-                string = sp.getString("BASIC", null);
-                //Log.d("BasicMenu",string);
-                final JSONObject orderData = new JSONObject();
-                try {
-                    String typetext = type.substring(0, 1).toUpperCase();
-
-                    orderData.put("tiffinPlan", typetext + type.substring(1));
-                    orderData.put("tiffinType", tiffintype);
-                    orderData.put("IndianBread", selectedBread);
-                    orderData.put("Rice", selectedRice);
-                    orderData.put("Dal", selectedDal);
-                    orderData.put("Price", price);
-                    orderData.put("Quantity", "1");
-                    orderData.put("Heat", selectedHeat);
-                    orderData.put("Salt", selectedSalt);
-                    orderData.put("AmountOfOil", selectedAmtOil);
-                    orderData.put("OilType", selectedOil);
-                    if (tiffintype.equals("Heavy")) {
-                        orderData.put("menu", menuset);
+                String text = btnCart.getText().toString();
+                if (text.equals("ADD TO CART")) {
+                    menuset = new HashSet<String>();
+                    if (dabba.equals("semiHeavy")) {
+                        menuset.add(sp.getString("SEMISTR1", null));
+                        menuset.add(sp.getString("SEMISTR2", null));
                     } else {
-                        orderData.put("menu", string);
+                        menuset = sp.getStringSet("HEAVY", null);
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.d("HeavyMenu", menuset + "");
+                    string = sp.getString("BASIC", null);
+                    //Log.d("BasicMenu",string);
+                    final JSONObject orderData = new JSONObject();
+                    try {
+                        String typetext = type.substring(0, 1).toUpperCase();
+
+                        orderData.put("tiffinPlan", typetext + type.substring(1));
+                        orderData.put("tiffinType", tiffintype);
+                        orderData.put("IndianBread", selectedBread);
+                        orderData.put("Rice", selectedRice);
+                        orderData.put("Dal", selectedDal);
+                        orderData.put("Price", price);
+                        orderData.put("Quantity", "1");
+                        orderData.put("Heat", selectedHeat);
+                        orderData.put("Salt", selectedSalt);
+                        orderData.put("AmountOfOil", selectedAmtOil);
+                        orderData.put("OilType", selectedOil);
+                        if (tiffintype.equals("Heavy")) {
+                            orderData.put("menu", menuset);
+                        } else {
+                            orderData.put("menu", string);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                            Request.Method.POST, "http://192.168.0.22:8001/routes/server/requestFromApp.php", orderData,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Log.d("ResponseOrder", response.toString());
+
+
+                                }
+                            }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            VolleyLog.d("Error: ", error.getMessage());
+
+                        }
+                    });
+                    requestQueue.add(jsonObjReq);
+                    btnCart.setText("GO TO CART");
+                } else {
+                    Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
                 }
-                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                        Request.Method.POST, "http://192.168.0.22:8001/routes/server/requestFromApp.php", orderData,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.d("ResponseOrder", response.toString());
-
-
-                            }
-                        }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        VolleyLog.d("Error: ", error.getMessage());
-
-                    }
-                });
-                requestQueue.add(jsonObjReq);
-                btnCart.setText("GO TO CART");
                 break;
 
         }
@@ -482,6 +488,9 @@ public class VegFragment extends Fragment {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                    menuNotAvailable.setText("oopss...,Menu is not provided for today");
+                    menuNotAvailable.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.INVISIBLE);
                     }
 
 
