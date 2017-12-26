@@ -31,6 +31,7 @@ public class SemiFlexibleFragment extends Fragment {
     CardView cardHeavy;
     Intent intent;
     String type,tiffinType,price;
+
     View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

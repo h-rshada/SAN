@@ -49,6 +49,7 @@ public class TabActivity extends AppCompatActivity {
         nonVegFragment.setArguments(bundle);
 
         tabLayout = findViewById(R.id.tabs);
+
         tabLayout.setSelectedTabIndicatorHeight(5);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#ffffff"));

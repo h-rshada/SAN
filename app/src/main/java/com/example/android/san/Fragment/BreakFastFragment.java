@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.example.android.san.R;
 import com.example.android.san.TabActivity;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -27,6 +29,7 @@ public class BreakFastFragment extends Fragment {
     @InjectView(R.id.cardHeavy)
     CardView cardHeavy;
     Intent intent;
+
     String type,tiffinType,price;
     View view;
     Context context;

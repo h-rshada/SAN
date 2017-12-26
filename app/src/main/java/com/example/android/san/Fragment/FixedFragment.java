@@ -1,6 +1,5 @@
 package com.example.android.san.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +28,7 @@ public class FixedFragment extends Fragment {
     @InjectView(R.id.cardHeavy)
     CardView cardHeavy;
     Intent intent;
+
     String type,tiffinType,price;
     View view;
     @Override

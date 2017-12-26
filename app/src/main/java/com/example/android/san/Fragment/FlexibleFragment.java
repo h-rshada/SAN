@@ -8,9 +8,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.san.R;
 import com.example.android.san.TabActivity;
@@ -51,6 +49,7 @@ Context context;
          intent.putExtra("Type",type);
          price="120";
          intent=intent.putExtra("Price",price);
+
         return view;
     }
 

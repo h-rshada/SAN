@@ -81,6 +81,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             txtMenu.setText(menu);
             Log.d("Menu", menu);
         } else if (tiffintype.equals("Heavy"))
+
         {
 
             if (type.equals("semiFlexible")) {
