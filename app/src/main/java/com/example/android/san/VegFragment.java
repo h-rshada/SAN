@@ -54,13 +54,20 @@ public class VegFragment extends Fragment {
     @InjectView(R.id.spinner_amountOfOil) Spinner spinner_amountOfOil;
     @InjectView(R.id.spinner_typeOfOil) Spinner spinner_typeOfOil;
     @InjectView(R.id.spinner_salt) Spinner spinner_salt;
-    @InjectView(R.id.txt_mon) TextView day_monday;
-    @InjectView(R.id.txt_tue) TextView day_tuesday;
-    @InjectView(R.id.txt_wed) TextView day_wednesday;
-    @InjectView(R.id.txt_thu) TextView day_thursday;
-    @InjectView(R.id.txt_fri) TextView day_friday;
-    @InjectView(R.id.txt_sat) TextView day_saturday;
-    @InjectView(R.id.txt_sun) TextView day_sunday;
+    @InjectView(R.id.txt_mon)
+    Button day_monday;
+    @InjectView(R.id.txt_tue)
+    Button day_tuesday;
+    @InjectView(R.id.txt_wed)
+    Button day_wednesday;
+    @InjectView(R.id.txt_thu)
+    Button day_thursday;
+    @InjectView(R.id.txt_fri)
+    Button day_friday;
+    @InjectView(R.id.txt_sat)
+    Button day_saturday;
+    @InjectView(R.id.txt_sun)
+    Button day_sunday;
     @InjectView(R.id.txt_tiffininfo)
     TextView tiffin_tag;
     @InjectView(R.id.txt_menuNotavailable)
@@ -302,15 +309,15 @@ public class VegFragment extends Fragment {
 
         item = "bread";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=bread", item);
 
         item = "rice";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=rice", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=rice", item);
 
         item = "dal";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=dal", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=dal", item);
 
         Log.d("onCreateView: ", arrayList1 + "");
         getData();
@@ -418,7 +425,7 @@ public class VegFragment extends Fragment {
                     }
                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                     JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                            Request.Method.POST, "http://192.168.0.22:8001/routes/server/requestFromApp.php", orderData,
+                            Request.Method.POST, "http://192.168.0.22:8001/routes/server/app/requestFromApp.php", orderData,
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
@@ -447,8 +454,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
-        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
+        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -556,8 +563,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        Log.d("URL", "http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        Log.d("URL", "http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
