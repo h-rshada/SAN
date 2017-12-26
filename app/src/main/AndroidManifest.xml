@@ -26,11 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrderActvity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
         <activity android:name=".TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,11 +42,6 @@
         -->
         <activity android:name=".AboutUs" />
         <activity android:name=".FindUs" />
-        <activity android:name=".MenuType">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -70,6 +60,13 @@
         <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".addToCart" />
         <activity android:name=".GoToCart"></activity>
+        <activity android:name=".MenuTypeTab"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>

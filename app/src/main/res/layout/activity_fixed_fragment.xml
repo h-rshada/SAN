@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.android.san.Fragment.FlexibleFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:id="@+id/imageMenu"
+                android:src="@drawable/food1"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardBasic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/style1">
+                    <TextView
+                        android:id="@+id/txtTiffinType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Basic Dabba"
+                        android:textSize="25dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/txtDabbaDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:text="@string/BasicDesc"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/txtprice"
+                        android:layout_marginTop="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:text="Rs 120"
+                        android:textStyle="bold"
+                        android:layout_gravity="center|end"/>
+
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardHeavy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/style1">
+                    <TextView
+                        android:id="@+id/txtTiffinType1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Heavy Dabba"
+                        android:textSize="25dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/txtDabbaDesc1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_launcher"
+                        android:text="@string/HeavyDesc"
+                        android:layout_marginTop="30dp"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/txtPrice1"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|end"
+                        android:layout_marginTop="30dp"
+                        android:text="Rs.150"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

@@ -120,7 +120,7 @@ public class HomeActivity extends AppCompatActivity
 
             case R.id.order:
 
-                intent=new Intent(HomeActivity.this,OrderActvity.class);
+                intent=new Intent(HomeActivity.this,MenuTypeTab.class);
                 startActivity(intent);
                 break;
 
