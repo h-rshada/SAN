@@ -1,6 +1,7 @@
 package com.example.android.san.Fragment;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -28,7 +29,6 @@ public class FixedFragment extends Fragment {
     @InjectView(R.id.cardHeavy)
     CardView cardHeavy;
     Intent intent;
-
     String type,tiffinType,price;
     View view;
     @Override
@@ -43,6 +43,8 @@ public class FixedFragment extends Fragment {
         intent=intent.putExtra("Type",type);
         price="100";
         intent=intent.putExtra("Price",price);
+        txtTiffinType.setPaintFlags(txtTiffinType.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+        txtTiffinType1.setPaintFlags(txtTiffinType1.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
         return  view;
     }
     @OnClick({R.id.cardBasic, R.id.cardHeavy})

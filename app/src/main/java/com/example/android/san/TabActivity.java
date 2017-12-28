@@ -1,5 +1,6 @@
 package com.example.android.san;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,10 +11,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class TabActivity extends AppCompatActivity {
 
@@ -22,6 +28,8 @@ public class TabActivity extends AppCompatActivity {
     String type, tiffintype, price;
     VegFragment vegFragment;
     NonVegFragment nonVegFragment;
+    @InjectView(R.id.img_back)
+    ImageView imageback;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
@@ -35,6 +43,8 @@ public class TabActivity extends AppCompatActivity {
         nonVegFragment = new NonVegFragment();
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
+        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
         type = getIntent().getStringExtra("Type");
         tiffintype = getIntent().getStringExtra("TiffinType");
         price = getIntent().getStringExtra("Price");
@@ -132,5 +142,16 @@ public class TabActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
+                startActivity(intent);
+                break;
+        }
+
     }
 }

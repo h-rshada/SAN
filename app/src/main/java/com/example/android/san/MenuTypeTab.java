@@ -1,6 +1,7 @@
 package com.example.android.san;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -36,7 +37,6 @@ public class MenuTypeTab extends AppCompatActivity {
     SemiFlexibleFragment semiFlexibleFragment;
     FixedFragment fixedFragment;
     BreakFastFragment breakFastFragment;
-
     @InjectView(R.id.img_back)
     ImageView imageback;
     private Toolbar toolbar;
@@ -48,10 +48,9 @@ public class MenuTypeTab extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_type_tab);
-        //actionBarSetup();
+
         ButterKnife.inject(MenuTypeTab.this);
-       /* Calligrapher calligrapher = new Calligrapher(this);
-        calligrapher.setFont(MenuTypeTab.this, "fonts/Charrington.ttf", false);*/
+
         flexibleFragment = new FlexibleFragment();
         semiFlexibleFragment = new SemiFlexibleFragment();
         fixedFragment=new FixedFragment();
@@ -59,7 +58,8 @@ public class MenuTypeTab extends AppCompatActivity {
 
         viewPager = findViewById(R.id.pager);
         setupViewPager(viewPager);
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
         Bundle bundle = new Bundle();
         bundle.putString("Type", type);
         bundle.putString("TiffinType", tiffintype);
@@ -106,13 +106,13 @@ public class MenuTypeTab extends AppCompatActivity {
         viewPager.setCurrentItem(0);
     }
 
-    @OnClick({R.id.img_back}) /* , R.id.fab*/
+    @OnClick({R.id.img_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_back:
                 onBackPressed();
-               /* Intent intent = new Intent(TabActivity.this, MainActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(MenuTypeTab.this, HomeActivity.class);
+                startActivity(intent);
                 break;
         }
 

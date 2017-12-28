@@ -6,9 +6,40 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context="com.example.android.san.TabActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar1"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="?attr/colorPrimary"
+            android:titleTextColor="#ffff">
 
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:onClick="onClick"
+                android:src="@drawable/leftarrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:text="SAN"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
     <android.support.design.widget.AppBarLayout
         android:id="@+id/tabs1"
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -29,6 +60,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tabs1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
 
 </RelativeLayout>
