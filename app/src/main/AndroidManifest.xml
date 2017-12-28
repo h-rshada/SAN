@@ -19,19 +19,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="SAN">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrderActvity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".TabActivity">
+        <activity android:name=".TabActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -47,11 +46,6 @@
         -->
         <activity android:name=".AboutUs" />
         <activity android:name=".FindUs" />
-        <activity android:name=".MenuType">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -69,7 +63,15 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".addToCart" />
-        <activity android:name=".GoToCart"></activity>
+        <activity android:name=".GoToCart" />
+        <activity
+            android:name=".MenuTypeTab"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

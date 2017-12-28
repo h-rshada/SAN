@@ -19,15 +19,20 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.andexert.library.RippleView;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 import java.io.File;
+import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
     @InjectView(R.id.order)
     ImageView order;
     @InjectView(R.id.aboutus)
@@ -38,10 +43,40 @@ public class HomeActivity extends AppCompatActivity
     @InjectView(R.id.more)
     RippleView rippleView;
     MenuItem menuItem;
+    SliderLayout sliderLayout;
+    HashMap<String, Integer> Hash_file_maps;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        sliderLayout=(SliderLayout) findViewById(R.id.slider);
+        Hash_file_maps=new HashMap<String, Integer>();
+
+        Hash_file_maps.put(".............", R.drawable.food1);
+        Hash_file_maps.put("...........", R.drawable.food2);
+        Hash_file_maps.put("....", R.drawable.food3);
+        for (String name : Hash_file_maps.keySet()) {
+
+            TextSliderView textSliderView = new TextSliderView(HomeActivity.this);
+            textSliderView
+                    //.description(name)
+                    .image(Hash_file_maps.get(name))
+                    /*.setScaleType(BaseSliderView.ScaleType.Fit)*/
+                    .setOnSliderClickListener(this);
+            //textSliderView.bundle(new Bundle());
+            //textSliderView.getBundle();
+                  /*  .putString("extra", name);*/
+            sliderLayout.addSlider(textSliderView);
+        }
+        //sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        //sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        // sliderLayout.setCustomAnimation(new DescriptionAnimation());
+        sliderLayout.setDuration(3000);
+        sliderLayout.addOnPageChangeListener(this);
+
+
 
         try {
             File f = new File("/data/data/com.xoxytech.ostello/shared_prefs/YourSharedPreference.xml");
@@ -120,7 +155,7 @@ public class HomeActivity extends AppCompatActivity
 
             case R.id.order:
 
-                intent=new Intent(HomeActivity.this,OrderActvity.class);
+                intent=new Intent(HomeActivity.this,MenuTypeTab.class);
                 startActivity(intent);
                 break;
 
@@ -182,14 +217,38 @@ public class HomeActivity extends AppCompatActivity
             if (data.getBooleanExtra("data", true)) {
                 menuItem.setTitle("Logout");
                 NavigationView navigationView = findViewById(R.id.nav_view);
-              /*SharedPreferences sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-                ((TextView) (navigationView.getHeaderView(0).findViewById(R.id.username))).setText(sp.getString("USERNAME", null));
-                ((TextView) (navigationView.getHeaderView(0).findViewById(R.id.standard))).setText(sp.getString("CLASS", null));*/
+
                 Menu menu = navigationView.getMenu();
                 menu.getItem(0).setTitle("Logout");
                 Log.d("****", "Item**** ");
             }
         }
+    }
+    @Override
+    protected void onStop() {
+
+        sliderLayout.stopAutoCycle();
+
+        super.onStop();
+    }
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.d("Slider Demo", "Page Changed: " + position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
 
