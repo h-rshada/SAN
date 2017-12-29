@@ -6,6 +6,7 @@
     tools:context="com.example.android.san.MainActivity">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -81,7 +82,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/activity_general_margin"
-            android:hint="Add name" />
+            android:hint="Add name"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/updateEmailEdittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_general_margin"
+            android:hint="Add email"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/updateAddressEdittext"
@@ -89,7 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/activity_general_margin"
-            android:hint="Add address" />
+            android:hint="Add address"
+            android:inputType="textMultiLine" />
 
         <EditText
             android:id="@+id/updatePhoneEdittext"
@@ -97,7 +109,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/activity_general_margin"
-            android:hint="Add Phone" />
+            android:hint="Add Phone"
+            android:inputType="phone"
+            android:maxLength="10" />
 
 
         <Button
@@ -133,20 +147,21 @@
             android:background="@android:color/white"
             android:padding="@dimen/activity_general_margin"
             android:text="@string/login_again"
-            android:textColor="@color/blue_text" />
+            android:textColor="@color/blue_text"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/refreshTokenButton"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgLogo"
-
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@android:color/white"
             android:padding="@dimen/activity_general_margin"
             android:text="@string/refresh"
-            android:textColor="@color/blue_text" />
+            android:textColor="@color/blue_text"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/logout"
@@ -158,7 +173,7 @@
             android:background="@android:color/white"
             android:padding="@dimen/activity_general_margin"
             android:text="@string/logout"
-
-            android:textColor="@color/blue_text" />
+            android:textColor="@color/blue_text"
+            android:visibility="gone" />
     </LinearLayout>
 </ScrollView>

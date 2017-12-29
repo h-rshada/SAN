@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class GoToCart extends AppCompatActivity {
@@ -28,7 +30,9 @@ public class GoToCart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_to_cart);
+        ButterKnife.inject(this);
         List<DataCart> data = new ArrayList<>();
+        Log.d("GotoCart", "I am in");
        /* sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         class1 = sp.getString("CLASS", null);
         standard = sp.getString("CLASS1", null);
@@ -64,9 +68,9 @@ public class GoToCart extends AppCompatActivity {
 
         list_tiffin.setVisibility(View.VISIBLE);
         adapter = new AdapterCart(GoToCart.this, data);
-        list_tiffin.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(GoToCart.this);
         list_tiffin.setLayoutManager(llm);
+        list_tiffin.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
@@ -82,7 +86,7 @@ public class GoToCart extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        Intent intent = new Intent(GoToCart.this, TabActivity.class);
+        Intent intent = new Intent(GoToCart.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }

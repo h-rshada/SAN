@@ -69,7 +69,23 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".addToCart" />
-        <activity android:name=".GoToCart"></activity>
+        <activity android:name=".GoToCart" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Registration">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UserProfile">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

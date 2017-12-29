@@ -1,10 +1,13 @@
 package com.example.android.san;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,7 +22,17 @@ import com.auth0.android.result.Credentials;
 import com.auth0.android.result.UserProfile;
 
 public class LoginActivity extends AppCompatActivity {
-    private final AuthCallback callback = new AuthCallback() {
+    SharedPreferences.Editor editor;
+    SharedPreferences sp;
+    UrlRequest urlRequest;
+    String id = "";
+    UserProfile userProfile1;
+    Button loginButton;
+    private Auth0 auth0;
+    private AuthenticationAPIClient authenticationClient;
+    AuthCallback callback = new AuthCallback() {
+
+
         @Override
         public void onFailure(@NonNull final Dialog dialog) {
             runOnUiThread(new Runnable() {
@@ -36,10 +49,10 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Toast.makeText(LoginActivity.this, "Log In - Error Occurred", Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
-
         @Override
         public void onSuccess(@NonNull Credentials credentials) {
             runOnUiThread(new Runnable() {
@@ -48,54 +61,83 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Log In - Success", Toast.LENGTH_SHORT).show();
                 }
             });
-
-
+//            login=true;
+            editor.putBoolean("LOGIN", true);
+            editor.commit();
             CredentialManager.saveCredentials(LoginActivity.this, credentials);
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
+            authenticationClient = new AuthenticationAPIClient(auth0);
+            authenticationClient.userInfo(CredentialManager.getCredentials(getApplicationContext()).getAccessToken())
+                    .start(new BaseCallback<UserProfile, AuthenticationException>() {
+                        @Override
+                        public void onSuccess(final UserProfile userProfile) {
+                            userProfile1 = userProfile;
+                            id = userProfile1.getId();
+                            Log.d("Id", id);
+                            editor.putString("AUTH_ID", id);
+                            editor.commit();
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    checkData(id);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onFailure(AuthenticationException error) {
+                            runOnUiThread(new Runnable() {
+
+                                public void run() {
+
+                                    Toast.makeText(LoginActivity.this, "Session Expired, please Log In", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            CredentialManager.deleteCredentials(LoginActivity.this);
+                        }
+                    });
+
+
+
+
+            /*
+            ->calling this method causes auth_id null
+            ->as a result it goes to main acitvity
+            * */
         }
     };
-    UserProfile userProfile1;
-    private Auth0 auth0;
-    private AuthenticationAPIClient authenticationClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        editor = sp.edit();
+        editor.clear();
+        editor.commit();
+      /*  id=sp.getString("ID",null);
+        Log.d("Id",id);*/
         auth0 = new Auth0(this);
         auth0.setOIDCConformant(true);
-
-        final Button loginButton = findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doLogin();
-            }
-        });
-
-
-        String accessToken = CredentialManager.getCredentials(this).getAccessToken();
-        if (accessToken == null) {
-            return;
-        }
-
-        //If the token exists, try to fetch the associated user info
-        loginButton.setEnabled(false);
+        loginButton = findViewById(R.id.loginButton);
         authenticationClient = new AuthenticationAPIClient(auth0);
-        authenticationClient.userInfo(accessToken)
+        authenticationClient.userInfo(CredentialManager.getCredentials(getApplicationContext()).getAccessToken())
                 .start(new BaseCallback<UserProfile, AuthenticationException>() {
                     @Override
                     public void onSuccess(final UserProfile userProfile) {
                         userProfile1 = userProfile;
+                        id = userProfile1.getId();
+                        editor.putString("AUTH_ID", id);
+                        editor.commit();
+                        Log.d("Id", id);
                         runOnUiThread(new Runnable() {
                             public void run() {
+                                checkData(id);
+                                editor.putBoolean("LOGIN", true);
+                                editor.commit();
                                 Toast.makeText(LoginActivity.this, "Automatic Login Success", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+
                     }
 
                     @Override
@@ -103,13 +145,30 @@ public class LoginActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
 
                             public void run() {
-                                loginButton.setEnabled(true);
+
                                 Toast.makeText(LoginActivity.this, "Session Expired, please Log In", Toast.LENGTH_SHORT).show();
                             }
                         });
                         CredentialManager.deleteCredentials(LoginActivity.this);
                     }
                 });
+
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doLogin();
+            }
+        });
+
+        String accessToken = CredentialManager.getCredentials(this).getAccessToken();
+        if (accessToken == null) {
+            return;
+        }
+
+        //If the token exists, try to fetch the associated user info
+        loginButton.setEnabled(true);
+
     }
 
     private void doLogin() {
@@ -118,5 +177,31 @@ public class LoginActivity extends AppCompatActivity {
                 .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
                 .withScope("openid offline_access")
                 .start(this, callback);
+
+
     }
+
+    public void checkData(String id) {
+
+        urlRequest = UrlRequest.getObject();
+        urlRequest.setContext(getApplicationContext());
+        Log.d("checkData: ", "http://192.168.0.22:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
+        urlRequest.getResponse(new ServerCallback() {
+            @Override
+            public void onSuccess(String response) {
+                Log.d("Response*", response);
+                if (response.contains("EXISTS")) {
+                    Intent intent = new Intent(LoginActivity.this, GoToCart.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                }
+
+            }
+        });
+    }
+
 }

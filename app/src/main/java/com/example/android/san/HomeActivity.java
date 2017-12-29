@@ -38,6 +38,12 @@ public class HomeActivity extends AppCompatActivity
     @InjectView(R.id.more)
     RippleView rippleView;
     MenuItem menuItem;
+    boolean login = false;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
+    String itemname;
+    Menu menu1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +53,7 @@ public class HomeActivity extends AppCompatActivity
             File f = new File("/data/data/com.xoxytech.ostello/shared_prefs/YourSharedPreference.xml");
             if (f.exists()) {
                 Log.d("TAG", "SharedPreferences Name_of_your_preference : exist");
-                SharedPreferences sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+                sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
                 // String selectedsubji = sp.getString("SELECTEDSUBJI", null);
             } else
                 Log.d("TAG", "Setup default preferences");
@@ -57,6 +63,17 @@ public class HomeActivity extends AppCompatActivity
         }
 
         ButterKnife.inject(this);
+        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        // menuItem = menu1.findItem(R.id.action_settings);
+        login = sp.getBoolean("LOGIN", false);
+        Log.d("LL", login + "");
+      /*  if(login==true)
+        {
+            menuItem.setTitle("Logout");
+        }*/
+        /*editor=sp.edit();
+        editor.putBoolean("LOGIN",login);
+        editor.commit();*/
         Toolbar toolbar = findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
 
@@ -93,7 +110,14 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
-        return true;
+        menu1 = menu;
+        menuItem = menu.findItem(R.id.action_settings);
+        Log.d("Login", sp.getBoolean("LOGIN", false) + "");
+        if (sp.getBoolean("LOGIN", false)) {
+            menuItem.setTitle("Logout");
+        }
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -105,9 +129,24 @@ public class HomeActivity extends AppCompatActivity
         menuItem = item;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            itemname = item.getTitle().toString();
+            Log.d("Login", sp.getBoolean("LOGIN", false) + "");
+            if (sp.getBoolean("LOGIN", false)) {
+                menuItem.setTitle("Logout");
+            } else {
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivityForResult(intent, 100);
 
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-            startActivityForResult(intent, 100);
+            }
+            if (menuItem.getTitle().equals("Logout")) {
+                editor = sp.edit();
+                editor.putBoolean("LOGIN", false);
+                editor.commit();
+                login = sp.getBoolean("LOGIN", false);
+                Log.d("LOgin***", login + "");
+                CredentialManager.deleteCredentials(this);
+                menuItem.setTitle("Login");
+            }
             return true;
         }
 
@@ -163,7 +202,9 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_account) {
+            intent = new Intent(HomeActivity.this, UserProfile.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 

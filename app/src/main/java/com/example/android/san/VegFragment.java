@@ -89,6 +89,7 @@ public class VegFragment extends Fragment {
     SharedPreferences sp;
     String type, tiffintype, dabba, t[], price;
     SharedPreferences.Editor editor;
+    boolean login = false;
     AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -295,6 +296,7 @@ public class VegFragment extends Fragment {
         editor.putString("TIFFIN", tiffintype);
         editor.putString("TYPE", type);
         editor.putString("PRICE", price);
+        editor.putBoolean("LOGIN", login);
         //editor.putStringSet("HEAVY",null);
         editor.commit();
         String output = type.substring(0, 1).toUpperCase() + type.substring(1);
@@ -302,15 +304,15 @@ public class VegFragment extends Fragment {
 
         item = "bread";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=bread", item);
 
         item = "rice";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=rice", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=rice", item);
 
         item = "dal";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=dal", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=dal", item);
 
         Log.d("onCreateView: ", arrayList1 + "");
         getData();
@@ -418,26 +420,32 @@ public class VegFragment extends Fragment {
                     }
                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                     JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                            Request.Method.POST, "http://192.168.0.22:8001/routes/server/requestFromApp.php", orderData,
+                            Request.Method.POST, "http://192.168.0.22:8001/routes/server/app/requestFromApp.php", orderData,
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     Log.d("ResponseOrder", response.toString());
-
-
                                 }
                             }, new Response.ErrorListener() {
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             VolleyLog.d("Error: ", error.getMessage());
-
                         }
                     });
                     requestQueue.add(jsonObjReq);
                     btnCart.setText("GO TO CART");
                 } else {
-                    Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
+                    boolean login = sp.getBoolean("LOGIN", false);
+                    if (login == true) {
+                        Intent intentcart = new Intent(getContext(), GoToCart.class);
+                        startActivity(intentcart);
+                    } else {
+                        Intent intentlogin = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intentlogin);
+                    }
+
                 }
                 break;
 
@@ -447,8 +455,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
-        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
+        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -556,8 +564,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        Log.d("URL", "http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        Log.d("URL", "http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override

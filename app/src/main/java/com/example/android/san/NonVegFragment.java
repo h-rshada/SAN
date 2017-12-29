@@ -179,6 +179,7 @@ public class NonVegFragment extends Fragment {
         editor = sp.edit();
         editor.clear();
         editor.commit();
+        recyclerView = view.findViewById(R.id.Listmenu);
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
