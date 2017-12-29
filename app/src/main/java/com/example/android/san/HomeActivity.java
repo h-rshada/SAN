@@ -19,15 +19,20 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.andexert.library.RippleView;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 import java.io.File;
+import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
     @InjectView(R.id.order)
     ImageView order;
     @InjectView(R.id.aboutus)
@@ -38,22 +43,46 @@ public class HomeActivity extends AppCompatActivity
     @InjectView(R.id.more)
     RippleView rippleView;
     MenuItem menuItem;
-    boolean login = false;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
-    String itemname;
-    Menu menu1;
+    SliderLayout sliderLayout;
+    HashMap<String, Integer> Hash_file_maps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        sliderLayout=(SliderLayout) findViewById(R.id.slider);
+        Hash_file_maps=new HashMap<String, Integer>();
+
+        Hash_file_maps.put(".............", R.drawable.food1);
+        Hash_file_maps.put("...........", R.drawable.food2);
+        Hash_file_maps.put("....", R.drawable.food3);
+        for (String name : Hash_file_maps.keySet()) {
+
+            TextSliderView textSliderView = new TextSliderView(HomeActivity.this);
+            textSliderView
+                    //.description(name)
+                    .image(Hash_file_maps.get(name))
+                    /*.setScaleType(BaseSliderView.ScaleType.Fit)*/
+                    .setOnSliderClickListener(this);
+            //textSliderView.bundle(new Bundle());
+            //textSliderView.getBundle();
+                  /*  .putString("extra", name);*/
+            sliderLayout.addSlider(textSliderView);
+        }
+        //sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        //sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        // sliderLayout.setCustomAnimation(new DescriptionAnimation());
+        sliderLayout.setDuration(3000);
+        sliderLayout.addOnPageChangeListener(this);
+
+
+
         try {
             File f = new File("/data/data/com.xoxytech.ostello/shared_prefs/YourSharedPreference.xml");
             if (f.exists()) {
                 Log.d("TAG", "SharedPreferences Name_of_your_preference : exist");
-                sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+                SharedPreferences sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
                 // String selectedsubji = sp.getString("SELECTEDSUBJI", null);
             } else
                 Log.d("TAG", "Setup default preferences");
@@ -63,17 +92,6 @@ public class HomeActivity extends AppCompatActivity
         }
 
         ButterKnife.inject(this);
-        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-        // menuItem = menu1.findItem(R.id.action_settings);
-        login = sp.getBoolean("LOGIN", false);
-        Log.d("LL", login + "");
-      /*  if(login==true)
-        {
-            menuItem.setTitle("Logout");
-        }*/
-        /*editor=sp.edit();
-        editor.putBoolean("LOGIN",login);
-        editor.commit();*/
         Toolbar toolbar = findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
 
@@ -110,14 +128,7 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
-        menu1 = menu;
-        menuItem = menu.findItem(R.id.action_settings);
-        Log.d("Login", sp.getBoolean("LOGIN", false) + "");
-        if (sp.getBoolean("LOGIN", false)) {
-            menuItem.setTitle("Logout");
-        }
-
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
@@ -129,24 +140,9 @@ public class HomeActivity extends AppCompatActivity
         menuItem = item;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            itemname = item.getTitle().toString();
-            Log.d("Login", sp.getBoolean("LOGIN", false) + "");
-            if (sp.getBoolean("LOGIN", false)) {
-                menuItem.setTitle("Logout");
-            } else {
-                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                startActivityForResult(intent, 100);
 
-            }
-            if (menuItem.getTitle().equals("Logout")) {
-                editor = sp.edit();
-                editor.putBoolean("LOGIN", false);
-                editor.commit();
-                login = sp.getBoolean("LOGIN", false);
-                Log.d("LOgin***", login + "");
-                CredentialManager.deleteCredentials(this);
-                menuItem.setTitle("Login");
-            }
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivityForResult(intent, 100);
             return true;
         }
 
@@ -159,7 +155,7 @@ public class HomeActivity extends AppCompatActivity
 
             case R.id.order:
 
-                intent=new Intent(HomeActivity.this,OrderActvity.class);
+                intent=new Intent(HomeActivity.this,MenuTypeTab.class);
                 startActivity(intent);
                 break;
 
@@ -202,9 +198,7 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_account) {
-            intent = new Intent(HomeActivity.this, UserProfile.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
@@ -223,14 +217,38 @@ public class HomeActivity extends AppCompatActivity
             if (data.getBooleanExtra("data", true)) {
                 menuItem.setTitle("Logout");
                 NavigationView navigationView = findViewById(R.id.nav_view);
-              /*SharedPreferences sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-                ((TextView) (navigationView.getHeaderView(0).findViewById(R.id.username))).setText(sp.getString("USERNAME", null));
-                ((TextView) (navigationView.getHeaderView(0).findViewById(R.id.standard))).setText(sp.getString("CLASS", null));*/
+
                 Menu menu = navigationView.getMenu();
                 menu.getItem(0).setTitle("Logout");
                 Log.d("****", "Item**** ");
             }
         }
+    }
+    @Override
+    protected void onStop() {
+
+        sliderLayout.stopAutoCycle();
+
+        super.onStop();
+    }
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.d("Slider Demo", "Page Changed: " + position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
 

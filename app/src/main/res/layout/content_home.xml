@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical">
 
 
@@ -17,18 +17,13 @@
             android:id="@+id/LinearLayout_31"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
-
-
-            <ImageView
-                android:id="@+id/imageClassroom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:cropToPadding="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/foodimage" />
-
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/slider"
+                android:layout_width="fill_parent"
+                android:layout_height="270dp"
+                android:background="@drawable/slider">
+            </com.daimajia.slider.library.SliderLayout>
 
         </LinearLayout>
 

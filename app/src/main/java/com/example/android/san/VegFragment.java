@@ -89,7 +89,7 @@ public class VegFragment extends Fragment {
     SharedPreferences sp;
     String type, tiffintype, dabba, t[], price;
     SharedPreferences.Editor editor;
-    boolean login = false;
+    String auth_Id = "auth|987655646437544363647634";
     AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -296,8 +296,7 @@ public class VegFragment extends Fragment {
         editor.putString("TIFFIN", tiffintype);
         editor.putString("TYPE", type);
         editor.putString("PRICE", price);
-        editor.putBoolean("LOGIN", login);
-        //editor.putStringSet("HEAVY",null);
+
         editor.commit();
         String output = type.substring(0, 1).toUpperCase() + type.substring(1);
         tiffin_tag.setText(output + "/" + tiffintype);
@@ -382,6 +381,7 @@ public class VegFragment extends Fragment {
             case R.id.btnCart:
 
                 String text = btnCart.getText().toString();
+                count = sp.getInt("COUNT", 0);
                 if (text.equals("ADD TO CART")) {
                     menuset = new HashSet<String>();
                     if (dabba.equals("semiHeavy")) {
@@ -409,6 +409,8 @@ public class VegFragment extends Fragment {
                         orderData.put("Salt", selectedSalt);
                         orderData.put("AmountOfOil", selectedAmtOil);
                         orderData.put("OilType", selectedOil);
+                        orderData.put("AuthId", "auth|987655646437544363647634");
+
                         if (tiffintype.equals("Heavy")) {
                             orderData.put("menu", menuset);
                         } else {
@@ -418,34 +420,44 @@ public class VegFragment extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                    JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                            Request.Method.POST, "http://192.168.0.22:8001/routes/server/app/requestFromApp.php", orderData,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Log.d("ResponseOrder", response.toString());
-                                }
-                            }, new Response.ErrorListener() {
+                    if (count > 1 || !(string == null)) {
+                        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                        Log.d("URLorder", "http://192.168.0.22:8001/routes/server/app/addToCart.rfa.php");
+                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                Request.Method.POST, "http://192.168.0.22:8001/routes/server/app/addToCart.rfa.php", orderData,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        try {
+                                            Log.d("ResponseOrder", response.getString("response"));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
 
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            VolleyLog.d("Error: ", error.getMessage());
-                        }
-                    });
-                    requestQueue.add(jsonObjReq);
-                    btnCart.setText("GO TO CART");
-                } else {
-                    // Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
-                    boolean login = sp.getBoolean("LOGIN", false);
-                    if (login == true) {
-                        Intent intentcart = new Intent(getContext(), GoToCart.class);
-                        startActivity(intentcart);
+                                        Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
+                                    }
+                                }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                VolleyLog.d("Error: ", error.getMessage());
+
+
+                            }
+                        });
+                        requestQueue.add(jsonObjReq);
+                        btnCart.setText("GO TO CART");
+                        Log.d(orderData.toString(), "orderdata");
                     } else {
-                        Intent intentlogin = new Intent(getContext(), LoginActivity.class);
-                        startActivity(intentlogin);
-                    }
+                        Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
 
+                    }
+                } else {
+                    Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
+                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
+                    startActivity(intentGoToCart);
+                    //Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
                 }
                 break;
 

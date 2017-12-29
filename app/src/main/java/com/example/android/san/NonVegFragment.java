@@ -285,15 +285,15 @@ public class NonVegFragment extends Fragment {
 
         item = "bread";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=bread", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=bread", item);
 
         item = "rice";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=rice", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=rice", item);
 
         item = "dal";
 
-        setData("http://192.168.0.22:8001/routes/server/getCommonItems.php?item=dal", item);
+        setData("http://192.168.0.22:8001/routes/server/app/getCommonItems.php?item=dal", item);
 
         Log.d("onCreateView: ", arrayList1 + "");
         getData();
@@ -373,8 +373,8 @@ public class NonVegFragment extends Fragment {
     public void getData() {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
-        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
+        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
@@ -473,8 +473,8 @@ public class NonVegFragment extends Fragment {
     public void selectedData() {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        Log.d("URL", "http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        Log.d("URL", "http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
