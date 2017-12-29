@@ -1,6 +1,7 @@
 package com.example.android.san;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +25,10 @@ import butterknife.InjectView;
 public class GoToCart extends AppCompatActivity {
     @InjectView(R.id.Listmenu)
     RecyclerView list_tiffin;
+    @InjectView(R.id.btn_addTiffin)
+    Button btnAddToCart;
+    @InjectView(R.id.btn_continue)
+    Button btnContinue;
     AdapterCart adapter;
     List<DataCart> data;
     SharedPreferences sp;
@@ -51,35 +58,65 @@ public class GoToCart extends AppCompatActivity {
             @Override
             public void onSuccess(String response) {
                 Log.d("ResponseGOTO", response);
-                try {
+                if (!response.contains("nodata")) {
+                    try {
 
-                    jArray = new JSONArray(response);
+                        jArray = new JSONArray(response);
 
-                    for (int i = 0; i < jArray.length(); i++) {
-                        json_data = jArray.getJSONObject(i);
-                        DataCart tiffin_data = new DataCart();
-                        tiffin_data.tiffin_plan = tiffin_plan = json_data.getString("tiffinPlan");
-                        tiffin_data.tiffin_type = json_data.getString("tiffinType");
-                        tiffin_data.indian_bread = json_data.getString("indianBread");
-                        tiffin_data.rice = json_data.getString("rice");
-                        tiffin_data.dal = json_data.getString("dal");
-                        tiffin_data.price = json_data.getString("price");
-                        tiffin_data.quantity = json_data.getString("quantity");
-                        tiffin_data.menu = json_data.getString("menu");
-                        data.add(tiffin_data);
-                        Log.d(data.toString(), "data");
+                        for (int i = 0; i < jArray.length(); i++) {
+                            Log.d("JarrayLength", jArray.length() + "");
+                            json_data = jArray.getJSONObject(i);
+                            DataCart tiffin_data = new DataCart();
+                            tiffin_data.id = json_data.getString("id");
+                            tiffin_data.tiffin_plan = json_data.getString("tiffinPlan");
+                            tiffin_data.tiffin_type = json_data.getString("tiffinType");
+                            tiffin_data.indian_bread = json_data.getString("indianBread");
+                            tiffin_data.rice = json_data.getString("rice");
+                            tiffin_data.dal = json_data.getString("dal");
+                            tiffin_data.price = json_data.getString("price");
+                            tiffin_data.quantity = json_data.getString("quantity");
+                            tiffin_data.menu = json_data.getString("menu");
+                            data.add(tiffin_data);
+                            Log.d(data.toString(), "data");
+                        }
+                        list_tiffin.setVisibility(View.VISIBLE);
+                        adapter = new AdapterCart(GoToCart.this, data);
+                        list_tiffin.setAdapter(adapter);
+                        LinearLayoutManager llm = new LinearLayoutManager(GoToCart.this);
+                        list_tiffin.setLayoutManager(llm);
+                        adapter.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
                     }
-                    list_tiffin.setVisibility(View.VISIBLE);
-                    adapter = new AdapterCart(GoToCart.this, data);
-                    list_tiffin.setAdapter(adapter);
-                    LinearLayoutManager llm = new LinearLayoutManager(GoToCart.this);
-                    list_tiffin.setLayoutManager(llm);
-                    adapter.notifyDataSetChanged();
+                } else {
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    findViewById(R.id.textViewError).setVisibility(View.VISIBLE);
+                    findViewById(R.id.Listmenu).setVisibility(View.INVISIBLE);
+                    btnContinue.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(GoToCart.this, "Cart is empty", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
                 }
+            }
+        });
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(GoToCart.this, "Go to payment activity ", Toast.LENGTH_LONG).show();
+            }
+        });
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(GoToCart.this, MenuTypeTab.class);
+                startActivity(intent);
+                finish();
             }
         });
 

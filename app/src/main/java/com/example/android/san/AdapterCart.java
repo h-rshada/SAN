@@ -2,8 +2,11 @@ package com.example.android.san;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,8 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     Set<String> selectedlistData;
     SharedPreferences.Editor editor;
     String menu, semiStr1, semiStr2;
+    int pos;
+    View view;
     private Context context;
     private LayoutInflater inflater;
 
@@ -80,6 +85,65 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         myHolder.txt_dal.setText(tiffin_data.dal);
         myHolder.txt_price.setText(tiffin_data.price);
         myHolder.txt_quantity.setText(tiffin_data.quantity);
+        myHolder.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(myHolder.txt_quantity.getText() + "");
+                quantity++;
+                myHolder.txt_quantity.setText(quantity + "");
+            }
+        });
+
+        myHolder.btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(myHolder.txt_quantity.getText() + "");
+                if (quantity > 0) {
+                    quantity--;
+                    myHolder.txt_quantity.setText(quantity + "");
+                }
+            }
+        });
+        myHolder.btnRemoveFromCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+
+                alertDialog.setMessage("Are you want to delete tiffin from cart?");
+                alertDialog.setPositiveButton(
+                        "YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                urlRequest = UrlRequest.getObject();
+                                urlRequest.setContext(context);
+                                urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
+                                Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
+                                urlRequest.getResponse(new ServerCallback() {
+                                    @Override
+                                    public void onSuccess(String response) {
+
+
+                                        Log.d("ResponseRemove", response);
+                                        Activity a = (Activity) context;
+                                        a.recreate();
+
+                                    }
+                                });
+                            }
+                        });
+
+
+                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                alertDialog.show();
+            }
+        });
     }
 
 
@@ -88,10 +152,11 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         return data.size();
     }
 
+
     class MyHolder extends RecyclerView.ViewHolder {
 
         TextView txt_tiffin_plan, txt_tiffin_type, txt_menu, txt_indian_bread, txt_rice, txt_dal, txt_price, txt_quantity;
-        Button btnAdd, btnRemove;
+        Button btnAdd, btnRemove, btnRemoveFromCart;
         public MyHolder(View itemView) {
             super(itemView);
             txt_tiffin_plan = itemView.findViewById(R.id.txtTiffinType);
@@ -104,6 +169,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             txt_quantity = itemView.findViewById(R.id.txtQuantity);
             btnAdd = itemView.findViewById(R.id.btn_add);
             btnRemove = itemView.findViewById(R.id.btn_remove);
+            btnRemoveFromCart = itemView.findViewById(R.id.btn_removeFromCart);
 
         }
     }

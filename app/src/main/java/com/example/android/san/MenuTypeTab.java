@@ -58,17 +58,17 @@ public class MenuTypeTab extends AppCompatActivity {
 
         viewPager = findViewById(R.id.pager);
         setupViewPager(viewPager);
-        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString("Type", type);
         bundle.putString("TiffinType", tiffintype);
-        bundle.putString("Price",price);
+        bundle.putString("Price",price);*/
 
-        flexibleFragment.setArguments(bundle);
+       /* flexibleFragment.setArguments(bundle);
         semiFlexibleFragment.setArguments(bundle);
         fixedFragment.setArguments(bundle);
-        breakFastFragment.setArguments(bundle);
+        breakFastFragment.setArguments(bundle);*/
 
         tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setSelectedTabIndicatorHeight(5);
