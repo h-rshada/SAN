@@ -382,6 +382,7 @@ public class VegFragment extends Fragment {
 
                 String text = btnCart.getText().toString();
                 count = sp.getInt("COUNT", 0);
+                Log.d("Count", count + "");
                 if (text.equals("ADD TO CART")) {
                     menuset = new HashSet<String>();
                     if (dabba.equals("semiHeavy")) {

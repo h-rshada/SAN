@@ -256,17 +256,19 @@
             android:text="remove" />
 
         <LinearLayout
-            android:id="@+id/layout_linear"
+            android:id="@+id/layout_linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@color/colorAccent"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:paddingBottom="0dp"
             android:visibility="invisible">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/txt_totalPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -276,16 +278,42 @@
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txt_totalQuantity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Total Quantity"
-                android:textColor="#00B0FF"
-                android:textSize="22dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Total Quantity"
+                    android:textColor="#00B0FF"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_totalPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#00B0FF"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_totalQuantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#00B0FF"
+                    android:textSize="22dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
 
         </LinearLayout>
 

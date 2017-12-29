@@ -44,7 +44,7 @@ public class SemiFlexibleFragment extends Fragment {
         calligrapher.setFont(getActivity(), "fonts/Charrington.ttf", false);*/
 
         intent=new Intent(getActivity(), TabActivity.class);
-        type="semiflexible";
+        type = "semi flexible";
         intent=intent.putExtra("Type",type);
         price="100";
         intent.putExtra("Price",price);

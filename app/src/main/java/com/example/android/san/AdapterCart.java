@@ -49,7 +49,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     Set<String> selectedlistData;
     SharedPreferences.Editor editor;
     String menu, semiStr1, semiStr2;
-    int pos;
+    int pos, totalPrice = 0, totalQuantity = 0;
     View view;
     JSONObject orderData;
     private Context context;
@@ -91,19 +91,26 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         final int pos = position;
         final DataCart tiffin_data = data.get(position);
         Log.d("position", position + "");
-        if (position == (tiffin_data.totalCartItems - 1)) {
-            myHolder.linearLayout.setVisibility(View.VISIBLE);
 
-            Log.d("Visible", "visible");
-        }
         myHolder.txt_tiffin_plan.setText(tiffin_data.tiffin_plan);
         myHolder.txt_tiffin_type.setText(tiffin_data.tiffin_type);
         myHolder.txt_menu.setText(tiffin_data.menu);
         myHolder.txt_indian_bread.setText(tiffin_data.indian_bread);
         myHolder.txt_rice.setText(tiffin_data.rice);
         myHolder.txt_dal.setText(tiffin_data.dal);
-        myHolder.txt_price.setText(tiffin_data.price);
+        myHolder.txt_price.setText((Integer.parseInt(tiffin_data.price) * Integer.parseInt(tiffin_data.quantity)) + "");
         myHolder.txt_quantity.setText(tiffin_data.quantity);
+        totalPrice = (Integer.parseInt(tiffin_data.price) * Integer.parseInt(tiffin_data.quantity)) + totalPrice;
+        totalQuantity = totalQuantity + Integer.parseInt(tiffin_data.quantity);
+        Log.d("totalp", totalPrice + "");
+        if (position == (tiffin_data.totalCartItems - 1)) {
+            myHolder.linearLayout.setVisibility(View.VISIBLE);
+            myHolder.txt_totalQuantity.setText(totalQuantity + "");
+            myHolder.txt_totalPrice.setText(totalPrice + "");
+            Log.d("Visible", "visible");
+            Log.d("totalpl", totalPrice + "");
+
+        }
         myHolder.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -217,7 +224,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         LinearLayout linearLayout;
         public MyHolder(View itemView) {
             super(itemView);
-            linearLayout = itemView.findViewById(R.id.layout_linear);
+            linearLayout = itemView.findViewById(R.id.layout_linear1);
             txt_tiffin_plan = itemView.findViewById(R.id.txtTiffinType);
             txt_tiffin_type = itemView.findViewById(R.id.txtTiffinPlan);
             txt_menu = itemView.findViewById(R.id.txtMenu);
