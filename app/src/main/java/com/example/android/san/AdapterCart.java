@@ -11,7 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,9 +51,9 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     String menu, semiStr1, semiStr2;
     int pos;
     View view;
+    JSONObject orderData;
     private Context context;
     private LayoutInflater inflater;
-
 
     // create constructor to innitilize context and data sent frm MainActivity
     public AdapterCart(Context context, List<DataCart> data) {
@@ -77,6 +90,12 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         final MyHolder myHolder = (MyHolder) holder;
         final int pos = position;
         final DataCart tiffin_data = data.get(position);
+        Log.d("position", position + "");
+        if (position == (tiffin_data.totalCartItems - 1)) {
+            myHolder.linearLayout.setVisibility(View.VISIBLE);
+
+            Log.d("Visible", "visible");
+        }
         myHolder.txt_tiffin_plan.setText(tiffin_data.tiffin_plan);
         myHolder.txt_tiffin_type.setText(tiffin_data.tiffin_type);
         myHolder.txt_menu.setText(tiffin_data.menu);
@@ -91,6 +110,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 int quantity = Integer.parseInt(myHolder.txt_quantity.getText() + "");
                 quantity++;
                 myHolder.txt_quantity.setText(quantity + "");
+                updateQuantity(quantity, tiffin_data.id, "add");
             }
         });
 
@@ -98,9 +118,10 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             @Override
             public void onClick(View view) {
                 int quantity = Integer.parseInt(myHolder.txt_quantity.getText() + "");
-                if (quantity > 0) {
+                if (quantity > 1) {
                     quantity--;
                     myHolder.txt_quantity.setText(quantity + "");
+                    updateQuantity(quantity, tiffin_data.id, "delete");
                 }
             }
         });
@@ -122,8 +143,6 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                                 urlRequest.getResponse(new ServerCallback() {
                                     @Override
                                     public void onSuccess(String response) {
-
-
                                         Log.d("ResponseRemove", response);
                                         Activity a = (Activity) context;
                                         a.recreate();
@@ -152,13 +171,53 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         return data.size();
     }
 
+    public void updateQuantity(int quantity, String id, String action) {
+        orderData = new JSONObject();
+        try {
+            orderData.put("Id", id);
+            orderData.put("Quantity", quantity + "");
+            orderData.put("Action", action);
+            Log.d("quantityO", orderData + "");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        Log.d("URLorder", "http://192.168.0.22:8001/routes/server/app/addToCart.rfa.php");
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.POST, "http://192.168.0.22:8001/routes/server/app/addToCart.rfa.php", orderData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Log.d("ResponseOrderQuantity", response.getString("response"));
+                            Activity a = (Activity) context;
+                            a.recreate();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                VolleyLog.d("Error: ", error.getMessage());
+
+
+            }
+        });
+        requestQueue.add(jsonObjReq);
+    }
 
     class MyHolder extends RecyclerView.ViewHolder {
-
-        TextView txt_tiffin_plan, txt_tiffin_type, txt_menu, txt_indian_bread, txt_rice, txt_dal, txt_price, txt_quantity;
+        TextView txt_tiffin_plan, txt_tiffin_type, txt_menu, txt_indian_bread, txt_rice, txt_dal, txt_price, txt_quantity, txt_totalPrice, txt_totalQuantity;
         Button btnAdd, btnRemove, btnRemoveFromCart;
+        LinearLayout linearLayout;
         public MyHolder(View itemView) {
             super(itemView);
+            linearLayout = itemView.findViewById(R.id.layout_linear);
             txt_tiffin_plan = itemView.findViewById(R.id.txtTiffinType);
             txt_tiffin_type = itemView.findViewById(R.id.txtTiffinPlan);
             txt_menu = itemView.findViewById(R.id.txtMenu);
@@ -170,6 +229,8 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             btnAdd = itemView.findViewById(R.id.btn_add);
             btnRemove = itemView.findViewById(R.id.btn_remove);
             btnRemoveFromCart = itemView.findViewById(R.id.btn_removeFromCart);
+            txt_totalPrice = itemView.findViewById(R.id.txt_totalPrice);
+            txt_totalQuantity = itemView.findViewById(R.id.txt_totalQuantity);
 
         }
     }

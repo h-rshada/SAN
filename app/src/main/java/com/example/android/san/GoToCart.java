@@ -76,6 +76,7 @@ public class GoToCart extends AppCompatActivity {
                             tiffin_data.price = json_data.getString("price");
                             tiffin_data.quantity = json_data.getString("quantity");
                             tiffin_data.menu = json_data.getString("menu");
+                            tiffin_data.totalCartItems = jArray.length();
                             data.add(tiffin_data);
                             Log.d(data.toString(), "data");
                         }

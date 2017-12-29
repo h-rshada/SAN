@@ -576,8 +576,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        Log.d("URL", "http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        Log.d("URL", "http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
