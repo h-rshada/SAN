@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        sliderLayout=(SliderLayout) findViewById(R.id.slider);
+        sliderLayout = findViewById(R.id.slider);
         Hash_file_maps=new HashMap<String, Integer>();
 
         Hash_file_maps.put(".............", R.drawable.food1);
@@ -192,17 +192,18 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_contactus) {
+            Intent intent = new Intent(HomeActivity.this, ContactUs.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: https://play.google.com/store/apps/details?id=com.xoxytech.ostello");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
