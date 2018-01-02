@@ -32,17 +32,20 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardBasic"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="250dp"
+
                     android:layout_margin="10dp"
                     android:background="@drawable/style1">
                     <TextView
                         android:id="@+id/txtTiffinType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_gravity="center_horizontal"
                         style="@style/Widget.AppCompat.TextView.SpinnerItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/tiifin_content_textview_style"
+                        android:gravity="center"
                         android:text="Basic Dabba"
+                        android:textColor="#fff"
                         android:textSize="25dp"
                         android:textStyle="bold"/>
                     <LinearLayout
@@ -53,17 +56,17 @@
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="150dp"
+                            android:layout_marginBottom="30dp"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="40dp"
-                            android:layout_marginBottom="30dp"
                             android:src="@drawable/heavydabba" />
                     </LinearLayout>
                     <TableLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
                         android:layout_marginLeft="110dp"
                         android:layout_marginRight="20dp"
+                        android:layout_marginTop="50dp"
                         android:gravity="center">
 
                         <TableRow
@@ -98,128 +101,128 @@
                         </TableRow>
                         <TableRow
                             android:id="@+id/tr_header1"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/table_row_bg"
                             android:padding="5dp">
                             <TextView
                                 android:id="@+id/tv_product1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Chapati"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="Chapati"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="3"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="3"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tr_header2"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/table_row_bg"
                             android:padding="5dp">
                             <TextView
                                 android:id="@+id/tv_product2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rice"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="Rice"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="100gm"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="100gm"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
                         <TableRow
                             android:id="@+id/tr_header3"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/table_row_bg"
                             android:padding="5dp">
                             <TextView
                                 android:id="@+id/tv_product3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dal"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="Dal"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="100gm"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="100gm"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
                         <TableRow
                             android:id="@+id/tr_header4"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/table_row_bg"
                             android:padding="5dp">
                             <TextView
                                 android:id="@+id/tv_product4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1 Subjii/Bhaji"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="1 Subjii/Bhaji"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="100gm"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="100gm"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
                     </TableLayout>
-                    <TextView
-                        android:id="@+id/txtDabbaDesc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="200dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@mipmap/ic_launcher"
-                        android:text="@string/BasicDesc"
-                        android:textSize="15dp" />
+
 
                     <TextView
                         android:id="@+id/txtprice"
-                        android:layout_marginTop="135dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#f4a9d8"
-                        android:textSize="20dp"
-                        android:text="Rs 120"
-                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/shape"
                         android:gravity="center"
-                        android:layout_gravity="center"/>
+                        android:text="Rs 120"
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
 
                 </android.support.v7.widget.CardView>
@@ -234,19 +237,21 @@
                 android:orientation="vertical">
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardHeavy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="300dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/style1">
                     <TextView
                         android:id="@+id/txtTiffinType1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Heavy Dabba"
-                        android:textSize="25dp"
-                        android:gravity="center"
-                        android:layout_gravity="center_horizontal"
                         style="@style/Widget.AppCompat.TextView.SpinnerItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/tiifin_content_textview_style"
+                        android:gravity="center"
+                        android:text="Heavy Dabba"
+                        android:textColor="#fff"
+                        android:textSize="25dp"
                         android:textStyle="bold"/>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -256,17 +261,17 @@
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="150dp"
+                            android:layout_marginBottom="30dp"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="40dp"
-                            android:layout_marginBottom="30dp"
                             android:src="@drawable/heavydabba" />
                     </LinearLayout>
                     <TableLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
                         android:layout_marginLeft="110dp"
                         android:layout_marginRight="20dp"
+                        android:layout_marginTop="50dp"
                         android:gravity="center">
 
                         <TableRow
@@ -301,124 +306,127 @@
                         </TableRow>
                         <TableRow
                             android:id="@+id/tr_header13"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/table_row_bg"
                             android:padding="5dp">
                             <TextView
                                 android:id="@+id/tv_product13"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Chapati"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="Chapati"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author13"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="4"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="4"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
 
                         <TableRow
                             android:id="@+id/tr_header14"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="5dp">
+                            android:background="@drawable/table_row_bg"
+                            android:padding="5dp"
+                            android:textColor="@color/tiffin_content_txtcolor">
                             <TextView
                                 android:id="@+id/tv_product14"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rice"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="Rice"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author14"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="150gm"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="150gm"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
                         <TableRow
                             android:id="@+id/tr_header15"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/table_row_bg"
                             android:padding="5dp">
                             <TextView
                                 android:id="@+id/tv_product15"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Dal"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="Dal"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author15"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="150gm"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="150gm"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
                         <TableRow
                             android:id="@+id/tr_header16"
-                            android:background="@drawable/table_row_bg"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/table_row_bg"
                             android:padding="5dp">
                             <TextView
                                 android:id="@+id/tv_product16"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2 Subjii/Bhaji"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingRight="10dp"
+                                android:text="2 Subjii/Bhaji"
+                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author16"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="150gm"
                                 android:background="@drawable/table_cell_bg"
                                 android:paddingLeft="10dp"
-                                android:paddingRight="10dp">
+                                android:paddingRight="10dp"
+                                android:text="150gm"
+                                android:textColor="@color/tiffin_content_txtcolor">
 
                             </TextView>
                         </TableRow>
                     </TableLayout>
-                    <TextView
-                        android:id="@+id/txtDabbaDesc1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher"
-                        android:text="@string/HeavyDesc"
-                        android:layout_marginTop="200dp"
-                        android:textSize="15dp" />
+
 
                     <TextView
                         android:id="@+id/txtprice1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="135dp"
-                        android:background="#f4a9d8"
+                        android:layout_marginTop="100dp"
+                        android:background="@drawable/shape"
                         android:gravity="center"
                         android:text="Rs 150"
+                        android:textColor="#fff"
                         android:textSize="20dp"
                         android:textStyle="bold" />
                 </android.support.v7.widget.CardView>

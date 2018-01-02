@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import am.appwise.components.ni.NoInternetDialog;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
@@ -38,12 +39,15 @@ public class TabActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
+
+        new NoInternetDialog.Builder(TabActivity.this).build();
+
         //actionBarSetup();
         vegFragment = new VegFragment();
         nonVegFragment = new NonVegFragment();
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         type = getIntent().getStringExtra("Type");
         tiffintype = getIntent().getStringExtra("TiffinType");
@@ -106,6 +110,24 @@ public class TabActivity extends AppCompatActivity {
         back_pressed = System.currentTimeMillis();
     }*/
 
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
+                startActivity(intent);
+                break;
+        }
+
+    }
+
+    public void refresh(View v) {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
     /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
       private void actionBarSetup() {
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -142,16 +164,5 @@ public class TabActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
-    }
-    @OnClick({R.id.img_back})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_back:
-                onBackPressed();
-                Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
-                startActivity(intent);
-                break;
-        }
-
     }
 }

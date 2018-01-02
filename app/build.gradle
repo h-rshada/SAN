@@ -39,13 +39,22 @@ dependencies {
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
-    compile 'com.github.traex.rippleeffect:library:1.3'
+
+
     compile 'com.google.android.gms:play-services-location:10.0.1'
     compile 'com.weiwangcn.betterspinner:library:1.1.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile  'com.nineoldandroids:library:2.4.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+
+
+
+    implementation 'am.appwise.components:NoInternetDialog:1.0.1'
+
+
 
 }
+
+
 
 

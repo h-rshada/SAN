@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.andexert.library.RippleView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -40,8 +39,8 @@ public class HomeActivity extends AppCompatActivity
     @InjectView(R.id.find)
     ImageView find;
     Intent intent;
-    @InjectView(R.id.more)
-    RippleView rippleView;
+
+
     MenuItem menuItem;
     SliderLayout sliderLayout;
     HashMap<String, Integer> Hash_file_maps;
@@ -51,7 +50,7 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        sliderLayout=(SliderLayout) findViewById(R.id.slider);
+        sliderLayout = findViewById(R.id.slider);
         Hash_file_maps=new HashMap<String, Integer>();
 
         Hash_file_maps.put(".............", R.drawable.food1);
@@ -170,20 +169,8 @@ public class HomeActivity extends AppCompatActivity
                 startActivity(intent);
                 break;
         }
-        rippleView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("Sample", "Click Rect !");
-            }
-        });
-        rippleView.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
 
-            @Override
-            public void onComplete(RippleView rippleView) {
-                Log.d("Sample", "Ripple completed");
-            }
 
-        });
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

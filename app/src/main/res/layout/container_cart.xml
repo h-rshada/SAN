@@ -14,16 +14,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/colorAccent"
+            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tiffin Plan:"
+                android:paddingLeft="5dp"
+                android:text="Tiffin Plan :"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -31,6 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -38,16 +40,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tiffin Type:"
+                android:paddingLeft="5dp"
+                android:text="Tiffin Type :"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -55,6 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -63,7 +67,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="#FF1744"
             android:orientation="horizontal">
 
 
@@ -71,9 +75,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Menu:"
+                android:paddingLeft="5dp"
+                android:text="Menu :"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -86,6 +91,7 @@
                     android:id="@+id/txtMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
 
@@ -93,6 +99,7 @@
                     android:id="@+id/txtMenu1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     android:visibility="gone" />
@@ -102,16 +109,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Indian Bread:"
+                android:paddingLeft="5dp"
+                android:text="Indian Bread :"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -119,6 +127,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -126,16 +135,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Rice:"
+                android:paddingLeft="5dp"
+                android:text="Rice :"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -143,6 +153,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -151,16 +162,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Dal:"
+                android:paddingLeft="5dp"
+                android:text="Dal :"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -168,6 +180,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -177,7 +190,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/colorAccent"
+
+            android:background="#142939"
             android:orientation="horizontal">
 
             <TextView
@@ -186,7 +200,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Price"
-                android:textColor="#00B0FF"
+                android:textColor="#fff"
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
@@ -196,7 +210,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Quantity"
-                android:textColor="#00B0FF"
+                android:textColor="#FFF"
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
@@ -205,7 +219,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+
+            android:background="#5b5756"
             android:orientation="horizontal">
 
             <TextView
@@ -225,10 +240,11 @@
 
                 <Button
                     android:id="@+id/btn_add"
-                    android:layout_width="30dp"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="43dp"
+
                     android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/ic_add_black_24dp" />
+                    android:drawableRight="@drawable/plusnew" />
             <TextView
                 android:id="@+id/txtQuantity"
                 android:layout_width="0dp"
@@ -240,20 +256,27 @@
 
                 <Button
                     android:id="@+id/btn_remove"
-                    android:layout_width="30dp"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="40dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/ic_remove_black_24dp" />
+                    android:drawableRight="@drawable/delete" />
             </LinearLayout>
 
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_removeFromCart"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="remove" />
+            android:background="#f19d0c"
+            android:drawablePadding="30dp"
+            android:drawableRight="@drawable/remove1"
+            android:paddingRight="60dp"
+            android:text="cancel this order"
+            android:textAlignment="textEnd"
+            android:textColor="#fff" />
 
         <LinearLayout
             android:id="@+id/layout_linear1"

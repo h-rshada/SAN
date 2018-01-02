@@ -49,16 +49,17 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:layout_gravity="center"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="10dp"
-                            android:background="@drawable/shape"
+                            android:background="@drawable/veg_frag_shape"
                             android:gravity="center"
                             android:padding="6dp"
                             android:text="Rice"
-                            android:textColor="@color/black" />
+                            android:textColor="#fff"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
 
                         <Spinner
                             android:id="@+id/spinner_rice"
@@ -75,14 +76,15 @@
                             android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
-
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                            android:background="@drawable/shape"
+                        android:background="@drawable/veg_frag_shape"
                             android:gravity="center"
                         android:padding="6dp"
                         android:text="Bread"
-                            android:textColor="@color/black" />
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
 
                         <Spinner
@@ -101,11 +103,13 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                            android:background="@drawable/shape"
+                        android:background="@drawable/veg_frag_shape"
                             android:gravity="center"
                         android:padding="6dp"
-                            android:text="Dal"
-                            android:textColor="@color/black" />
+                        android:text="Dal"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner_dal"
@@ -417,15 +421,6 @@
         android:orientation="horizontal"
         android:weightSum="2">
 
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape"
-            android:text="submit"
-            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/btnCart"
@@ -434,7 +429,25 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:background="@drawable/shape"
+            android:drawableLeft="@drawable/cart1"
+            android:drawablePadding="10dp"
+            android:paddingLeft="33dp"
             android:text="add to cart"
+            android:textAlignment="textStart"
+
+            android:textColor="#ffffff" />
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape2"
+            android:drawableLeft="@drawable/submit1"
+            android:drawablePadding="10dp"
+            android:paddingLeft="33dp"
+            android:text="submit"
+            android:textAlignment="textStart"
             android:textColor="#ffffff" />
     </LinearLayout>
 
