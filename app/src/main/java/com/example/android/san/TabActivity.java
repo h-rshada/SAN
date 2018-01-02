@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
@@ -30,6 +31,8 @@ public class TabActivity extends AppCompatActivity {
     NonVegFragment nonVegFragment;
     @InjectView(R.id.img_back)
     ImageView imageback;
+    @InjectView(R.id.img_viewCart)
+    ImageView viewCart;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
@@ -39,11 +42,12 @@ public class TabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
         //actionBarSetup();
+        ButterKnife.inject(this);
         vegFragment = new VegFragment();
         nonVegFragment = new NonVegFragment();
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         type = getIntent().getStringExtra("Type");
         tiffintype = getIntent().getStringExtra("TiffinType");
@@ -79,6 +83,15 @@ public class TabActivity extends AppCompatActivity {
 
             }
         });
+        viewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TabActivity.this, GoToCart.class);
+                intent.putExtra("AUTH_ID", "auth|987655646437544363647634");
+                finish();
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -105,6 +118,18 @@ public class TabActivity extends AppCompatActivity {
         }
         back_pressed = System.currentTimeMillis();
     }*/
+
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
+                startActivity(intent);
+                break;
+        }
+
+    }
 
     /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
       private void actionBarSetup() {
@@ -143,15 +168,7 @@ public class TabActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-    @OnClick({R.id.img_back})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_back:
-                onBackPressed();
-                Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
-                startActivity(intent);
-                break;
-        }
 
-    }
+
 }
+
