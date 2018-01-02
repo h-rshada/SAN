@@ -30,7 +30,6 @@
                 android:src="@drawable/gmail"
                 android:text="Email:" />
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -44,14 +43,10 @@
                 android:id="@+id/img_number"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:src="@drawable/phone"
-
-
-                />
+                android:src="@drawable/phone" />
 
         </LinearLayout>
     </LinearLayout>
