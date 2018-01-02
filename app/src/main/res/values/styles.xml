@@ -26,4 +26,16 @@
     </style>
 
 
+    <style name="my_style_table_textview">
+        <item name="android:width">120dp</item>
+        <item name="android:height">30dp</item>
+        <item name="android:background">@drawable/table_row_bg</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
 </resources>

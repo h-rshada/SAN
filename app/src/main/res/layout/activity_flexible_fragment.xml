@@ -26,6 +26,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#fff"
                 android:orientation="vertical">
                 <android.support.v7.widget.CardView
                     android:id="@+id/cardBasic"
@@ -41,7 +42,6 @@
                         android:background="@drawable/tiifin_content_textview_style"
                         android:gravity="center"
                         android:text="Basic Dabba"
-
                         android:textColor="#fff"
                         android:textSize="25dp"
                         android:textStyle="bold"/>
@@ -71,53 +71,28 @@
 
                            <TextView
                                android:id="@+id/tv_product"
-                               android:layout_width="100dp"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingBottom="4dp"
-                               android:paddingLeft="10dp"
-                               android:paddingRight="10dp"
-                               android:paddingTop="4dp"
+                               style="@style/my_style_table_textview"
                                android:text="TYPE"
-                               android:textAlignment="center"
-                               android:textColor="#000"
                                android:textStyle="bold" />
 
                            <TextView
                                android:id="@+id/tv_author"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingLeft="10dp"
-                               android:paddingRight="10dp"
+                               style="@style/my_style_table_textview"
                                android:text="Quantity"
-                               android:textColor="#000"
                                android:textStyle="bold">
-
                            </TextView>
                        </TableRow>
 
                        <TableRow>
                            <TextView
                                android:id="@+id/tv_product1"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingRight="10dp"
+                               style="@style/my_style_table_textview"
                                android:text="Chapati"
-                               android:textAlignment="center"
-                               android:textColor="@color/tiffin_content_txtcolor"
                                />
                            <TextView
                                android:id="@+id/tv_author1"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingLeft="10dp"
-                               android:paddingRight="10dp"
-                               android:text="3"
-                               android:textAlignment="center"
-                               android:textColor="@color/tiffin_content_txtcolor">
+                               style="@style/my_style_table_textview"
+                               android:text="3">
 
                            </TextView>
                        </TableRow>
@@ -126,73 +101,40 @@
 
                            <TextView
                                android:id="@+id/tv_product2"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingRight="10dp"
+                               style="@style/my_style_table_textview"
                                android:text="Rice"
-                               android:textAlignment="center"
-
-                               android:textColor="@color/tiffin_content_txtcolor"
                                />
                            <TextView
                                android:id="@+id/tv_author2"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingLeft="10dp"
-                               android:paddingRight="10dp"
-                               android:text="100gm"
-                               android:textAlignment="center"
-                               android:textColor="@color/tiffin_content_txtcolor">
+                               style="@style/my_style_table_textview"
+                               android:text="100gm">
 
                            </TextView>
                        </TableRow>
                        <TableRow>
                            <TextView
                                android:id="@+id/tv_product3"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingRight="10dp"
+                               style="@style/my_style_table_textview"
                                android:text="Dal"
-                               android:textAlignment="center"
-                               android:textColor="@color/tiffin_content_txtcolor"
                                />
                            <TextView
                                android:id="@+id/tv_author3"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingLeft="10dp"
-                               android:paddingRight="10dp"
-                               android:text="100gm"
-                               android:textAlignment="center"
-                               android:textColor="@color/tiffin_content_txtcolor">
+
+                               style="@style/my_style_table_textview"
+                               android:text="100gm">
 
                            </TextView>
                        </TableRow>
                        <TableRow>
                            <TextView
                                android:id="@+id/tv_product4"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingRight="10dp"
+                               style="@style/my_style_table_textview"
                                android:text="1 Subjii/Bhaji"
-                               android:textAlignment="center"
-                               android:textColor="@color/tiffin_content_txtcolor"
                                />
                            <TextView
                                android:id="@+id/tv_author4"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:background="@drawable/table_row_bg"
-                               android:paddingLeft="10dp"
-                               android:paddingRight="10dp"
-                               android:text="100gm"
-                               android:textAlignment="center"
-                               android:textColor="@color/tiffin_content_txtcolor">
+                               style="@style/my_style_table_textview"
+                               android:text="100gm">
 
                            </TextView>
                        </TableRow>
@@ -261,142 +203,78 @@
                         android:layout_marginTop="50dp"
                         android:gravity="center">
 
-                        <TableRow
-                            android:id="@+id/tr_header12"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/table_row_bg"
-                            android:padding="5dp">
+                        <TableRow>
 
                             <TextView
                                 android:id="@+id/tv_product12"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingRight="10dp"
+                                style="@style/my_style_table_textview"
                                 android:text="TYPE"
-                                android:textColor="#000"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tv_author12"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
+                                style="@style/my_style_table_textview"
                                 android:text="Quantity"
-                                android:textColor="#000"
                                 android:textStyle="bold">
-
                             </TextView>
                         </TableRow>
-                        <TableRow
-                            android:id="@+id/tr_header13"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/table_row_bg"
-                            android:padding="5dp">
+
+
+                        <TableRow>
                             <TextView
-                                android:id="@+id/tv_product13"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingRight="10dp"
+                                android:id="@+id/tv_chapati"
+                                style="@style/my_style_table_textview"
                                 android:text="Chapati"
-                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author13"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="4"
-                                android:textColor="@color/tiffin_content_txtcolor">
+                                style="@style/my_style_table_textview"
+                                android:text="4">
 
                             </TextView>
                         </TableRow>
 
-                        <TableRow
-                            android:id="@+id/tr_header14"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/table_row_bg"
-                            android:padding="5dp">
+
+                        <TableRow>
                             <TextView
                                 android:id="@+id/tv_product14"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingRight="10dp"
+                                style="@style/my_style_table_textview"
                                 android:text="Rice"
-                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author14"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="150gm"
-                                android:textColor="@color/tiffin_content_txtcolor">
-
+                                style="@style/my_style_table_textview"
+                                android:text="150gm">
                             </TextView>
                         </TableRow>
-                        <TableRow
-                            android:id="@+id/tr_header15"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/table_row_bg"
-                            android:padding="5dp">
+
+
+                        <TableRow>
                             <TextView
                                 android:id="@+id/tv_product15"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingRight="10dp"
+                                style="@style/my_style_table_textview"
                                 android:text="Dal"
-                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author15"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="150gm"
-                                android:textColor="@color/tiffin_content_txtcolor">
+
+                                style="@style/my_style_table_textview"
+                                android:text="150gm">
 
                             </TextView>
                         </TableRow>
-                        <TableRow
-                            android:id="@+id/tr_header16"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/table_row_bg"
-                            android:padding="5dp">
+
+
+                        <TableRow>
                             <TextView
                                 android:id="@+id/tv_product16"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingRight="10dp"
+                                style="@style/my_style_table_textview"
                                 android:text="2 Subjii/Bhaji"
-                                android:textColor="@color/tiffin_content_txtcolor"
                                 />
                             <TextView
                                 android:id="@+id/tv_author16"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/table_cell_bg"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="150gm"
-                                android:textColor="@color/tiffin_content_txtcolor">
+                                style="@style/my_style_table_textview"
+                                android:text="150gm">
 
                             </TextView>
                         </TableRow>

@@ -40,6 +40,15 @@
         </android.support.v7.widget.Toolbar>
 
         <ImageView
+            android:id="@+id/img_viewCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_refresh"
+            android:layout_marginEnd="19dp"
+            android:layout_toStartOf="@+id/img_refresh"
+            android:onClick="onClick"
+            android:src="@drawable/cart1" />
+        <ImageView
             android:id="@+id/img_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +58,7 @@
             android:layout_marginRight="22dp"
             android:onClick="refresh"
             android:src="@drawable/refresh" />
+
 
     </RelativeLayout>
     <android.support.design.widget.AppBarLayout
