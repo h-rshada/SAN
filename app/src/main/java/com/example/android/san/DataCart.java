@@ -7,5 +7,6 @@ import java.io.Serializable;
  */
 
 public class DataCart implements Serializable {
-    public String tiffin_plan, tiffin_type, menu, indian_bread, rice, dal, price, quantity, user_id;
+    public String tiffin_plan, tiffin_type, menu, indian_bread, rice, dal, price, quantity, user_id, id;
+    public int totalCartItems;
 }

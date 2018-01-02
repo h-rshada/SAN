@@ -49,6 +49,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView txtPrice;
     @InjectView(R.id.btnOrder)
     Button btnOrder;
+    RequestQueue requestQueue;
     Set menuset;
     SharedPreferences sp;
     String bread, rice, dal, amtoil, oiltype, heat, salt, menu, menu1, type, typetext, tiffintype, price;
@@ -81,7 +82,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
             txtMenu.setText(menu);
             Log.d("Menu", menu);
         } else if (tiffintype.equals("Heavy"))
-
         {
 
             if (type.equals("semiFlexible")) {
@@ -178,9 +178,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RequestQueue requestQueue = Volley.newRequestQueue(OrderDetailsActivity.this);
+                requestQueue = Volley.newRequestQueue(OrderDetailsActivity.this);
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                        Request.Method.POST, "http://192.168.0.22:8001/routes/server/app/requestFromApp.php", orderData,
+                        Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {

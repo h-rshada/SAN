@@ -34,14 +34,18 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-
+            <ImageView
+                android:id="@+id/img_viewCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/viewcart" />
         </android.support.v7.widget.Toolbar>
     </RelativeLayout>
     <android.support.design.widget.AppBarLayout
         android:id="@+id/tabs1"
-        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"

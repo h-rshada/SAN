@@ -69,7 +69,6 @@ Context context;
             case R.id.cardHeavy:
                 tiffinType = txtTiffinType1.getText().toString();
                 intent.putExtra("TiffinType", tiffinType);
-
                 startActivity(intent);
                 break;
 
