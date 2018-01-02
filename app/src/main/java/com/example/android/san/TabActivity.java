@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import am.appwise.components.ni.NoInternetDialog;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
@@ -31,6 +31,8 @@ public class TabActivity extends AppCompatActivity {
     NonVegFragment nonVegFragment;
     @InjectView(R.id.img_back)
     ImageView imageback;
+    @InjectView(R.id.img_viewCart)
+    ImageView viewCart;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
@@ -39,10 +41,8 @@ public class TabActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
-
-        new NoInternetDialog.Builder(TabActivity.this).build();
-
         //actionBarSetup();
+        ButterKnife.inject(this);
         vegFragment = new VegFragment();
         nonVegFragment = new NonVegFragment();
         viewPager = findViewById(R.id.viewpager);
@@ -81,6 +81,15 @@ public class TabActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+        viewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TabActivity.this, GoToCart.class);
+                intent.putExtra("AUTH_ID", "auth|987655646437544363647634");
+                finish();
+                startActivity(intent);
             }
         });
     }
@@ -122,12 +131,6 @@ public class TabActivity extends AppCompatActivity {
 
     }
 
-    public void refresh(View v) {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
-    }
-
     /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
       private void actionBarSetup() {
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -165,4 +168,7 @@ public class TabActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
+
 }
+

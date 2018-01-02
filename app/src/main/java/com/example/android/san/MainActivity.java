@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
     public void putUserInfo() {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address);
+        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId());
+        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId());
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
