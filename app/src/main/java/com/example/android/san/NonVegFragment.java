@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,8 +20,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,18 +74,18 @@ public class NonVegFragment extends Fragment {
     TextView day_saturday;
     @InjectView(R.id.txt_sun)
     TextView day_sunday;
-    @InjectView(R.id.recycleCardView)
-    CardView cardView;
-    @InjectView(R.id.txt_menuNotavailable)
-    TextView menuNotAvailable;
     @InjectView(R.id.txt_tiffininfo)
     TextView tiffin_tag;
+    @InjectView(R.id.txt_menuNotavailable)
+    TextView menuNotAvailable;
     @InjectView(R.id.spinner_rice)
     Spinner spinner_rice;
     @InjectView(R.id.spinner_dal)
     Spinner spinner_dal;
     @InjectView(R.id.btnSubmit)
     Button btnSubmit;
+    @InjectView(R.id.btnCart)
+    Button btnCart;
     AdapterCheckbox adapterCheckbox;
     AdapterRadioButton adapterRadioButton;
     RecyclerView recyclerView;
@@ -94,8 +102,9 @@ public class NonVegFragment extends Fragment {
     String day, week_day, dabba1, string = null;
     ArrayAdapter adapter_bread, adapter_rice, adapter_dal;
     SharedPreferences sp;
-    String type, tiffintype, dabba, t[];
+    String type, tiffintype, dabba, t[], price;
     SharedPreferences.Editor editor;
+    String auth_Id = "auth|987655646437544363647634";
     AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -167,14 +176,12 @@ public class NonVegFragment extends Fragment {
 
     public NonVegFragment() {
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_non_veg, container, false);
         ButterKnife.inject(this, view);
-
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
         editor.clear();
@@ -234,6 +241,7 @@ public class NonVegFragment extends Fragment {
             day_friday.setEnabled(false);
             day_saturday.setEnabled(false);
         }
+        btnCart.setText("ADD TO CART");
 
         ArrayAdapter<CharSequence> adapter_heat = ArrayAdapter.createFromResource(getActivity(), R.array.heat, android.R.layout.simple_spinner_item);
         adapter_heat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -251,10 +259,12 @@ public class NonVegFragment extends Fragment {
         adapter_salt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_salt.setAdapter(adapter_salt);
         type = getArguments().getString("Type").toLowerCase();
+        price = getArguments().getString("Price");
         t = getArguments().getString("TiffinType").split(" ");
         tiffintype = t[0];
-        Log.d("Type", type);
+        Log.d("Typeveg", type);
         Log.d("TiffinType", tiffintype);
+        Log.d("priceVeg", price);
         if (type.equals("semi flexible")) {
             str = type.split(" ");
             str1 = str[0];
@@ -278,7 +288,8 @@ public class NonVegFragment extends Fragment {
         editor.putString("DABBA", dabba);
         editor.putString("TIFFIN", tiffintype);
         editor.putString("TYPE", type);
-        //editor.putStringSet("HEAVY",null);
+        editor.putString("PRICE", price);
+
         editor.commit();
         String output = type.substring(0, 1).toUpperCase() + type.substring(1);
         tiffin_tag.setText(output + "/" + tiffintype);
@@ -304,46 +315,37 @@ public class NonVegFragment extends Fragment {
 
     }
 
-    @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun, R.id.btnSubmit})
+    @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun, R.id.btnSubmit, R.id.btnCart})
     public void onClick(View view) {
 
         switch (view.getId()) {
 
             case R.id.txt_mon:
-
                 week_day = "Monday";
                 getData();
-                //day_monday.setBackgroundResource(R.drawable.style_round1);
-
                 break;
             case R.id.txt_tue:
                 week_day = "Tuesday";
                 getData();
-
                 break;
             case R.id.txt_wed:
                 week_day = "Wednesday";
                 getData();
-
                 break;
             case R.id.txt_thu:
                 week_day = "Thursday";
-                //day_thursday.setBackgroundResource(R.drawable.style_round1);
                 getData();
                 break;
             case R.id.txt_fri:
-                //day_friday.setBackgroundResource(R.drawable.style_round1);
                 week_day = "Friday";
                 getData();
                 break;
             case R.id.txt_sat:
-                //day_saturday.setBackgroundResource(R.drawable.style_round1);
                 week_day = "Saturday";
                 getData();
                 break;
             case R.id.txt_sun:
                 week_day = "Sunday";
-                // day_sunday.setBackgroundResource(R.drawable.style_round1);
                 getData();
                 break;
             case R.id.btnSubmit:
@@ -360,6 +362,7 @@ public class NonVegFragment extends Fragment {
                 intent.putExtra("AmtOil", selectedAmtOil);
                 intent.putExtra("OilType", selectedOil);
                 intent.putExtra("Heat", selectedHeat);
+                intent.putExtra("Price", price);
                 if (count > 1) {
                     startActivity(intent);
                 } else if (!(string == null)) {
@@ -367,6 +370,92 @@ public class NonVegFragment extends Fragment {
                 } else {
                     Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.btnCart:
+
+                String text = btnCart.getText().toString();
+                count = sp.getInt("COUNT", 0);
+                Log.d("Count", count + "");
+                if (text.equals("ADD TO CART")) {
+                    menuset = new HashSet<String>();
+                    if (dabba.equals("semiHeavy")) {
+                        menuset.add(sp.getString("SEMISTR1", null));
+                        menuset.add(sp.getString("SEMISTR2", null));
+                    } else {
+                        menuset = sp.getStringSet("HEAVY", null);
+                    }
+
+                    Log.d("HeavyMenu", menuset + "");
+                    string = sp.getString("BASIC", null);
+                    //Log.d("BasicMenu",string);
+                    final JSONObject orderData = new JSONObject();
+                    try {
+                        String typetext = type.substring(0, 1).toUpperCase();
+
+                        orderData.put("tiffinPlan", typetext + type.substring(1));
+                        orderData.put("tiffinType", tiffintype);
+                        orderData.put("IndianBread", selectedBread);
+                        orderData.put("Rice", selectedRice);
+                        orderData.put("Dal", selectedDal);
+                        orderData.put("Price", price);
+                        orderData.put("Quantity", "1");
+                        orderData.put("Heat", selectedHeat);
+                        orderData.put("Salt", selectedSalt);
+                        orderData.put("AmountOfOil", selectedAmtOil);
+                        orderData.put("OilType", selectedOil);
+                        orderData.put("AuthId", "auth|987655646437544363647634");
+
+                        if (tiffintype.equals("Heavy")) {
+                            orderData.put("menu", menuset);
+                        } else {
+                            orderData.put("menu", string);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if (count > 1 || !(string == null)) {
+                        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                        Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php");
+                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        try {
+                                            Log.d("ResponseOrder", response.getString("response"));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
+                                    }
+                                }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                VolleyLog.d("Error: ", error.getMessage());
+
+
+                            }
+                        });
+                        requestQueue.add(jsonObjReq);
+                        btnCart.setText("GO TO CART");
+
+                        Log.d(orderData.toString(), "orderdata");
+                    } else {
+                        Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+
+                    }
+                } else {
+                    Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
+                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
+                    startActivity(intentGoToCart);
+                    //Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
+                }
+                break;
+
         }
     }
 
@@ -379,7 +468,7 @@ public class NonVegFragment extends Fragment {
             @Override
             public void onSuccess(String response) {
                 Log.d("Response", response);
-                // if(!response.contains("-1")) {
+
                 try {
                     arrayList = new ArrayList<>();
                     JSONArray jsonArray = new JSONArray(response);
@@ -394,29 +483,29 @@ public class NonVegFragment extends Fragment {
                         recyclerView = view.findViewById(R.id.Listmenu);
                         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-                        if (tiffintype.equals("Basic")) {
-                            adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
-                            recyclerView.setAdapter(adapterRadioButton);
-                            adapterRadioButton.notifyDataSetChanged();
-                        } else if (tiffintype.equals("Heavy")) {
-                            adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
-                            recyclerView.setAdapter(adapterCheckbox);
-                            adapterCheckbox.notifyDataSetChanged();
+                        if (!(arrayList.size() == 0)) {
+                            if (tiffintype.equals("Basic")) {
+                                adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                                recyclerView.setAdapter(adapterRadioButton);
+                                adapterRadioButton.notifyDataSetChanged();
+                            } else if (tiffintype.equals("Heavy")) {
+                                adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                                recyclerView.setAdapter(adapterCheckbox);
+                                adapterCheckbox.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                         }
                     }
-                    recyclerView.setVisibility(View.VISIBLE);
-                    menuNotAvailable.setVisibility(View.INVISIBLE);
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     menuNotAvailable.setText("oopss...,Menu is not provided for today");
                     menuNotAvailable.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.INVISIBLE);
                 }
-               /* }
-                else
-                {
-                    Toast.makeText(getActivity(),"data not available",Toast.LENGTH_LONG).show();
-                }*/
+
 
             }
         });
@@ -470,11 +559,12 @@ public class NonVegFragment extends Fragment {
         });
     }
 
+
     public void selectedData() {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        Log.d("URL", "http://192.168.0.107:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        Log.d("URL", "http://192.168.0.107:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
+        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {

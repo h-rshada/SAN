@@ -108,7 +108,9 @@ public class GoToCart extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(GoToCart.this, "Go to payment activity ", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(GoToCart.this, payment.class);
+                startActivity(intent);
+                finish();
             }
         });
         btnAddToCart.setOnClickListener(new View.OnClickListener() {

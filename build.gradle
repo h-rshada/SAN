@@ -3,6 +3,9 @@
 buildscript {
     
     repositories {
+        maven {
+            url 'https://dl.bintray.com/spark/maven'
+        }
         google()
         jcenter()
     }

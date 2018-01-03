@@ -449,6 +449,7 @@ public class VegFragment extends Fragment {
                         });
                         requestQueue.add(jsonObjReq);
                         btnCart.setText("GO TO CART");
+
                         Log.d(orderData.toString(), "orderdata");
                     } else {
                         Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();

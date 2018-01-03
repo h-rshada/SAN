@@ -7,7 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="15dp"
+        android:layout_margin="1dp"
+        android:layout_marginBottom="0dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -219,7 +220,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:background="#5b5756"
             android:orientation="horizontal">
 
@@ -242,7 +242,6 @@
                     android:id="@+id/btn_add"
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="43dp"
-
                     android:layout_height="30dp"
                     android:drawableRight="@drawable/plusnew" />
             <TextView
@@ -278,6 +277,17 @@
             android:textAlignment="textEnd"
             android:textColor="#fff" />
 
+        <!--<com.spark.submitbutton.SubmitButton-->
+        <!--android:id="@+id/btn_removeFromCart"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="cancel this order"-->
+        <!--android:textColor="@color/gray"-->
+        <!--app:sub_btn_background="@color/white"-->
+        <!--app:sub_btn_duration="2000"-->
+        <!--app:sub_btn_line_color="#f19d0c"-->
+        <!--app:sub_btn_ripple_color="#ff0019"-->
+        <!--app:sub_btn_tick_color="#00a2ff" />-->
         <LinearLayout
             android:id="@+id/layout_linear1"
             android:layout_width="match_parent"
@@ -286,7 +296,7 @@
             android:background="@color/colorAccent"
             android:orientation="vertical"
             android:paddingBottom="0dp"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
