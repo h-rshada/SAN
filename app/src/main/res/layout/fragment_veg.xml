@@ -429,7 +429,7 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:background="@drawable/shape"
-            android:drawableLeft="@drawable/cart1"
+            android:drawableLeft="@drawable/addcart"
             android:drawablePadding="10dp"
             android:paddingLeft="33dp"
             android:text="add to cart"

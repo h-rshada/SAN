@@ -47,7 +47,7 @@
             android:layout_marginEnd="19dp"
             android:layout_toStartOf="@+id/img_refresh"
             android:onClick="onClick"
-            android:src="@drawable/cart1" />
+            android:src="@drawable/simplecart2" />
         <ImageView
             android:id="@+id/img_refresh"
             android:layout_width="wrap_content"

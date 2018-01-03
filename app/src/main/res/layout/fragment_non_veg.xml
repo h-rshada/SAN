@@ -40,72 +40,73 @@
                     android:id="@+id/layout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
                     android:weightSum="3">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/nonveg_frag_shape_textview"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Bread"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape"
-                            android:gravity="center"
-                            android:padding="0dp"
-                            android:text="Bread"
-                            android:textColor="#fff"
-                            android:textStyle="bold" />
+                    <Spinner
+                        android:id="@+id/spinner_indianBread"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
 
-                        <Spinner
-                            android:id="@+id/spinner_indianBread"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/nonveg_frag_shape_textview"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Rice"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape"
-                            android:gravity="center"
-                            android:text="Rice"
-                            android:textColor="#fff"
-                            android:textStyle="bold" />
 
-                        <Spinner
-                            android:id="@+id/spinner_rice"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></Spinner>
-                    </LinearLayout>
+                    <Spinner
+                        android:id="@+id/spinner_rice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></Spinner>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/nonveg_frag_shape_textview"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Dal"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape"
-                            android:gravity="center"
-                            android:text="Dal"
-                            android:textColor="#fff"
-                            android:textStyle="bold" />
-
-                        <Spinner
-                            android:id="@+id/spinner_dal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
+                    <Spinner
+                        android:id="@+id/spinner_dal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -126,11 +127,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layout1"
+
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+
                         android:padding="1dp">
 
                         <TextView
@@ -138,9 +142,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/spinner_indianBread"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="5dp"
-                            android:paddingTop="2dp"
+                            android:paddingTop="4dp"
                             android:text="Heat "
                             android:textColor="@color/black"
                             android:textSize="15dp"
@@ -148,9 +153,10 @@
 
                         <Spinner
                             android:id="@+id/spinner_heat"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="135dp"
+                            android:layout_marginLeft="130dp"
                             android:layout_marginRight="15dp"
                             android:layout_marginTop="5dp"
                             android:focusable="true"
@@ -164,6 +170,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:padding="1dp">
 
                         <TextView
@@ -171,9 +178,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txt_heat"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="3dp"
-                            android:paddingTop="2dp"
+                            android:paddingTop="3dp"
                             android:text="Amount of oil "
                             android:textColor="@color/black"
                             android:textSize="15dp"
@@ -181,9 +189,10 @@
 
                         <Spinner
                             android:id="@+id/spinner_amountOfOil"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="75dp"
+                            android:layout_marginLeft="70dp"
                             android:layout_marginRight="15dp"
                             android:layout_marginTop="3dp"
                             android:focusable="true"
@@ -194,6 +203,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:padding="1dp">
 
                         <TextView
@@ -201,6 +211,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txt_heat"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="3dp"
                             android:paddingTop="3dp"
@@ -211,9 +222,10 @@
 
                         <Spinner
                             android:id="@+id/spinner_typeOfOil"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="95dp"
+                            android:layout_marginLeft="90dp"
                             android:layout_marginRight="15dp"
                             android:layout_marginTop="3dp"
                             android:focusable="true"
@@ -224,13 +236,15 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:padding="1dp">
-
                         <TextView
                             android:id="@+id/txt_salt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txt_heat"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="3dp"
                             android:paddingBottom="5dp"
@@ -242,11 +256,12 @@
 
                         <Spinner
                             android:id="@+id/spinner_salt"
+                            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="140dp"
+                            android:layout_marginLeft="135dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginTop="5dp"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
                             android:paddingBottom="5dp" />
@@ -391,16 +406,43 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnSubmit"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:text="order"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+        <Button
+            android:id="@+id/btnCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape"
+            android:drawableLeft="@drawable/addcart"
+            android:drawablePadding="10dp"
+            android:paddingLeft="33dp"
+            android:text="add to cart"
+            android:textAlignment="textStart"
+
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape2"
+            android:drawableLeft="@drawable/submit1"
+            android:drawablePadding="10dp"
+            android:paddingLeft="33dp"
+            android:text="submit"
+            android:textAlignment="textStart"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
 
 </RelativeLayout>

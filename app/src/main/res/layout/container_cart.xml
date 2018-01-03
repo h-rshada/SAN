@@ -278,6 +278,17 @@
             android:textAlignment="textEnd"
             android:textColor="#fff" />
 
+        <!--<com.spark.submitbutton.SubmitButton-->
+        <!--android:id="@+id/btn_removeFromCart"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="cancel this order"-->
+        <!--android:textColor="@color/gray"-->
+        <!--app:sub_btn_background="@color/white"-->
+        <!--app:sub_btn_duration="2000"-->
+        <!--app:sub_btn_line_color="#f19d0c"-->
+        <!--app:sub_btn_ripple_color="#ff0019"-->
+        <!--app:sub_btn_tick_color="#00a2ff" />-->
         <LinearLayout
             android:id="@+id/layout_linear1"
             android:layout_width="match_parent"
