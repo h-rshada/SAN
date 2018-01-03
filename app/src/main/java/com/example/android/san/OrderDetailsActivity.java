@@ -180,7 +180,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 requestQueue = Volley.newRequestQueue(OrderDetailsActivity.this);
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                        Request.Method.POST, "http://192.168.0.22:8001/routes/server/app/addToCart.rfa.php", orderData,
+                        Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {

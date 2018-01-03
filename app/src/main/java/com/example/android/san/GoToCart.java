@@ -52,8 +52,8 @@ public class GoToCart extends AppCompatActivity {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(GoToCart.this);
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
-        Log.d("getDataURL: ", "http://192.168.0.22:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
+        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
+        Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {

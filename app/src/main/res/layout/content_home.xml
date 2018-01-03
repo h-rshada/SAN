@@ -12,11 +12,11 @@
         android:layout_marginTop="0dp"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:id="@+id/LinearLayout_31"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/slider"
@@ -35,18 +35,10 @@
 
             android:orientation="vertical">
 
-            <com.andexert.library.RippleView
-                android:id="@+id/more"
-                rv_centered="true"
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/card_view1"
-                    android:layout_width="250dp"
+                    android:layout_width="300dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:background="@drawable/aboutus2"
@@ -58,7 +50,6 @@
                         android:id="@+id/order"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:scaleType="fitXY"
@@ -78,19 +69,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="70dp"
+                        android:layout_marginLeft="76dp"
                         android:layout_marginRight="70dp"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="cursive"
                         android:gravity="center"
                         android:padding="3dp"
                         android:text=" Order Online"
-                        android:textColor="#D50000"
-                        android:textSize="20dp"
-                        android:textStyle="normal|bold"
+                        android:textColor="#000"
+                        android:textSize="18dp"
+                        android:textStyle="normal"
                         android:typeface="serif" />
                 </android.support.v7.widget.CardView>
-            </com.andexert.library.RippleView>
+
 
         </LinearLayout>
 
@@ -102,18 +92,11 @@
 
             android:orientation="vertical">
 
-            <com.andexert.library.RippleView
 
-                rv_centered="true"
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/card_view2"
-                    android:layout_width="250dp"
+                    android:layout_width="300dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:background="@color/colorPrimary"
@@ -144,21 +127,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="70dp"
+                        android:layout_marginLeft="75dp"
                         android:layout_marginRight="70dp"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="cursive"
                         android:gravity="center"
                         android:padding="3dp"
                         android:text=" About Us"
-                        android:textColor="#D50000"
-                        android:textSize="20dp"
-                        android:textStyle="normal|bold"
+                        android:textColor="#000"
+                        android:textSize="18dp"
+                        android:textStyle="normal"
 
                         android:typeface="serif" />
 
                 </android.support.v7.widget.CardView>
-            </com.andexert.library.RippleView>
+
         </LinearLayout>
 
         <LinearLayout
@@ -169,18 +151,11 @@
             android:layout_marginTop="15dp"
             android:orientation="vertical">
 
-            <com.andexert.library.RippleView
 
-                rv_centered="true"
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/card_view3"
-                    android:layout_width="250dp"
+                    android:layout_width="300dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:background="@color/colorPrimary"
@@ -213,21 +188,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="70dp"
+                        android:layout_marginLeft="75dp"
                         android:layout_marginRight="70dp"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="cursive"
                         android:gravity="center"
                         android:padding="3dp"
                         android:text=" Find Us"
-                        android:textColor="#D50000"
-                        android:textSize="20dp"
-                        android:textStyle="normal|bold"
-
+                        android:textColor="#000"
+                        android:textSize="18dp"
+                        android:textStyle="normal"
                         android:typeface="serif" />
 
                 </android.support.v7.widget.CardView>
-            </com.andexert.library.RippleView>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+
 /**
  * Created by android on 11/22/17.
  */
@@ -103,7 +104,10 @@ public class UrlRequest
                     });
             requestQueue.add(stringRequest);
         } else {
+
+
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
+
         }
         return result;
     }

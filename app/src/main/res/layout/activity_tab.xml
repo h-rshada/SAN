@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+
     tools:context="com.example.android.san.TabActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,21 +38,48 @@
 
 
         </android.support.v7.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/img_viewCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_refresh"
+            android:layout_marginEnd="19dp"
+            android:layout_toStartOf="@+id/img_refresh"
+            android:onClick="onClick"
+            android:src="@drawable/cart1" />
+        <ImageView
+            android:id="@+id/img_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="22dp"
+            android:onClick="refresh"
+            android:src="@drawable/refresh" />
+
+
     </RelativeLayout>
     <android.support.design.widget.AppBarLayout
         android:id="@+id/tabs1"
-        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="#f00">
+
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#f19d0c"
             app:tabGravity="fill"
-            app:tabIndicatorColor="#ffffff"
+            app:tabIndicatorColor="#fff"
             app:tabMode="fixed"
-            app:tabTextColor="#000000" />
+            app:tabSelectedTextColor="#000"
+            app:tabTextAppearance="?android:attr/textAppearanceMedium"
+            app:tabTextColor="#000" />
     </android.support.design.widget.AppBarLayout>
 
 
