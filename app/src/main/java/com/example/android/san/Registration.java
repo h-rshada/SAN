@@ -65,7 +65,7 @@ public class Registration extends AppCompatActivity {
                 if (flag == 0) {
                     urlRequest = UrlRequest.getObject();
                     urlRequest.setContext(getApplicationContext());
-                    urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/userData.rfa.php?name=" + name + "&password=" + password + "&phone=" + phone + "&address=" + address);
+                    urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/userData.rfa.php?name=" + name + "&password=" + password + "&phone=" + phone + "&address=" + address);
                     urlRequest.getResponse(new ServerCallback() {
                         @Override
                         public void onSuccess(String response) {

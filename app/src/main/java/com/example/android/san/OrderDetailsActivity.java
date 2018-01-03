@@ -52,14 +52,20 @@ public class OrderDetailsActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     Set menuset;
     SharedPreferences sp;
+    SharedPreferences.Editor editor;
     String bread, rice, dal, amtoil, oiltype, heat, salt, menu, menu1, type, typetext, tiffintype, price;
-
+    boolean login;
+    String auth_id = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
         ButterKnife.inject(this);
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        auth_id = sp.getString("AUTH_ID", "");
+        Log.d("Login@@@", login + "");
+        Log.d("Auth_id", auth_id);
         menuset = new HashSet<String>();
         type = sp.getString("TYPE", null);
         tiffintype = sp.getString("TIFFIN", null);
@@ -199,5 +205,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 requestQueue.add(jsonObjReq);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        editor = sp.edit();
+        editor.putBoolean("LOGIN", true);
+        editor.commit();
     }
 }

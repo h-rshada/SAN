@@ -111,6 +111,7 @@ public class GoToCart extends AppCompatActivity {
             public void onClick(View view) {
                 editor = sp.edit();
                 editor.putString("AUTH_ID", auth_Id);
+                editor.putBoolean("LOGIN", true);
                 editor.commit();
                 Intent intent = new Intent(GoToCart.this, payment.class);
                 startActivity(intent);
