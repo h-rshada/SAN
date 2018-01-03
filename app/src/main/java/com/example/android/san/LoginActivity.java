@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
     String id = "";
     UserProfile userProfile1;
     Button loginButton;
+    Intent intent;
+    String parentActivityName;
     private Auth0 auth0;
     private AuthenticationAPIClient authenticationClient;
     AuthCallback callback = new AuthCallback() {
@@ -119,6 +121,10 @@ public class LoginActivity extends AppCompatActivity {
         auth0 = new Auth0(this);
         auth0.setOIDCConformant(true);
         loginButton = findViewById(R.id.loginButton);
+        intent = getIntent();
+        parentActivityName = intent.getStringExtra("PARENT_ACTIVITY_NAME");
+        Log.d("ParentActivity", parentActivityName);
+
         authenticationClient = new AuthenticationAPIClient(auth0);
         authenticationClient.userInfo(CredentialManager.getCredentials(getApplicationContext()).getAccessToken())
                 .start(new BaseCallback<UserProfile, AuthenticationException>() {
@@ -127,13 +133,13 @@ public class LoginActivity extends AppCompatActivity {
                         userProfile1 = userProfile;
                         id = userProfile1.getId();
                         editor.putString("AUTH_ID", id);
+                        editor.putBoolean("LOGIN", true);
                         editor.commit();
-                        Log.d("Id", id);
+                        Log.d("Id1", id);
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 checkData(id);
-                                editor.putBoolean("LOGIN", true);
-                                editor.commit();
+
                                 Toast.makeText(LoginActivity.this, "Automatic Login Success", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -168,7 +174,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //If the token exists, try to fetch the associated user info
         loginButton.setEnabled(true);
-
     }
 
     private void doLogin() {
@@ -177,24 +182,42 @@ public class LoginActivity extends AppCompatActivity {
                 .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
                 .withScope("openid offline_access")
                 .start(this, callback);
-
-
     }
 
     public void checkData(String id) {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        Log.d("checkData: ", "http://192.168.0.22:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
+        Log.d("checkData: ", "http://192.168.0.107:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
+        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
                 Log.d("Response*", response);
                 if (response.contains("EXISTS")) {
-                    Intent intent = new Intent(LoginActivity.this, GoToCart.class);
+
+                    intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
+
+                   /* if(parentActivityName.equals("UserProfile"))
+                    {
+                       intent=new Intent(LoginActivity.this,HomeActivity.class);
+                       startActivity(intent);
+                       finish();
+                    }
+                    else if(parentActivityName.equals("VegFragment"))
+                    {
+                        intent=new Intent(LoginActivity.this,HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                        {
+                        intent = new Intent(LoginActivity.this, GoToCart.class);
+                        startActivity(intent);
+                        finish();
+                    }*/
                 } else {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
@@ -204,4 +227,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (parentActivityName.equals("UserProfile")) {
+            intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 }

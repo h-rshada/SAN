@@ -40,7 +40,6 @@ public class UserProfile extends AppCompatActivity {
     TextView txtLogout;
     @InjectView(R.id.imgEdit)
     ImageView imgEdit;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +49,7 @@ public class UserProfile extends AppCompatActivity {
         editor = sp.edit();
         if (!sp.getBoolean("LOGIN", false)) {
             intent = new Intent(UserProfile.this, LoginActivity.class);
+            intent.putExtra("PARENT_ACTIVITY_NAME", "UserProfile");
             startActivity(intent);
         } else {
             getData();
@@ -97,8 +97,6 @@ public class UserProfile extends AppCompatActivity {
                         alertDialog.dismiss();
                     }
                 });
-
-
                 break;
             case R.id.imgEdit:
                 intent = new Intent(UserProfile.this, MainActivity.class);
@@ -109,12 +107,12 @@ public class UserProfile extends AppCompatActivity {
 
     public void getData() {
 
-        id = sp.getString("AUTH_ID", null);
+        id = sp.getString("AUTH_ID", "");
         Log.d("Id", id);
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        Log.d("checkData: ", "http://192.168.0.22:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
-        urlRequest.setUrl("http://192.168.0.22:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
+        Log.d("checkData: ", "http://192.168.0.107:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
+        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {

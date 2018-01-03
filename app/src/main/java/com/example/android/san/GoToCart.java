@@ -47,6 +47,7 @@ public class GoToCart extends AppCompatActivity {
         final List<DataCart> data = new ArrayList<>();
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
+        // auth_Id =sp.getString("AUTH_ID",null);
         auth_Id = getIntent().getStringExtra("AUTH_ID");
         Log.d("AUTH_ID", auth_Id);
 
@@ -108,6 +109,9 @@ public class GoToCart extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editor = sp.edit();
+                editor.putString("AUTH_ID", auth_Id);
+                editor.commit();
                 Intent intent = new Intent(GoToCart.this, payment.class);
                 startActivity(intent);
                 finish();
@@ -116,6 +120,9 @@ public class GoToCart extends AppCompatActivity {
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editor = sp.edit();
+                editor.putBoolean("LOGIN", true);
+                editor.commit();
 
                 Intent intent = new Intent(GoToCart.this, MenuTypeTab.class);
                 startActivity(intent);
@@ -124,14 +131,17 @@ public class GoToCart extends AppCompatActivity {
         });
 
     }
-    
-    /*@Override
+
+    @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        Intent intent = new Intent(GoToCart.this, TabActivity.class);
+        editor = sp.edit();
+        editor.putBoolean("LOGIN", true);
+        editor.commit();
+        Intent intent = new Intent(GoToCart.this, HomeActivity.class);
         startActivity(intent);
         finish();
-    }*/
+    }
 }
 
 

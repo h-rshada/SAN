@@ -79,6 +79,9 @@
         <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".addToCart" />
         <activity android:name=".GoToCart" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".UserProfile" />
         <activity
             android:name=".MenuTypeTab"
             android:label=""

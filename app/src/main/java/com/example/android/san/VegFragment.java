@@ -82,6 +82,7 @@ public class VegFragment extends Fragment {
     View view;
     int count = 0;
     Set menuset;
+    boolean login = false;
     String selectedBread, selectedSalt, selectedRice, selectedDal, selectedOil, selectedAmtOil, selectedHeat, spinner_item;
     String item, str[], str1, str2, menu;
     String day, week_day, dabba1, string = null;
@@ -89,7 +90,7 @@ public class VegFragment extends Fragment {
     SharedPreferences sp;
     String type, tiffintype, dabba, t[], price;
     SharedPreferences.Editor editor;
-    String auth_Id = "auth|987655646437544363647634";
+    String auth_Id = "";
     AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -171,9 +172,15 @@ public class VegFragment extends Fragment {
         ButterKnife.inject(this, view);
 
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        auth_Id = sp.getString("AUTH_ID", "");
+        Log.d("Login####", login + "");
+
+        Log.d("Auth^^^^", auth_Id);
         editor = sp.edit();
         editor.clear();
         editor.commit();
+
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
@@ -315,7 +322,7 @@ public class VegFragment extends Fragment {
 
         Log.d("onCreateView: ", arrayList1 + "");
         getData();
-        if(dabba.equals("semiHeavy") || dabba.equals("fixedBasic")|| dabba.equals("fixedHeavy")) {
+        if (dabba.equals("semiHeavy") || dabba.equals("fixedBasic") || dabba.equals("fixedHeavy")) {
             selectedData();
         }
         return view;
@@ -395,6 +402,8 @@ public class VegFragment extends Fragment {
                     Log.d("HeavyMenu", menuset + "");
                     string = sp.getString("BASIC", null);
                     //Log.d("BasicMenu",string);
+
+                    //  Log.d("Authid",auth_Id);
                     final JSONObject orderData = new JSONObject();
                     try {
                         String typetext = type.substring(0, 1).toUpperCase();
@@ -410,7 +419,7 @@ public class VegFragment extends Fragment {
                         orderData.put("Salt", selectedSalt);
                         orderData.put("AmountOfOil", selectedAmtOil);
                         orderData.put("OilType", selectedOil);
-                        orderData.put("AuthId", "auth|987655646437544363647634");
+                        orderData.put("AuthId", auth_Id);
 
                         if (tiffintype.equals("Heavy")) {
                             orderData.put("menu", menuset);
@@ -422,44 +431,55 @@ public class VegFragment extends Fragment {
                         e.printStackTrace();
                     }
                     if (count > 1 || !(string == null)) {
+                        if (login) {
                         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                        Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php");
-                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
-                                new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        try {
-                                            Log.d("ResponseOrder", response.getString("response"));
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
+                            Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php");
+                            JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                    Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            try {
+                                                Log.d("ResponseOrder", response.getString("response"));
+                                              /*  if (response.getString("response").equals("OK"))
+                                                {
+                                                    Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
+                                                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
+                                                    startActivity(intentGoToCart);
+                                                 }*/
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                                         }
+                                    }, new Response.ErrorListener() {
 
-                                        Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
-                                    }
-                                }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
+                                    VolleyLog.d("Error: ", error.getMessage());
+                                }
+                            });
+                            requestQueue.add(jsonObjReq);
 
-                                VolleyLog.d("Error: ", error.getMessage());
-
-
-                            }
-                        });
-                        requestQueue.add(jsonObjReq);
                         btnCart.setText("GO TO CART");
 
                         Log.d(orderData.toString(), "orderdata");
+                        } else {
+                            Intent intentlogin = new Intent(getContext(), LoginActivity.class);
+                            intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                            startActivity(intentlogin);
+                        }
                     } else {
                         Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
-
                     }
+
                 } else {
                     Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
                     intentGoToCart.putExtra("AUTH_ID", auth_Id);
                     startActivity(intentGoToCart);
-                    //Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
                 }
                 break;
 
@@ -573,7 +593,6 @@ public class VegFragment extends Fragment {
         });
     }
 
-
     public void selectedData()
     {
         urlRequest = UrlRequest.getObject();
@@ -612,8 +631,6 @@ public class VegFragment extends Fragment {
                 }
             }
         });
-
     }
-
 
 }

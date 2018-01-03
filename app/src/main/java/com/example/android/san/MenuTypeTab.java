@@ -1,7 +1,9 @@
 package com.example.android.san;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -39,10 +42,12 @@ public class MenuTypeTab extends AppCompatActivity {
     BreakFastFragment breakFastFragment;
     @InjectView(R.id.img_back)
     ImageView imageback;
+    SharedPreferences sp;
+    boolean login;
+    SharedPreferences.Editor editor;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,9 @@ public class MenuTypeTab extends AppCompatActivity {
         semiFlexibleFragment = new SemiFlexibleFragment();
         fixedFragment=new FixedFragment();
         breakFastFragment=new BreakFastFragment();
-
+        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        Log.d("Login&&&&&&&", login + "");
         viewPager = findViewById(R.id.pager);
         setupViewPager(viewPager);
         toolbar = findViewById(R.id.toolbar1);
@@ -116,6 +123,14 @@ public class MenuTypeTab extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        editor = sp.edit();
+        editor.putBoolean("LOGIN", true);
+        editor.commit();
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

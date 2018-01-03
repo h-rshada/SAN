@@ -39,6 +39,8 @@ public class HomeActivity extends AppCompatActivity
     @InjectView(R.id.find)
     ImageView find;
     Intent intent;
+    SharedPreferences sp;
+    boolean login;
 
 
     MenuItem menuItem;
@@ -49,6 +51,9 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        Log.d("Login^^^^^^^6666", login + "");
 
         sliderLayout = findViewById(R.id.slider);
         Hash_file_maps=new HashMap<String, Integer>();
@@ -138,12 +143,12 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         menuItem = item;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
 
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivityForResult(intent, 100);
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -178,6 +183,10 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.nav_account) {
+            intent = new Intent(HomeActivity.this, UserProfile.class);
+            startActivity(intent);
+        }
 
         if (id == R.id.nav_home) {
             // Handle the camera action
