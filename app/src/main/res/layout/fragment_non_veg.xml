@@ -19,12 +19,12 @@
                 android:id="@+id/txt_tiffininfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#F8BBD0"
+                android:background="#b34168"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textColor="#2196F3"
+                android:textColor="#ffffff"
                 android:textSize="20dp"
-                android:textStyle="italic|bold" />
+                android:textStyle="bold" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/itemCardView1"

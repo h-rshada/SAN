@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -368,7 +369,9 @@ public class NonVegFragment extends Fragment {
                 } else if (!(string == null)) {
                     startActivity(intent);
                 } else {
-                    Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+                    TastyToast.makeText(getContext(), "Please select Subjis..!", TastyToast.LENGTH_LONG, TastyToast.INFO);
+
                 }
                 break;
             case R.id.btnCart:

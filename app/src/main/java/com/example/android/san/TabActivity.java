@@ -1,8 +1,6 @@
 package com.example.android.san;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -35,8 +33,6 @@ public class TabActivity extends AppCompatActivity {
     ImageView imageback;
     @InjectView(R.id.img_viewCart)
     ImageView viewCart;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
@@ -47,7 +43,6 @@ public class TabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab);
         //actionBarSetup();
         ButterKnife.inject(this);
-        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         vegFragment = new VegFragment();
         nonVegFragment = new NonVegFragment();
         viewPager = findViewById(R.id.viewpager);
@@ -129,19 +124,18 @@ public class TabActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.img_back:
                 onBackPressed();
-               /* Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
+                startActivity(intent);
                 break;
         }
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        editor = sp.edit();
-        editor.putBoolean("LOGIN", true);
-        editor.commit();
+    public void refresh(View v) {
+        Intent i = getIntent();
+        finish();
+        startActivity(i);
+
     }
 
     /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)

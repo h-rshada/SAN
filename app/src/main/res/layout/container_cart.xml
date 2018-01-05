@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="1dp"
+        android:layout_margin="10dp"
         android:layout_marginBottom="0dp"
         android:orientation="vertical">
 
@@ -15,16 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#34ff6b"
                 android:paddingLeft="5dp"
                 android:text="Tiffin Plan :"
-                android:textColor="@color/white"
+                android:textColor="#062525"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -33,24 +33,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#062525"
                 android:paddingLeft="5dp"
-                android:textColor="@color/white"
+                android:textColor="#34ff6b"
                 android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#34ff6b"
                 android:paddingLeft="5dp"
                 android:text="Tiffin Type :"
-                android:textColor="@color/white"
+                android:textColor="#062525"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -59,8 +60,37 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#062525"
                 android:paddingLeft="5dp"
-                android:textColor="@color/white"
+                android:textColor="#34ff6b"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#34ff6b"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#34ff6b"
+                android:paddingLeft="3dp"
+                android:text="Menu :"
+                android:textColor="#062525"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtMenu4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#062525"
+                android:paddingLeft="5dp"
+                android:textColor="#34ff6b"
                 android:textSize="20dp" />
         </LinearLayout>
 
@@ -71,55 +101,14 @@
             android:background="#FF1744"
             android:orientation="horizontal">
 
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="5dp"
-                android:text="Menu :"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtMenu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:textColor="@color/white"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/txtMenu1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:visibility="gone" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FF1744"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:background="#34ff6b"
                 android:paddingLeft="5dp"
                 android:text="Indian Bread :"
-                android:textColor="@color/white"
+                android:textColor="#062525"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -128,8 +117,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#062525"
                 android:paddingLeft="5dp"
-                android:textColor="@color/white"
+                android:textColor="#34ff6b"
                 android:textSize="20dp" />
         </LinearLayout>
 
@@ -143,9 +133,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#34ff6b"
                 android:paddingLeft="5dp"
                 android:text="Rice :"
-                android:textColor="@color/white"
+                android:textColor="#062525"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -154,8 +145,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#062525"
                 android:paddingLeft="5dp"
-                android:textColor="@color/white"
+                android:textColor="#34ff6b"
                 android:textSize="20dp" />
 
         </LinearLayout>
@@ -170,9 +162,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#34ff6b"
                 android:paddingLeft="5dp"
                 android:text="Dal :"
-                android:textColor="@color/white"
+                android:textColor="#062525"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -181,8 +174,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#062525"
                 android:paddingLeft="5dp"
-                android:textColor="@color/white"
+                android:textColor="#34ff6b"
                 android:textSize="20dp" />
 
         </LinearLayout>
@@ -190,9 +184,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-
-            android:background="#142939"
+            android:layout_marginTop="2dp"
+            android:background="#ff2b00"
             android:orientation="horizontal">
 
             <TextView
@@ -259,7 +252,7 @@
                     android:layout_width="40dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="10dp"
-                    android:drawableRight="@drawable/delete" />
+                    android:drawableRight="@drawable/remove11" />
             </LinearLayout>
 
         </LinearLayout>
@@ -292,22 +285,22 @@
             android:id="@+id/layout_linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorAccent"
+            android:layout_marginTop="12dp"
             android:orientation="vertical"
             android:paddingBottom="0dp"
             android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="#e3f2ed">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Total Price"
-                android:textColor="#00B0FF"
+                android:textColor="#000000"
                 android:textSize="22dp"
                 android:textStyle="bold" />
 
@@ -317,14 +310,15 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Total Quantity"
-                    android:textColor="#00B0FF"
+                    android:textColor="#000000"
                     android:textSize="22dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="#e3f2ed">
 
                 <TextView
                     android:id="@+id/txt_totalPrice"
@@ -332,7 +326,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#00B0FF"
+                    android:textColor="#002854"
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
@@ -340,9 +334,10 @@
                     android:id="@+id/txt_totalQuantity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#00B0FF"
+                    android:textColor="#002854"
                     android:textSize="22dp"
                     android:textStyle="bold" />
             </LinearLayout>

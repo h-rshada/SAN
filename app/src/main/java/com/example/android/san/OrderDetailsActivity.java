@@ -31,13 +31,13 @@ import butterknife.InjectView;
 
 public class OrderDetailsActivity extends AppCompatActivity {
 
-    @InjectView(R.id.txtMenu)
-    TextView txtMenu;
+    @InjectView(R.id.txtMenu3)
+    TextView txtMenu3;
     @InjectView(R.id.txtTiffinPlan)
     TextView tiffinPlan;
     @InjectView(R.id.txtTiffinType)
     TextView tiffinType;
-    @InjectView(R.id.txtMenu1)
+    @InjectView(R.id.txtMenu3)
     TextView txtMenu1;
     @InjectView(R.id.txtBread)
     TextView txtBread;
@@ -52,20 +52,14 @@ public class OrderDetailsActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     Set menuset;
     SharedPreferences sp;
-    SharedPreferences.Editor editor;
     String bread, rice, dal, amtoil, oiltype, heat, salt, menu, menu1, type, typetext, tiffintype, price;
-    boolean login;
-    String auth_id = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
         ButterKnife.inject(this);
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-        login = sp.getBoolean("LOGIN", false);
-        auth_id = sp.getString("AUTH_ID", "");
-        Log.d("Login@@@", login + "");
-        Log.d("Auth_id", auth_id);
         menuset = new HashSet<String>();
         type = sp.getString("TYPE", null);
         tiffintype = sp.getString("TIFFIN", null);
@@ -85,13 +79,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
         }
         if (tiffintype.equals("Basic")) {
             menu = sp.getString("BASIC", null);
-            txtMenu.setText(menu);
+            txtMenu3.setText(menu);
             Log.d("Menu", menu);
         } else if (tiffintype.equals("Heavy"))
         {
 
             if (type.equals("semiFlexible")) {
-                txtMenu.setText("1." + sp.getString("SEMISTR1", null));
+                txtMenu3.setText("1." + sp.getString("SEMISTR1", null));
                 txtMenu1.setVisibility(View.VISIBLE);
                 txtMenu1.setText("2." + sp.getString("SEMISTR2", null));
                 menuset.add(sp.getString("SEMISTR1", null));
@@ -113,7 +107,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 }
                 menu = listOfNames.get(0).toString();
                 menu1 = listOfNames.get(1).toString();
-                txtMenu.setText("1." + menu);
+                txtMenu3.setText("1." + menu);
                 txtMenu1.setVisibility(View.VISIBLE);
                 txtMenu1.setText("2." + menu1);
                 Log.d("Adapterlist***", listOfNames.toString());
@@ -207,11 +201,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        editor = sp.edit();
-        editor.putBoolean("LOGIN", true);
-        editor.commit();
+    public void backspaceorderdetails(View v) {
+        onBackPressed();
     }
 }

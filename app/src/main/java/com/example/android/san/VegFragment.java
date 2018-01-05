@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -170,6 +171,7 @@ public class VegFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
+
 
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);
@@ -468,6 +470,10 @@ public class VegFragment extends Fragment {
                             requestQueue.add(jsonObjReq);
 
                         btnCart.setText("GO TO CART");
+                            Drawable icon = this.getResources().getDrawable(R.drawable.next);
+                            // btnCart.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
+                            btnCart.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+                            Toast.makeText(getContext(), "Tiffin added into cart, now goto cart", Toast.LENGTH_LONG).show();
 
                         Log.d(orderData.toString(), "orderdata");
                         } else {

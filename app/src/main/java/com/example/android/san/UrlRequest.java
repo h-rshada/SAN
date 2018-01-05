@@ -2,7 +2,6 @@ package com.example.android.san;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -16,6 +15,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sdsmdg.tastytoast.TastyToast;
 
 
 /**
@@ -105,10 +105,13 @@ public class UrlRequest
             requestQueue.add(stringRequest);
         } else {
 
+            TastyToast.makeText(context, "No Internet Connection..!", TastyToast.LENGTH_LONG, TastyToast.ERROR);
 
-            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
 
         }
         return result;
     }
+
+
 }

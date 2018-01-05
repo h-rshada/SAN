@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -118,6 +118,8 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                 quantity++;
                 myHolder.txt_quantity.setText(quantity + "");
                 updateQuantity(quantity, tiffin_data.id, "add");
+                TastyToast.makeText(context, "Another Tiffin box added..!", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+
             }
         });
 
@@ -129,6 +131,10 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                     quantity--;
                     myHolder.txt_quantity.setText(quantity + "");
                     updateQuantity(quantity, tiffin_data.id, "delete");
+
+                    TastyToast.makeText(context, " Tiffin box Removed..", TastyToast.LENGTH_SHORT, TastyToast.CONFUSING);
+
+
                 }
             }
         });
@@ -137,8 +143,10 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             public void onClick(View view) {
 
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-
-                alertDialog.setMessage("Are you want to delete tiffin from cart?");
+                alertDialog.setTitle("Delete Tiffin....");
+                alertDialog.setIcon(R.drawable.removea);
+                alertDialog.setMessage("Are you sure to delete tiffin from cart?");
+                alertDialog.setCancelable(false);
                 alertDialog.setPositiveButton(
                         "YES",
                         new DialogInterface.OnClickListener() {
@@ -203,7 +211,8 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                             e.printStackTrace();
                         }
 
-                        Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+                        // Toast.makeText(context, "OK", Toast.LENGTH_LONG).show();
+
                     }
                 }, new Response.ErrorListener() {
 
@@ -227,7 +236,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             linearLayout = itemView.findViewById(R.id.layout_linear1);
             txt_tiffin_plan = itemView.findViewById(R.id.txtTiffinType);
             txt_tiffin_type = itemView.findViewById(R.id.txtTiffinPlan);
-            txt_menu = itemView.findViewById(R.id.txtMenu);
+            txt_menu = itemView.findViewById(R.id.txtMenu4);
             txt_indian_bread = itemView.findViewById(R.id.txtBread);
             txt_rice = itemView.findViewById(R.id.txtRice);
             txt_dal = itemView.findViewById(R.id.txtDal);

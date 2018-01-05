@@ -78,6 +78,7 @@
                            <TextView
                                android:id="@+id/tv_author"
                                style="@style/my_style_table_textview"
+                               android:paddingLeft="12dp"
                                android:text="Quantity"
                                android:textStyle="bold">
                            </TextView>

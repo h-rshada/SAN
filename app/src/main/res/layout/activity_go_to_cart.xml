@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.san.GoToCart">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/Listmenu"
         android:layout_width="match_parent"
@@ -38,8 +39,7 @@
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/plusnew"
             android:paddingRight="8dp"
-            android:text="ADD another tiffin"
-            android:textAlignment="textEnd"
+            android:text="ADD new tiffin"
             android:textColor="#ffffff" />
 
         <Button
