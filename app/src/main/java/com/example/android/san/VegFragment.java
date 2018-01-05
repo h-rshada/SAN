@@ -184,6 +184,7 @@ public class VegFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
+
         if(day.equals("Monday"))
         {
             day_monday.setSelected(true);
@@ -414,6 +415,7 @@ public class VegFragment extends Fragment {
                         orderData.put("Rice", selectedRice);
                         orderData.put("Dal", selectedDal);
                         orderData.put("Price", price);
+                        Log.d("PriceO", price);
                         orderData.put("Quantity", "1");
                         orderData.put("Heat", selectedHeat);
                         orderData.put("Salt", selectedSalt);

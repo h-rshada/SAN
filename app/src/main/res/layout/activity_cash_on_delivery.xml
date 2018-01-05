@@ -1,8 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.san.cashOnDelivery">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/edt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/txt_name"
+        android:text="vjnf   m" />
+
+    <TextView
+        android:id="@+id/txt_address"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_name"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:text="Address" />
+
+    <EditText
+        android:id="@+id/edt_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_name"
+        android:layout_toRightOf="@+id/txt_address"
+        android:text="vjnf   m" />
+
+    <TextView
+        android:id="@+id/txt_phone"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_address"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:text="Phone" />
+
+    <EditText
+        android:id="@+id/edt_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_address"
+        android:layout_toRightOf="@+id/txt_phone"
+        android:text="vjnf   m" />
+
+    <TextView
+        android:id="@+id/txt_email"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_phone"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:text="E-mail" />
+
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_phone"
+        android:layout_toRightOf="@+id/txt_email"
+        android:text="vjnf   m" />
+
+    <Button
+        android:id="@+id/btn_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="order" />
+
+</RelativeLayout>

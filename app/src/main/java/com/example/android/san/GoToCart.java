@@ -109,6 +109,8 @@ public class GoToCart extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Activity a = GoToCart.this;
+                a.recreate();
                 editor = sp.edit();
                 editor.putString("AUTH_ID", auth_Id);
                 editor.commit();
