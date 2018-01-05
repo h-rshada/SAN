@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -101,13 +102,13 @@ public class cashOnDelivery extends AppCompatActivity {
 
                             jArray = new JSONArray(response);
                             JSONObject jsonObject = new JSONObject();
-                            for (int i = 0; i < jArray.length(); i++) {
-                                Log.d("JarrayLength", jArray.length() + "");
-                                json_data = jArray.getJSONObject(i);
+//                            for (int i = 0; i < jArray.length(); i++) {
+//                                Log.d("JarrayLength", jArray.length() + "");
+//                                json_data = jArray.getJSONObject(i);
 
-                                jsonObject.put("jsonObject", json_data);
+                            jsonObject.put("jsonObject", jArray);
 
-                            }
+//                            }
                             JSONObject jsonObjectForTimeAndDate = new JSONObject();
                             jsonObjectForTimeAndDate.put("Time", timeAndDate[1]);
                             jsonObjectForTimeAndDate.put("Date", timeAndDate[0]);
@@ -124,12 +125,7 @@ public class cashOnDelivery extends AppCompatActivity {
                                         public void onResponse(JSONObject response) {
                                             try {  //Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                                                 Log.d("ResponseOrder", response.getString("response"));
-                                              /*  if (response.getString("response").equals("OK"))
-                                                {
-                                                    Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
-                                                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
-                                                    startActivity(intentGoToCart);
-                                                 }*/
+                                                Toast.makeText(cashOnDelivery.this, "Your order placed successfully", Toast.LENGTH_SHORT).show();
 
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
