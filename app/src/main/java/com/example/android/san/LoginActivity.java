@@ -200,24 +200,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
 
-                   /* if(parentActivityName.equals("UserProfile"))
-                    {
-                       intent=new Intent(LoginActivity.this,HomeActivity.class);
-                       startActivity(intent);
-                       finish();
-                    }
-                    else if(parentActivityName.equals("VegFragment"))
-                    {
-                        intent=new Intent(LoginActivity.this,HomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else
-                        {
-                        intent = new Intent(LoginActivity.this, GoToCart.class);
-                        startActivity(intent);
-                        finish();
-                    }*/
+
                 } else {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();

@@ -378,6 +378,7 @@ public class VegFragment extends Fragment {
                 intent.putExtra("OilType", selectedOil);
                 intent.putExtra("Heat", selectedHeat);
                 intent.putExtra("Price", price);
+                intent.putExtra("Auth_Id", auth_Id);
                 if (count > 1) {
                     startActivity(intent);
                 } else if (!(string == null)) {
