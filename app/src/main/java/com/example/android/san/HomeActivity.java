@@ -201,6 +201,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_account) {
             editor = sp.edit();
+            editor.putBoolean("LOGIN", login);
             editor.putString("AUTH_ID", auth_id);
             editor.commit();
             intent = new Intent(HomeActivity.this, Profile.class);

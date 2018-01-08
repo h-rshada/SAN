@@ -64,8 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
 //            login=true;
-            editor.putBoolean("LOGIN", true);
-            editor.commit();
+
             CredentialManager.saveCredentials(LoginActivity.this, credentials);
             authenticationClient = new AuthenticationAPIClient(auth0);
             authenticationClient.userInfo(CredentialManager.getCredentials(getApplicationContext()).getAccessToken())
@@ -75,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                             userProfile1 = userProfile;
                             id = userProfile1.getId();
                             Log.d("Id", id);
+                            editor.putBoolean("LOGIN", true);
+                            editor.commit();
                             editor.putString("AUTH_ID", id);
                             editor.commit();
                             runOnUiThread(new Runnable() {
@@ -125,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         parentActivityName = intent.getStringExtra("PARENT_ACTIVITY_NAME");
         Log.d("ParentActivity", parentActivityName);
 
-        authenticationClient = new AuthenticationAPIClient(auth0);
+    /*    authenticationClient = new AuthenticationAPIClient(auth0);
         authenticationClient.userInfo(CredentialManager.getCredentials(getApplicationContext()).getAccessToken())
                 .start(new BaseCallback<UserProfile, AuthenticationException>() {
                     @Override
@@ -157,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
                         CredentialManager.deleteCredentials(LoginActivity.this);
                     }
-                });
+                });*/
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
