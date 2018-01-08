@@ -52,7 +52,8 @@ public class UserProfile extends AppCompatActivity {
             intent.putExtra("PARENT_ACTIVITY_NAME", "UserProfile");
             startActivity(intent);
         } else {
-
+            id = sp.getString("AUTH_ID", "");
+            Log.d("Id", id);
             getData();
         }
 
@@ -109,8 +110,7 @@ public class UserProfile extends AppCompatActivity {
 
     public void getData() {
 
-        id = sp.getString("AUTH_ID", "");
-        Log.d("Id", id);
+
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
         Log.d("checkData: ", "http://192.168.0.107:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);

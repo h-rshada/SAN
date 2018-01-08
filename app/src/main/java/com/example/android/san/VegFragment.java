@@ -371,26 +371,32 @@ public class VegFragment extends Fragment {
                 string = sp.getString("BASIC", null);
                 count = sp.getInt("COUNT", 0);
                 Log.d("count ", count + "");
-                Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-                intent.putExtra("Bread", selectedBread);
-                intent.putExtra("Rice", selectedRice);
-                intent.putExtra("Dal", selectedDal);
-                intent.putExtra("Salt", selectedSalt);
-                intent.putExtra("AmtOil", selectedAmtOil);
-                intent.putExtra("OilType", selectedOil);
-                intent.putExtra("Heat", selectedHeat);
-                intent.putExtra("Price", price);
-                // intent.putExtra("Auth_Id", auth_Id);
-                if (count > 1) {
-                    editor.putString("AUTH_ID", auth_Id);
-                    editor.commit();
-                    startActivity(intent);
-                } else if (!(string == null)) {
-                    editor.putString("AUTH_ID", auth_Id);
-                    editor.commit();
-                    startActivity(intent);
+                if (login) {
+                    Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+                    intent.putExtra("Bread", selectedBread);
+                    intent.putExtra("Rice", selectedRice);
+                    intent.putExtra("Dal", selectedDal);
+                    intent.putExtra("Salt", selectedSalt);
+                    intent.putExtra("AmtOil", selectedAmtOil);
+                    intent.putExtra("OilType", selectedOil);
+                    intent.putExtra("Heat", selectedHeat);
+                    intent.putExtra("Price", price);
+                    // intent.putExtra("Auth_Id", auth_Id);
+                    if (count > 1) {
+                        editor.putString("AUTH_ID", auth_Id);
+                        editor.commit();
+                        startActivity(intent);
+                    } else if (!(string == null)) {
+                        editor.putString("AUTH_ID", auth_Id);
+                        editor.commit();
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+                    Intent intentlogin = new Intent(getContext(), LoginActivity.class);
+                    intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                    startActivity(intentlogin);
                 }
                 break;
             case R.id.btnCart:
