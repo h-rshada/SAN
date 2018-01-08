@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     int flag = 0;
-    //String[] mail;
     private AuthenticationAPIClient authenticationClient;
     private UserProfile userProfile;
     private Button editProfileButton;

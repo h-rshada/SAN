@@ -51,6 +51,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     Button btnOrder;
     RequestQueue requestQueue;
     Set menuset;
+    String auth_id;
     SharedPreferences sp;
     String bread, rice, dal, amtoil, oiltype, heat, salt, menu, menu1, type, typetext, tiffintype, price;
 
@@ -60,6 +61,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_details);
         ButterKnife.inject(this);
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        auth_id = sp.getString("AUTH_ID", "");
+        Log.d("AAAuth", auth_id);
         menuset = new HashSet<String>();
         type = sp.getString("TYPE", null);
         tiffintype = sp.getString("TIFFIN", null);

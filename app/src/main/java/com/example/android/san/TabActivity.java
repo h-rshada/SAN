@@ -1,6 +1,8 @@
 package com.example.android.san;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -25,6 +27,8 @@ import butterknife.OnClick;
 public class TabActivity extends AppCompatActivity {
 
     public TabLayout tabLayout;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
     Toast toast;
     String type, tiffintype, price;
     VegFragment vegFragment;
@@ -33,6 +37,8 @@ public class TabActivity extends AppCompatActivity {
     ImageView imageback;
     @InjectView(R.id.img_viewCart)
     ImageView viewCart;
+    String auth_id;
+    boolean login;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
@@ -49,6 +55,13 @@ public class TabActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
+        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        auth_id = sp.getString("AUTH_ID", "");
+        Log.d("Login!!!", login + "");
+        Log.d("Auth", auth_id);
+        editor = sp.edit();
+
         type = getIntent().getStringExtra("Type");
         tiffintype = getIntent().getStringExtra("TiffinType");
         price = getIntent().getStringExtra("Price");
@@ -87,7 +100,11 @@ public class TabActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TabActivity.this, GoToCart.class);
-                intent.putExtra("AUTH_ID", "auth|987655646437544363647634");
+                // intent.putExtra("Auth_Id", auth_id);
+
+                editor.putString("AUTH_ID", auth_id);
+                editor.putBoolean("LOGIN", true);
+                editor.commit();
                 finish();
                 startActivity(intent);
             }
@@ -136,6 +153,14 @@ public class TabActivity extends AppCompatActivity {
         finish();
         startActivity(i);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        editor.putBoolean("LOGIN", true);
+        editor.commit();
+        //editor.putString("AUTH_ID",auth_id)
     }
 
     /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)

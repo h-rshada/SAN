@@ -46,10 +46,10 @@ public class GoToCart extends AppCompatActivity {
         ButterKnife.inject(this);
         final List<DataCart> data = new ArrayList<>();
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-        editor = sp.edit();
-        // auth_Id =sp.getString("AUTH_ID",null);
-        auth_Id = getIntent().getStringExtra("AUTH_ID");
-        Log.d("AUTH_ID", auth_Id);
+        // editor = sp.edit();
+        auth_Id = sp.getString("AUTH_ID", "");
+        //auth_Id = getIntent().getStringExtra("Auth_Id");
+        Log.d("AUTH111", auth_Id);
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(GoToCart.this);

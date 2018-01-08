@@ -380,10 +380,14 @@ public class VegFragment extends Fragment {
                 intent.putExtra("OilType", selectedOil);
                 intent.putExtra("Heat", selectedHeat);
                 intent.putExtra("Price", price);
-                intent.putExtra("Auth_Id", auth_Id);
+                // intent.putExtra("Auth_Id", auth_Id);
                 if (count > 1) {
+                    editor.putString("AUTH_ID", auth_Id);
+                    editor.commit();
                     startActivity(intent);
                 } else if (!(string == null)) {
+                    editor.putString("AUTH_ID", auth_Id);
+                    editor.commit();
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();

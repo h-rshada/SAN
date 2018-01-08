@@ -52,6 +52,7 @@ public class UserProfile extends AppCompatActivity {
             intent.putExtra("PARENT_ACTIVITY_NAME", "UserProfile");
             startActivity(intent);
         } else {
+
             getData();
         }
 
@@ -81,6 +82,7 @@ public class UserProfile extends AppCompatActivity {
                     public void onClick(View view) {
                         editor = sp.edit();
                         editor.putBoolean("LOGIN", false);
+                        editor.putString("AUTH_ID", null);
                         editor.commit();
                         boolean login = sp.getBoolean("LOGIN", false);
                         Log.d("LOgin***", login + "");
