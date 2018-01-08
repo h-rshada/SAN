@@ -101,7 +101,6 @@ public class TabActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TabActivity.this, GoToCart.class);
                 // intent.putExtra("Auth_Id", auth_id);
-
                 editor.putString("AUTH_ID", auth_id);
                 editor.putBoolean("LOGIN", true);
                 editor.commit();
@@ -119,30 +118,14 @@ public class TabActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
     }
-/*
-    @Override
-    public void onBackPressed() {
-        if (back_pressed + 2000 > System.currentTimeMillis()) {
-            // need to cancel the toast here
-            toast.cancel();
-            // code for exit
-            startActivity(new Intent(this, TabActivity.class));
-
-        } else {
-
-            toast = Toast.makeText(getBaseContext(), "Press once again to logout!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        back_pressed = System.currentTimeMillis();
-    }*/
 
     @OnClick({R.id.img_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_back:
                 onBackPressed();
-                Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
-                startActivity(intent);
+               /* Intent intent = new Intent(TabActivity.this, MenuTypeTab.class);
+                startActivity(intent);*/
                 break;
         }
 
@@ -159,7 +142,9 @@ public class TabActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         editor.putBoolean("LOGIN", true);
+        finish();
         editor.commit();
+        finish();
         //editor.putString("AUTH_ID",auth_id)
     }
 

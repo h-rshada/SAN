@@ -125,8 +125,8 @@ public class GoToCart extends AppCompatActivity {
             public void onClick(View view) {
                 editor = sp.edit();
                 editor.putBoolean("LOGIN", true);
+                editor.putString("AUTH_ID", auth_Id);
                 editor.commit();
-
                 Intent intent = new Intent(GoToCart.this, MenuTypeTab.class);
                 startActivity(intent);
                 finish();
@@ -140,6 +140,7 @@ public class GoToCart extends AppCompatActivity {
         //super.onBackPressed();
         editor = sp.edit();
         editor.putBoolean("LOGIN", true);
+        editor.putString("AUTH_ID", auth_Id);
         editor.commit();
         Intent intent = new Intent(GoToCart.this, HomeActivity.class);
         startActivity(intent);

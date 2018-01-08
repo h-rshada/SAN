@@ -81,7 +81,6 @@
         <activity android:name=".GoToCart" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".UserProfile" />
         <activity
             android:name=".MenuTypeTab"
             android:label=""
@@ -91,7 +90,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".payment" />
-        <activity android:name=".cashOnDelivery"></activity>
+        <activity android:name=".cashOnDelivery" />
+        <activity android:name=".Profile"></activity>
     </application>
 
 </manifest>

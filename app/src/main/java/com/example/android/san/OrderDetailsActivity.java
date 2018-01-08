@@ -1,6 +1,7 @@
 package com.example.android.san;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +54,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     Set menuset;
     String auth_id;
     SharedPreferences sp;
+    SharedPreferences.Editor editor;
+    Intent intent;
     String bread, rice, dal, amtoil, oiltype, heat, salt, menu, menu1, type, typetext, tiffintype, price;
 
     @Override
@@ -202,6 +205,19 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 requestQueue.add(jsonObjReq);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        editor = sp.edit();
+        editor.putBoolean("LOGIN", true);
+        editor.putString("AUTH_ID", auth_id);
+        editor.commit();
+        intent = new Intent(OrderDetailsActivity.this, HomeActivity.class);
+        finish();
+        startActivity(intent);
+
     }
 
     public void backspaceorderdetails(View v) {

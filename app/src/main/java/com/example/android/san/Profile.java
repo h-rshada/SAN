@@ -20,8 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class UserProfile extends AppCompatActivity {
-
+public class Profile extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     Intent intent;
@@ -40,20 +39,23 @@ public class UserProfile extends AppCompatActivity {
     TextView txtLogout;
     @InjectView(R.id.imgEdit)
     ImageView imgEdit;
+    boolean login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         ButterKnife.inject(this);
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        Log.d("Login@@@", login + "");
         editor = sp.edit();
         if (!sp.getBoolean("LOGIN", false)) {
-            intent = new Intent(UserProfile.this, LoginActivity.class);
+            intent = new Intent(Profile.this, LoginActivity.class);
             intent.putExtra("PARENT_ACTIVITY_NAME", "UserProfile");
             startActivity(intent);
         } else {
-            id = sp.getString("AUTH_ID", "");
-            Log.d("Id", id);
+
             getData();
         }
 
@@ -67,12 +69,12 @@ public class UserProfile extends AppCompatActivity {
 
             case R.id.txtLogin:
 
-                LayoutInflater li = LayoutInflater.from(UserProfile.this);
+                LayoutInflater li = LayoutInflater.from(Profile.this);
                 //Creating a view to get the dialog box
                 View logoutConfirmDialog = li.inflate(R.layout.dialogue_confirm_logout, null);
                 TextView txtYes = logoutConfirmDialog.findViewById(R.id.txtYes);
                 TextView txtNo = logoutConfirmDialog.findViewById(R.id.txtNo);
-                AlertDialog.Builder alert = new AlertDialog.Builder(UserProfile.this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(Profile.this);
                 //Adding our dialog box to the view of alert dialog
                 alert.setView(logoutConfirmDialog);
                 //Creating an alert dialog
@@ -87,8 +89,9 @@ public class UserProfile extends AppCompatActivity {
                         editor.commit();
                         boolean login = sp.getBoolean("LOGIN", false);
                         Log.d("LOgin***", login + "");
-                        CredentialManager.deleteCredentials(UserProfile.this);
-                        intent = new Intent(UserProfile.this, HomeActivity.class);
+                        CredentialManager.deleteCredentials(Profile.this);
+                        intent = new Intent(Profile.this, HomeActivity.class);
+                        finish();
                         startActivity(intent);
 
 
@@ -102,7 +105,8 @@ public class UserProfile extends AppCompatActivity {
                 });
                 break;
             case R.id.imgEdit:
-                intent = new Intent(UserProfile.this, MainActivity.class);
+                intent = new Intent(Profile.this, MainActivity.class);
+                finish();
                 startActivity(intent);
                 break;
         }
@@ -110,7 +114,8 @@ public class UserProfile extends AppCompatActivity {
 
     public void getData() {
 
-
+        id = sp.getString("AUTH_ID", "");
+        Log.d("Id", id);
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
         Log.d("checkData: ", "http://192.168.0.107:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
@@ -140,5 +145,4 @@ public class UserProfile extends AppCompatActivity {
             }
         });
     }
-
 }

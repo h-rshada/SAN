@@ -184,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                 .start(this, callback);
     }
 
-    public void checkData(String id) {
+    public void checkData(final String id) {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
@@ -197,6 +197,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.contains("EXISTS")) {
 
                     intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    editor.putString("AUTH_ID", id);
+                    editor.commit();
                     startActivity(intent);
                     finish();
 

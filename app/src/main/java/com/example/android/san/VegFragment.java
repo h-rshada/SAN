@@ -177,11 +177,10 @@ public class VegFragment extends Fragment {
         login = sp.getBoolean("LOGIN", false);
         auth_Id = sp.getString("AUTH_ID", "");
         Log.d("Login####", login + "");
-
         Log.d("Auth^^^^", auth_Id);
         editor = sp.edit();
-        editor.clear();
-        editor.commit();
+       /* editor.clear();
+        editor.commit();*/
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
@@ -497,7 +496,9 @@ public class VegFragment extends Fragment {
 
                 } else {
                     Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
-                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
+                    editor = sp.edit();
+                    editor.putString("AUTH_ID", auth_Id);
+                    editor.commit();
                     startActivity(intentGoToCart);
                 }
                 break;

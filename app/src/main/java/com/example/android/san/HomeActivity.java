@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -40,12 +41,14 @@ public class HomeActivity extends AppCompatActivity
     ImageView find;
     Intent intent;
     SharedPreferences sp;
+    SharedPreferences.Editor editor;
     boolean login;
-
-
+    String auth_id;
     MenuItem menuItem;
     SliderLayout sliderLayout;
     HashMap<String, Integer> Hash_file_maps;
+    private long back_pressed = 0;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class HomeActivity extends AppCompatActivity
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);
         Log.d("Login^^^^^^^6666", login + "");
+        auth_id = sp.getString("AUTH_ID", "");
+        Log.d("Authid1", auth_id);
 
         sliderLayout = findViewById(R.id.slider);
         Hash_file_maps=new HashMap<String, Integer>();
@@ -123,9 +128,20 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (back_pressed + 2000 > System.currentTimeMillis()) {
+            // need to cancel the toast here
+            toast.cancel();
+            // code for exit
+            intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         } else {
-            super.onBackPressed();
+            // ask user to press back button one more time to close app
+            toast = Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT);
+            toast.show();
         }
+        back_pressed = System.currentTimeMillis();
     }
 
     @Override
@@ -184,7 +200,11 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_account) {
-            intent = new Intent(HomeActivity.this, UserProfile.class);
+            editor = sp.edit();
+            editor.putString("AUTH_ID", auth_id);
+            editor.commit();
+            intent = new Intent(HomeActivity.this, Profile.class);
+
             startActivity(intent);
         }
 
@@ -221,6 +241,7 @@ public class HomeActivity extends AppCompatActivity
             }
         }
     }
+
     @Override
     protected void onStop() {
 

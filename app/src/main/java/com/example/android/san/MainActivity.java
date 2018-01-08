@@ -300,9 +300,13 @@ public class MainActivity extends AppCompatActivity {
                 if (response.contains("OK")) {
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     intent.putExtra("PARENT_ACTIVITY_NAME", "MainActivity");
+                    finish();
                     startActivity(intent);
                 } else if (response.contains("UPDATED")) {
-                    Intent intent = new Intent(MainActivity.this, com.example.android.san.UserProfile.class);
+                    editor.putString("AUTH_ID", userProfile.getId());
+                    editor.commit();
+                    Intent intent = new Intent(MainActivity.this, Profile.class);
+                    finish();
                     startActivity(intent);
                 }
 

@@ -62,6 +62,7 @@ public class MenuTypeTab extends AppCompatActivity {
         breakFastFragment=new BreakFastFragment();
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);
+
         Log.d("Login&&&&&&&", login + "");
         viewPager = findViewById(R.id.pager);
         setupViewPager(viewPager);
@@ -131,6 +132,7 @@ public class MenuTypeTab extends AppCompatActivity {
         editor = sp.edit();
         editor.putBoolean("LOGIN", true);
         editor.commit();
+        MenuTypeTab.this.finish();
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
