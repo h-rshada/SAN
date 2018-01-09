@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,10 +54,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
     Button btnOrder;
     RequestQueue requestQueue;
     Set menuset;
-    String auth_id;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-    Intent intent;
+    String auth_id = "";
     String bread, rice, dal, amtoil, oiltype, heat, salt, menu, menu1, type, typetext, tiffintype, price;
 
     @Override
@@ -70,10 +71,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
         type = sp.getString("TYPE", null);
         tiffintype = sp.getString("TIFFIN", null);
         price = sp.getString("PRICE", null);
-        //Log.d("orderprice: ",price);
         typetext = type.substring(0, 1).toUpperCase();
         Log.d("type", type);
         Log.d("Tiffin", tiffintype);
+
+
 
         final JSONObject orderData = new JSONObject();
         try {
@@ -86,6 +88,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
         if (tiffintype.equals("Basic")) {
             menu = sp.getString("BASIC", null);
             txtMenu3.setText(menu);
+            try {
+                orderData.put("menu", menu);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             Log.d("Menu", menu);
         } else if (tiffintype.equals("Heavy"))
         {
@@ -96,7 +103,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 txtMenu1.setText("2." + sp.getString("SEMISTR2", null));*/
                 menuset.add(sp.getString("SEMISTR1", null));
                 menuset.add(sp.getString("SEMISTR2", null));
-                txtMenu3.setText(menuset + "");
+                txtMenu3.setText(menuset+"");
                 Log.d("onCreate: ", menuset.toString());
                 try {
                     orderData.put("menu", menuset);
@@ -114,9 +121,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 }
                 menu = listOfNames.get(0).toString();
                 menu1 = listOfNames.get(1).toString();
-                txtMenu3.setText(menu + " " + menu1);
-             /*   txtMenu1.setVisibility(View.VISIBLE);
-                txtMenu1.setText("2." + menu1);*/
+                txtMenu3.setText("1." + menu+" "+menu1);
+                /*txtMenu1.setVisibility(View.VISIBLE);
+                txtMenu1.setText("2." + menu1)*/;
                 Log.d("Adapterlist***", listOfNames.toString());
                 Log.d("Menu**", menu);
                 Log.d("Menu1**", menu1);
@@ -147,15 +154,16 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Log.d("AmtOil", amtoil);
         Log.d("OilType", oiltype);
         try {
-            orderData.put("IndianBread", bread);
-            orderData.put("Rice", rice);
-            orderData.put("Dal", dal);
-            orderData.put("Price", price);
-            orderData.put("Quantity", "1");
-            orderData.put("Heat", heat);
-            orderData.put("Salt", salt);
-            orderData.put("AmountOfOil", amtoil);
-            orderData.put("OilType", oiltype);
+            orderData.put("indianBread", bread);
+            orderData.put("rice", rice);
+            orderData.put("dal", dal);
+            orderData.put("price", price);
+            orderData.put("quantity", "1");
+            orderData.put("heat", heat);
+            orderData.put("salt", salt);
+            orderData.put("amountOil", amtoil);
+            orderData.put("oilType", oiltype);
+            orderData.put("auth_id", auth_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -181,18 +189,36 @@ public class OrderDetailsActivity extends AppCompatActivity {
         txtRice.setText(rice);
         txtPrice.setText(price);
         txtDal.setText(dal);
-        Log.d("orderData:", orderData.toString());
+
+        final JSONObject object=new JSONObject();
+        try {
+            JSONArray jArray=new JSONArray();
+            jArray.put(orderData);
+            object.put("jsonObject",jArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("orderData:", object.toString());
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestQueue = Volley.newRequestQueue(OrderDetailsActivity.this);
+                editor = sp.edit();
+                editor.putString("AUTH_ID", auth_id);
+                editor.putBoolean("LOGIN", true);
+                editor.commit();
+                Intent intent = new Intent(OrderDetailsActivity.this, payment.class);
+                intent.putExtra("PARENT_ACTIVITY_NAME", "ODA");
+                intent.putExtra("OBJECT",object+"");
+                startActivity(intent);
+                finish();
+              /*  requestQueue = Volley.newRequestQueue(OrderDetailsActivity.this);
                 JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                        Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
+                        Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php", object,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.d("ResponseOrder", response.toString());
-
+                                Log.d("ResponseODA", response.toString());
+                                      Toast.makeText(OrderDetailsActivity.this,"yup",Toast.LENGTH_SHORT).show();
 
                             }
                         }, new Response.ErrorListener() {
@@ -203,22 +229,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                     }
                 });
-                requestQueue.add(jsonObjReq);
+                requestQueue.add(jsonObjReq);*/
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        editor = sp.edit();
-        editor.putBoolean("LOGIN", true);
-        editor.putString("AUTH_ID", auth_id);
-        editor.commit();
-        intent = new Intent(OrderDetailsActivity.this, HomeActivity.class);
-        finish();
-        startActivity(intent);
-
     }
 
     public void backspaceorderdetails(View v) {

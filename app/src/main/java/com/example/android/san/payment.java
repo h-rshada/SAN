@@ -3,6 +3,7 @@ package com.example.android.san;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -18,12 +19,17 @@ public class payment extends AppCompatActivity {
     @InjectView(R.id.btn_placeOrder)
     Button btnPlaceOrder;
     String payment_mode = null;
-
+    String parentActivityName,orderObject;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         ButterKnife.inject(this);
+        intent = getIntent();
+        parentActivityName = intent.getStringExtra("PARENT_ACTIVITY_NAME");
+        orderObject = intent.getStringExtra("OBJECT");
+        Log.d("ParentActivity", parentActivityName);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -43,8 +49,18 @@ public class payment extends AppCompatActivity {
                 } else {
                     if (payment_mode.equals("Cash on delivery")) {
                         Intent intent = new Intent(payment.this, cashOnDelivery.class);
-                        startActivity(intent);
-                        finish();
+                        if(parentActivityName.equals("GoToCArt"))
+                        {
+                            intent.putExtra("PARENT_ACTIVITY_NAME", parentActivityName);
+                            startActivity(intent);
+                            finish();
+                        }else
+                        {
+                            intent.putExtra("PARENT_ACTIVITY_NAME", parentActivityName);
+                            intent.putExtra("OBJECT",orderObject);
+                            startActivity(intent);
+                            finish();
+                        }
                     } else {
 
                     }
