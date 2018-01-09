@@ -23,9 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -90,86 +87,88 @@ public class cashOnDelivery extends AppCompatActivity {
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(parentActivityName.equals("GoToCart")) {
-                    urlRequest = UrlRequest.getObject();
-                    urlRequest.setContext(cashOnDelivery.this);
-                    urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
-                    Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
-                    urlRequest.getResponse(new ServerCallback() {
-                        @Override
-                        public void onSuccess(String response) {
-                            Log.d("SendOrder", response);
-
-                            try {
-
-                                jArray = new JSONArray(response);
-                                JSONObject jsonObject = new JSONObject();
-                                jsonObject.put("jsonObject", jArray);
-                                Log.d("object", jsonObject + "");
-                                RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
-                                Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php");
-                                JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                        Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php", jsonObject,
-                                        new Response.Listener<JSONObject>() {
-                                            @Override
-                                            public void onResponse(JSONObject response) {
-                                                try {  //Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
-                                                    Log.d("ResponseOrder", response.getString("response"));
-                                                    Toast.makeText(cashOnDelivery.this, "Your order placed successfully", Toast.LENGTH_SHORT).show();
-
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
-
-
-                                            }
-                                        }, new Response.ErrorListener() {
-
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-
-                                        VolleyLog.d("Error: ", error.getMessage());
-                                    }
-                                });
-                                requestQueue.add(jsonObjReq);
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-
-                            }
-
-                        }
-                    });
-                }
-                else
-                {
-                    try {
-                        jsonObject = new JSONObject(getIntent().getStringExtra("OBJECT"));
-                        Log.d(jsonObject+"", "JJJ");
-                        RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
-                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php", jsonObject,
-                                new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        Log.d("ResponseODA", response.toString());
-                                        Toast.makeText(cashOnDelivery.this,"yup",Toast.LENGTH_SHORT).show();
-
-                                    }
-                                }, new Response.ErrorListener() {
-
+                if (flag == 0) {
+                    flag = 1;
+                    if(parentActivityName.equals("GoToCart")) {
+                        urlRequest = UrlRequest.getObject();
+                        urlRequest.setContext(cashOnDelivery.this);
+                        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
+                        Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
+                        urlRequest.getResponse(new ServerCallback() {
                             @Override
-                            public void onErrorResponse(VolleyError error) {
-                                VolleyLog.d("Error: ", error.getMessage());
+                            public void onSuccess(String response) {
+                                Log.d("SendOrder", response);
+
+                                try {
+
+                                    jArray = new JSONArray(response);
+                                    JSONObject jsonObject = new JSONObject();
+                                    jsonObject.put("jsonObject", jArray);
+                                    Log.d("object", jsonObject + "");
+                                    RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
+                                    Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php");
+                                    JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                            Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php", jsonObject,
+                                            new Response.Listener<JSONObject>() {
+                                                @Override
+                                                public void onResponse(JSONObject response) {
+                                                    try {  //Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
+                                                        Log.d("ResponseOrder", response.getString("response"));
+                                                        Toast.makeText(cashOnDelivery.this, "Your order placed successfully", Toast.LENGTH_SHORT).show();
+
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+
+
+                                                }
+                                            }, new Response.ErrorListener() {
+
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+
+                                            VolleyLog.d("Error: ", error.getMessage());
+                                        }
+                                    });
+                                    requestQueue.add(jsonObjReq);
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+
+                                }
 
                             }
                         });
-                        requestQueue.add(jsonObjReq);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
+                        try {
+                            jsonObject = new JSONObject(getIntent().getStringExtra("OBJECT"));
+                            Log.d(jsonObject+"", "JJJ");
+                            RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
+                            JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                    Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php", jsonObject,
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            Log.d("ResponseODA", response.toString());
+                                            Toast.makeText(cashOnDelivery.this,"yup",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }, new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    VolleyLog.d("Error: ", error.getMessage());
+
+                                }
+                            });
+                            requestQueue.add(jsonObjReq);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+                } else {
+                    Toast.makeText(cashOnDelivery.this, "You have already placed your order", Toast.LENGTH_SHORT).show();
                 }
             }
         });
