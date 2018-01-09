@@ -4,7 +4,6 @@ package com.example.android.san;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -185,18 +184,18 @@ public class VegFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
-
+        Log.d(day, "DAY");
         if(day.equals("Monday"))
         {
             day_monday.setSelected(true);
-            day_monday.setBackgroundColor(Color.RED);
+            day_monday.setBackgroundResource(R.drawable.btn_shape1);
             week_day="Monday";
         }
         else
         if(day.equals("Tuesday"))
         {
             day_tuesday.setSelected(true);
-            day_tuesday.setBackgroundColor(Color.RED);
+            day_tuesday.setBackgroundResource(R.drawable.btn_shape1);
             week_day="Tuesday";
             day_monday.setEnabled(false);
         }
@@ -204,7 +203,7 @@ public class VegFragment extends Fragment {
         if(day.equals("Wednesday"))
         {
             day_wednesday.setSelected(true);
-            day_wednesday.setBackgroundColor(Color.RED);
+            day_wednesday.setBackgroundResource(R.drawable.btn_shape1);
             week_day="Wednesday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -214,7 +213,7 @@ public class VegFragment extends Fragment {
         if(day.equals("Thursday"))
         {
             day_thursday.setSelected(true);
-            day_thursday.setBackgroundColor(Color.RED);
+            day_thursday.setBackgroundResource(R.drawable.btn_shape1);
             week_day="Thursday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -224,7 +223,7 @@ public class VegFragment extends Fragment {
         if(day.equals("Friday"))
         {
             day_friday.setSelected(true);
-            day_friday.setBackgroundColor(Color.RED);
+            day_friday.setBackgroundResource(R.drawable.btn_shape1);
             week_day="Friday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -235,7 +234,7 @@ public class VegFragment extends Fragment {
         if(day.equals("Saturday"))
         {
             day_saturday.setSelected(true);
-            day_saturday.setBackgroundColor(Color.RED);
+            day_saturday.setBackgroundResource(R.drawable.btn_shape1);
             week_day="Saturday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -247,7 +246,7 @@ public class VegFragment extends Fragment {
         if(day.equals("Sunday"))
         {
             day_sunday.setSelected(true);
-            day_sunday.setBackgroundColor(Color.RED);
+            day_sunday.setBackgroundResource(R.drawable.btn_shape1);
             week_day="Sunday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -338,30 +337,135 @@ public class VegFragment extends Fragment {
 
             case R.id.txt_mon:
                 week_day="Monday";
+                if (!day.equals("Monday")) {
+                    day_monday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
                 getData();
                 break;
             case R.id.txt_tue:
                 week_day="Tuesday";
+                if (!day.equals("Tuesday")) {
+                    day_tuesday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
                 getData();
                 break;
             case R.id.txt_wed:
                 week_day="Wednesday";
+                if (!day.equals("Wednesday")) {
+                    day_wednesday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
                 getData();
                 break;
             case R.id.txt_thu:
                 week_day="Thursday";
+                if (!day.equals("Thursday")) {
+                    day_thursday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
                 getData();
                 break;
             case R.id.txt_fri:
                 week_day="Friday";
+                if (!day.equals("Friday")) {
+                    day_friday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
                 getData();
                 break;
             case R.id.txt_sat:
                 week_day="Saturday";
+                if (!day.equals("Saturday")) {
+                    day_saturday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
                 getData();
                 break;
             case R.id.txt_sun:
                 week_day="Sunday";
+                if (!day.equals("Sunday")) {
+                    day_sunday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                }
                 getData();
                 break;
             case R.id.btnSubmit:

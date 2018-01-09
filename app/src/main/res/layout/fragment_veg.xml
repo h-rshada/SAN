@@ -303,82 +303,88 @@
 
                 <Button
                     android:id="@+id/txt_mon"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
                     android:padding="6dp"
                     android:text="M"
-
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/txt_tue"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
                     android:padding="6dp"
                     android:text="T"
                     android:textAlignment="center"
+                    android:textColor="@color/white"
                     />
 
                 <Button
                     android:id="@+id/txt_wed"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
                     android:padding="6dp"
                     android:text="W"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/txt_thu"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
                     android:padding="6dp"
                     android:text="T"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/txt_fri"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
                     android:padding="6dp"
-                    android:text="F" />
+                    android:text="F"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/txt_sat"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
                     android:padding="6dp"
                     android:text="S"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/txt_sun"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
                     android:padding="6dp"
                     android:text="S"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <android.support.v7.widget.CardView

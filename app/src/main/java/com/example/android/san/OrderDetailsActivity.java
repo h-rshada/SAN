@@ -91,11 +91,12 @@ public class OrderDetailsActivity extends AppCompatActivity {
         {
 
             if (type.equals("semiFlexible")) {
-                txtMenu3.setText("1." + sp.getString("SEMISTR1", null));
+               /* txtMenu3.setText("1." + sp.getString("SEMISTR1", null));
                 txtMenu1.setVisibility(View.VISIBLE);
-                txtMenu1.setText("2." + sp.getString("SEMISTR2", null));
+                txtMenu1.setText("2." + sp.getString("SEMISTR2", null));*/
                 menuset.add(sp.getString("SEMISTR1", null));
                 menuset.add(sp.getString("SEMISTR2", null));
+                txtMenu3.setText(menuset + "");
                 Log.d("onCreate: ", menuset.toString());
                 try {
                     orderData.put("menu", menuset);
@@ -113,9 +114,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 }
                 menu = listOfNames.get(0).toString();
                 menu1 = listOfNames.get(1).toString();
-                txtMenu3.setText("1." + menu);
-                txtMenu1.setVisibility(View.VISIBLE);
-                txtMenu1.setText("2." + menu1);
+                txtMenu3.setText(menu + " " + menu1);
+             /*   txtMenu1.setVisibility(View.VISIBLE);
+                txtMenu1.setText("2." + menu1);*/
                 Log.d("Adapterlist***", listOfNames.toString());
                 Log.d("Menu**", menu);
                 Log.d("Menu1**", menu1);

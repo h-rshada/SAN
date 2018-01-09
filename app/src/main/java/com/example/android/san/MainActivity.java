@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(String response) {
                 Log.d("Response*", response);
                 if (response.contains("OK")) {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     intent.putExtra("PARENT_ACTIVITY_NAME", "MainActivity");
                     finish();
                     startActivity(intent);
