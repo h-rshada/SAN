@@ -1,6 +1,8 @@
 package com.example.android.san;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,11 +23,20 @@ public class payment extends AppCompatActivity {
     String payment_mode = null;
     String parentActivityName,orderObject;
     Intent intent;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
+    boolean login;
+    String auth_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         ButterKnife.inject(this);
+        sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        editor = sp.edit();
+        login = sp.getBoolean("LOGIN", false);
+        auth_id = sp.getString("AUTH_ID", "");
         intent = getIntent();
         parentActivityName = intent.getStringExtra("PARENT_ACTIVITY_NAME");
         orderObject = intent.getStringExtra("OBJECT");
@@ -49,24 +60,37 @@ public class payment extends AppCompatActivity {
                 } else {
                     if (payment_mode.equals("Cash on delivery")) {
                         Intent intent = new Intent(payment.this, cashOnDelivery.class);
-                        if(parentActivityName.equals("GoToCArt"))
-                        {
+                        if(parentActivityName.equals("GoToCArt")) {
                             intent.putExtra("PARENT_ACTIVITY_NAME", parentActivityName);
+                            editor.putString("AUTH_ID", auth_id);
+                            editor.putBoolean("LOGIN", login);
+                            editor.commit();
                             startActivity(intent);
                             finish();
-                        }else
-                        {
+                        }else {
                             intent.putExtra("PARENT_ACTIVITY_NAME", parentActivityName);
                             intent.putExtra("OBJECT",orderObject);
                             startActivity(intent);
                             finish();
                         }
-                    } else {
-
                     }
                 }
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        editor = sp.edit();
+        editor.putBoolean("LOGIN", true);
+        editor.putString("AUTH_ID", auth_id);
+        editor.commit();
+        Intent intent = new Intent(payment.this, GoToCart.class);
+        startActivity(intent);
+        payment.this.finish();
+
     }
 }

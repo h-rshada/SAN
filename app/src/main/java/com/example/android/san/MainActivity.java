@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.auth0.android.Auth0;
@@ -37,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
     private UserProfile userProfile;
     private Button editProfileButton;
     private Button cancelEditionButton;
-    private TextView userNameTextView;
-    private TextView userEmailTextView;
-    private TextView userAddressTextView;
-    private TextView userPhoneTextView;
+    /*  private TextView userNameTextView;
+      private TextView userEmailTextView;
+      private TextView userAddressTextView;
+      private TextView userPhoneTextView;*/
     private EditText updateAddressEditText;
     private EditText updatePhoneEditText;
     private EditText updateNameEditText;
@@ -100,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
         editProfileButton = findViewById(R.id.editButton);
         //cancelEditionButton = (Button) findViewById(R.id.cancelEditionButton);
-        userNameTextView = findViewById(R.id.userNameTitle);
+      /*  userNameTextView = findViewById(R.id.userNameTitle);
         userEmailTextView = findViewById(R.id.userEmailTitle);
         userAddressTextView = findViewById(R.id.userAddressTitle);
-        userPhoneTextView = findViewById(R.id.userPhoneTitle);
+        userPhoneTextView = findViewById(R.id.userPhoneTitle);*/
         updateNameEditText = findViewById(R.id.updateNameEdittext);
         updateAddressEditText = findViewById(R.id.updateAddressEdittext);
         updatePhoneEditText = findViewById(R.id.updatePhoneEdittext);
@@ -159,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("StringFormatInvalid")
     private void refreshScreenInformation() {
         //checkData();
-        userEmailTextView.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));
+      /*  userEmailTextView.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));*/
         Toast.makeText(MainActivity.this, "Id" + userProfile.getId(), Toast.LENGTH_SHORT).show();
         Log.d("Id", userProfile.getId());
         email = userProfile.getEmail();
@@ -175,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
 */
         String name1 = (String) userProfile.getUserMetadata().get("name");
         if (name1 != null && !name1.isEmpty()) {
-            userNameTextView.setVisibility(View.VISIBLE);
-            userNameTextView.setText(String.format(getString(R.string.username), name1));
+//            userNameTextView.setVisibility(View.VISIBLE);
+//            userNameTextView.setText(String.format(getString(R.string.username), name1));
         } else {
             flag = 1;
         }
@@ -192,16 +191,16 @@ public class MainActivity extends AppCompatActivity {
         String address1 = (String) userProfile.getUserMetadata().get("address");
 
         if (address1 != null && !address1.isEmpty()) {
-            userAddressTextView.setVisibility(View.VISIBLE);
-            userAddressTextView.setText(String.format(getString(R.string.userAddress), address1));
+//            userAddressTextView.setVisibility(View.VISIBLE);
+//            userAddressTextView.setText(String.format(getString(R.string.userAddress), address1));
         } else {
             flag = 1;
         }
 
         String phone1 = (String) userProfile.getUserMetadata().get("phone");
         if (phone1 != null && !phone1.isEmpty()) {
-            userPhoneTextView.setVisibility(View.VISIBLE);
-            userPhoneTextView.setText(String.format(getString(R.string.userPhone), phone1));
+//            userPhoneTextView.setVisibility(View.VISIBLE);
+//            userPhoneTextView.setText(String.format(getString(R.string.userPhone), phone1));
         } else {
             flag = 1;
         }
@@ -291,14 +290,14 @@ public class MainActivity extends AppCompatActivity {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        Log.d("Url", "http://192.168.0.107:8001/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address + "&email=" + email2);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address + "&email=" + email2);
+        Log.d("Url", "http://sansmealbox.com/admin/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address + "&email=" + email2);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address + "&email=" + email2);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
                 Log.d("Response*", response);
                 if (response.contains("OK")) {
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(MainActivity.this, MenuTypeTab.class);
                     intent.putExtra("PARENT_ACTIVITY_NAME", "MainActivity");
                     finish();
                     startActivity(intent);
@@ -323,8 +322,8 @@ public class MainActivity extends AppCompatActivity {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        Log.d("checkData: ","http://192.168.0.107:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId() );
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId());
+        Log.d("checkData: ","http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId() );
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId());
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {

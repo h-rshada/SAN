@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.auth0.android.Auth0;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginButton;
     Intent intent;
     String parentActivityName;
+    LinearLayout linearLayout;
     private Auth0 auth0;
     private AuthenticationAPIClient authenticationClient;
     AuthCallback callback = new AuthCallback() {
@@ -60,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    linearLayout.setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, "Log In - Success", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -98,13 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
 
-
-
-
-            /*
-            ->calling this method causes auth_id null
-            ->as a result it goes to main acitvity
-            * */
         }
     };
 
@@ -121,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("Id",id);*/
         auth0 = new Auth0(this);
         auth0.setOIDCConformant(true);
+        linearLayout = findViewById(R.id.linearLogin);
         loginButton = findViewById(R.id.loginButton);
         intent = getIntent();
         parentActivityName = intent.getStringExtra("PARENT_ACTIVITY_NAME");
@@ -189,15 +186,15 @@ public class LoginActivity extends AppCompatActivity {
 
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        Log.d("checkData: ", "http://192.168.0.107:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
+        Log.d("checkData: ", "http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
                 Log.d("Response*", response);
                 if (response.contains("EXISTS")) {
 
-                    intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent = new Intent(LoginActivity.this, MenuTypeTab.class);
                     editor.putString("AUTH_ID", id);
                     editor.commit();
                     startActivity(intent);

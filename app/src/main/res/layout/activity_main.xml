@@ -26,55 +26,55 @@
             android:padding="@dimen/activity_small_margin"
             tools:ignore="ContentDescription" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+        <!--  <RelativeLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/userEmailTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="@string/useremail"
-                android:textColor="@android:color/black"
-                android:textSize="13sp" />
+              <TextView
+                  android:id="@+id/userEmailTitle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:text="@string/useremail"
+                  android:textColor="@android:color/black"
+                  android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/userNameTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/userEmailTitle"
-                android:text="@string/username"
-                android:textColor="@android:color/black"
-                android:textSize="13sp"
-                android:visibility="gone" />
+              <TextView
+                  android:id="@+id/userNameTitle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_below="@id/userEmailTitle"
+                  android:text="@string/username"
+                  android:textColor="@android:color/black"
+                  android:textSize="13sp"
+                  android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/userAddressTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/userNameTitle"
-                android:text="@string/userAddress"
-                android:textColor="@android:color/black"
-                android:textSize="13sp"
-                android:visibility="gone" />
+              <TextView
+                  android:id="@+id/userAddressTitle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_below="@id/userNameTitle"
+                  android:text="@string/userAddress"
+                  android:textColor="@android:color/black"
+                  android:textSize="13sp"
+                  android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/userPhoneTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/userAddressTitle"
-                android:text="@string/userPhone"
-                android:textColor="@android:color/black"
-                android:textSize="13sp"
-                android:visibility="gone" />
+              <TextView
+                  android:id="@+id/userPhoneTitle"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_below="@id/userAddressTitle"
+                  android:text="@string/userPhone"
+                  android:textColor="@android:color/black"
+                  android:textSize="13sp"
+                  android:visibility="gone" />
 
-        </RelativeLayout>
+          </RelativeLayout>-->
 
         <EditText
             android:id="@+id/updateNameEdittext"

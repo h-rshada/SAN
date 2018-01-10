@@ -141,11 +141,17 @@ public class TabActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        editor.putBoolean("LOGIN", true);
-        finish();
-        editor.commit();
-        finish();
-        //editor.putString("AUTH_ID",auth_id)
+        if (login) {
+            editor = sp.edit();
+            editor.putBoolean("LOGIN", true);
+            editor.putString("AUTH_ID", auth_id);
+            editor.commit();
+        } else {
+            editor = sp.edit();
+            editor.putBoolean("LOGIN", false);
+            editor.commit();
+        }
+        TabActivity.this.finish();
     }
 
     /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)

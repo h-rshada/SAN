@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -297,20 +296,20 @@ public class NonVegFragment extends Fragment {
 
         item = "bread";
 
-        setData("http://192.168.0.107:8001/routes/server/app/getCommonItems.php?item=bread", item);
+        setData("http://sansmealbox.com/admin/routes/server/app/getCommonItems.php?item=bread", item);
 
         item = "rice";
 
-        setData("http://192.168.0.107:8001/routes/server/app/getCommonItems.php?item=rice", item);
+        setData("http://sansmealbox.com/admin/routes/server/app/getCommonItems.php?item=rice", item);
 
         item = "dal";
 
-        setData("http://192.168.0.107:8001/routes/server/app/getCommonItems.php?item=dal", item);
+        setData("http://sansmealbox.com/admin/routes/server/app/getCommonItems.php?item=dal", item);
 
         Log.d("onCreateView: ", arrayList1 + "");
-        getData();
+        //getData();
         if (dabba.equals("semiHeavy") || dabba.equals("fixedBasic") || dabba.equals("fixedHeavy")) {
-            selectedData();
+            // selectedData();
         }
         return view;
 
@@ -323,31 +322,31 @@ public class NonVegFragment extends Fragment {
 
             case R.id.txt_mon:
                 week_day = "Monday";
-                getData();
+                //   getData();
                 break;
             case R.id.txt_tue:
                 week_day = "Tuesday";
-                getData();
+                // getData();
                 break;
             case R.id.txt_wed:
                 week_day = "Wednesday";
-                getData();
+                // getData();
                 break;
             case R.id.txt_thu:
                 week_day = "Thursday";
-                getData();
+                //getData();
                 break;
             case R.id.txt_fri:
                 week_day = "Friday";
-                getData();
+                // getData();
                 break;
             case R.id.txt_sat:
                 week_day = "Saturday";
-                getData();
+                // getData();
                 break;
             case R.id.txt_sun:
                 week_day = "Sunday";
-                getData();
+                // getData();
                 break;
             case R.id.btnSubmit:
                 menuset = new HashSet<String>();
@@ -419,9 +418,9 @@ public class NonVegFragment extends Fragment {
                     }
                     if (count > 1 || !(string == null)) {
                         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                        Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php");
+                        Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php");
                         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
+                                Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php", orderData,
                                 new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
@@ -462,58 +461,58 @@ public class NonVegFragment extends Fragment {
         }
     }
 
-    public void getData() {
-        urlRequest = UrlRequest.getObject();
-        urlRequest.setContext(getContext());
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
-        Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("Response", response);
+    /* public void getData() {
+         urlRequest = UrlRequest.getObject();
+         urlRequest.setContext(getContext());
+         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
+         Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
+         urlRequest.getResponse(new ServerCallback() {
+             @Override
+             public void onSuccess(String response) {
+                 Log.d("Response", response);
 
-                try {
-                    arrayList = new ArrayList<>();
-                    JSONArray jsonArray = new JSONArray(response);
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                 try {
+                     arrayList = new ArrayList<>();
+                     JSONArray jsonArray = new JSONArray(response);
+                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        dataSubji = new DataSubji();
-                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                        dataSubji.subji = jsonArray1.getString(1);
-                        arrayList.add(dataSubji);
+                         dataSubji = new DataSubji();
+                         JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                         dataSubji.subji = jsonArray1.getString(1);
+                         arrayList.add(dataSubji);
 
-                        Log.d("Data", dataSubji.subji);
-                        recyclerView = view.findViewById(R.id.Listmenu);
-                        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                         Log.d("Data", dataSubji.subji);
+                         recyclerView = view.findViewById(R.id.Listmenu);
+                         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-                        if (!(arrayList.size() == 0)) {
-                            if (tiffintype.equals("Basic")) {
-                                adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
-                                recyclerView.setAdapter(adapterRadioButton);
-                                adapterRadioButton.notifyDataSetChanged();
-                            } else if (tiffintype.equals("Heavy")) {
-                                adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
-                                recyclerView.setAdapter(adapterCheckbox);
-                                adapterCheckbox.notifyDataSetChanged();
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    menuNotAvailable.setText("oopss...,Menu is not provided for today");
-                    menuNotAvailable.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.INVISIBLE);
-                }
+                         if (!(arrayList.size() == 0)) {
+                             if (tiffintype.equals("Basic")) {
+                                 adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                                 recyclerView.setAdapter(adapterRadioButton);
+                                 adapterRadioButton.notifyDataSetChanged();
+                             } else if (tiffintype.equals("Heavy")) {
+                                 adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                                 recyclerView.setAdapter(adapterCheckbox);
+                                 adapterCheckbox.notifyDataSetChanged();
+                             }
+                         } else {
+                             Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+                         }
+                     }
 
 
-            }
-        });
-    }
+                 } catch (JSONException e) {
+                     e.printStackTrace();
+                     menuNotAvailable.setText("oopss...,Menu is not provided for today");
+                     menuNotAvailable.setVisibility(View.VISIBLE);
+                     recyclerView.setVisibility(View.INVISIBLE);
+                 }
 
+
+             }
+         });
+     }
+ */
     public void setData(String url, final String item) {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
@@ -563,11 +562,11 @@ public class NonVegFragment extends Fragment {
     }
 
 
-    public void selectedData() {
+  /*  public void selectedData() {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        Log.d("URL", "http://192.168.0.107:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
+        Log.d("URL", "http://sansmealbox.com/admin/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
@@ -597,7 +596,7 @@ public class NonVegFragment extends Fragment {
             }
         });
 
-    }
+    }*/
 
 
 }

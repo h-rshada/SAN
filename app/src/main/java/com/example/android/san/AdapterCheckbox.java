@@ -92,15 +92,15 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (dabba.equals("fixedHeavy")) {
             listData = sp.getStringSet("LIST", null);
             List listOfNames = new ArrayList(listData);
-            Log.d("Adapterlist***", listOfNames.get(0) + "");
+            //Log.d("Adapterlist***", listOfNames.get(0) + "");
             str1 = listOfNames.get(0).toString();
-            Log.d("str1", str1);
+            // Log.d("str1", str1);
             str2 = listOfNames.get(1).toString();
-            Log.d("str2", str2);
+            // Log.d("str2", str2);
         }
         if (dabba.equals("semiHeavy")) {
             selectedStr = sp.getString("SINGLE", null);
-            Log.d("Adapterstr***", selectedStr);
+            //Log.d("Adapterstr***", selectedStr);
         }
 
 

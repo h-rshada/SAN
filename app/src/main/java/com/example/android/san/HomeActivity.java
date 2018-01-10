@@ -13,7 +13,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -143,6 +142,7 @@ public class HomeActivity extends AppCompatActivity
         }
         back_pressed = System.currentTimeMillis();
     }
+/*
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -159,15 +159,18 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         menuItem = item;
         //noinspection SimplifiableIfStatement
-       /* if (id == R.id.action_settings) {
+       */
+/* if (id == R.id.action_settings) {
 
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivityForResult(intent, 100);
             return true;
-        }*/
+        }*//*
+
 
         return super.onOptionsItemSelected(item);
     }
+*/
 
     @OnClick({R.id.order, R.id.aboutus, R.id.find})
     public void onClick(View view) {
@@ -181,7 +184,7 @@ public class HomeActivity extends AppCompatActivity
 
             case R.id.aboutus:
 
-                intent=new Intent(HomeActivity.this,AboutUs.class);
+                intent = new Intent(HomeActivity.this, AboutUs.class);
                 startActivity(intent);
                 break;
 
@@ -205,7 +208,6 @@ public class HomeActivity extends AppCompatActivity
             editor.putString("AUTH_ID", auth_id);
             editor.commit();
             intent = new Intent(HomeActivity.this, Profile.class);
-
             startActivity(intent);
         }
 
@@ -228,7 +230,7 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
+  /*  @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
@@ -241,7 +243,7 @@ public class HomeActivity extends AppCompatActivity
                 Log.d("****", "Item**** ");
             }
         }
-    }
+    }*/
 
     @Override
     protected void onStop() {

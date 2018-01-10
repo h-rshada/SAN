@@ -311,15 +311,15 @@ public class VegFragment extends Fragment {
 
         item = "bread";
 
-        setData("http://192.168.0.107:8001/routes/server/app/getCommonItems.php?item=bread", item);
+        setData("http://sansmealbox.com/admin/routes/server/app/getCommonItems.php?item=bread", item);
 
         item = "rice";
 
-        setData("http://192.168.0.107:8001/routes/server/app/getCommonItems.php?item=rice", item);
+        setData("http://sansmealbox.com/admin/routes/server/app/getCommonItems.php?item=rice", item);
 
         item = "dal";
 
-        setData("http://192.168.0.107:8001/routes/server/app/getCommonItems.php?item=dal", item);
+        setData("http://sansmealbox.com/admin/routes/server/app/getCommonItems.php?item=dal", item);
 
         Log.d("onCreateView: ", arrayList1 + "");
         getData();
@@ -486,10 +486,12 @@ public class VegFragment extends Fragment {
                     intent.putExtra("Price", price);
                     // intent.putExtra("Auth_Id", auth_Id);
                     if (count > 1) {
+                        editor.putBoolean("LOGIN", login);
                         editor.putString("AUTH_ID", auth_Id);
                         editor.commit();
                         startActivity(intent);
                     } else if (!(string == null)) {
+                        editor.putBoolean("LOGIN", login);
                         editor.putString("AUTH_ID", auth_Id);
                         editor.commit();
                         startActivity(intent);
@@ -551,9 +553,9 @@ public class VegFragment extends Fragment {
                     if (count > 1 || !(string == null)) {
                         if (login) {
                         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                            Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php");
+                            Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php");
                             JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                    Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
+                                    Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php", orderData,
                                     new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
@@ -601,6 +603,8 @@ public class VegFragment extends Fragment {
                 } else {
                     Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
                     editor = sp.edit();
+                    editor.putBoolean("LOGIN", login);
+                    Log.d("GOTOAUTH", auth_Id);
                     editor.putString("AUTH_ID", auth_Id);
                     editor.commit();
                     startActivity(intentGoToCart);
@@ -613,8 +617,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
-        Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
+        Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=veg&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -721,8 +725,8 @@ public class VegFragment extends Fragment {
     {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
-        Log.d("URL", "http://192.168.0.107:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        Log.d("URL", "http://sansmealbox.com/admin/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=vegSabji&day=" + week_day);
         urlRequest.getResponse(new ServerCallback()
         {
             @Override
@@ -747,7 +751,6 @@ public class VegFragment extends Fragment {
                         editor.commit();
                         Log.d("LIst", listData + "");
                         Log.d("DataSubji***", dabba1);
-
                 }
                 catch (JSONException e)
                 {

@@ -1,10 +1,13 @@
 package com.example.android.san.Fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +37,10 @@ public class FlexibleFragment extends Fragment {
     CardView cardHeavy;
     Intent intent;
 Context context;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
+    boolean login;
+    String auth_Id;
 
     View view;
     @Override
@@ -41,14 +48,18 @@ Context context;
 
          view = inflater.inflate(R.layout.activity_flexible_fragment, container, false);
         ButterKnife.inject(this,view);
+        sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        auth_Id = sp.getString("AUTH_ID", "");
+        Log.d("Login####", login + "");
+        Log.d("Auth^^^^", auth_Id);
        /* Calligrapher calligrapher = new Calligrapher(getContext());
         calligrapher.setFont(getAssets(),"fonts/Charrington.ttf", true);
 */
          intent=new Intent(getActivity(), TabActivity.class);
          type="flexible";
          intent.putExtra("Type",type);
-         price="120";
-         intent=intent.putExtra("Price",price);
+
       /*  txtTiffinType.setPaintFlags(txtTiffinType.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         txtTiffinType1.setPaintFlags(txtTiffinType1.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);*/
         return view;
@@ -63,11 +74,16 @@ Context context;
             tiffinType = txtTiffinType.getText().toString();
             intent.putExtra("TiffinType", tiffinType);
 
+                price = "120";
+                intent = intent.putExtra("Price", price);
+
                 startActivity(intent);
             break;
             case R.id.cardHeavy:
                 tiffinType = txtTiffinType1.getText().toString();
                 intent.putExtra("TiffinType", tiffinType);
+                price = "150";
+                intent = intent.putExtra("Price", price);
                 startActivity(intent);
                 break;
 

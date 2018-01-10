@@ -8,17 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -123,7 +116,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 menu1 = listOfNames.get(1).toString();
                 txtMenu3.setText("1." + menu+" "+menu1);
                 /*txtMenu1.setVisibility(View.VISIBLE);
-                txtMenu1.setText("2." + menu1)*/;
+                txtMenu1.setText("2." + menu1)*/
                 Log.d("Adapterlist***", listOfNames.toString());
                 Log.d("Menu**", menu);
                 Log.d("Menu1**", menu1);
@@ -232,6 +225,17 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 requestQueue.add(jsonObjReq);*/
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        editor = sp.edit();
+        editor.putString("AUTH_ID", auth_id);
+        editor.putBoolean("LOGIN", true);
+        editor.commit();
+        Intent intent = new Intent(OrderDetailsActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 
     public void backspaceorderdetails(View v) {

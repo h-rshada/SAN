@@ -45,8 +45,7 @@ public class SemiFlexibleFragment extends Fragment {
         intent=new Intent(getActivity(), TabActivity.class);
         type = "semi flexible";
         intent=intent.putExtra("Type",type);
-        price="100";
-        intent.putExtra("Price",price);
+
 //        txtTiffinType.setPaintFlags(txtTiffinType.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 //        txtTiffinType1.setPaintFlags(txtTiffinType1.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
         return  view;
@@ -59,11 +58,15 @@ public class SemiFlexibleFragment extends Fragment {
             case R.id.cardBasic:
                 tiffinType = txtTiffinType.getText().toString();
                 intent.putExtra("TiffinType", tiffinType);
+                price = "100";
+                intent.putExtra("Price", price);
                 startActivity(intent);
                 break;
             case R.id.cardHeavy:
                 tiffinType = txtTiffinType1.getText().toString();
                 intent.putExtra("TiffinType", tiffinType);
+                price = "110";
+                intent.putExtra("Price", price);
                 startActivity(intent);
                 break;
         }

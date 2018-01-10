@@ -89,6 +89,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".ContactUs" />
         <activity android:name=".payment" />
         <activity android:name=".cashOnDelivery" />
         <activity android:name=".Profile"></activity>

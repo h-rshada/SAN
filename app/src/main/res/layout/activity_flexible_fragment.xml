@@ -149,7 +149,7 @@
                         android:layout_marginTop="100dp"
                         android:background="@drawable/shape"
                         android:gravity="center"
-                        android:text="Rs 120"
+                        android:text="Rs. 120"
                         android:textColor="#fff"
                         android:textSize="20dp"
                         android:textStyle="bold" />

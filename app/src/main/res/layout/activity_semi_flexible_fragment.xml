@@ -149,7 +149,7 @@
                         android:layout_marginTop="100dp"
                         android:background="@drawable/shape"
                         android:gravity="center"
-                        android:text="Rs 120"
+                        android:text="Rs 100"
                         android:textColor="#fff"
                         android:textSize="20dp"
                         android:textStyle="bold" />
@@ -289,7 +289,7 @@
                         android:layout_marginTop="100dp"
                         android:background="@drawable/shape"
                         android:gravity="center"
-                        android:text="Rs 150"
+                        android:text="Rs 110"
                         android:textColor="#fff"
                         android:textSize="20dp"
                         android:textStyle="bold" />

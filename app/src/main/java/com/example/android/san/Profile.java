@@ -1,13 +1,13 @@
 package com.example.android.san;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +40,7 @@ public class Profile extends AppCompatActivity {
     @InjectView(R.id.imgEdit)
     ImageView imgEdit;
     boolean login;
+    AlertDialog.Builder alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,20 +70,14 @@ public class Profile extends AppCompatActivity {
 
             case R.id.txtLogin:
 
-                LayoutInflater li = LayoutInflater.from(Profile.this);
-                //Creating a view to get the dialog box
-                View logoutConfirmDialog = li.inflate(R.layout.dialogue_confirm_logout, null);
-                TextView txtYes = logoutConfirmDialog.findViewById(R.id.txtYes);
-                TextView txtNo = logoutConfirmDialog.findViewById(R.id.txtNo);
-                AlertDialog.Builder alert = new AlertDialog.Builder(Profile.this);
-                //Adding our dialog box to the view of alert dialog
-                alert.setView(logoutConfirmDialog);
-                //Creating an alert dialog
-                alertDialog = alert.create();
-                alertDialog.show();
-                txtYes.setOnClickListener(new View.OnClickListener() {
+
+                alert = new AlertDialog.Builder(Profile.this);
+
+                alert.setMessage("Are you sure you want to logout?");
+                alert.setCancelable(false);
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(DialogInterface dialog, int which) {
                         editor = sp.edit();
                         editor.putBoolean("LOGIN", false);
                         editor.putString("AUTH_ID", null);
@@ -93,16 +88,17 @@ public class Profile extends AppCompatActivity {
                         intent = new Intent(Profile.this, HomeActivity.class);
                         finish();
                         startActivity(intent);
-
-
                     }
                 });
-                txtNo.setOnClickListener(new View.OnClickListener() {
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
+                    public void onClick(DialogInterface dialog, int which) {
+
                     }
                 });
+                AlertDialog ad1 = alert.create();
+                ad1.show();
+
                 break;
             case R.id.imgEdit:
                 intent = new Intent(Profile.this, MainActivity.class);
@@ -118,8 +114,8 @@ public class Profile extends AppCompatActivity {
         Log.d("Id", id);
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
-        Log.d("checkData: ", "http://192.168.0.107:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
+        Log.d("checkData: ", "http://sansmealbox.com/admin/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
@@ -136,12 +132,10 @@ public class Profile extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 txtName.setText(name);
                 txtAddress.setText(address);
                 txtEmail.setText(email);
                 txtPhone.setText(phone);
-
             }
         });
     }

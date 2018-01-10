@@ -47,6 +47,7 @@ public class cashOnDelivery extends AppCompatActivity {
     String parentActivityName;
     JSONObject jsonObject;
     int flag=0;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +65,8 @@ public class cashOnDelivery extends AppCompatActivity {
         Log.d("I m in cashon delivery", "Cash");
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(cashOnDelivery.this);
-        Log.d("URL", "http://192.168.0.107:8001/routes/server/app/getAddress.rfa.php?AuthId=" + auth_id);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/getAddress.rfa.php?AuthId=" + auth_id);
+        Log.d("URL", "http://sansmealbox.com/admin/routes/server/app/getAddress.rfa.php?AuthId=" + auth_id);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/getAddress.rfa.php?AuthId=" + auth_id);
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {
@@ -92,8 +93,8 @@ public class cashOnDelivery extends AppCompatActivity {
                     if(parentActivityName.equals("GoToCart")) {
                         urlRequest = UrlRequest.getObject();
                         urlRequest.setContext(cashOnDelivery.this);
-                        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
-                        Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
+                        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
+                        Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
                         urlRequest.getResponse(new ServerCallback() {
                             @Override
                             public void onSuccess(String response) {
@@ -106,9 +107,9 @@ public class cashOnDelivery extends AppCompatActivity {
                                     jsonObject.put("jsonObject", jArray);
                                     Log.d("object", jsonObject + "");
                                     RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
-                                    Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php");
+                                    Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/myOrder.rfa.php");
                                     JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                            Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php", jsonObject,
+                                            Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/myOrder.rfa.php", jsonObject,
                                             new Response.Listener<JSONObject>() {
                                                 @Override
                                                 public void onResponse(JSONObject response) {
@@ -119,8 +120,6 @@ public class cashOnDelivery extends AppCompatActivity {
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
                                                     }
-
-
                                                 }
                                             }, new Response.ErrorListener() {
 
@@ -146,7 +145,7 @@ public class cashOnDelivery extends AppCompatActivity {
                             Log.d(jsonObject+"", "JJJ");
                             RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
                             JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                    Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/myOrder.rfa.php", jsonObject,
+                                    Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/myOrder.rfa.php", jsonObject,
                                     new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
@@ -172,5 +171,17 @@ public class cashOnDelivery extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        editor = sp.edit();
+        editor.putBoolean("LOGIN", true);
+        editor.putString("AUTH_ID", auth_id);
+        editor.commit();
+        intent = new Intent(cashOnDelivery.this, HomeActivity.class);
+        startActivity(intent);
+        cashOnDelivery.this.finish();
     }
 }

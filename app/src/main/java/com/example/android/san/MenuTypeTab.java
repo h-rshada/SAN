@@ -45,6 +45,7 @@ public class MenuTypeTab extends AppCompatActivity {
     SharedPreferences sp;
     boolean login;
     SharedPreferences.Editor editor;
+    String auth_Id;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
@@ -55,13 +56,15 @@ public class MenuTypeTab extends AppCompatActivity {
         setContentView(R.layout.activity_menu_type_tab);
 
         ButterKnife.inject(MenuTypeTab.this);
-
         flexibleFragment = new FlexibleFragment();
         semiFlexibleFragment = new SemiFlexibleFragment();
         fixedFragment=new FixedFragment();
         breakFastFragment=new BreakFastFragment();
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);
+        auth_Id = sp.getString("AUTH_ID", "");
+        Log.d("Login####", login + "");
+        Log.d("Auth^^^^", auth_Id);
 
         Log.d("Login&&&&&&&", login + "");
         viewPager = findViewById(R.id.pager);
@@ -129,9 +132,17 @@ public class MenuTypeTab extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        editor = sp.edit();
-        editor.putBoolean("LOGIN", true);
-        editor.commit();
+        if (login) {
+            editor = sp.edit();
+            editor.putBoolean("LOGIN", true);
+            editor.putString("AUTH_ID", auth_Id);
+            editor.commit();
+        } else {
+            editor = sp.edit();
+            editor.putBoolean("LOGIN", false);
+            editor.commit();
+        }
+
         MenuTypeTab.this.finish();
     }
 

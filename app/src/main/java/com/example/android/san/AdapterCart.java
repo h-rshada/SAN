@@ -153,8 +153,8 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                             public void onClick(DialogInterface dialog, int id) {
                                 urlRequest = UrlRequest.getObject();
                                 urlRequest.setContext(context);
-                                urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
-                                Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
+                                urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
+                                Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
                                 urlRequest.getResponse(new ServerCallback() {
                                     @Override
                                     public void onSuccess(String response) {
@@ -197,9 +197,9 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             e.printStackTrace();
         }
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        Log.d("URLorder", "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php");
+        Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php");
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                Request.Method.POST, "http://192.168.0.107:8001/routes/server/app/addToCart.rfa.php", orderData,
+                Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php", orderData,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -231,6 +231,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         TextView txt_tiffin_plan, txt_tiffin_type, txt_menu, txt_indian_bread, txt_rice, txt_dal, txt_price, txt_quantity, txt_totalPrice, txt_totalQuantity;
         Button btnAdd, btnRemove, btnRemoveFromCart;
         LinearLayout linearLayout;
+
         public MyHolder(View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.layout_linear1);
@@ -250,7 +251,6 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
         }
     }
-
 }
 
 

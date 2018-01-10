@@ -70,7 +70,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         Log.d("str", str);
         if (type.equals("fixed")) {
-            selectedStr = sp.getString("SINGLE", null);
+            selectedStr = sp.getString("SINGLE", "");
             Log.d("Dabba***", type);
             Log.d("Selected***", selectedStr);
             myHolder.radioSubji.setChecked(false);

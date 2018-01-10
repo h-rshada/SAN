@@ -38,6 +38,7 @@ public class GoToCart extends AppCompatActivity {
     SharedPreferences.Editor editor;
     JSONArray jArray;
     JSONObject json_data;
+    boolean login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,104 +48,117 @@ public class GoToCart extends AppCompatActivity {
         final List<DataCart> data = new ArrayList<>();
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         // editor = sp.edit();
+        login = sp.getBoolean("LOGIN", false);
         auth_Id = sp.getString("AUTH_ID", "");
         //auth_Id = getIntent().getStringExtra("Auth_Id");
         Log.d("AUTH111", auth_Id);
 
-        urlRequest = UrlRequest.getObject();
-        urlRequest.setContext(GoToCart.this);
-        urlRequest.setUrl("http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
-        Log.d("getDataURL: ", "http://192.168.0.107:8001/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("ResponseGOTO", response);
-                if (!response.contains("nodata")) {
-                    try {
+        if (login) {
 
-                        jArray = new JSONArray(response);
 
-                        for (int i = 0; i < jArray.length(); i++) {
-                            Log.d("JarrayLength", jArray.length() + "");
-                            json_data = jArray.getJSONObject(i);
-                            DataCart tiffin_data = new DataCart();
-                            tiffin_data.id = json_data.getString("id");
-                            tiffin_data.tiffin_plan = json_data.getString("tiffinPlan");
-                            tiffin_data.tiffin_type = json_data.getString("tiffinType");
-                            tiffin_data.indian_bread = json_data.getString("indianBread");
-                            tiffin_data.rice = json_data.getString("rice");
-                            tiffin_data.dal = json_data.getString("dal");
-                            tiffin_data.price = json_data.getString("price");
-                            tiffin_data.quantity = json_data.getString("quantity");
-                            tiffin_data.menu = json_data.getString("menu");
-                            tiffin_data.totalCartItems = jArray.length();
-                            data.add(tiffin_data);
-                            Log.d(data.toString(), "data");
+            urlRequest = UrlRequest.getObject();
+            urlRequest.setContext(GoToCart.this);
+            urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
+            Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("ResponseGOTO", response);
+                    if (!response.contains("nodata")) {
+                        try {
+
+                            jArray = new JSONArray(response);
+
+                            for (int i = 0; i < jArray.length(); i++) {
+                                Log.d("JarrayLength", jArray.length() + "");
+                                json_data = jArray.getJSONObject(i);
+                                DataCart tiffin_data = new DataCart();
+                                tiffin_data.id = json_data.getString("id");
+                                tiffin_data.tiffin_plan = json_data.getString("tiffinPlan");
+                                tiffin_data.tiffin_type = json_data.getString("tiffinType");
+                                tiffin_data.indian_bread = json_data.getString("indianBread");
+                                tiffin_data.rice = json_data.getString("rice");
+                                tiffin_data.dal = json_data.getString("dal");
+                                tiffin_data.price = json_data.getString("price");
+                                tiffin_data.quantity = json_data.getString("quantity");
+                                tiffin_data.menu = json_data.getString("menu");
+                                tiffin_data.totalCartItems = jArray.length();
+                                data.add(tiffin_data);
+                                Log.d(data.toString(), "data");
+                                Log.d("Price", tiffin_data.price);
+                            }
+                            list_tiffin.setVisibility(View.VISIBLE);
+                            adapter = new AdapterCart(GoToCart.this, data);
+                            list_tiffin.setAdapter(adapter);
+                            LinearLayoutManager llm = new LinearLayoutManager(GoToCart.this);
+                            list_tiffin.setLayoutManager(llm);
+                            adapter.notifyDataSetChanged();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
                         }
-                        list_tiffin.setVisibility(View.VISIBLE);
-                        adapter = new AdapterCart(GoToCart.this, data);
-                        list_tiffin.setAdapter(adapter);
-                        LinearLayoutManager llm = new LinearLayoutManager(GoToCart.this);
-                        list_tiffin.setLayoutManager(llm);
-                        adapter.notifyDataSetChanged();
+                    } else {
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        findViewById(R.id.textViewError).setVisibility(View.VISIBLE);
+                        findViewById(R.id.Listmenu).setVisibility(View.INVISIBLE);
+                        btnContinue.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(GoToCart.this, "Cart is empty", Toast.LENGTH_LONG).show();
+                            }
+                        });
 
                     }
-                } else {
-
-                    findViewById(R.id.textViewError).setVisibility(View.VISIBLE);
-                    findViewById(R.id.Listmenu).setVisibility(View.INVISIBLE);
-                    btnContinue.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Toast.makeText(GoToCart.this, "Cart is empty", Toast.LENGTH_LONG).show();
-                        }
-                    });
-
                 }
-            }
-        });
-        btnContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Activity a = GoToCart.this;
-                a.recreate();
-                editor = sp.edit();
-                editor.putString("AUTH_ID", auth_Id);
-                editor.putBoolean("LOGIN", true);
-                editor.commit();
-                Intent intent = new Intent(GoToCart.this, payment.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        btnAddToCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editor = sp.edit();
-                editor.putBoolean("LOGIN", true);
-                editor.putString("AUTH_ID", auth_Id);
-                editor.commit();
-                Intent intent = new Intent(GoToCart.this, MenuTypeTab.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+            });
 
+            btnContinue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Activity a = GoToCart.this;
+                    a.recreate();
+                    editor = sp.edit();
+                    editor.putString("AUTH_ID", auth_Id);
+                    editor.putBoolean("LOGIN", true);
+                    editor.commit();
+                    Intent intent = new Intent(GoToCart.this, payment.class);
+                    intent.putExtra("PARENT_ACTIVITY_NAME", "GoToCart");
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            btnAddToCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    editor = sp.edit();
+                    editor.putBoolean("LOGIN", true);
+                    editor.putString("AUTH_ID", auth_Id);
+                    editor.commit();
+                    Intent intent = new Intent(GoToCart.this, MenuTypeTab.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        } else {
+            Intent intentlogin = new Intent(GoToCart.this, LoginActivity.class);
+            intentlogin.putExtra("PARENT_ACTIVITY_NAME", "GotoCart");
+            startActivity(intentlogin);
+        }
     }
 
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+
         editor = sp.edit();
         editor.putBoolean("LOGIN", true);
         editor.putString("AUTH_ID", auth_Id);
         editor.commit();
-        Intent intent = new Intent(GoToCart.this, HomeActivity.class);
+        Intent intent = new Intent(GoToCart.this, MenuTypeTab.class);
         startActivity(intent);
         finish();
+
     }
 }
 

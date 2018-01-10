@@ -6,6 +6,7 @@
     tools:context="com.example.android.san.LoginActivity">
 
     <LinearLayout
+        android:id="@+id/linearLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
