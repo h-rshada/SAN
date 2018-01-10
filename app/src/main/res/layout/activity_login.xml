@@ -11,12 +11,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_above="@+id/cv"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/loginn" />
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_marginTop="60dp"
-            android:text="Log in" />
+            android:background="@drawable/log_in_bt_shape"
+            android:drawablePadding="20dp"
+            android:drawableRight="@drawable/login112"
+            android:paddingRight="140dp"
+            android:text="Log in"
+            android:textAlignment="textEnd"
+            android:textSize="19sp" />
 
     </LinearLayout>
 

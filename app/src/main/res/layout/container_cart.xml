@@ -21,21 +21,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#34ff6b"
+                android:background="#C52E2E"
                 android:paddingLeft="5dp"
                 android:text="Tiffin Plan :"
-                android:textColor="#062525"
+                android:textColor="#fcd1d6"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/txtTiffinType"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#062525"
+                android:background="#fcd1d6"
                 android:paddingLeft="5dp"
-                android:textColor="#34ff6b"
+                android:textColor="#C52E2E"
                 android:textSize="20dp" />
         </LinearLayout>
 
@@ -48,49 +48,49 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#34ff6b"
+                android:background="#C52E2E"
                 android:paddingLeft="5dp"
                 android:text="Tiffin Type :"
-                android:textColor="#062525"
+                android:textColor="#fcd1d6"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/txtTiffinPlan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#062525"
+                android:background="#fcd1d6"
                 android:paddingLeft="5dp"
-                android:textColor="#34ff6b"
+                android:textColor="#C52E2E"
                 android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#34ff6b"
+            android:background="#C52E2E"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#34ff6b"
+                android:background="#C52E2E"
                 android:paddingLeft="3dp"
                 android:text="Menu :"
-                android:textColor="#062525"
+                android:textColor="#fcd1d6"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/txtMenu4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#062525"
+                android:background="#fcd1d6"
                 android:paddingLeft="5dp"
-                android:textColor="#34ff6b"
+                android:textColor="#C52E2E"
                 android:textSize="20dp" />
         </LinearLayout>
 
@@ -98,56 +98,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#34ff6b"
+                android:background="#C52E2E"
                 android:paddingLeft="5dp"
                 android:text="Indian Bread :"
-                android:textColor="#062525"
+                android:textColor="#fcd1d6"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/txtBread"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#062525"
+                android:background="#fcd1d6"
                 android:paddingLeft="5dp"
-                android:textColor="#34ff6b"
+                android:textColor="#C52E2E"
                 android:textSize="20dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#34ff6b"
+                android:background="#C52E2E"
                 android:paddingLeft="5dp"
                 android:text="Rice :"
-                android:textColor="#062525"
+                android:textColor="#fcd1d6"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/txtRice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#062525"
+                android:background="#fcd1d6"
                 android:paddingLeft="5dp"
-                android:textColor="#34ff6b"
+                android:textColor="#C52E2E"
                 android:textSize="20dp" />
 
         </LinearLayout>
@@ -155,28 +153,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FF1744"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#34ff6b"
+                android:background="#C52E2E"
                 android:paddingLeft="5dp"
                 android:text="Dal :"
-                android:textColor="#062525"
+                android:textColor="#fcd1d6"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/txtDal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#062525"
+                android:background="#fcd1d6"
                 android:paddingLeft="5dp"
-                android:textColor="#34ff6b"
+                android:textColor="#C52E2E"
                 android:textSize="20dp" />
 
         </LinearLayout>
@@ -185,7 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:background="#ff2b00"
+            android:background="#ff0000"
             android:orientation="horizontal">
 
             <TextView
@@ -293,7 +290,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#e3f2ed">
+                android:background="#c6dad3">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -318,7 +315,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#e3f2ed">
+                android:background="#c6dad3">
 
                 <TextView
                     android:id="@+id/txt_totalPrice"

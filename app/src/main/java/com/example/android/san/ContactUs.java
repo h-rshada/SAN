@@ -8,7 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
@@ -17,9 +17,9 @@ import butterknife.OnClick;
 
 public class ContactUs extends AppCompatActivity {
     @InjectView(R.id.img_mail)
-    ImageView mail;
+    Button mail;
     @InjectView(R.id.img_number)
-    ImageView number;
+    Button number;
     Intent intent;
 
     @Override

@@ -18,9 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 import java.io.File;
@@ -44,7 +42,7 @@ public class HomeActivity extends AppCompatActivity
     boolean login;
     String auth_id;
     MenuItem menuItem;
-    SliderLayout sliderLayout;
+    //    SliderLayout sliderLayout;
     HashMap<String, Integer> Hash_file_maps;
     private long back_pressed = 0;
     private Toast toast;
@@ -59,30 +57,30 @@ public class HomeActivity extends AppCompatActivity
         auth_id = sp.getString("AUTH_ID", "");
         Log.d("Authid1", auth_id);
 
-        sliderLayout = findViewById(R.id.slider);
-        Hash_file_maps=new HashMap<String, Integer>();
-
-        Hash_file_maps.put(".............", R.drawable.food1);
-        Hash_file_maps.put("...........", R.drawable.food2);
-        Hash_file_maps.put("....", R.drawable.food3);
-        for (String name : Hash_file_maps.keySet()) {
-
-            TextSliderView textSliderView = new TextSliderView(HomeActivity.this);
-            textSliderView
-                    //.description(name)
-                    .image(Hash_file_maps.get(name))
-                    /*.setScaleType(BaseSliderView.ScaleType.Fit)*/
-                    .setOnSliderClickListener(this);
-            //textSliderView.bundle(new Bundle());
-            //textSliderView.getBundle();
-                  /*  .putString("extra", name);*/
-            sliderLayout.addSlider(textSliderView);
-        }
+//        sliderLayout = findViewById(R.id.slider);
+//        Hash_file_maps=new HashMap<String, Integer>();
+//
+//        Hash_file_maps.put(".............", R.drawable.food1);
+//        Hash_file_maps.put("...........", R.drawable.food2);
+//        Hash_file_maps.put("....", R.drawable.food3);
+//        for (String name : Hash_file_maps.keySet()) {
+//
+//            TextSliderView textSliderView = new TextSliderView(HomeActivity.this);
+//            textSliderView
+//                    //.description(name)
+//                    .image(Hash_file_maps.get(name))
+//                    /*.setScaleType(BaseSliderView.ScaleType.Fit)*/
+//                    .setOnSliderClickListener(this);
+//            //textSliderView.bundle(new Bundle());
+//            //textSliderView.getBundle();
+//                  /*  .putString("extra", name);*/
+////            sliderLayout.addSlider(textSliderView);
+//        }
         //sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
         //sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         // sliderLayout.setCustomAnimation(new DescriptionAnimation());
-        sliderLayout.setDuration(3000);
-        sliderLayout.addOnPageChangeListener(this);
+//        sliderLayout.setDuration(3000);
+//        sliderLayout.addOnPageChangeListener(this);
 
 
 
@@ -248,7 +246,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onStop() {
 
-        sliderLayout.stopAutoCycle();
+//        sliderLayout.stopAutoCycle();
 
         super.onStop();
     }

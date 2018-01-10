@@ -4,16 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ff0000"
+
     tools:context="com.example.android.san.payment">
+
+    <ImageView
+        android:id="@+id/iv1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_above="@+id/cv"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/pay6" />
+
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="100dp"
-        app:cardBackgroundColor="#E4F1FE"
-        app:cardCornerRadius="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        app:cardBackgroundColor="#ffa500"
+        app:cardCornerRadius="25dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
 
@@ -21,10 +32,8 @@
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_alignStart="@+id/btn_placeOrder"
+            android:layout_below="@+id/cv"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical"
@@ -36,7 +45,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="Cash on delivery" />
+                android:text="Cash on delivery"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/radiobutton_payUmoney"
@@ -44,7 +55,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="PayUmoney" />
+                android:text="PayUmoney"
+                android:textSize="18dp"
+                android:textStyle="bold" />
         </RadioGroup>
     </android.support.v7.widget.CardView>
 
@@ -53,5 +66,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="place order" />
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@drawable/place_order_bt_shape"
+        android:drawableLeft="@drawable/porder3"
+        android:drawablePadding="10dp"
+        android:paddingLeft="100dp"
+        android:text="place order"
+        android:textAlignment="textStart"
+        android:textColor="#0e0e0e"
+        android:textSize="19dp"
+        android:textStyle="normal" />
 </RelativeLayout>

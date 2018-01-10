@@ -54,10 +54,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#fff200"
+                    android:background="#ff0000"
                     android:paddingLeft="10dp"
                     android:text="Tiffin Plan  :"
-                    android:textColor="#000"
+                    android:textColor="#ffa500"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -66,9 +66,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#000"
+                    android:background="#ffa500"
                     android:paddingLeft="10dp"
-                    android:textColor="#fff200"
+                    android:textColor="#ff0000"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -81,10 +81,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#fff200"
+                    android:background="#ff0000"
                     android:paddingLeft="10dp"
                     android:text="Tiffin Type  :"
-                    android:textColor="#000"
+                    android:textColor="#ffa500"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -93,9 +93,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#000"
+                    android:background="#ffa500"
                     android:paddingLeft="10dp"
-                    android:textColor="#fff200"
+                    android:textColor="#ff0000"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -103,7 +103,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff200"
+                android:background="#ff0000"
                 android:orientation="horizontal">
 
 
@@ -111,10 +111,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#fff200"
+                    android:background="#ff0000"
                     android:paddingLeft="10dp"
                     android:text="Menu  :"
-                    android:textColor="#000"
+                    android:textColor="#ffa500"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -124,9 +124,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#000"
+                    android:background="#ffa500"
                     android:paddingLeft="10dp"
-                    android:textColor="#f7ea00"
+                    android:textColor="#ff0000"
                         android:textSize="20dp" />
 
 
@@ -142,10 +142,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#fff200"
+                    android:background="#ff0000"
                     android:paddingLeft="10dp"
                     android:text="Indian Bread  :"
-                    android:textColor="#000"
+                    android:textColor="#ffa500"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -154,9 +154,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#000"
+                    android:background="#ffa500"
                     android:paddingLeft="10dp"
-                    android:textColor="#fff200"
+                    android:textColor="#ff0000"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -169,10 +169,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#fff200"
+                    android:background="#ff0000"
                     android:paddingLeft="10dp"
                     android:text="Rice  :"
-                    android:textColor="#000"
+                    android:textColor="#ffa500"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -181,9 +181,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#000"
+                    android:background="#ffa500"
                     android:paddingLeft="10dp"
-                    android:textColor="#fff200"
+                    android:textColor="#ff0000"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -197,10 +197,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#fff200"
+                    android:background="#ff0000"
                     android:paddingLeft="10dp"
                     android:text="Dal  :"
-                    android:textColor="#000"
+                    android:textColor="#ffa500"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -209,9 +209,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#000"
+                    android:background="#ffa500"
                     android:paddingLeft="10dp"
-                    android:textColor="#fff200"
+                    android:textColor="#ff0000"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -225,10 +225,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#fff200"
+                    android:background="#ff0000"
                     android:paddingLeft="10dp"
                     android:text="Price  :"
-                    android:textColor="#000"
+                    android:textColor="#ffa500"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -237,9 +237,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#000"
+                    android:background="#ffa500"
                     android:paddingLeft="10dp"
-                    android:textColor="#fff200"
+                    android:textColor="#ff0000"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -251,9 +251,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="#fff200"
+                android:background="#ffa500"
                 android:text="order"
-                android:textColor="#000"
+                android:textColor="#ff0000"
+                android:textSize="18dp"
                 android:textStyle="bold" />
         </LinearLayout>
 

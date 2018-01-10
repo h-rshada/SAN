@@ -12,6 +12,9 @@
     <color name="tiffin_content_txtcolor">#122</color>
 
 
+    <color name="pressed_color">#26e409</color>
+    <color name="default_color">#000</color>
+
     <!--for welcome screen-->
 
     <!-- Screens background color-->

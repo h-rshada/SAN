@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -81,6 +82,7 @@
         <activity android:name=".GoToCart" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".Profile" />
         <activity
             android:name=".MenuTypeTab"
             android:label=""
@@ -89,10 +91,9 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContactUs" />
         <activity android:name=".payment" />
-        <activity android:name=".cashOnDelivery" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".cashOnDelivery"></activity>
+        <activity android:name=".ContactUs" />
     </application>
 
 </manifest>

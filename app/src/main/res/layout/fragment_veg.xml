@@ -41,7 +41,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-
                     android:weightSum="3">
 
 
@@ -285,11 +284,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/itemCardView"
                 android:layout_marginTop="10dp"
-                android:background="#f4a9d8"
+                android:background="#28b400"
                 android:padding="5dp"
                 android:text="Menu"
                 android:textAlignment="center"
-                android:textColor="#2196F3"
+                android:textColor="#ffffff"
                 android:textStyle="bold" />
             <LinearLayout
                 android:id="@+id/layout_days"

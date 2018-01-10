@@ -53,6 +53,10 @@ public class FixedFragment extends Fragment {
         type="fixed";
         intent=intent.putExtra("Type",type);
 
+        cardBasic.setBackgroundResource(R.drawable.heavy100);
+        cardHeavy.setBackgroundResource(R.drawable.darkback12);
+
+
 //        txtTiffinType.setPaintFlags(txtTiffinType.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 //        txtTiffinType1.setPaintFlags(txtTiffinType1.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
         return  view;
