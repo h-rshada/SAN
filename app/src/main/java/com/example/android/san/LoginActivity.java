@@ -22,6 +22,8 @@ import com.auth0.android.provider.WebAuthProvider;
 import com.auth0.android.result.Credentials;
 import com.auth0.android.result.UserProfile;
 
+import es.dmoral.toasty.Toasty;
+
 public class LoginActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     SharedPreferences sp;
@@ -52,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(LoginActivity.this, "Log In - Error Occurred", Toast.LENGTH_SHORT).show();
+                    Toasty.error(LoginActivity.this, "login failed..", Toast.LENGTH_SHORT, true).show();
 
                 }
             });
@@ -63,7 +65,9 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     linearLayout.setVisibility(View.GONE);
-                    Toast.makeText(LoginActivity.this, "Log In - Success", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this, "Log In - Success", Toast.LENGTH_SHORT).show();
+                    Toasty.success(LoginActivity.this, "login successfully..!", Toast.LENGTH_SHORT, true).show();
+
                 }
             });
 //            login=true;
@@ -94,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                 public void run() {
 
-                                    Toast.makeText(LoginActivity.this, "Session Expired, please Log In", Toast.LENGTH_SHORT).show();
                                 }
                             });
                             CredentialManager.deleteCredentials(LoginActivity.this);
@@ -194,11 +197,19 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("Response*", response);
                 if (response.contains("EXISTS")) {
 
-                    intent = new Intent(LoginActivity.this, MenuTypeTab.class);
-                    editor.putString("AUTH_ID", id);
-                    editor.commit();
-                    startActivity(intent);
-                    finish();
+                    if (parentActivityName.equals("GoToCart")) {
+                        intent = new Intent(LoginActivity.this, GoToCart.class);
+                        editor.putString("AUTH_ID", id);
+                        editor.commit();
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        intent = new Intent(LoginActivity.this, MenuTypeTab.class);
+                        editor.putString("AUTH_ID", id);
+                        editor.commit();
+                        startActivity(intent);
+                        finish();
+                    }
 
 
                 } else {

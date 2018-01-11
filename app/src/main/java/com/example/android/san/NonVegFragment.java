@@ -4,9 +4,10 @@ package com.example.android.san;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +27,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,6 +97,7 @@ public class NonVegFragment extends Fragment {
     View view;
     int count = 0;
     Set menuset;
+    boolean login = false;
     String selectedBread, selectedSalt, selectedRice, selectedDal, selectedOil, selectedAmtOil, selectedHeat, spinner_item;
     String item, str[], str1, str2, menu;
     String day, week_day, dabba1, string = null;
@@ -104,7 +105,7 @@ public class NonVegFragment extends Fragment {
     SharedPreferences sp;
     String type, tiffintype, dabba, t[], price;
     SharedPreferences.Editor editor;
-    String auth_Id = "auth|987655646437544363647634";
+    String auth_Id = "";
     AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -174,6 +175,7 @@ public class NonVegFragment extends Fragment {
         }
     };
 
+
     public NonVegFragment() {
     }
     @Override
@@ -182,40 +184,47 @@ public class NonVegFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_non_veg, container, false);
         ButterKnife.inject(this, view);
+
+
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
+        login = sp.getBoolean("LOGIN", false);
+        auth_Id = sp.getString("AUTH_ID", "");
+        Log.d("Login####", login + "");
+        Log.d("Auth^^^^", auth_Id);
         editor = sp.edit();
-        editor.clear();
-        editor.commit();
-        recyclerView = view.findViewById(R.id.Listmenu);
+       /* editor.clear();
+        editor.commit();*/
+
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         day = sdf.format(d);
+        Log.d(day, "DAY");
         if (day.equals("Monday")) {
             day_monday.setSelected(true);
-            day_monday.setBackgroundColor(Color.RED);
+            day_monday.setBackgroundResource(R.drawable.btn_shape1);
             week_day = "Monday";
         } else if (day.equals("Tuesday")) {
             day_tuesday.setSelected(true);
-            day_tuesday.setBackgroundColor(Color.RED);
+            day_tuesday.setBackgroundResource(R.drawable.btn_shape1);
             week_day = "Tuesday";
             day_monday.setEnabled(false);
         } else if (day.equals("Wednesday")) {
             day_wednesday.setSelected(true);
-            day_wednesday.setBackgroundColor(Color.RED);
+            day_wednesday.setBackgroundResource(R.drawable.btn_shape1);
             week_day = "Wednesday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
 
         } else if (day.equals("Thursday")) {
             day_thursday.setSelected(true);
-            day_thursday.setBackgroundColor(Color.RED);
+            day_thursday.setBackgroundResource(R.drawable.btn_shape1);
             week_day = "Thursday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
             day_wednesday.setEnabled(false);
         } else if (day.equals("Friday")) {
             day_friday.setSelected(true);
-            day_friday.setBackgroundColor(Color.RED);
+            day_friday.setBackgroundResource(R.drawable.btn_shape1);
             week_day = "Friday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -223,7 +232,7 @@ public class NonVegFragment extends Fragment {
             day_thursday.setEnabled(false);
         } else if (day.equals("Saturday")) {
             day_saturday.setSelected(true);
-            day_saturday.setBackgroundColor(Color.RED);
+            day_saturday.setBackgroundResource(R.drawable.btn_shape1);
             week_day = "Saturday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -232,7 +241,7 @@ public class NonVegFragment extends Fragment {
             day_friday.setEnabled(false);
         } else if (day.equals("Sunday")) {
             day_sunday.setSelected(true);
-            day_sunday.setBackgroundColor(Color.RED);
+            day_sunday.setBackgroundResource(R.drawable.btn_shape1);
             week_day = "Sunday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -307,9 +316,9 @@ public class NonVegFragment extends Fragment {
         setData("http://sansmealbox.com/admin/routes/server/app/getCommonItems.php?item=dal", item);
 
         Log.d("onCreateView: ", arrayList1 + "");
-        //getData();
+        getData();
         if (dabba.equals("semiHeavy") || dabba.equals("fixedBasic") || dabba.equals("fixedHeavy")) {
-            // selectedData();
+            selectedData();
         }
         return view;
 
@@ -322,31 +331,136 @@ public class NonVegFragment extends Fragment {
 
             case R.id.txt_mon:
                 week_day = "Monday";
-                //   getData();
+                if (!day.equals("Monday")) {
+                    day_monday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
+                getData();
                 break;
             case R.id.txt_tue:
                 week_day = "Tuesday";
-                // getData();
+                if (!day.equals("Tuesday")) {
+                    day_tuesday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
+                getData();
                 break;
             case R.id.txt_wed:
                 week_day = "Wednesday";
-                // getData();
+                if (!day.equals("Wednesday")) {
+                    day_wednesday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
+                getData();
                 break;
             case R.id.txt_thu:
                 week_day = "Thursday";
-                //getData();
+                if (!day.equals("Thursday")) {
+                    day_thursday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
+                getData();
                 break;
             case R.id.txt_fri:
                 week_day = "Friday";
-                // getData();
+                if (!day.equals("Friday")) {
+                    day_friday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
+                getData();
                 break;
             case R.id.txt_sat:
                 week_day = "Saturday";
-                // getData();
+                if (!day.equals("Saturday")) {
+                    day_saturday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Sunday"))
+                        day_sunday.setBackgroundResource(R.drawable.bt_shape);
+                }
+                getData();
                 break;
             case R.id.txt_sun:
                 week_day = "Sunday";
-                // getData();
+                if (!day.equals("Sunday")) {
+                    day_sunday.setBackgroundResource(R.drawable.btn_shape2);
+                    if (!day.equals("Monday"))
+                        day_monday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Tuesday"))
+                        day_tuesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Wednesday"))
+                        day_wednesday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Thursday"))
+                        day_thursday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Friday"))
+                        day_friday.setBackgroundResource(R.drawable.bt_shape);
+                    if (!day.equals("Saturday"))
+                        day_saturday.setBackgroundResource(R.drawable.bt_shape);
+                }
+                getData();
                 break;
             case R.id.btnSubmit:
                 menuset = new HashSet<String>();
@@ -354,23 +468,34 @@ public class NonVegFragment extends Fragment {
                 string = sp.getString("BASIC", null);
                 count = sp.getInt("COUNT", 0);
                 Log.d("count ", count + "");
-                Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
-                intent.putExtra("Bread", selectedBread);
-                intent.putExtra("Rice", selectedRice);
-                intent.putExtra("Dal", selectedDal);
-                intent.putExtra("Salt", selectedSalt);
-                intent.putExtra("AmtOil", selectedAmtOil);
-                intent.putExtra("OilType", selectedOil);
-                intent.putExtra("Heat", selectedHeat);
-                intent.putExtra("Price", price);
-                if (count > 1) {
-                    startActivity(intent);
-                } else if (!(string == null)) {
-                    startActivity(intent);
+                if (login) {
+                    Intent intent = new Intent(getActivity(), OrderDetailsActivity.class);
+                    intent.putExtra("Bread", selectedBread);
+                    intent.putExtra("Rice", selectedRice);
+                    intent.putExtra("Dal", selectedDal);
+                    intent.putExtra("Salt", selectedSalt);
+                    intent.putExtra("AmtOil", selectedAmtOil);
+                    intent.putExtra("OilType", selectedOil);
+                    intent.putExtra("Heat", selectedHeat);
+                    intent.putExtra("Price", price);
+                    // intent.putExtra("Auth_Id", auth_Id);
+                    if (count > 1) {
+                        editor.putBoolean("LOGIN", login);
+                        editor.putString("AUTH_ID", auth_Id);
+                        editor.commit();
+                        startActivity(intent);
+                    } else if (!(string == null)) {
+                        editor.putBoolean("LOGIN", login);
+                        editor.putString("AUTH_ID", auth_Id);
+                        editor.commit();
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-//                    Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
-                    TastyToast.makeText(getContext(), "Please select Subjis..!", TastyToast.LENGTH_LONG, TastyToast.INFO);
-
+                    Intent intentlogin = new Intent(getContext(), LoginActivity.class);
+                    intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                    startActivity(intentlogin);
                 }
                 break;
             case R.id.btnCart:
@@ -390,6 +515,8 @@ public class NonVegFragment extends Fragment {
                     Log.d("HeavyMenu", menuset + "");
                     string = sp.getString("BASIC", null);
                     //Log.d("BasicMenu",string);
+
+                    //  Log.d("Authid",auth_Id);
                     final JSONObject orderData = new JSONObject();
                     try {
                         String typetext = type.substring(0, 1).toUpperCase();
@@ -400,12 +527,13 @@ public class NonVegFragment extends Fragment {
                         orderData.put("Rice", selectedRice);
                         orderData.put("Dal", selectedDal);
                         orderData.put("Price", price);
+                        Log.d("PriceO", price);
                         orderData.put("Quantity", "1");
                         orderData.put("Heat", selectedHeat);
                         orderData.put("Salt", selectedSalt);
                         orderData.put("AmountOfOil", selectedAmtOil);
                         orderData.put("OilType", selectedOil);
-                        orderData.put("AuthId", "auth|987655646437544363647634");
+                        orderData.put("AuthId", auth_Id);
 
                         if (tiffintype.equals("Heavy")) {
                             orderData.put("menu", menuset);
@@ -417,102 +545,121 @@ public class NonVegFragment extends Fragment {
                         e.printStackTrace();
                     }
                     if (count > 1 || !(string == null)) {
-                        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                        Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php");
-                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php", orderData,
-                                new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-                                        try {
-                                            Log.d("ResponseOrder", response.getString("response"));
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
+                        if (login) {
+                            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                            Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php");
+                            JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                    Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php", orderData,
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            try {
+                                                Log.d("ResponseOrder", response.getString("response"));
+                                              /*  if (response.getString("response").equals("OK"))
+                                                {
+                                                    Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
+                                                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
+                                                    startActivity(intentGoToCart);
+                                                 }*/
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                                         }
+                                    }, new Response.ErrorListener() {
 
-                                        Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
-                                    }
-                                }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
+                                    VolleyLog.d("Error: ", error.getMessage());
+                                }
+                            });
+                            requestQueue.add(jsonObjReq);
 
-                                VolleyLog.d("Error: ", error.getMessage());
+                            btnCart.setText("GO TO CART");
+                            Drawable icon = this.getResources().getDrawable(R.drawable.next);
+                            // btnCart.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
+                            btnCart.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
+                            Toast.makeText(getContext(), "Tiffin added into cart, now goto cart", Toast.LENGTH_LONG).show();
 
-
-                            }
-                        });
-                        requestQueue.add(jsonObjReq);
-                        btnCart.setText("GO TO CART");
-
-                        Log.d(orderData.toString(), "orderdata");
+                            Log.d(orderData.toString(), "orderdata");
+                        } else {
+                            Intent intentlogin = new Intent(getContext(), LoginActivity.class);
+                            intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                            startActivity(intentlogin);
+                        }
                     } else {
                         Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
-
                     }
+
                 } else {
                     Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
-                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
+                    editor = sp.edit();
+                    editor.putBoolean("LOGIN", login);
+                    Log.d("GOTOAUTH", auth_Id);
+                    editor.putString("AUTH_ID", auth_Id);
+                    editor.commit();
                     startActivity(intentGoToCart);
-                    //Toast.makeText(getContext(), "GO to Cart", Toast.LENGTH_LONG).show();
                 }
                 break;
 
         }
     }
 
-    /* public void getData() {
-         urlRequest = UrlRequest.getObject();
-         urlRequest.setContext(getContext());
-         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
-         Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
-         urlRequest.getResponse(new ServerCallback() {
-             @Override
-             public void onSuccess(String response) {
-                 Log.d("Response", response);
+    public void getData() {
+        urlRequest = UrlRequest.getObject();
+        urlRequest.setContext(getContext());
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
+        Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
+        urlRequest.getResponse(new ServerCallback() {
+            @Override
+            public void onSuccess(String response) {
+                Log.d("Response", response);
 
-                 try {
-                     arrayList = new ArrayList<>();
-                     JSONArray jsonArray = new JSONArray(response);
-                     for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    arrayList = new ArrayList<>();
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
-                         dataSubji = new DataSubji();
-                         JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                         dataSubji.subji = jsonArray1.getString(1);
-                         arrayList.add(dataSubji);
+                        dataSubji = new DataSubji();
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                        dataSubji.subji = jsonArray1.getString(1);
+                        arrayList.add(dataSubji);
 
-                         Log.d("Data", dataSubji.subji);
-                         recyclerView = view.findViewById(R.id.Listmenu);
-                         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                        Log.d("Data", dataSubji.subji);
+                        recyclerView = view.findViewById(R.id.Listmenu);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-                         if (!(arrayList.size() == 0)) {
-                             if (tiffintype.equals("Basic")) {
-                                 adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
-                                 recyclerView.setAdapter(adapterRadioButton);
-                                 adapterRadioButton.notifyDataSetChanged();
-                             } else if (tiffintype.equals("Heavy")) {
-                                 adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
-                                 recyclerView.setAdapter(adapterCheckbox);
-                                 adapterCheckbox.notifyDataSetChanged();
-                             }
-                         } else {
-                             Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-                         }
-                     }
-
-
-                 } catch (JSONException e) {
-                     e.printStackTrace();
-                     menuNotAvailable.setText("oopss...,Menu is not provided for today");
-                     menuNotAvailable.setVisibility(View.VISIBLE);
-                     recyclerView.setVisibility(View.INVISIBLE);
-                 }
+                        if (!(arrayList.size() == 0)) {
+                            if (tiffintype.equals("Basic")) {
+                                adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                                recyclerView.setAdapter(adapterRadioButton);
+                                adapterRadioButton.notifyDataSetChanged();
+                            } else if (tiffintype.equals("Heavy")) {
+                                adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                                recyclerView.setAdapter(adapterCheckbox);
+                                adapterCheckbox.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
 
-             }
-         });
-     }
- */
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    menuNotAvailable.setText("oopss...,Menu is not provided for today");
+                    menuNotAvailable.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.INVISIBLE);
+                }
+
+
+            }
+        });
+    }
+
     public void setData(String url, final String item) {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
@@ -561,8 +708,7 @@ public class NonVegFragment extends Fragment {
         });
     }
 
-
-  /*  public void selectedData() {
+    public void selectedData() {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
         Log.d("URL", "http://sansmealbox.com/admin/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
@@ -589,14 +735,11 @@ public class NonVegFragment extends Fragment {
                     editor.commit();
                     Log.d("LIst", listData + "");
                     Log.d("DataSubji***", dabba1);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
-
-    }*/
-
+    }
 
 }

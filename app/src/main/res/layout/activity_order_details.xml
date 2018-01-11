@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.android.san.OrderDetailsActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/apl_order_details"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/ib1_order_detail"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
+        <!--<android.support.design.widget.AppBarLayout
+            android:id="@+id/apl_order_details"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="80dp"
-            android:drawableLeft="@drawable/backspace"
-            android:drawablePadding="13dp"
-            android:onClick="backspaceorderdetails"
-            android:text="Order Details"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:textStyle="bold|normal" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/ib1_order_detail"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="80dp"
+                android:drawableLeft="@drawable/backspace"
+                android:drawablePadding="13dp"
+                android:onClick="backspaceorderdetails"
+                android:text="Order Details"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                android:textStyle="bold|normal" />
 
 
-    </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>-->
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.android.san.OrderDetailsActivity">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -257,6 +259,6 @@
                 android:textSize="18dp"
                 android:textStyle="bold" />
         </LinearLayout>
+    </RelativeLayout>
 
-    </ScrollView>
-</android.support.design.widget.CoordinatorLayout>
+</ScrollView>

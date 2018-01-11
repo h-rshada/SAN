@@ -175,6 +175,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                 alertDialog.show();
                             } else {
                                 SELECTION++;
+                                addToList(compoundButton.getText().toString());
                                 count++;
                             }
                         }

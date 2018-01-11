@@ -302,8 +302,8 @@
 
                 <Button
                     android:id="@+id/txt_mon"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
@@ -314,8 +314,8 @@
 
                 <Button
                     android:id="@+id/txt_tue"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
@@ -327,8 +327,8 @@
 
                 <Button
                     android:id="@+id/txt_wed"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
@@ -339,8 +339,8 @@
 
                 <Button
                     android:id="@+id/txt_thu"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
@@ -351,8 +351,8 @@
 
                 <Button
                     android:id="@+id/txt_fri"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
@@ -362,8 +362,8 @@
 
                 <Button
                     android:id="@+id/txt_sat"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/bt_shape"
@@ -374,8 +374,8 @@
 
                 <Button
                     android:id="@+id/txt_sun"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"

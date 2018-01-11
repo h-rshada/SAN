@@ -137,13 +137,15 @@ public class MenuTypeTab extends AppCompatActivity {
             editor.putBoolean("LOGIN", true);
             editor.putString("AUTH_ID", auth_Id);
             editor.commit();
+            MenuTypeTab.this.finish();
         } else {
             editor = sp.edit();
             editor.putBoolean("LOGIN", false);
             editor.commit();
+            MenuTypeTab.this.finish();
         }
 
-        MenuTypeTab.this.finish();
+
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

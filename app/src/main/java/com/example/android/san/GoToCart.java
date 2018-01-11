@@ -50,11 +50,11 @@ public class GoToCart extends AppCompatActivity {
         // editor = sp.edit();
         login = sp.getBoolean("LOGIN", false);
         auth_Id = sp.getString("AUTH_ID", "");
+        Log.d("LOGIN", login + "");
         //auth_Id = getIntent().getStringExtra("Auth_Id");
         Log.d("AUTH111", auth_Id);
 
         if (login) {
-
 
             urlRequest = UrlRequest.getObject();
             urlRequest.setContext(GoToCart.this);

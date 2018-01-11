@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onFailure(AuthenticationException error) {
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                Toast.makeText(MainActivity.this, "User Profile Request Failed", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(MainActivity.this, "User Profile Request Failed", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -114,13 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
                 editProfile();
                 //putUserInfo();
-            }
-        });
-
-        loginAgainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginAgain();
             }
         });
 
@@ -159,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     private void refreshScreenInformation() {
         //checkData();
       /*  userEmailTextView.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));*/
-        Toast.makeText(MainActivity.this, "Id" + userProfile.getId(), Toast.LENGTH_SHORT).show();
+
         Log.d("Id", userProfile.getId());
         email = userProfile.getEmail();
         Log.d(email, "refreshScreenInformation:");

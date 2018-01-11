@@ -222,6 +222,21 @@ public class HomeActivity extends AppCompatActivity
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
+        } else if (id == R.id.nav_cart) {
+            Intent intent = new Intent(HomeActivity.this, GoToCart.class);
+            if (login) {
+                editor = sp.edit();
+                editor.putBoolean("LOGIN", login);
+                Log.d("GOTOAUTH", auth_id);
+                editor.putString("AUTH_ID", auth_id);
+                editor.commit();
+                startActivity(intent);
+            } else {
+                editor = sp.edit();
+                editor.putBoolean("LOGIN", false);
+                editor.commit();
+                startActivity(intent);
+            }
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

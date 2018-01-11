@@ -101,11 +101,19 @@ public class TabActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TabActivity.this, GoToCart.class);
                 // intent.putExtra("Auth_Id", auth_id);
-                editor.putString("AUTH_ID", auth_id);
-                editor.putBoolean("LOGIN", true);
-                editor.commit();
-                finish();
-                startActivity(intent);
+                if (login) {
+                    editor.putString("AUTH_ID", auth_id);
+                    editor.putBoolean("LOGIN", true);
+                    editor.commit();
+                    finish();
+                    startActivity(intent);
+                } else {
+                    editor.putBoolean("LOGIN", false);
+                    editor.commit();
+                    finish();
+                    startActivity(intent);
+                }
+
             }
         });
     }

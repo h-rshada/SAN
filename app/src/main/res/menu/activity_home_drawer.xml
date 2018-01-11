@@ -25,6 +25,10 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
+            <item
+                android:id="@+id/nav_cart"
+                android:icon="@drawable/cart1"
+                android:title="Show My Cart" />
         </menu>
     </item>
 

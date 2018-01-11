@@ -60,7 +60,7 @@ public class payment extends AppCompatActivity {
                 } else {
                     if (payment_mode.equals("Cash on delivery")) {
                         Intent intent = new Intent(payment.this, cashOnDelivery.class);
-                        if(parentActivityName.equals("GoToCArt")) {
+                        if (parentActivityName.equals("GoToCart")) {
                             intent.putExtra("PARENT_ACTIVITY_NAME", parentActivityName);
                             editor.putString("AUTH_ID", auth_id);
                             editor.putBoolean("LOGIN", login);
@@ -83,14 +83,22 @@ public class payment extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-        editor = sp.edit();
-        editor.putBoolean("LOGIN", true);
-        editor.putString("AUTH_ID", auth_id);
-        editor.commit();
-        Intent intent = new Intent(payment.this, GoToCart.class);
-        startActivity(intent);
-        payment.this.finish();
-
+        if (parentActivityName.equals("GoToCart")) {
+            editor = sp.edit();
+            editor.putBoolean("LOGIN", true);
+            editor.putString("AUTH_ID", auth_id);
+            editor.commit();
+            Intent intent = new Intent(payment.this, GoToCart.class);
+            startActivity(intent);
+            payment.this.finish();
+        } else {
+            editor = sp.edit();
+            editor.putBoolean("LOGIN", true);
+            editor.putString("AUTH_ID", auth_id);
+            editor.commit();
+            Intent intent = new Intent(payment.this, HomeActivity.class);
+            startActivity(intent);
+            payment.this.finish();
+        }
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.san.TabActivity">
+    tools:context="com.example.android.san.MenuTypeTab">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

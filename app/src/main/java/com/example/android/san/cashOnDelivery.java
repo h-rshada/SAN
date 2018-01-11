@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import es.dmoral.toasty.Toasty;
 
 public class cashOnDelivery extends AppCompatActivity {
     @InjectView(R.id.edt_name)
@@ -115,7 +116,14 @@ public class cashOnDelivery extends AppCompatActivity {
                                                 public void onResponse(JSONObject response) {
                                                     try {  //Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                                                         Log.d("ResponseOrder", response.getString("response"));
-                                                        Toast.makeText(cashOnDelivery.this, "Your order placed successfully", Toast.LENGTH_SHORT).show();
+                                                        Toasty.success(cashOnDelivery.this, "Your order placed successfully..!", Toast.LENGTH_LONG, true).show();
+
+                                                        editor = sp.edit();
+                                                        editor.putBoolean("LOGIN", login);
+                                                        editor.putString("AUTH_ID", auth_id);
+                                                        editor.commit();
+                                                        startActivity(new Intent(cashOnDelivery.this, HomeActivity.class));
+                                                        finish();
 
                                                     } catch (JSONException e) {
                                                         e.printStackTrace();
@@ -150,7 +158,14 @@ public class cashOnDelivery extends AppCompatActivity {
                                         @Override
                                         public void onResponse(JSONObject response) {
                                             Log.d("ResponseODA", response.toString());
-                                            Toast.makeText(cashOnDelivery.this,"yup",Toast.LENGTH_SHORT).show();
+                                            Toasty.success(cashOnDelivery.this, "Your order placed successfully..!", Toast.LENGTH_LONG, true).show();
+
+                                            editor = sp.edit();
+                                            editor.putBoolean("LOGIN", login);
+                                            editor.putString("AUTH_ID", auth_id);
+                                            editor.commit();
+                                            startActivity(new Intent(cashOnDelivery.this, HomeActivity.class));
+                                            finish();
 
                                         }
                                     }, new Response.ErrorListener() {
@@ -166,8 +181,6 @@ public class cashOnDelivery extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                } else {
-                    Toast.makeText(cashOnDelivery.this, "You have already placed your order", Toast.LENGTH_SHORT).show();
                 }
             }
         });

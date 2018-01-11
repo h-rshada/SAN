@@ -289,8 +289,8 @@ public class VegFragment extends Fragment {
             Log.d("Split", str1);
         }
         else {
-                dabba = type + tiffintype;
-            }
+            dabba = type + tiffintype;
+        }
         spinner_heat.setOnItemSelectedListener(itemSelectedListener);
         spinner_indianBread.setOnItemSelectedListener(itemSelectedListener);
         spinner_rice.setOnItemSelectedListener(itemSelectedListener);
@@ -552,7 +552,7 @@ public class VegFragment extends Fragment {
                     }
                     if (count > 1 || !(string == null)) {
                         if (login) {
-                        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                             Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php");
                             JsonObjectRequest jsonObjReq = new JsonObjectRequest(
                                     Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php", orderData,
@@ -584,13 +584,13 @@ public class VegFragment extends Fragment {
                             });
                             requestQueue.add(jsonObjReq);
 
-                        btnCart.setText("GO TO CART");
+                            btnCart.setText("GO TO CART");
                             Drawable icon = this.getResources().getDrawable(R.drawable.next);
                             // btnCart.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
                             btnCart.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
                             Toast.makeText(getContext(), "Tiffin added into cart, now goto cart", Toast.LENGTH_LONG).show();
 
-                        Log.d(orderData.toString(), "orderdata");
+                            Log.d(orderData.toString(), "orderdata");
                         } else {
                             Intent intentlogin = new Intent(getContext(), LoginActivity.class);
                             intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
@@ -627,41 +627,41 @@ public class VegFragment extends Fragment {
                 Log.d("Response", response);
 
                 try {
-                        arrayList = new ArrayList<>();
-                        JSONArray jsonArray = new JSONArray(response);
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                    arrayList = new ArrayList<>();
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
-                            dataSubji = new DataSubji();
-                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                            dataSubji.subji = jsonArray1.getString(1);
-                            arrayList.add(dataSubji);
+                        dataSubji = new DataSubji();
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                        dataSubji.subji = jsonArray1.getString(1);
+                        arrayList.add(dataSubji);
 
-                            Log.d("Data", dataSubji.subji);
-                            recyclerView = view.findViewById(R.id.Listmenu);
-                            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                        Log.d("Data", dataSubji.subji);
+                        recyclerView = view.findViewById(R.id.Listmenu);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-                            if (!(arrayList.size() == 0)) {
-                                if (tiffintype.equals("Basic")) {
-                                    adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
-                                    recyclerView.setAdapter(adapterRadioButton);
-                                    adapterRadioButton.notifyDataSetChanged();
-                                } else if (tiffintype.equals("Heavy")) {
-                                    adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
-                                    recyclerView.setAdapter(adapterCheckbox);
-                                    adapterCheckbox.notifyDataSetChanged();
-                                }
-                            } else {
-                                Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+                        if (!(arrayList.size() == 0)) {
+                            if (tiffintype.equals("Basic")) {
+                                adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                                recyclerView.setAdapter(adapterRadioButton);
+                                adapterRadioButton.notifyDataSetChanged();
+                            } else if (tiffintype.equals("Heavy")) {
+                                adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                                recyclerView.setAdapter(adapterCheckbox);
+                                adapterCheckbox.notifyDataSetChanged();
                             }
+                        } else {
+                            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                         }
+                    }
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                     menuNotAvailable.setText("oopss...,Menu is not provided for today");
                     menuNotAvailable.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.INVISIBLE);
-                    }
+                }
 
 
             }
@@ -688,28 +688,28 @@ public class VegFragment extends Fragment {
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                            String str = jsonArray1.getString(1);
-                            arrayList1.add(str);
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                        String str = jsonArray1.getString(1);
+                        arrayList1.add(str);
 
-                            if (item.equals("bread")) {
-                                adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
-                                spinner_indianBread.setPrompt("Bread");
-                                spinner_indianBread.setAdapter(adapter_bread);
-                                Log.d("Bread: ", arrayList1 + "");
+                        if (item.equals("bread")) {
+                            adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_indianBread.setPrompt("Bread");
+                            spinner_indianBread.setAdapter(adapter_bread);
+                            Log.d("Bread: ", arrayList1 + "");
 
-                            } else if (item.equals("rice")) {
-                                adapter_rice = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
-                                spinner_rice.setAdapter(adapter_rice);
+                        } else if (item.equals("rice")) {
+                            adapter_rice = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_rice.setAdapter(adapter_rice);
 
-                                Log.d("Rice: ", arrayList1 + "");
+                            Log.d("Rice: ", arrayList1 + "");
 
-                            } else if (item.equals("dal")) {
-                                adapter_dal = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
-                                spinner_dal.setAdapter(adapter_dal);
-                                Log.d("Dal: ", arrayList1.toString());
-                            }
+                        } else if (item.equals("dal")) {
+                            adapter_dal = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                            spinner_dal.setAdapter(adapter_dal);
+                            Log.d("Dal: ", arrayList1.toString());
                         }
+                    }
 
 
                 }
@@ -739,18 +739,18 @@ public class VegFragment extends Fragment {
                     JSONArray jsonArray=new JSONArray(response);
 
                     Log.d("Array", jsonArray.toString());
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                    for (int i = 0; i < jsonArray.length(); i++) {
 
-                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                            dabba1 = jsonArray1.getString(0);
-                            arrayList1.add(jsonArray1.getString(0));
-                            listData.addAll(arrayList1);
-                        }
-                        editor.putString("SINGLE", dabba1);
-                        editor.putStringSet("LIST", listData);
-                        editor.commit();
-                        Log.d("LIst", listData + "");
-                        Log.d("DataSubji***", dabba1);
+                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                        dabba1 = jsonArray1.getString(0);
+                        arrayList1.add(jsonArray1.getString(0));
+                        listData.addAll(arrayList1);
+                    }
+                    editor.putString("SINGLE", dabba1);
+                    editor.putStringSet("LIST", listData);
+                    editor.commit();
+                    Log.d("LIst", listData + "");
+                    Log.d("DataSubji***", dabba1);
                 }
                 catch (JSONException e)
                 {

@@ -108,13 +108,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
             } else {
                 menuset = sp.getStringSet("HEAVY", null);
                 List listOfNames = new ArrayList(menuset);
-                Log.d("----------->", listOfNames.size() + "");
+                //  Log.d("----------->", listOfNames.size() + "");
                 if (listOfNames.size() == 0) {
                     Toast.makeText(this, "Select atleast 2 sabjis", Toast.LENGTH_SHORT).show();
                 }
                 menu = listOfNames.get(0).toString();
                 menu1 = listOfNames.get(1).toString();
-                txtMenu3.setText("1." + menu+" "+menu1);
+                txtMenu3.setText(listOfNames + "");
                 /*txtMenu1.setVisibility(View.VISIBLE);
                 txtMenu1.setText("2." + menu1)*/
                 Log.d("Adapterlist***", listOfNames.toString());
