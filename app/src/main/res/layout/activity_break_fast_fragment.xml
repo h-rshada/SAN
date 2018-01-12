@@ -17,7 +17,7 @@
             <ImageView
                 android:id="@+id/food2"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="170dp"
                 android:src="@drawable/breakfast11" />
         </LinearLayout>
 
@@ -40,7 +40,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="3dp"
                         android:background="@drawable/tiifin_content_textview_style"
                         android:gravity="center"
                         android:text="Basic Dabba"

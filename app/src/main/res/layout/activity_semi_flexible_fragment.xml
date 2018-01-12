@@ -18,7 +18,7 @@
             <ImageView
                 android:id="@+id/food1"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="170dp"
                 android:src="@drawable/semiflex11" />
         </LinearLayout>
 
