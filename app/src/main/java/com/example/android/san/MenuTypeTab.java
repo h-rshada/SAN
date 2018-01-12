@@ -71,15 +71,7 @@ public class MenuTypeTab extends AppCompatActivity {
         setupViewPager(viewPager);
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
-        /*Bundle bundle = new Bundle();
-        bundle.putString("Type", type);
-        bundle.putString("TiffinType", tiffintype);
-        bundle.putString("Price",price);*/
 
-       /* flexibleFragment.setArguments(bundle);
-        semiFlexibleFragment.setArguments(bundle);
-        fixedFragment.setArguments(bundle);
-        breakFastFragment.setArguments(bundle);*/
 
         tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setSelectedTabIndicatorHeight(5);
@@ -122,8 +114,7 @@ public class MenuTypeTab extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.img_back:
                 onBackPressed();
-                Intent intent = new Intent(MenuTypeTab.this, HomeActivity.class);
-                startActivity(intent);
+
                 break;
         }
 
@@ -137,15 +128,17 @@ public class MenuTypeTab extends AppCompatActivity {
             editor.putBoolean("LOGIN", true);
             editor.putString("AUTH_ID", auth_Id);
             editor.commit();
+            Intent intent = new Intent(MenuTypeTab.this, HomeActivity.class);
+            startActivity(intent);
             MenuTypeTab.this.finish();
         } else {
             editor = sp.edit();
             editor.putBoolean("LOGIN", false);
             editor.commit();
+            Intent intent = new Intent(MenuTypeTab.this, HomeActivity.class);
+            startActivity(intent);
             MenuTypeTab.this.finish();
         }
-
-
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

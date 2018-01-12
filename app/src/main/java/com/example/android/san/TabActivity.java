@@ -141,7 +141,7 @@ public class TabActivity extends AppCompatActivity {
 
     public void refresh(View v) {
         Intent i = getIntent();
-        finish();
+
         startActivity(i);
 
     }

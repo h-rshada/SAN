@@ -54,6 +54,7 @@ public class Profile extends AppCompatActivity {
         if (!sp.getBoolean("LOGIN", false)) {
             intent = new Intent(Profile.this, LoginActivity.class);
             intent.putExtra("PARENT_ACTIVITY_NAME", "UserProfile");
+            finish();
             startActivity(intent);
         } else {
 
@@ -133,10 +134,23 @@ public class Profile extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 txtName.setText(name);
-                txtAddress.setText(address);
-                txtEmail.setText(email);
-                txtPhone.setText(phone);
+                txtAddress.setText("Address  : " + address);
+                txtEmail.setText("Email Id  : " + email);
+                txtPhone.setText("Phone  :" + phone);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (login) {
+            intent = new Intent(Profile.this, HomeActivity.class);
+            editor.putBoolean("LOGIN", true);
+            editor.putString("AUTH_ID", id);
+            editor.commit();
+            finish();
+            startActivity(intent);
+        }
     }
 }

@@ -423,7 +423,7 @@
             android:background="@drawable/shape"
             android:drawableLeft="@drawable/addcart"
             android:drawablePadding="10dp"
-            android:paddingLeft="33dp"
+            android:paddingLeft="23dp"
             android:text="add to cart"
             android:textAlignment="textStart"
 

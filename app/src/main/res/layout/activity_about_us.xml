@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/smf3"
-    tools:context="com.example.android.san.AboutUs">
+    android:background="@drawable/appbck"
+    android:gravity="center"
+    tools:context=".AboutUs">
 
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_gravity="center">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
 
+            >
 
                 <TextView
                     android:id="@+id/textView_title"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_weight="1"
+                    android:layout_marginBottom="0dp"
                     android:background="#ffa500"
-                    android:drawablePadding="10dp"
-                    android:paddingLeft="10dp"
                     android:text="About Us "
                     android:textAlignment="center"
                     android:textColor="#0a0a0a"
-                    android:textSize="35dp"
+                    android:textSize="30dp"
                     android:textStyle="normal" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/jj" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textView"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="25dp"
                     android:drawableLeft="@drawable/right_arrow11"
                     android:drawablePadding="10dp"
-                    android:paddingLeft="10dp"
                     android:text="We are a high quality, hygenic, organic, home cook everday. "
                     android:textColor="#0a0a0a"
                     android:textSize="17dp"
@@ -49,13 +49,9 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textView2"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="22dp"
                     android:drawableLeft="@drawable/right_arrow11"
                     android:drawablePadding="10dp"
-                    android:paddingLeft="10dp"
                     android:text="Our Dabba/Tiffin service is 24*7 days"
                     android:textColor="#0a0a0a"
                     android:textSize="17dp"
@@ -65,13 +61,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textView3"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="22dp"
                     android:drawableLeft="@drawable/right_arrow11"
                     android:drawablePadding="10dp"
-                    android:paddingLeft="10dp"
                     android:text="our service time is throughout the day from 5 am to 11 pm"
                     android:textColor="#0a0a0a"
                     android:textSize="17dp"
@@ -81,18 +73,13 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginBottom="48dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="22dp"
                     android:drawableLeft="@drawable/right_arrow11"
                     android:drawablePadding="10dp"
-                    android:paddingLeft="10dp"
                     android:text="100% cleanliness and hygiene is maintained in the kitchen"
                     android:textColor="#0a0a0a"
                     android:textSize="17dp"
                     android:textStyle="normal" />
+        </LinearLayout>
 
-
-        </RelativeLayout>
-</ScrollView>
+</LinearLayout>

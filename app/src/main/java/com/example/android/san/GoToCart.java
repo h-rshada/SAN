@@ -143,6 +143,7 @@ public class GoToCart extends AppCompatActivity {
         } else {
             Intent intentlogin = new Intent(GoToCart.this, LoginActivity.class);
             intentlogin.putExtra("PARENT_ACTIVITY_NAME", "GotoCart");
+            finish();
             startActivity(intentlogin);
         }
     }

@@ -42,6 +42,7 @@ import java.util.Set;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 
 /**
@@ -170,7 +171,6 @@ public class VegFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_veg, container, false);
         ButterKnife.inject(this, view);
-
 
         sp = getActivity().getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);
@@ -472,6 +472,7 @@ public class VegFragment extends Fragment {
                 menuset = new HashSet<String>();
                 menuset = sp.getStringSet("HEAVY", null);
                 string = sp.getString("BASIC", null);
+//                Log.d("String",string);
                 count = sp.getInt("COUNT", 0);
                 Log.d("count ", count + "");
                 if (login) {
@@ -489,18 +490,23 @@ public class VegFragment extends Fragment {
                         editor.putBoolean("LOGIN", login);
                         editor.putString("AUTH_ID", auth_Id);
                         editor.commit();
+                        getActivity().finish();
                         startActivity(intent);
                     } else if (!(string == null)) {
                         editor.putBoolean("LOGIN", login);
                         editor.putString("AUTH_ID", auth_Id);
                         editor.commit();
+                        getActivity().finish();
                         startActivity(intent);
                     } else {
-                        Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+
+
+                        Toasty.error(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT, true).show();
                     }
                 } else {
                     Intent intentlogin = new Intent(getContext(), LoginActivity.class);
                     intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                    getActivity().finish();
                     startActivity(intentlogin);
                 }
                 break;
@@ -552,6 +558,9 @@ public class VegFragment extends Fragment {
                     }
                     if (count > 1 || !(string == null)) {
                         if (login) {
+                            editor.putInt("COUNT", 0);
+                            editor.putString("BASIC", null);
+                            editor.commit();
                             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                             Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/addToCart.rfa.php");
                             JsonObjectRequest jsonObjReq = new JsonObjectRequest(
@@ -561,18 +570,11 @@ public class VegFragment extends Fragment {
                                         public void onResponse(JSONObject response) {
                                             try {
                                                 Log.d("ResponseOrder", response.getString("response"));
-                                              /*  if (response.getString("response").equals("OK"))
-                                                {
-                                                    Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
-                                                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
-                                                    startActivity(intentGoToCart);
-                                                 }*/
 
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
 
-                                            Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                                         }
                                     }, new Response.ErrorListener() {
 
@@ -588,16 +590,19 @@ public class VegFragment extends Fragment {
                             Drawable icon = this.getResources().getDrawable(R.drawable.next);
                             // btnCart.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
                             btnCart.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-                            Toast.makeText(getContext(), "Tiffin added into cart, now goto cart", Toast.LENGTH_LONG).show();
+
+                            Toasty.success(getActivity(), "Tiffin added into cart, now goto cart", Toast.LENGTH_SHORT, true).show();
 
                             Log.d(orderData.toString(), "orderdata");
                         } else {
                             Intent intentlogin = new Intent(getContext(), LoginActivity.class);
                             intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                            getActivity().finish();
                             startActivity(intentlogin);
                         }
                     } else {
-                        Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
+
+                        Toasty.error(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT, true).show();
                     }
 
                 } else {
@@ -607,6 +612,7 @@ public class VegFragment extends Fragment {
                     Log.d("GOTOAUTH", auth_Id);
                     editor.putString("AUTH_ID", auth_Id);
                     editor.commit();
+                    getActivity().finish();
                     startActivity(intentGoToCart);
                 }
                 break;

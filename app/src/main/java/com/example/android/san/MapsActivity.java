@@ -1,5 +1,6 @@
 package com.example.android.san;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -45,5 +46,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.moveCamera(center);
         googleMap.animateCamera(zoom);
         googleMap.addMarker(new MarkerOptions().position(new LatLng(18.654234, 73.881671)).title("Xoxytech"));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(MapsActivity.this, HomeActivity.class);
+        finish();
+        startActivity(intent);
+
     }
 }

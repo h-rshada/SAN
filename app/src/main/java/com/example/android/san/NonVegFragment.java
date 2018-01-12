@@ -484,10 +484,12 @@ public class NonVegFragment extends Fragment {
                         editor.putString("AUTH_ID", auth_Id);
                         editor.commit();
                         startActivity(intent);
+                        getActivity().finish();
                     } else if (!(string == null)) {
                         editor.putBoolean("LOGIN", login);
                         editor.putString("AUTH_ID", auth_Id);
                         editor.commit();
+                        getActivity().finish();
                         startActivity(intent);
                     } else {
                         Toast.makeText(getActivity(), "Please select Subjis", Toast.LENGTH_SHORT).show();
@@ -495,6 +497,7 @@ public class NonVegFragment extends Fragment {
                 } else {
                     Intent intentlogin = new Intent(getContext(), LoginActivity.class);
                     intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                    getActivity().finish();
                     startActivity(intentlogin);
                 }
                 break;
@@ -555,12 +558,6 @@ public class NonVegFragment extends Fragment {
                                         public void onResponse(JSONObject response) {
                                             try {
                                                 Log.d("ResponseOrder", response.getString("response"));
-                                              /*  if (response.getString("response").equals("OK"))
-                                                {
-                                                    Intent intentGoToCart = new Intent(getContext(), GoToCart.class);
-                                                    intentGoToCart.putExtra("AUTH_ID", auth_Id);
-                                                    startActivity(intentGoToCart);
-                                                 }*/
 
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -588,6 +585,7 @@ public class NonVegFragment extends Fragment {
                         } else {
                             Intent intentlogin = new Intent(getContext(), LoginActivity.class);
                             intentlogin.putExtra("PARENT_ACTIVITY_NAME", "VegFragment");
+                            getActivity().finish();
                             startActivity(intentlogin);
                         }
                     } else {
@@ -601,6 +599,7 @@ public class NonVegFragment extends Fragment {
                     Log.d("GOTOAUTH", auth_Id);
                     editor.putString("AUTH_ID", auth_Id);
                     editor.commit();
+                    getActivity().finish();
                     startActivity(intentGoToCart);
                 }
                 break;

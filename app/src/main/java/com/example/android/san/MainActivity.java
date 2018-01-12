@@ -56,22 +56,7 @@ public class MainActivity extends AppCompatActivity {
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
         editor.commit();
-       /* Button refreshTokenButton = findViewById(R.id.refreshTokenButton);
-        Button logoutButton = findViewById(R.id.logout);
 
-        refreshTokenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                renewAuthentication();
-            }
-        });
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });*/
 
         authenticationClient.userInfo(CredentialManager.getCredentials(this).getAccessToken())
                 .start(new BaseCallback<UserProfile, AuthenticationException>() {
@@ -98,11 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         editProfileButton = findViewById(R.id.editButton);
-        //cancelEditionButton = (Button) findViewById(R.id.cancelEditionButton);
-      /*  userNameTextView = findViewById(R.id.userNameTitle);
-        userEmailTextView = findViewById(R.id.userEmailTitle);
-        userAddressTextView = findViewById(R.id.userAddressTitle);
-        userPhoneTextView = findViewById(R.id.userPhoneTitle);*/
+
         updateNameEditText = findViewById(R.id.updateNameEdittext);
         updateAddressEditText = findViewById(R.id.updateAddressEdittext);
         updatePhoneEditText = findViewById(R.id.updatePhoneEdittext);
@@ -119,81 +100,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /* private void renewAuthentication() {
-         String refreshToken = CredentialManager.getCredentials(this).getRefreshToken();
-         authenticationClient.renewAuth(refreshToken).start(new BaseCallback<Credentials, AuthenticationException>() {
-             @Override
-             public void onSuccess(final Credentials payload) {
-                 runOnUiThread(new Runnable() {
-                     public void run() {
-                         Toast.makeText(MainActivity.this, "New access_token: " + payload.getAccessToken(), Toast.LENGTH_SHORT).show();
-                     }
-                 });
-             }
 
-             @Override
-             public void onFailure(AuthenticationException error) {
-                 runOnUiThread(new Runnable() {
-                     public void run() {
-                         Toast.makeText(MainActivity.this, "Failed to get the new access_token", Toast.LENGTH_SHORT).show();
-                     }
-                 });
-             }
-         });
-     }
-
-     private void logout() {
-         CredentialManager.deleteCredentials(this);
-         startActivity(new Intent(this, LoginActivity.class));
-         finish();
-     }
- */
     @SuppressLint("StringFormatInvalid")
     private void refreshScreenInformation() {
-        //checkData();
-      /*  userEmailTextView.setText(String.format(getString(R.string.useremail), userProfile.getEmail()));*/
 
         Log.d("Id", userProfile.getId());
         email = userProfile.getEmail();
         Log.d(email, "refreshScreenInformation:");
 
-/*
-        ImageView userPicture = (ImageView) findViewById(R.id.userPicture);
-        if (userProfile.getPictureURL() != null) {
-            Picasso.with(this)
-                    .load(userProfile.getPictureURL())
-                    .into(userPicture);
-        }
-*/
+
         String name1 = (String) userProfile.getUserMetadata().get("name");
         if (name1 != null && !name1.isEmpty()) {
-//            userNameTextView.setVisibility(View.VISIBLE);
-//            userNameTextView.setText(String.format(getString(R.string.username), name1));
+
         } else {
             flag = 1;
         }
-       /* String email1 = (String) userProfile.getUserMetadata().get("email");
-        if (email1 != null && !email1.isEmpty()) {
-            userNameTextView.setVisibility(View.VISIBLE);
-            userNameTextView.setText(String.format(getString(R.string.username), name1));
-        }
-        else
-        {
-            flag=1;
-        }*/
+
         String address1 = (String) userProfile.getUserMetadata().get("address");
 
         if (address1 != null && !address1.isEmpty()) {
-//            userAddressTextView.setVisibility(View.VISIBLE);
-//            userAddressTextView.setText(String.format(getString(R.string.userAddress), address1));
+
         } else {
             flag = 1;
         }
 
         String phone1 = (String) userProfile.getUserMetadata().get("phone");
         if (phone1 != null && !phone1.isEmpty()) {
-//            userPhoneTextView.setVisibility(View.VISIBLE);
-//            userPhoneTextView.setText(String.format(getString(R.string.userPhone), phone1));
+
         } else {
             flag = 1;
         }
@@ -311,28 +244,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*   public void checkData() {
 
-        urlRequest = UrlRequest.getObject();
-        urlRequest.setContext(getApplicationContext());
-        Log.d("checkData: ","http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId() );
-        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + userProfile.getId());
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("Response*", response);
-                if (response.contains("EXISTS"))
-                {
-                    Intent intent = new Intent(MainActivity.this, GoToCart.class);
-                    startActivity(intent);
 
-                }
-            }
-        });
-    }*/
-    private void loginAgain() {
-        CredentialManager.deleteCredentials(MainActivity.this);
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
 }

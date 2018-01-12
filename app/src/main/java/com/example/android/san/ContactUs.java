@@ -39,8 +39,11 @@ public class ContactUs extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"xoxytech@gmail.com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Any subject if you want");
                 intent.setPackage("com.google.android.gm");
-                if (intent.resolveActivity(getPackageManager()) != null)
+                if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
+                    finish();
+                }
+
                 else
                     Toast.makeText(this, "Gmail App is not installed", Toast.LENGTH_SHORT).show();
                 break;
@@ -54,9 +57,19 @@ public class ContactUs extends AppCompatActivity {
                 } else {
 
                     startActivity(intent);
+                    finish();
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ContactUs.this, HomeActivity.class);
+        finish();
+        startActivity(intent);
+
     }
 
 }

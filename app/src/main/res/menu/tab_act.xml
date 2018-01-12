@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/action_refresh"
-        android:icon="@drawable/refresh"
+        android:icon="@drawable/refresh1"
         android:onClick="refresh"
         android:title=""
         android:visible="true"

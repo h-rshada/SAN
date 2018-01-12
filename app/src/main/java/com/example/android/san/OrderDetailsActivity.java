@@ -68,7 +68,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Log.d("type", type);
         Log.d("Tiffin", tiffintype);
 
-
+        editor = sp.edit();
 
         final JSONObject orderData = new JSONObject();
         try {
@@ -80,16 +80,19 @@ public class OrderDetailsActivity extends AppCompatActivity {
         }
         if (tiffintype.equals("Basic")) {
             menu = sp.getString("BASIC", null);
+            editor.putString("BASIC", null);
+            editor.commit();
             txtMenu3.setText(menu);
             try {
                 orderData.put("menu", menu);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.d("Menu", menu);
+//            Log.d("Menu", menu);
         } else if (tiffintype.equals("Heavy"))
         {
-
+            editor.putInt("COUNT", 0);
+            editor.commit();
             if (type.equals("semiFlexible")) {
                /* txtMenu3.setText("1." + sp.getString("SEMISTR1", null));
                 txtMenu1.setVisibility(View.VISIBLE);
@@ -108,7 +111,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             } else {
                 menuset = sp.getStringSet("HEAVY", null);
                 List listOfNames = new ArrayList(menuset);
-                //  Log.d("----------->", listOfNames.size() + "");
+                Log.d("----------->", listOfNames.size() + "");
                 if (listOfNames.size() == 0) {
                     Toast.makeText(this, "Select atleast 2 sabjis", Toast.LENGTH_SHORT).show();
                 }
@@ -235,6 +238,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         editor.putBoolean("LOGIN", true);
         editor.commit();
         Intent intent = new Intent(OrderDetailsActivity.this, HomeActivity.class);
+        finish();
         startActivity(intent);
     }
 
