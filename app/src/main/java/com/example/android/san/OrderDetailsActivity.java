@@ -45,6 +45,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView txtDal;
     @InjectView(R.id.txtPrice)
     TextView txtPrice;
+    @InjectView(R.id.txtDeliveryDay)
+    TextView txtDeliveryDay;
     @InjectView(R.id.btnOrder)
     Button btnOrder;
     @InjectView(R.id.img_back)
@@ -53,7 +55,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     Set menuset;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
-    String auth_id = "";
+    String auth_id = "",week_day;
     String bread, rice, dal, amtoil, oiltype, heat, salt, menu, menu1, type, typetext, tiffintype, price;
 
     @Override
@@ -137,7 +139,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             }
         }
 
-
+        week_day = getIntent().getStringExtra("deliveryDay");
         bread = getIntent().getStringExtra("Bread");
         rice = getIntent().getStringExtra("Rice");
         dal = getIntent().getStringExtra("Dal");
@@ -153,6 +155,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Log.d("Salt", salt);
         Log.d("AmtOil", amtoil);
         Log.d("OilType", oiltype);
+        Log.d( "DeliveryDay",week_day);
         try {
             orderData.put("indianBread", bread);
             orderData.put("rice", rice);
@@ -164,6 +167,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
             orderData.put("amountOil", amtoil);
             orderData.put("oilType", oiltype);
             orderData.put("auth_id", auth_id);
+            orderData.put("deliveryDay", week_day);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -189,7 +193,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         txtRice.setText(rice);
         txtPrice.setText(price);
         txtDal.setText(dal);
-
+        txtDeliveryDay.setText(week_day);
         final JSONObject object=new JSONObject();
         try {
             JSONArray jArray=new JSONArray();

@@ -37,7 +37,7 @@ public class TabActivity extends AppCompatActivity {
     ImageView imageback;
     @InjectView(R.id.img_viewCart)
     ImageView viewCart;
-    String auth_id;
+    String auth_id,cartCount;
     boolean login;
     private Toolbar toolbar;
     private ViewPager viewPager;
@@ -58,9 +58,12 @@ public class TabActivity extends AppCompatActivity {
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);
         auth_id = sp.getString("AUTH_ID", "");
+        cartCount = sp.getString("CartCount", "");
         Log.d("Login!!!", login + "");
         Log.d("Auth", auth_id);
+        Log.d("CartCount", cartCount);
         editor = sp.edit();
+
 
         type = getIntent().getStringExtra("Type");
         tiffintype = getIntent().getStringExtra("TiffinType");
@@ -141,7 +144,7 @@ public class TabActivity extends AppCompatActivity {
 
     public void refresh(View v) {
         Intent i = getIntent();
-
+        finish();
         startActivity(i);
 
     }

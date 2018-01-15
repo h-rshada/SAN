@@ -46,6 +46,7 @@ public class GoToCart extends AppCompatActivity {
     JSONArray jArray;
     JSONObject json_data;
     boolean login;
+    int cartCount;
     ImageView imageEmptyCart;
     TextView textEmptyCart;
 
@@ -56,7 +57,7 @@ public class GoToCart extends AppCompatActivity {
         ButterKnife.inject(this);
         final List<DataCart> data = new ArrayList<>();
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
-        // editor = sp.edit();
+        editor = sp.edit();
         login = sp.getBoolean("LOGIN", false);
         auth_Id = sp.getString("AUTH_ID", "");
         Log.d("LOGIN", login + "");
@@ -90,12 +91,16 @@ public class GoToCart extends AppCompatActivity {
                                 tiffin_data.dal = json_data.getString("dal");
                                 tiffin_data.price = json_data.getString("price");
                                 tiffin_data.quantity = json_data.getString("quantity");
+                                cartCount=cartCount+ Integer.parseInt(tiffin_data.quantity);
                                 tiffin_data.menu = json_data.getString("menu");
                                 tiffin_data.totalCartItems = jArray.length();
                                 data.add(tiffin_data);
                                 Log.d(data.toString(), "data");
                                 Log.d("Price", tiffin_data.price);
                             }
+                            editor=sp.edit();
+                            editor.putString("CartCount",cartCount+"");
+                            editor.commit();
                             list_tiffin.setVisibility(View.VISIBLE);
                             adapter = new AdapterCart(GoToCart.this, data);
                             list_tiffin.setAdapter(adapter);

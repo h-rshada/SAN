@@ -485,6 +485,8 @@ public class VegFragment extends Fragment {
                     intent.putExtra("OilType", selectedOil);
                     intent.putExtra("Heat", selectedHeat);
                     intent.putExtra("Price", price);
+                    intent.putExtra("deliveryDay", week_day);
+
                     // intent.putExtra("Auth_Id", auth_Id);
                     if (count > 1) {
                         editor.putBoolean("LOGIN", login);
@@ -546,7 +548,7 @@ public class VegFragment extends Fragment {
                         orderData.put("AmountOfOil", selectedAmtOil);
                         orderData.put("OilType", selectedOil);
                         orderData.put("AuthId", auth_Id);
-
+                        orderData.put("deliveryDay", week_day);
                         if (tiffintype.equals("Heavy")) {
                             orderData.put("menu", menuset);
                         } else {
