@@ -211,7 +211,7 @@
                 android:layout_weight="1"
                 android:background="#CFD8DC"
                 android:paddingLeft="5dp"
-                android:textColor="#122323E"
+                android:textColor="#122323"
                 android:textSize="20dp" />
 
         </LinearLayout>
