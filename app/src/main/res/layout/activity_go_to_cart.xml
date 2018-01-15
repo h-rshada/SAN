@@ -65,8 +65,7 @@
             android:gravity="center"
             android:text="No tiffin added to cart...!!"
             android:textColor="#ff0000"
-            android:textSize="25dp"
-            android:visibility="visible" />
+            android:textSize="25dp" />
 
 
     </LinearLayout>
