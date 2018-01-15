@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class OrderDetailsActivity extends AppCompatActivity {
 
@@ -45,6 +47,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     TextView txtPrice;
     @InjectView(R.id.btnOrder)
     Button btnOrder;
+    @InjectView(R.id.img_back)
+    ImageView imageView;
     RequestQueue requestQueue;
     Set menuset;
     SharedPreferences sp;
@@ -228,6 +232,16 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 requestQueue.add(jsonObjReq);*/
             }
         });
+    }
+
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                break;
+        }
+
     }
 
     @Override

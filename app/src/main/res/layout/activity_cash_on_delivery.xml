@@ -8,6 +8,35 @@
     android:orientation="vertical"
     tools:context="com.example.android.san.cashOnDelivery">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="?attr/colorPrimary"
+        android:titleTextColor="#ffff">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:onClick="onClick"
+            android:src="@drawable/leftarrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="SAN"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+
     <TextView
         android:id="@+id/txt_cod_title"
         android:layout_width="match_parent"
@@ -47,7 +76,7 @@
         android:layout_toRightOf="@+id/txt_name"
         android:ems="25"
         android:maxLines="2"
-        android:text="vjnf   m"
+        android:text=""
         android:textColor="#020202" />
 
     </LinearLayout>
@@ -79,7 +108,7 @@
         android:layout_toRightOf="@+id/txt_address"
         android:ems="50"
         android:maxLines="4"
-        android:text="vjnf   m"
+        android:text=""
         android:textColor="#0b0b0b" />
     </LinearLayout>
 
@@ -110,7 +139,7 @@
             android:layout_below="@+id/edt_address"
             android:layout_toRightOf="@+id/txt_phone"
             android:ems="15"
-            android:text="vjnf   m"
+            android:text=""
             android:textColor="#000000" />
     </LinearLayout>
 
@@ -142,7 +171,7 @@
             android:layout_toRightOf="@+id/txt_email"
             android:ems="25"
             android:maxLines="2"
-            android:text="vjnf   m"
+            android:text=""
             android:textColor="#020202" />
     </LinearLayout>
 

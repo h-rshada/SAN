@@ -9,7 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -21,6 +25,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class GoToCart extends AppCompatActivity {
     @InjectView(R.id.Listmenu)
@@ -29,6 +34,8 @@ public class GoToCart extends AppCompatActivity {
     Button btnAddToCart;
     @InjectView(R.id.btn_continue)
     Button btnContinue;
+    @InjectView(R.id.img_back)
+    ImageView imageView;
     AdapterCart adapter;
     List<DataCart> data;
     SharedPreferences sp;
@@ -39,6 +46,8 @@ public class GoToCart extends AppCompatActivity {
     JSONArray jArray;
     JSONObject json_data;
     boolean login;
+    ImageView imageEmptyCart;
+    TextView textEmptyCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +109,11 @@ public class GoToCart extends AppCompatActivity {
                         }
                     } else {
 
-                        findViewById(R.id.textViewError).setVisibility(View.VISIBLE);
+                        findViewById(R.id.inner1).setVisibility(View.VISIBLE);
+                        imageEmptyCart = findViewById(R.id.iv_nocart);
+                        textEmptyCart = findViewById(R.id.textViewError);
+                        Animation animation = AnimationUtils.loadAnimation(GoToCart.this, R.anim.shake);
+                        imageEmptyCart.setAnimation(animation);
                         findViewById(R.id.Listmenu).setVisibility(View.INVISIBLE);
                         btnContinue.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -146,6 +159,16 @@ public class GoToCart extends AppCompatActivity {
             finish();
             startActivity(intentlogin);
         }
+    }
+
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                break;
+        }
+
     }
 
     @Override

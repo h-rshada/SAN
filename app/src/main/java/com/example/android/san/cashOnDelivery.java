@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 
 public class cashOnDelivery extends AppCompatActivity {
@@ -48,6 +50,8 @@ public class cashOnDelivery extends AppCompatActivity {
     String parentActivityName;
     JSONObject jsonObject;
     int flag=0;
+    @InjectView(R.id.img_back)
+    ImageView imageView;
     SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +188,16 @@ public class cashOnDelivery extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                break;
+        }
+
     }
 
     @Override

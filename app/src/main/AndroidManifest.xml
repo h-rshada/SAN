@@ -60,7 +60,9 @@
             </intent-filter>
         </activity>
         -->
-        <activity android:name=".AboutUs" />
+        <activity
+            android:name=".AboutUs"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FindUs" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -76,12 +78,23 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".OrderDetailsActivity" />
-        <activity android:name=".GoToCart" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Profile" />
+            android:label="@string/title_activity_maps"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OrderDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GoToCart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Profile"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuTypeTab"
             android:label=""
@@ -90,9 +103,15 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".payment" />
-        <activity android:name=".cashOnDelivery"></activity>
-        <activity android:name=".ContactUs" />
+        <activity
+            android:name=".payment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".cashOnDelivery"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ContactUs"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

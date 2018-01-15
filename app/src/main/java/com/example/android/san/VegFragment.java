@@ -588,7 +588,7 @@ public class VegFragment extends Fragment {
 
                             btnCart.setText("GO TO CART");
                             Drawable icon = this.getResources().getDrawable(R.drawable.next);
-                            // btnCart.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
+                            // / btnCart.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
                             btnCart.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
 
                             Toasty.success(getActivity(), "Tiffin added into cart, now goto cart", Toast.LENGTH_SHORT, true).show();

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.auth0.android.Auth0;
@@ -23,6 +24,10 @@ import com.auth0.android.result.UserProfile;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
 
     Auth0 auth0;
@@ -32,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor editor;
     int flag = 0;
+    String response1;
+    @InjectView(R.id.img_back)
+    ImageView imageView;
     private AuthenticationAPIClient authenticationClient;
     private UserProfile userProfile;
     private Button editProfileButton;
@@ -49,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
 
         auth0 = new Auth0(this);
         auth0.setOIDCConformant(true);
@@ -222,19 +231,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String response) {
                 Log.d("Response*", response);
+                response1 = response;
                 if (response.contains("OK")) {
-                    Intent intent = new Intent(MainActivity.this, MenuTypeTab.class);
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     intent.putExtra("PARENT_ACTIVITY_NAME", "MainActivity");
-                    finish();
-                    startActivity(intent);
-                } else if (response.contains("UPDATED")) {
                     editor.putString("AUTH_ID", userProfile.getId());
                     editor.commit();
-                    Intent intent = new Intent(MainActivity.this, Profile.class);
-                    finish();
                     startActivity(intent);
-                }
+                    finish();
+                } else if (response.contains("UPDATED")) {
 
+                    editor.putString("AUTH_ID", userProfile.getId());
+                    editor.commit();
+                    // onBackPressed();
+                    Intent intent = new Intent(MainActivity.this, Profile.class);
+                    startActivity(intent);
+                    finish();
+                }
                 editor.putString("NAME", name);
                 editor.putString("PHONE", phone);
                 editor.putString("ADDRESS", address);
@@ -244,6 +257,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                break;
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = new Intent(MainActivity.this, Profile.class);
+        finish();
+        startActivity(intent);
 
 
+    }
 }

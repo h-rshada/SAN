@@ -649,7 +649,7 @@ public class NonVegFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    menuNotAvailable.setText("oopss...,Menu is not provided for today");
+//                    menuNotAvailable.setText("oopss...,Menu is not provided for today");
                     menuNotAvailable.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.INVISIBLE);
                 }

@@ -30,7 +30,7 @@ public class ContactUs extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.img_mail, R.id.img_number})
+    @OnClick({R.id.img_mail, R.id.img_number, R.id.img_back})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_mail:
@@ -60,8 +60,12 @@ public class ContactUs extends AppCompatActivity {
                     finish();
                 }
                 break;
+            case R.id.img_back:
+                onBackPressed();
+                break;
         }
     }
+
 
     @Override
     public void onBackPressed() {

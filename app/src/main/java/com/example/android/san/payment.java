@@ -8,12 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 public class payment extends AppCompatActivity {
     @InjectView(R.id.radioGroup)
@@ -27,6 +30,8 @@ public class payment extends AppCompatActivity {
     SharedPreferences.Editor editor;
     boolean login;
     String auth_id;
+    @InjectView(R.id.img_back)
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +61,8 @@ public class payment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (payment_mode == null) {
-                    Toast.makeText(payment.this, "select payment mode", Toast.LENGTH_SHORT).show();
+                    Toasty.success(payment.this, "Please select payment mode", Toast.LENGTH_LONG, true).show();
+
                 } else {
                     if (payment_mode.equals("Cash on delivery")) {
                         Intent intent = new Intent(payment.this, cashOnDelivery.class);
@@ -78,6 +84,16 @@ public class payment extends AppCompatActivity {
 
             }
         });
+    }
+
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                break;
+        }
+
     }
 
     @Override

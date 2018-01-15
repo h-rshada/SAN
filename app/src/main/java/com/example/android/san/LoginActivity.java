@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -22,6 +23,9 @@ import com.auth0.android.provider.WebAuthProvider;
 import com.auth0.android.result.Credentials;
 import com.auth0.android.result.UserProfile;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     Intent intent;
     String parentActivityName;
     LinearLayout linearLayout;
+    @InjectView(R.id.img_back)
+    ImageView imageView;
     private Auth0 auth0;
     private AuthenticationAPIClient authenticationClient;
     AuthCallback callback = new AuthCallback() {
@@ -112,6 +118,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.inject(this);
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         editor = sp.edit();
         editor.clear();
@@ -219,6 +226,16 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @OnClick({R.id.img_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_back:
+                onBackPressed();
+                break;
+        }
+
     }
 
     @Override

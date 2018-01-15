@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,6 +42,9 @@ public class Profile extends AppCompatActivity {
     ImageView imgEdit;
     boolean login;
     AlertDialog.Builder alert;
+    CardView cardAddress, cardPhone, cardEmail;
+    @InjectView(R.id.img_back)
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,9 @@ public class Profile extends AppCompatActivity {
         login = sp.getBoolean("LOGIN", false);
         Log.d("Login@@@", login + "");
         editor = sp.edit();
+        cardPhone = findViewById(R.id.cardPhone);
+        cardAddress = findViewById(R.id.cardAddress);
+        cardEmail = findViewById(R.id.cardEmail);
         if (!sp.getBoolean("LOGIN", false)) {
             intent = new Intent(Profile.this, LoginActivity.class);
             intent.putExtra("PARENT_ACTIVITY_NAME", "UserProfile");
@@ -64,7 +71,7 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.txtLogin, R.id.imgEdit})
+    @OnClick({R.id.txtLogin, R.id.imgEdit, R.id.img_back})
     public void onClick(View view) {
 
         switch (view.getId()) {
@@ -106,8 +113,12 @@ public class Profile extends AppCompatActivity {
                 finish();
                 startActivity(intent);
                 break;
+            case R.id.img_back:
+                onBackPressed();
+                break;
         }
     }
+
 
     public void getData() {
 
@@ -133,10 +144,25 @@ public class Profile extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                txtName.setText(name);
-                txtAddress.setText("Address  : " + address);
-                txtEmail.setText("Email Id  : " + email);
-                txtPhone.setText("Phone  :" + phone);
+                if (!name.equals("null")) {
+                    txtName.setText(name);
+                }
+
+                if (!address.equals("null")) {
+                    txtAddress.setText("Address  : " + address);
+                } else {
+                    cardAddress.setVisibility(View.GONE);
+                }
+                if (!email.equals("null")) {
+                    txtEmail.setText("Email Id  : " + email);
+                } else {
+                    cardEmail.setVisibility(View.GONE);
+                }
+                if (!phone.equals("null")) {
+                    txtPhone.setText("Phone  :" + phone);
+                } else {
+                    cardPhone.setVisibility(View.GONE);
+                }
             }
         });
     }

@@ -392,7 +392,14 @@
                     android:id="@+id/txt_menuNotavailable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/sad"
+                    android:drawablePadding="5dp"
+                    android:text="Oopss! Menu is not provided for today."
+                    android:textColor="#FF1744"
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/Listmenu"
