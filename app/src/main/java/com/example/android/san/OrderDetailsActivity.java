@@ -255,7 +255,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         editor.putString("AUTH_ID", auth_id);
         editor.putBoolean("LOGIN", true);
         editor.commit();
-        Intent intent = new Intent(OrderDetailsActivity.this, HomeActivity.class);
+        Intent intent = new Intent(OrderDetailsActivity.this, MenuTypeTab.class);
         finish();
         startActivity(intent);
     }

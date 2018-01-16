@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void run() {
                     linearLayout.setVisibility(View.GONE);
                     //Toast.makeText(LoginActivity.this, "Log In - Success", Toast.LENGTH_SHORT).show();
-                    Toasty.success(LoginActivity.this, "login successfully..!", Toast.LENGTH_SHORT, true).show();
+                    Toasty.success(LoginActivity.this, "login successful..!", Toast.LENGTH_SHORT, true).show();
 
                 }
             });

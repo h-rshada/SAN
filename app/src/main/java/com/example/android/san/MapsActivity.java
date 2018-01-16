@@ -48,13 +48,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         CameraUpdate center =
-                CameraUpdateFactory.newLatLng(new LatLng(18.654234,
-                        73.881671));
+                CameraUpdateFactory.newLatLng(new LatLng(18.5745613, 73.8892525));
 
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
         googleMap.moveCamera(center);
         googleMap.animateCamera(zoom);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(18.654234, 73.881671)).title("Xoxytech"));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(18.5745613, 73.8892525)).title("Xoxytech"));
     }
 
     @OnClick({R.id.img_back})
@@ -64,7 +63,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 onBackPressed();
                 break;
         }
-
     }
 
     @Override

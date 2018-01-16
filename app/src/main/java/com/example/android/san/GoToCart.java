@@ -13,8 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,8 +46,10 @@ public class GoToCart extends AppCompatActivity {
     JSONObject json_data;
     boolean login;
     int cartCount;
-    ImageView imageEmptyCart;
-    TextView textEmptyCart;
+    LinearLayout linearLayout;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,17 +114,18 @@ public class GoToCart extends AppCompatActivity {
 
                         }
                     } else {
-
-                        findViewById(R.id.inner1).setVisibility(View.VISIBLE);
-                        imageEmptyCart = findViewById(R.id.iv_nocart);
-                        textEmptyCart = findViewById(R.id.textViewError);
+                        findViewById(R.id.relative1).setVisibility(View.GONE);
+                        linearLayout = findViewById(R.id.linear1);
+                        linearLayout.setVisibility(View.VISIBLE);
+                        ImageView imageEmptyCart = findViewById(R.id.iv_nocart);
+                        // TextView textEmptyCart = findViewById(R.id.textViewError);
                         Animation animation = AnimationUtils.loadAnimation(GoToCart.this, R.anim.shake);
                         imageEmptyCart.setAnimation(animation);
-                        findViewById(R.id.Listmenu).setVisibility(View.INVISIBLE);
+                        btnContinue.setText("Go Back");
                         btnContinue.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(GoToCart.this, "Cart is empty", Toast.LENGTH_LONG).show();
+                                onBackPressed();
                             }
                         });
 

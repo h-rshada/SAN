@@ -205,7 +205,7 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         count--;
                         str = compoundButton.getText().toString();
                         removeFromList(str);
-                        Toast.makeText(context, "changed" + SELECTION + b + "", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }

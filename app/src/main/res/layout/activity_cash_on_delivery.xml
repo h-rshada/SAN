@@ -26,9 +26,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
             android:gravity="center_horizontal"
-            android:text="SAN"
+            android:text="Cash on Delivery"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -37,18 +37,18 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <TextView
-        android:id="@+id/txt_cod_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="#dfdfdf"
-        android:padding="10dp"
-        android:text="Payment Details"
-        android:textAlignment="center"
-        android:textColor="#0b0b0b"
-        android:textSize="22dp"
-        android:textStyle="bold" />
+    <!--  <TextView
+          android:id="@+id/txt_cod_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="4dp"
+          android:background="#dfdfdf"
+          android:padding="10dp"
+          android:text="Payment Details"
+          android:textAlignment="center"
+          android:textColor="#0b0b0b"
+          android:textSize="22dp"
+          android:textStyle="bold" />-->
 
     <LinearLayout
         android:id="@+id/inner_1"

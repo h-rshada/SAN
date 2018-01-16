@@ -4,53 +4,58 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent">
 
-    <LinearLayout
-        android:id="@+id/container1"
+    <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/LinearLayout_31"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_home_act"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/san111" />
-
-            <!--<ImageView-->
-            <!--android:id="@+id/iv_san"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="150dp"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:src="@drawable/san" />-->
-
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/LinearLayout_4"
+            android:id="@+id/container1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
             android:orientation="vertical">
 
-
-            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/card_view1"
+            <RelativeLayout
+                android:id="@+id/LinearLayout_31"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_home_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/san111" />
+
+                <!--<ImageView-->
+                <!--android:id="@+id/iv_san"-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:src="@drawable/san" />-->
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:background="@drawable/aboutus2"
                     app:cardElevation="5dp"
                     card_view:cardBackgroundColor="@android:color/holo_blue_light"
@@ -67,16 +72,15 @@
                 </android.support.v7.widget.CardView>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/LinearLayout_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            <LinearLayout
+                android:id="@+id/LinearLayout_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
 
-            android:orientation="vertical">
-
+                android:orientation="vertical">
 
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -103,16 +107,15 @@
 
                 </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/LinearLayout_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="12dp"
-            android:orientation="vertical">
-
+            <LinearLayout
+                android:id="@+id/LinearLayout_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
 
 
                 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -137,10 +140,10 @@
                         android:src="@drawable/map10" />
 
 
-
                 </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
