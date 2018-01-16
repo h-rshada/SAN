@@ -196,6 +196,7 @@ public class VegFragment extends Fragment {
         {
             day_tuesday.setSelected(true);
             day_tuesday.setBackgroundResource(R.drawable.btn_shape1);
+            day_monday.setBackgroundResource(R.drawable.unclickable);
             week_day="Tuesday";
             day_monday.setEnabled(false);
         }
@@ -204,6 +205,8 @@ public class VegFragment extends Fragment {
         {
             day_wednesday.setSelected(true);
             day_wednesday.setBackgroundResource(R.drawable.btn_shape1);
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
             week_day="Wednesday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -214,6 +217,9 @@ public class VegFragment extends Fragment {
         {
             day_thursday.setSelected(true);
             day_thursday.setBackgroundResource(R.drawable.btn_shape1);
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
             week_day="Thursday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -224,6 +230,10 @@ public class VegFragment extends Fragment {
         {
             day_friday.setSelected(true);
             day_friday.setBackgroundResource(R.drawable.btn_shape1);
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_thursday.setBackgroundResource(R.drawable.unclickable);
             week_day="Friday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -235,6 +245,11 @@ public class VegFragment extends Fragment {
         {
             day_saturday.setSelected(true);
             day_saturday.setBackgroundResource(R.drawable.btn_shape1);
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_thursday.setBackgroundResource(R.drawable.unclickable);
+            day_friday.setBackgroundResource(R.drawable.unclickable);
             week_day="Saturday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -247,6 +262,12 @@ public class VegFragment extends Fragment {
         {
             day_sunday.setSelected(true);
             day_sunday.setBackgroundResource(R.drawable.btn_shape1);
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_thursday.setBackgroundResource(R.drawable.unclickable);
+            day_friday.setBackgroundResource(R.drawable.unclickable);
+            day_saturday.setBackgroundResource(R.drawable.unclickable);
             week_day="Sunday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -331,7 +352,7 @@ public class VegFragment extends Fragment {
     }
 
     @OnClick({R.id.txt_mon, R.id.txt_tue, R.id.txt_wed, R.id.txt_thu, R.id.txt_fri, R.id.txt_sat, R.id.txt_sun, R.id.btnSubmit, R.id.btnCart})
-    public void onClick(View view) {
+    public void onClick(final View view) {
 
         switch (view.getId()) {
 
@@ -588,6 +609,19 @@ public class VegFragment extends Fragment {
                             });
                             requestQueue.add(jsonObjReq);
 
+
+                            urlRequest = UrlRequest.getObject();
+                            urlRequest.setContext(getContext());
+                            urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/totalCartItems.rfa.php?auth_id=" + auth_Id);
+                            Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/totalCartItems.rfa.php?auth_id=" + auth_Id);
+                            urlRequest.getResponse(new ServerCallback() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    Log.d("VTotalcartitem", response);
+
+
+                                }
+                            });
                             btnCart.setText("GO TO CART");
                             Drawable icon = this.getResources().getDrawable(R.drawable.next);
                             // / btnCart.setCompoundDrawablesWithIntrinsicBounds( null, null, icon, null );
@@ -674,6 +708,9 @@ public class VegFragment extends Fragment {
 
             }
         });
+        if (dabba.equals("semiHeavy") || dabba.equals("fixedBasic") || dabba.equals("fixedHeavy")) {
+            selectedData();
+        }
     }
 
     public void setData(String url, final String item)

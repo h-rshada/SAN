@@ -100,6 +100,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         myHolder.txt_dal.setText(tiffin_data.dal);
         myHolder.txt_price.setText((Integer.parseInt(tiffin_data.price) * Integer.parseInt(tiffin_data.quantity)) + "");
         myHolder.txt_quantity.setText(tiffin_data.quantity);
+        myHolder.txt_deliveryDay.setText(tiffin_data.deliveryDay);
         totalPrice = (Integer.parseInt(tiffin_data.price) * Integer.parseInt(tiffin_data.quantity)) + totalPrice;
         totalQuantity = totalQuantity + Integer.parseInt(tiffin_data.quantity);
         Log.d("totalp", totalPrice + "");
@@ -228,7 +229,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        TextView txt_tiffin_plan, txt_tiffin_type, txt_menu, txt_indian_bread, txt_rice, txt_dal, txt_price, txt_quantity, txt_totalPrice, txt_totalQuantity;
+        TextView txt_tiffin_plan, txt_tiffin_type, txt_menu, txt_indian_bread, txt_rice, txt_dal, txt_price, txt_quantity, txt_totalPrice, txt_totalQuantity, txt_deliveryDay;
         Button btnAdd, btnRemove, btnRemoveFromCart;
         LinearLayout linearLayout;
 
@@ -248,6 +249,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             btnRemoveFromCart = itemView.findViewById(R.id.btn_removeFromCart);
             txt_totalPrice = itemView.findViewById(R.id.txt_totalPrice);
             txt_totalQuantity = itemView.findViewById(R.id.txt_totalQuantity);
+            txt_deliveryDay = itemView.findViewById(R.id.txtDeliveryDay);
 
         }
     }
