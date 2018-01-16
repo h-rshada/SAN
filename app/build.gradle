@@ -48,10 +48,8 @@ dependencies {
     compile 'me.spark:submitbutton:1.0.1'
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
     compile 'com.github.florent37:materialtextfield:1.0.7'
-    
     compile 'com.github.GrenderG:Toasty:1.2.8'
-
-
+    compile 'com.rowland.cartcounter:CartCounter:1.0.0-beta-1'
 
 }
 

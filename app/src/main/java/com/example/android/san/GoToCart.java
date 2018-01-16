@@ -114,6 +114,9 @@ public class GoToCart extends AppCompatActivity {
                         }
                     } else {
 
+                        editor = sp.edit();
+                        editor.putString("CartCount", 0 + "");
+                        editor.commit();
                         findViewById(R.id.inner1).setVisibility(View.VISIBLE);
                         imageEmptyCart = findViewById(R.id.iv_nocart);
                         textEmptyCart = findViewById(R.id.textViewError);

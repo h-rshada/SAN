@@ -39,15 +39,31 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <ImageView
-            android:id="@+id/img_viewCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="30dp"
             android:layout_alignTop="@+id/img_refresh"
-            android:layout_marginEnd="19dp"
-            android:layout_toStartOf="@+id/img_refresh"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/img_refresh">
+
+            <ImageView
+                android:id="@+id/img_viewCart"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
             android:onClick="onClick"
             android:src="@drawable/simplecart2" />
+
+            <TextView
+                android:id="@+id/cartCount"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="18dp"
+                android:background="@drawable/cartshape"
+                android:paddingLeft="6dp"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+        </FrameLayout>
         <ImageView
             android:id="@+id/img_refresh"
             android:layout_width="wrap_content"

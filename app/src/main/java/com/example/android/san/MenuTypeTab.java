@@ -46,6 +46,7 @@ public class MenuTypeTab extends AppCompatActivity {
     boolean login;
     SharedPreferences.Editor editor;
     String auth_Id;
+    UrlRequest urlRequest;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private long back_pressed = 0;
@@ -54,7 +55,6 @@ public class MenuTypeTab extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_type_tab);
-
         ButterKnife.inject(MenuTypeTab.this);
         flexibleFragment = new FlexibleFragment();
         semiFlexibleFragment = new SemiFlexibleFragment();
@@ -65,8 +65,20 @@ public class MenuTypeTab extends AppCompatActivity {
         auth_Id = sp.getString("AUTH_ID", "");
         Log.d("Login####", login + "");
         Log.d("Auth^^^^", auth_Id);
-
         Log.d("Login&&&&&&&", login + "");
+        urlRequest = UrlRequest.getObject();
+        urlRequest.setContext(MenuTypeTab.this);
+        urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/totalCartItems.rfa.php?auth_id=" + auth_Id);
+        Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/totalCartItems.rfa.php?auth_id=" + auth_Id);
+        urlRequest.getResponse(new ServerCallback() {
+            @Override
+            public void onSuccess(String response) {
+                Log.d("Totalcartitem", response);
+                editor = sp.edit();
+                editor.putString("CartCount", response);
+                editor.commit();
+            }
+        });
         viewPager = findViewById(R.id.pager);
         setupViewPager(viewPager);
         toolbar = findViewById(R.id.toolbar1);

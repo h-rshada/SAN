@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class TabActivity extends AppCompatActivity {
     ImageView imageback;
     @InjectView(R.id.img_viewCart)
     ImageView viewCart;
+    @InjectView(R.id.cartCount)
+    TextView txtCartCount;
     String auth_id,cartCount;
     boolean login;
     private Toolbar toolbar;
@@ -62,6 +65,7 @@ public class TabActivity extends AppCompatActivity {
         Log.d("Login!!!", login + "");
         Log.d("Auth", auth_id);
         Log.d("CartCount", cartCount);
+        txtCartCount.setText(cartCount);
         editor = sp.edit();
 
 
