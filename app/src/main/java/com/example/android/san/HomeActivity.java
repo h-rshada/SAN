@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,11 +18,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
+import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import java.io.File;
 import java.util.HashMap;
@@ -48,6 +55,17 @@ public class HomeActivity extends AppCompatActivity
     HashMap<String, Integer> Hash_file_maps;
     private long back_pressed = 0;
     private Toast toast;
+
+    private static void setViewAndChildrenEnabled(View view, boolean enabled) {
+        view.setEnabled(enabled);
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View child = viewGroup.getChildAt(i);
+                setViewAndChildrenEnabled(child, enabled);
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +103,6 @@ public class HomeActivity extends AppCompatActivity
 //        sliderLayout.addOnPageChangeListener(this);
 
 
-
         try {
             File f = new File("/data/data/com.xoxytech.ostello/shared_prefs/YourSharedPreference.xml");
             if (f.exists()) {
@@ -101,8 +118,8 @@ public class HomeActivity extends AppCompatActivity
 
         ButterKnife.inject(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
-
+        // setSupportActionBar(toolbar);
+/*
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,17 +127,114 @@ public class HomeActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
+
+        final ImageView icon = new ImageView(this); // Create an icon
+        icon.setImageDrawable(getResources().getDrawable(R.drawable.shareicon));
+        com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton actionButton = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.Builder(this)
+                .setContentView(icon)
+                .build();
+
+        SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
+        ImageView itemIcon1 = new ImageView(this);
+        ImageView itemIcon2 = new ImageView(this);
+        ImageView itemIcon3 = new ImageView(this);
+        ImageView itemIcon4 = new ImageView(this);
+        int subActionButtonSize = 120;
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(subActionButtonSize, subActionButtonSize);
+        itemIcon1.setImageDrawable(getResources().getDrawable(R.drawable.facebook));
+        itemIcon2.setImageDrawable(getResources().getDrawable(R.drawable.twitter));
+        itemIcon3.setImageDrawable(getResources().getDrawable(R.drawable.whatsapp));
+        itemIcon4.setImageDrawable(getResources().getDrawable(R.drawable.linkedin));
+        SubActionButton button1 = itemBuilder.setContentView(itemIcon1).setLayoutParams(params).build();
+        SubActionButton button2 = itemBuilder.setContentView(itemIcon2).setLayoutParams(params).build();
+        SubActionButton button3 = itemBuilder.setContentView(itemIcon3).setLayoutParams(params).build();
+        SubActionButton button4 = itemBuilder.setContentView(itemIcon4).setLayoutParams(params).build();
+
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(Color.parseColor("#ffffff"));
+        gd.setShape(GradientDrawable.OVAL);
+        button1.setBackground(gd);
+        button2.setBackground(gd);
+        button3.setBackground(gd);
+        button4.setBackground(gd);
+
+        FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+                .addSubActionView(button1)
+                .addSubActionView(button2)
+                .addSubActionView(button3)
+                .addSubActionView(button4)
+                .setRadius(250)
+                .attachTo(actionButton)
+                .build();
+        actionMenu.setStateChangeListener(new FloatingActionMenu.MenuStateChangeListener() {
+            @Override
+            public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
+
+                AlphaAnimation alpha = new AlphaAnimation(0.2F, 0.2F);
+                alpha.setDuration(0); // Make animation instant
+                alpha.setFillAfter(true);
+                findViewById(R.id.container).startAnimation(alpha);
+                LinearLayout layout = findViewById(R.id.container1);
+                setViewAndChildrenEnabled(layout, false);
+            }
+
+            @Override
+            public void onMenuClosed(FloatingActionMenu floatingActionMenu) {
+                AlphaAnimation alpha = new AlphaAnimation(1.0F, 1.0F);
+                alpha.setDuration(0); // Make animation instant
+                alpha.setFillAfter(true);
+                findViewById(R.id.container1).startAnimation(alpha);
+                LinearLayout layout = findViewById(R.id.container1);
+                setViewAndChildrenEnabled(layout, true);
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.facebook.com/yashodeepacademy/"));
+                startActivity(intent);
+
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://twitter.com/Yashodeep2017"));
+                startActivity(intent);
+
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND).setData(Uri.parse("whatsapp://send?text=http://www.example.com"));
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        "Hey check out my app at: https://play.google.com/store/apps/details?id=com.ydacademy.dell.Yashodeep2");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.linkedin.com/in/yashodeep-academy-b61232153/"));
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {
@@ -247,12 +361,12 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
+
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT, "Hey check out my app at: https://play.google.com/store/apps/details?id=com.xoxytech.ostello");
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
-
         } else if (id == R.id.nav_cart) {
             Intent intent = new Intent(HomeActivity.this, GoToCart.class);
             if (login) {

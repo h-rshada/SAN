@@ -150,6 +150,7 @@ public class TabActivity extends AppCompatActivity {
         Intent i = getIntent();
         finish();
         startActivity(i);
+        finish();
 
     }
 
@@ -161,12 +162,13 @@ public class TabActivity extends AppCompatActivity {
             editor.putBoolean("LOGIN", true);
             editor.putString("AUTH_ID", auth_id);
             editor.commit();
+            TabActivity.this.finish();
         } else {
             editor = sp.edit();
             editor.putBoolean("LOGIN", false);
             editor.commit();
+            TabActivity.this.finish();
         }
-        TabActivity.this.finish();
     }
 
     /*  @TargetApi(Build.VERSION_CODES.HONEYCOMB)

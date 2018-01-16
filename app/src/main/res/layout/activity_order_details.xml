@@ -31,9 +31,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:text="SAN"
+                android:layout_marginLeft="15dp"
+                android:text="My Orders"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -73,7 +72,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="50dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -86,10 +87,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Tiffin Plan  :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -98,9 +99,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -113,10 +114,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Tiffin Type  :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -125,9 +126,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -135,7 +136,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ff0000"
+                android:background="#CFD8DC"
                 android:orientation="horizontal">
 
 
@@ -143,10 +144,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Menu  :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -156,9 +157,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                         android:textSize="20dp" />
 
 
@@ -174,10 +175,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Indian Bread  :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -186,9 +187,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -201,10 +202,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Rice  :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -213,9 +214,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -229,10 +230,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Dal  :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -241,9 +242,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -257,10 +258,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Price  :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -269,9 +270,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -285,10 +286,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ff0000"
+                    android:background="#CFD8DC"
                     android:paddingLeft="10dp"
                     android:text="Delivery Day :"
-                    android:textColor="#ffa500"
+                    android:textColor="#122323"
                     android:textSize="20dp"
                     android:textStyle="normal" />
 
@@ -297,9 +298,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#ffa500"
+                    android:background="#B0BEC5"
                     android:paddingLeft="10dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#314343"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -308,15 +309,16 @@
 
             <Button
                 android:id="@+id/btnOrder"
-                android:layout_width="230dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="#ffa500"
+                android:background="#ff0000"
                 android:text="order"
-                android:textColor="#ff0000"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
         </LinearLayout>
     </LinearLayout>
 

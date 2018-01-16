@@ -105,7 +105,7 @@ public class UrlRequest
             requestQueue.add(stringRequest);
         } else {
 
-            TastyToast.makeText(context, "No Internet Connection..!", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+            TastyToast.makeText(context, "No Internet Connection..!", TastyToast.LENGTH_SHORT, TastyToast.ERROR);
 
 //            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
 

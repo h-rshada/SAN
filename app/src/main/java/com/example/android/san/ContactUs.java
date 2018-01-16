@@ -36,7 +36,7 @@ public class ContactUs extends AppCompatActivity {
             case R.id.img_mail:
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("message/rfc802");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"xoxytech@gmail.com"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@sansmealsbox.com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Any subject if you want");
                 intent.setPackage("com.google.android.gm");
                 if (intent.resolveActivity(getPackageManager()) != null) {
@@ -51,7 +51,7 @@ public class ContactUs extends AppCompatActivity {
             case R.id.img_number:
 
                 intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:7719869229"));
+                intent.setData(Uri.parse("tel:9527305482"));
                 if (ContextCompat.checkSelfPermission(ContactUs.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(ContactUs.this, new String[]{android.Manifest.permission.CALL_PHONE}, 1);
                 } else {

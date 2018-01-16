@@ -31,9 +31,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:text="SAN"
+                android:layout_marginLeft="15dp"
+                android:text="My Profile"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
