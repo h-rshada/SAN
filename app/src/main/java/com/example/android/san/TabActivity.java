@@ -67,8 +67,6 @@ public class TabActivity extends AppCompatActivity {
         Log.d("CartCount", cartCount);
         txtCartCount.setText(cartCount);
         editor = sp.edit();
-
-
         type = getIntent().getStringExtra("Type");
         tiffintype = getIntent().getStringExtra("TiffinType");
         price = getIntent().getStringExtra("Price");

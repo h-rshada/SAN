@@ -144,7 +144,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                 alertDialog.setTitle("Delete Tiffin....");
-                alertDialog.setIcon(R.drawable.removea);
+                alertDialog.setIcon(R.drawable.delete111);
                 alertDialog.setMessage("Are you sure to delete tiffin from cart?");
                 alertDialog.setCancelable(false);
                 alertDialog.setPositiveButton(

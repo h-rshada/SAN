@@ -207,7 +207,7 @@ public class cashOnDelivery extends AppCompatActivity {
         editor.putBoolean("LOGIN", true);
         editor.putString("AUTH_ID", auth_id);
         editor.commit();
-        intent = new Intent(cashOnDelivery.this, HomeActivity.class);
+        intent = new Intent(cashOnDelivery.this, MenuTypeTab.class);
         startActivity(intent);
         cashOnDelivery.this.finish();
     }

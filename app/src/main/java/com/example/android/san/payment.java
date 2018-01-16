@@ -112,7 +112,7 @@ public class payment extends AppCompatActivity {
             editor.putBoolean("LOGIN", true);
             editor.putString("AUTH_ID", auth_id);
             editor.commit();
-            Intent intent = new Intent(payment.this, HomeActivity.class);
+            Intent intent = new Intent(payment.this, MenuTypeTab.class);
             startActivity(intent);
             payment.this.finish();
         }

@@ -100,6 +100,7 @@ public class GoToCart extends AppCompatActivity {
                             }
                             editor=sp.edit();
                             editor.putString("CartCount",cartCount+"");
+                            Log.d("ccount ", cartCount + "");
                             editor.commit();
                             list_tiffin.setVisibility(View.VISIBLE);
                             adapter = new AdapterCart(GoToCart.this, data);
@@ -117,7 +118,7 @@ public class GoToCart extends AppCompatActivity {
                         editor = sp.edit();
                         editor.putString("CartCount", 0 + "");
                         editor.commit();
-                        findViewById(R.id.inner1).setVisibility(View.VISIBLE);
+                        findViewById(R.id.linear1).setVisibility(View.VISIBLE);
                         imageEmptyCart = findViewById(R.id.iv_nocart);
                         textEmptyCart = findViewById(R.id.textViewError);
                         Animation animation = AnimationUtils.loadAnimation(GoToCart.this, R.anim.shake);
