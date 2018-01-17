@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.yinglan.keyboard.HideUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,6 +58,8 @@ public class cashOnDelivery extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cash_on_delivery);
+        HideUtil.init(cashOnDelivery.this);
+
         ButterKnife.inject(this);
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);

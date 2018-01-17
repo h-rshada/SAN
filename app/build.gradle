@@ -52,6 +52,7 @@ dependencies {
     compile 'com.rowland.cartcounter:CartCounter:1.0.0-beta-1'
     compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
     compile 'de.hdodenhof:circleimageview:1.3.0'
+    compile 'com.yinglan.keyboard:hidekeyboard:1.1.3'
 }
 
 

@@ -20,6 +20,7 @@ import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.management.ManagementException;
 import com.auth0.android.management.UsersAPIClient;
 import com.auth0.android.result.UserProfile;
+import com.yinglan.keyboard.HideUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
+
+        HideUtil.init(MainActivity.this);
 
         auth0 = new Auth0(this);
         auth0.setOIDCConformant(true);
