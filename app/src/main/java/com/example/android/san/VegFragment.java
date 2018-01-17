@@ -197,6 +197,7 @@ public class VegFragment extends Fragment {
             day_tuesday.setSelected(true);
             day_tuesday.setBackgroundResource(R.drawable.btn_shape1);
             day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_monday.setClickable(false);
             week_day="Tuesday";
             day_monday.setEnabled(false);
         }
@@ -206,7 +207,9 @@ public class VegFragment extends Fragment {
             day_wednesday.setSelected(true);
             day_wednesday.setBackgroundResource(R.drawable.btn_shape1);
             day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_monday.setClickable(false);
             day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setClickable(false);
             week_day="Wednesday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -218,6 +221,9 @@ public class VegFragment extends Fragment {
             day_thursday.setSelected(true);
             day_thursday.setBackgroundResource(R.drawable.btn_shape1);
             day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_monday.setClickable(false);
+            day_tuesday.setClickable(false);
+            day_wednesday.setClickable(false);
             day_tuesday.setBackgroundResource(R.drawable.unclickable);
             day_wednesday.setBackgroundResource(R.drawable.unclickable);
             week_day="Thursday";
@@ -231,9 +237,13 @@ public class VegFragment extends Fragment {
             day_friday.setSelected(true);
             day_friday.setBackgroundResource(R.drawable.btn_shape1);
             day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_monday.setClickable(false);
             day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setClickable(false);
             day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setClickable(false);
             day_thursday.setBackgroundResource(R.drawable.unclickable);
+            day_thursday.setClickable(false);
             week_day="Friday";
             day_monday.setEnabled(false);
             day_tuesday.setEnabled(false);
@@ -246,8 +256,11 @@ public class VegFragment extends Fragment {
             day_saturday.setSelected(true);
             day_saturday.setBackgroundResource(R.drawable.btn_shape1);
             day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_monday.setClickable(false);
             day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setClickable(false);
             day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setClickable(false);
             day_thursday.setBackgroundResource(R.drawable.unclickable);
             day_friday.setBackgroundResource(R.drawable.unclickable);
             week_day="Saturday";
@@ -373,6 +386,7 @@ public class VegFragment extends Fragment {
                     if (!day.equals("Sunday"))
                         day_sunday.setBackgroundResource(R.drawable.bt_shape);
                 }
+
                 getData();
                 break;
             case R.id.txt_tue:
@@ -392,6 +406,7 @@ public class VegFragment extends Fragment {
                     if (!day.equals("Sunday"))
                         day_sunday.setBackgroundResource(R.drawable.bt_shape);
                 }
+                unchecked();
                 getData();
                 break;
             case R.id.txt_wed:
@@ -411,6 +426,7 @@ public class VegFragment extends Fragment {
                     if (!day.equals("Sunday"))
                         day_sunday.setBackgroundResource(R.drawable.bt_shape);
                 }
+                unchecked();
                 getData();
                 break;
             case R.id.txt_thu:
@@ -430,6 +446,7 @@ public class VegFragment extends Fragment {
                     if (!day.equals("Sunday"))
                         day_sunday.setBackgroundResource(R.drawable.bt_shape);
                 }
+                unchecked();
                 getData();
                 break;
             case R.id.txt_fri:
@@ -449,6 +466,7 @@ public class VegFragment extends Fragment {
                     if (!day.equals("Sunday"))
                         day_sunday.setBackgroundResource(R.drawable.bt_shape);
                 }
+                unchecked();
                 getData();
                 break;
             case R.id.txt_sat:
@@ -468,6 +486,7 @@ public class VegFragment extends Fragment {
                     if (!day.equals("Sunday"))
                         day_sunday.setBackgroundResource(R.drawable.bt_shape);
                 }
+                unchecked();
                 getData();
                 break;
             case R.id.txt_sun:
@@ -487,6 +506,7 @@ public class VegFragment extends Fragment {
                     if (!day.equals("Saturday"))
                         day_saturday.setBackgroundResource(R.drawable.bt_shape);
                 }
+                unchecked();
                 getData();
                 break;
             case R.id.btnSubmit:
@@ -619,7 +639,6 @@ public class VegFragment extends Fragment {
                                 public void onSuccess(String response) {
                                     Log.d("VTotalcartitem", response);
 
-
                                 }
                             });
                             btnCart.setText("GO TO CART");
@@ -653,6 +672,37 @@ public class VegFragment extends Fragment {
                 }
                 break;
 
+        }
+    }
+
+    public void unchecked() {
+        if (day.equals("Tuesday")) {
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+        } else if (day.equals("Wednesday")) {
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+        } else if (day.equals("Thursday")) {
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
+        } else if (day.equals("Friday")) {
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_thursday.setBackgroundResource(R.drawable.unclickable);
+        } else if (day.equals("Saturday")) {
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_thursday.setBackgroundResource(R.drawable.unclickable);
+            day_friday.setBackgroundResource(R.drawable.unclickable);
+        } else if (day.equals("Sunday")) {
+            day_monday.setBackgroundResource(R.drawable.unclickable);
+            day_tuesday.setBackgroundResource(R.drawable.unclickable);
+            day_wednesday.setBackgroundResource(R.drawable.unclickable);
+            day_thursday.setBackgroundResource(R.drawable.unclickable);
+            day_friday.setBackgroundResource(R.drawable.unclickable);
+            day_saturday.setBackgroundResource(R.drawable.unclickable);
         }
     }
     public void getData()
