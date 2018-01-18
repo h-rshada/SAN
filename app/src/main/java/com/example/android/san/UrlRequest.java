@@ -1,5 +1,6 @@
 package com.example.android.san;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -108,7 +109,9 @@ public class UrlRequest
         } else {
 
             TastyToast.makeText(context, "No Internet Connection..!", TastyToast.LENGTH_SHORT, TastyToast.ERROR);
-            NoInternetDialog builder = new NoInternetDialog.Builder(context).build();
+            @SuppressLint("ResourceAsColor") NoInternetDialog noInternetDialog = new NoInternetDialog.Builder(context).setBgGradientCenter(R.color.ni_bg4).setCancelable(true).build();
+
+
 
 ///         Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
 
