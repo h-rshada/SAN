@@ -2,9 +2,7 @@ package com.example.android.san;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +20,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
+import com.yarolegovich.lovelydialog.LovelyStandardDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -143,15 +142,51 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-                alertDialog.setTitle("Delete Tiffin....");
-                alertDialog.setIcon(R.drawable.delete111);
-                alertDialog.setMessage("Are you sure to delete tiffin from cart?");
-                alertDialog.setCancelable(false);
-                alertDialog.setPositiveButton(
-                        "YES",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+//                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+//                alertDialog.setTitle("Delete Tiffin....");
+//                alertDialog.setIcon(R.drawable.delete111);
+//                alertDialog.setMessage("Are you sure to delete tiffin from cart?");
+//                alertDialog.setCancelable(false);
+//                alertDialog.setPositiveButton(
+//                        "YES",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                urlRequest = UrlRequest.getObject();
+//                                urlRequest.setContext(context);
+//                                urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
+//                                Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
+//                                urlRequest.getResponse(new ServerCallback() {
+//                                    @Override
+//                                    public void onSuccess(String response) {
+//                                        Log.d("ResponseRemove", response);
+//                                        Activity a = (Activity) context;
+//                                        a.recreate();
+//
+//                                    }
+//                                });
+//                            }
+//                        });
+//
+//
+//                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                    }
+//                });
+//
+//                alertDialog.show();
+
+                new LovelyStandardDialog(context)
+                        .setTopColorRes(R.color.ni_bg4)
+                        .setButtonsColorRes(R.color.ni_bg4)
+                        .setIcon(R.drawable.de1)
+                        .setTitle(R.string.string_txt)
+                        .setMessage(R.string.string_txt1)
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.yes, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
                                 urlRequest = UrlRequest.getObject();
                                 urlRequest.setContext(context);
                                 urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
@@ -162,24 +197,19 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                                         Log.d("ResponseRemove", response);
                                         Activity a = (Activity) context;
                                         a.recreate();
-
                                     }
                                 });
                             }
-                        });
-
-
-                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-
-                alertDialog.show();
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .show();
             }
         });
+
     }
+
+
+
 
 
     @Override
@@ -254,6 +284,7 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         }
     }
 }
+
 
 
 

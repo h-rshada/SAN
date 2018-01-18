@@ -149,6 +149,17 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                         } else {
                             if (SELECTION == 2) {
+
+//                                new LovelyInfoDialog(context)
+//                                        .setTopColorRes(R.color.ni_bg)
+//                                        .setIcon(R.drawable.warn)
+//                                        //This will add Don't show again checkbox to the dialog. You can pass any ID as argument
+//                                        .setNotShowAgainOptionEnabled(0)
+//                                        .setNotShowAgainOptionChecked(false)
+//                                        .setTitle(R.string.subji1)
+//                                        .setMessage(R.string.subji2)
+//                                        .show();
+
                                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                                 alertDialog.setMessage("For subji you have to pay extra charges. ");
                                 alertDialog.setPositiveButton(
