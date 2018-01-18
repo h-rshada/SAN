@@ -112,7 +112,6 @@ public class UrlRequest
             @SuppressLint("ResourceAsColor") NoInternetDialog noInternetDialog = new NoInternetDialog.Builder(context).setBgGradientCenter(R.color.ni_bg4).setCancelable(true).build();
 
 
-
 ///         Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
 
         }
