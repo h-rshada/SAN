@@ -53,7 +53,7 @@ public class Profile extends AppCompatActivity {
         ButterKnife.inject(this);
         sp = getSharedPreferences("YourSharedPreference", Activity.MODE_PRIVATE);
         login = sp.getBoolean("LOGIN", false);
-        Log.d("Login@@@", login + "");
+        //  Log.d("Login@@@", login + "");
         editor = sp.edit();
         cardPhone = findViewById(R.id.cardPhone);
         cardAddress = findViewById(R.id.cardAddress);

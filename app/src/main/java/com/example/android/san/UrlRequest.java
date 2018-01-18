@@ -17,6 +17,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
 
+import am.appwise.components.ni.NoInternetDialog;
+
 
 /**
  * Created by android on 11/22/17.
@@ -106,8 +108,9 @@ public class UrlRequest
         } else {
 
             TastyToast.makeText(context, "No Internet Connection..!", TastyToast.LENGTH_SHORT, TastyToast.ERROR);
+            NoInternetDialog builder = new NoInternetDialog.Builder(context).build();
 
-//            Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
+///         Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
 
         }
         return result;
