@@ -71,73 +71,77 @@ public class GoToCart extends AppCompatActivity {
             urlRequest.setContext(GoToCart.this);
             urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
             Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_Id);
-            urlRequest.getResponse(new ServerCallback() {
-                @Override
-                public void onSuccess(String response) {
-                    Log.d("ResponseGOTO", response);
-                    if (!response.contains("nodata")) {
-                        try {
+            try {
+                urlRequest.getResponse(new ServerCallback() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Log.d("ResponseGOTO", response);
+                        if (!response.contains("nodata")) {
+                            try {
 
-                            jArray = new JSONArray(response);
+                                jArray = new JSONArray(response);
 
-                            for (int i = 0; i < jArray.length(); i++) {
-                                Log.d("JarrayLength", jArray.length() + "");
-                                json_data = jArray.getJSONObject(i);
-                                DataCart tiffin_data = new DataCart();
-                                tiffin_data.id = json_data.getString("id");
-                                tiffin_data.tiffin_plan = json_data.getString("tiffinPlan");
-                                tiffin_data.tiffin_type = json_data.getString("tiffinType");
-                                tiffin_data.indian_bread = json_data.getString("indianBread");
-                                tiffin_data.rice = json_data.getString("rice");
-                                tiffin_data.dal = json_data.getString("dal");
-                                tiffin_data.price = json_data.getString("price");
-                                tiffin_data.quantity = json_data.getString("quantity");
-                                cartCount=cartCount+ Integer.parseInt(tiffin_data.quantity);
-                                tiffin_data.menu = json_data.getString("menu");
-                                tiffin_data.deliveryDay = json_data.getString("deliveryDay");
-                                tiffin_data.totalCartItems = jArray.length();
-                                data.add(tiffin_data);
-                                Log.d(data.toString(), "data");
-                                Log.d("Price", tiffin_data.price);
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    Log.d("JarrayLength", jArray.length() + "");
+                                    json_data = jArray.getJSONObject(i);
+                                    DataCart tiffin_data = new DataCart();
+                                    tiffin_data.id = json_data.getString("id");
+                                    tiffin_data.tiffin_plan = json_data.getString("tiffinPlan");
+                                    tiffin_data.tiffin_type = json_data.getString("tiffinType");
+                                    tiffin_data.indian_bread = json_data.getString("indianBread");
+                                    tiffin_data.rice = json_data.getString("rice");
+                                    tiffin_data.dal = json_data.getString("dal");
+                                    tiffin_data.price = json_data.getString("price");
+                                    tiffin_data.quantity = json_data.getString("quantity");
+                                    cartCount = cartCount + Integer.parseInt(tiffin_data.quantity);
+                                    tiffin_data.menu = json_data.getString("menu");
+                                    tiffin_data.deliveryDay = json_data.getString("deliveryDay");
+                                    tiffin_data.totalCartItems = jArray.length();
+                                    data.add(tiffin_data);
+                                    Log.d(data.toString(), "data");
+                                    Log.d("Price", tiffin_data.price);
+                                }
+                                editor = sp.edit();
+                                editor.putString("CartCount", cartCount + "");
+                                Log.d("ccount ", cartCount + "");
+                                editor.commit();
+                                list_tiffin.setVisibility(View.VISIBLE);
+                                adapter = new AdapterCart(GoToCart.this, data);
+                                list_tiffin.setAdapter(adapter);
+                                LinearLayoutManager llm = new LinearLayoutManager(GoToCart.this);
+                                list_tiffin.setLayoutManager(llm);
+                                adapter.notifyDataSetChanged();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+
                             }
-                            editor=sp.edit();
-                            editor.putString("CartCount",cartCount+"");
-                            Log.d("ccount ", cartCount + "");
-                            editor.commit();
-                            list_tiffin.setVisibility(View.VISIBLE);
-                            adapter = new AdapterCart(GoToCart.this, data);
-                            list_tiffin.setAdapter(adapter);
-                            LinearLayoutManager llm = new LinearLayoutManager(GoToCart.this);
-                            list_tiffin.setLayoutManager(llm);
-                            adapter.notifyDataSetChanged();
+                        } else {
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            editor = sp.edit();
+                            editor.putString("CartCount", 0 + "");
+                            editor.commit();
+                            findViewById(R.id.relative1).setVisibility(View.GONE);
+                            linearLayout = findViewById(R.id.linear1);
+                            linearLayout.setVisibility(View.VISIBLE);
+                            ImageView imageEmptyCart = findViewById(R.id.iv_nocart);
+                            // TextView textEmptyCart = findViewById(R.id.textViewError);
+                            Animation animation = AnimationUtils.loadAnimation(GoToCart.this, R.anim.shake);
+                            imageEmptyCart.setAnimation(animation);
+                            btnContinue.setText("Go Back");
+                            btnContinue.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    onBackPressed();
+                                }
+                            });
 
                         }
-                    } else {
-
-                        editor = sp.edit();
-                        editor.putString("CartCount", 0 + "");
-                        editor.commit();
-                        findViewById(R.id.relative1).setVisibility(View.GONE);
-                        linearLayout = findViewById(R.id.linear1);
-                        linearLayout.setVisibility(View.VISIBLE);
-                        ImageView imageEmptyCart = findViewById(R.id.iv_nocart);
-                        // TextView textEmptyCart = findViewById(R.id.textViewError);
-                        Animation animation = AnimationUtils.loadAnimation(GoToCart.this, R.anim.shake);
-                        imageEmptyCart.setAnimation(animation);
-                        btnContinue.setText("Go Back");
-                        btnContinue.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                onBackPressed();
-                            }
-                        });
-
                     }
-                }
-            });
+                });
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
 
             btnContinue.setOnClickListener(new View.OnClickListener() {
                 @Override

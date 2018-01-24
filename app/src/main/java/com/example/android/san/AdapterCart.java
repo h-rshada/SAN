@@ -156,15 +156,19 @@ public class AdapterCart extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
                                 urlRequest.setContext(context);
                                 urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
                                 Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/removeFromCart.rfa.php?id=" + tiffin_data.id);
-                                urlRequest.getResponse(new ServerCallback() {
-                                    @Override
-                                    public void onSuccess(String response) {
-                                        Log.d("ResponseRemove", response);
-                                        Activity a = (Activity) context;
-                                        a.recreate();
+                                try {
+                                    urlRequest.getResponse(new ServerCallback() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            Log.d("ResponseRemove", response);
+                                            Activity a = (Activity) context;
+                                            a.recreate();
 
-                                    }
-                                });
+                                        }
+                                    });
+                                } catch (Throwable throwable) {
+                                    throwable.printStackTrace();
+                                }
                             }
                         });
 

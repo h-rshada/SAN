@@ -612,99 +612,107 @@ public class NonVegFragment extends Fragment {
         urlRequest.setContext(getContext());
         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
         Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/getSabji.php?type=" + type + "&dabba=" + tiffintype + "&meal=nonVeg&day=" + week_day);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("Response", response);
+        try {
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("Response", response);
 
-                try {
-                    arrayList = new ArrayList<>();
-                    JSONArray jsonArray = new JSONArray(response);
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                    try {
+                        arrayList = new ArrayList<>();
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                        dataSubji = new DataSubji();
-                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                        dataSubji.subji = jsonArray1.getString(1);
-                        arrayList.add(dataSubji);
+                            dataSubji = new DataSubji();
+                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                            dataSubji.subji = jsonArray1.getString(1);
+                            arrayList.add(dataSubji);
 
-                        Log.d("Data", dataSubji.subji);
-                        recyclerView = view.findViewById(R.id.Listmenu);
-                        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                            Log.d("Data", dataSubji.subji);
+                            recyclerView = view.findViewById(R.id.Listmenu);
+                            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-                        if (!(arrayList.size() == 0)) {
-                            if (tiffintype.equals("Basic")) {
-                                adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
-                                recyclerView.setAdapter(adapterRadioButton);
-                                adapterRadioButton.notifyDataSetChanged();
-                            } else if (tiffintype.equals("Heavy")) {
-                                adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
-                                recyclerView.setAdapter(adapterCheckbox);
-                                adapterCheckbox.notifyDataSetChanged();
+                            if (!(arrayList.size() == 0)) {
+                                if (tiffintype.equals("Basic")) {
+                                    adapterRadioButton = new AdapterRadioButton(getActivity(), arrayList);
+                                    recyclerView.setAdapter(adapterRadioButton);
+                                    adapterRadioButton.notifyDataSetChanged();
+                                } else if (tiffintype.equals("Heavy")) {
+                                    adapterCheckbox = new AdapterCheckbox(getActivity(), arrayList);
+                                    recyclerView.setAdapter(adapterCheckbox);
+                                    adapterCheckbox.notifyDataSetChanged();
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                         }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        //                    menuNotAvailable.setText("oopss...,Menu is not provided for today");
+                        menuNotAvailable.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.INVISIBLE);
                     }
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-//                    menuNotAvailable.setText("oopss...,Menu is not provided for today");
-                    menuNotAvailable.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.INVISIBLE);
                 }
-
-
-            }
-        });
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 
     public void setData(String url, final String item) {
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getContext());
         urlRequest.setUrl(url);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("Responsespinner", response);
-                try {
+        try {
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("Responsespinner", response);
+                    try {
 
 
-                    arrayList1 = new ArrayList<>();
+                        arrayList1 = new ArrayList<>();
 
-                    JSONArray jsonArray = new JSONArray(response);
+                        JSONArray jsonArray = new JSONArray(response);
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                        String str = jsonArray1.getString(1);
-                        arrayList1.add(str);
+                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                            String str = jsonArray1.getString(1);
+                            arrayList1.add(str);
 
-                        if (item.equals("bread")) {
-                            adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
-                            spinner_indianBread.setPrompt("Bread");
-                            spinner_indianBread.setAdapter(adapter_bread);
-                            Log.d("Bread: ", arrayList1 + "");
+                            if (item.equals("bread")) {
+                                adapter_bread = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                                spinner_indianBread.setPrompt("Bread");
+                                spinner_indianBread.setAdapter(adapter_bread);
+                                Log.d("Bread: ", arrayList1 + "");
 
-                        } else if (item.equals("rice")) {
-                            adapter_rice = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
-                            spinner_rice.setAdapter(adapter_rice);
+                            } else if (item.equals("rice")) {
+                                adapter_rice = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                                spinner_rice.setAdapter(adapter_rice);
 
-                            Log.d("Rice: ", arrayList1 + "");
+                                Log.d("Rice: ", arrayList1 + "");
 
-                        } else if (item.equals("dal")) {
-                            adapter_dal = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
-                            spinner_dal.setAdapter(adapter_dal);
-                            Log.d("Dal: ", arrayList1.toString());
+                            } else if (item.equals("dal")) {
+                                adapter_dal = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, arrayList1);
+                                spinner_dal.setAdapter(adapter_dal);
+                                Log.d("Dal: ", arrayList1.toString());
+                            }
                         }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        });
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 
     public void selectedData() {
@@ -712,33 +720,37 @@ public class NonVegFragment extends Fragment {
         urlRequest.setContext(getContext());
         Log.d("URL", "http://sansmealbox.com/admin/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/getAdminDabba.php?dabba=" + dabba + "&meal=nonVegSabji&day=" + week_day);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("ResponseSubji", response);
-                listData = new HashSet<String>();
-                arrayList1 = new ArrayList<>();
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
+        try {
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("ResponseSubji", response);
+                    listData = new HashSet<String>();
+                    arrayList1 = new ArrayList<>();
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
 
-                    Log.d("Array", jsonArray.toString());
-                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Log.d("Array", jsonArray.toString());
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
-                        dabba1 = jsonArray1.getString(0);
-                        arrayList1.add(jsonArray1.getString(0));
-                        listData.addAll(arrayList1);
+                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                            dabba1 = jsonArray1.getString(0);
+                            arrayList1.add(jsonArray1.getString(0));
+                            listData.addAll(arrayList1);
+                        }
+                        editor.putString("SINGLE", dabba1);
+                        editor.putStringSet("LIST", listData);
+                        editor.commit();
+                        Log.d("LIst", listData + "");
+                        Log.d("DataSubji***", dabba1);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    editor.putString("SINGLE", dabba1);
-                    editor.putStringSet("LIST", listData);
-                    editor.commit();
-                    Log.d("LIst", listData + "");
-                    Log.d("DataSubji***", dabba1);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        });
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 
 }

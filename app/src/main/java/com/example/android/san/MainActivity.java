@@ -230,34 +230,38 @@ public class MainActivity extends AppCompatActivity {
         urlRequest.setContext(getApplicationContext());
         Log.d("Url", "http://sansmealbox.com/admin/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address + "&email=" + email2);
         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address + "&email=" + email2);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("Response*", response);
-                response1 = response;
-                if (response.contains("OK")) {
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    intent.putExtra("PARENT_ACTIVITY_NAME", "MainActivity");
-                    editor.putString("AUTH_ID", userProfile.getId());
-                    editor.commit();
-                    startActivity(intent);
-                    finish();
-                } else if (response.contains("UPDATED")) {
+        try {
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("Response*", response);
+                    response1 = response;
+                    if (response.contains("OK")) {
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        intent.putExtra("PARENT_ACTIVITY_NAME", "MainActivity");
+                        editor.putString("AUTH_ID", userProfile.getId());
+                        editor.commit();
+                        startActivity(intent);
+                        finish();
+                    } else if (response.contains("UPDATED")) {
 
-                    editor.putString("AUTH_ID", userProfile.getId());
+                        editor.putString("AUTH_ID", userProfile.getId());
+                        editor.commit();
+                        // onBackPressed();
+                        Intent intent = new Intent(MainActivity.this, Profile.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    editor.putString("NAME", name);
+                    editor.putString("PHONE", phone);
+                    editor.putString("ADDRESS", address);
+                    editor.putString("EMAIL", email2);
                     editor.commit();
-                    // onBackPressed();
-                    Intent intent = new Intent(MainActivity.this, Profile.class);
-                    startActivity(intent);
-                    finish();
                 }
-                editor.putString("NAME", name);
-                editor.putString("PHONE", phone);
-                editor.putString("ADDRESS", address);
-                editor.putString("EMAIL", email2);
-                editor.commit();
-            }
-        });
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 
     @OnClick({R.id.img_back})
@@ -277,7 +281,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Profile.class);
         finish();
         startActivity(intent);
-
 
     }
 }

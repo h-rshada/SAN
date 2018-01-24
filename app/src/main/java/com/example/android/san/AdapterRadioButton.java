@@ -71,8 +71,8 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
         Log.d("str", str);
         if (type.equals("fixed")) {
             selectedStr = sp.getString("SINGLE", "");
-            Log.d("Dabba***", type);
-            Log.d("Selected***", selectedStr);
+          /*  Log.d("Dabba***", type);
+            Log.d("Selected***", selectedStr);*/
             myHolder.radioSubji.setChecked(false);
             if (selectedStr.equals(str)) {
                 myHolder.radioSubji.setChecked(true);
@@ -80,7 +80,7 @@ public class AdapterRadioButton extends RecyclerView.Adapter<RecyclerView.ViewHo
                 string = str;
                 editor.putString("BASIC", string);
                 editor.commit();
-                Log.d("RadioSubji", string);
+              /*  Log.d("RadioSubji", string);*/
             }
         }
     }

@@ -198,34 +198,38 @@ public class LoginActivity extends AppCompatActivity {
         urlRequest.setContext(getApplicationContext());
         Log.d("checkData: ", "http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/checkUserInfo.rfa.php?auth_id=" + id);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("Response*", response);
-                if (response.contains("EXISTS")) {
+        try {
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("Response*", response);
+                    if (response.contains("EXISTS")) {
 
-                    if (parentActivityName.equals("GoToCart")) {
-                        intent = new Intent(LoginActivity.this, GoToCart.class);
-                        editor.putString("AUTH_ID", id);
-                        editor.commit();
-                        startActivity(intent);
-                        finish();
+                        if (parentActivityName.equals("GoToCart")) {
+                            intent = new Intent(LoginActivity.this, GoToCart.class);
+                            editor.putString("AUTH_ID", id);
+                            editor.commit();
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            intent = new Intent(LoginActivity.this, MenuTypeTab.class);
+                            editor.putString("AUTH_ID", id);
+                            editor.commit();
+                            startActivity(intent);
+                            finish();
+                        }
+
+
                     } else {
-                        intent = new Intent(LoginActivity.this, MenuTypeTab.class);
-                        editor.putString("AUTH_ID", id);
-                        editor.commit();
-                        startActivity(intent);
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     }
 
-
-                } else {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
                 }
-
-            }
-        });
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 
     @OnClick({R.id.img_back})
@@ -235,7 +239,6 @@ public class LoginActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
         }
-
     }
 
     @Override

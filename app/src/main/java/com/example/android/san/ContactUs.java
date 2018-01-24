@@ -66,14 +66,12 @@ public class ContactUs extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(ContactUs.this, HomeActivity.class);
         finish();
         startActivity(intent);
-
     }
 
 }

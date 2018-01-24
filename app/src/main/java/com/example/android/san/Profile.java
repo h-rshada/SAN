@@ -66,9 +66,8 @@ public class Profile extends AppCompatActivity {
         } else {
 
             getData();
+
         }
-
-
     }
 
     @OnClick({R.id.txtLogin, R.id.imgEdit, R.id.img_back})
@@ -77,7 +76,6 @@ public class Profile extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.txtLogin:
-
 
                 alert = new AlertDialog.Builder(Profile.this);
 
@@ -128,6 +126,7 @@ public class Profile extends AppCompatActivity {
         urlRequest.setContext(getApplicationContext());
         Log.d("checkData: ", "http://sansmealbox.com/admin/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/fetchUserData.rfa.php?auth_id=" + id);
+
         urlRequest.getResponse(new ServerCallback() {
             @Override
             public void onSuccess(String response) {

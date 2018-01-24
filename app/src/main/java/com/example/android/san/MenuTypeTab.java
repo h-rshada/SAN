@@ -70,15 +70,19 @@ public class MenuTypeTab extends AppCompatActivity {
         urlRequest.setContext(MenuTypeTab.this);
         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/totalCartItems.rfa.php?auth_id=" + auth_Id);
         Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/totalCartItems.rfa.php?auth_id=" + auth_Id);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("Totalcartitem", response);
-                editor = sp.edit();
-                editor.putString("CartCount", response);
-                editor.commit();
-            }
-        });
+        try {
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("Totalcartitem", response);
+                    editor = sp.edit();
+                    editor.putString("CartCount", response);
+                    editor.commit();
+                }
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         viewPager = findViewById(R.id.pager);
         setupViewPager(viewPager);
         toolbar = findViewById(R.id.toolbar1);

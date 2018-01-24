@@ -114,7 +114,6 @@ public class UrlRequest
 
 
 ///         Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
-
         }
         return result;
     }

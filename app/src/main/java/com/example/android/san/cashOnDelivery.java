@@ -75,24 +75,28 @@ public class cashOnDelivery extends AppCompatActivity {
         urlRequest.setContext(cashOnDelivery.this);
         Log.d("URL", "http://sansmealbox.com/admin/routes/server/app/getAddress.rfa.php?AuthId=" + auth_id);
         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/getAddress.rfa.php?AuthId=" + auth_id);
-        urlRequest.getResponse(new ServerCallback() {
-            @Override
-            public void onSuccess(String response) {
-                Log.d("ResponseCOD", response);
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    edtName.setText(jsonObject.getString("name"));
-                    edtAddress.setText(jsonObject.getString("address"));
-                    edtPhone.setText(jsonObject.getString("phone"));
-                    edtEmail.setText(jsonObject.getString("email"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        try {
+            urlRequest.getResponse(new ServerCallback() {
+                @Override
+                public void onSuccess(String response) {
+                    Log.d("ResponseCOD", response);
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        edtName.setText(jsonObject.getString("name"));
+                        edtAddress.setText(jsonObject.getString("address"));
+                        edtPhone.setText(jsonObject.getString("phone"));
+                        edtEmail.setText(jsonObject.getString("email"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
-            }
 
-
-        });
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         btnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,57 +107,61 @@ public class cashOnDelivery extends AppCompatActivity {
                         urlRequest.setContext(cashOnDelivery.this);
                         urlRequest.setUrl("http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
                         Log.d("getDataURL: ", "http://sansmealbox.com/admin/routes/server/app/fetchCartItems.rfa.php?auth_id=" + auth_id);
-                        urlRequest.getResponse(new ServerCallback() {
-                            @Override
-                            public void onSuccess(String response) {
-                                Log.d("SendOrder", response);
+                        try {
+                            urlRequest.getResponse(new ServerCallback() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    Log.d("SendOrder", response);
 
-                                try {
+                                    try {
 
-                                    jArray = new JSONArray(response);
-                                    JSONObject jsonObject = new JSONObject();
-                                    jsonObject.put("jsonObject", jArray);
-                                    Log.d("object", jsonObject + "");
-                                    RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
-                                    Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/myOrder.rfa.php");
-                                    JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                                            Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/myOrder.rfa.php", jsonObject,
-                                            new Response.Listener<JSONObject>() {
-                                                @Override
-                                                public void onResponse(JSONObject response) {
-                                                    try {  //Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
-                                                        Log.d("ResponseOrder", response.getString("response"));
-                                                        Toasty.success(cashOnDelivery.this, "Your order placed successfully..!", Toast.LENGTH_LONG, true).show();
+                                        jArray = new JSONArray(response);
+                                        JSONObject jsonObject = new JSONObject();
+                                        jsonObject.put("jsonObject", jArray);
+                                        Log.d("object", jsonObject + "");
+                                        RequestQueue requestQueue = Volley.newRequestQueue(cashOnDelivery.this);
+                                        Log.d("URLorder", "http://sansmealbox.com/admin/routes/server/app/myOrder.rfa.php");
+                                        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                                                Request.Method.POST, "http://sansmealbox.com/admin/routes/server/app/myOrder.rfa.php", jsonObject,
+                                                new Response.Listener<JSONObject>() {
+                                                    @Override
+                                                    public void onResponse(JSONObject response) {
+                                                        try {  //Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
+                                                            Log.d("ResponseOrder", response.getString("response"));
+                                                            Toasty.success(cashOnDelivery.this, "Your order placed successfully..!", Toast.LENGTH_LONG, true).show();
 
-                                                        editor = sp.edit();
-                                                        editor.putBoolean("LOGIN", login);
-                                                        editor.putString("AUTH_ID", auth_id);
-                                                        editor.commit();
-                                                        startActivity(new Intent(cashOnDelivery.this, HomeActivity.class));
-                                                        finish();
+                                                            editor = sp.edit();
+                                                            editor.putBoolean("LOGIN", login);
+                                                            editor.putString("AUTH_ID", auth_id);
+                                                            editor.commit();
+                                                            startActivity(new Intent(cashOnDelivery.this, HomeActivity.class));
+                                                            finish();
 
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
                                                     }
-                                                }
-                                            }, new Response.ErrorListener() {
+                                                }, new Response.ErrorListener() {
 
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
 
-                                            VolleyLog.d("Error: ", error.getMessage());
-                                        }
-                                    });
-                                    requestQueue.add(jsonObjReq);
+                                                VolleyLog.d("Error: ", error.getMessage());
+                                            }
+                                        });
+                                        requestQueue.add(jsonObjReq);
 
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+
+                                    }
 
                                 }
-
-                            }
-                        });
+                            });
+                        } catch (Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
                     } else {
                         try {
                             jsonObject = new JSONObject(getIntent().getStringExtra("OBJECT"));

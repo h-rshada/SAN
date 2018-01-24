@@ -85,10 +85,10 @@ public class AdapterCheckbox extends RecyclerView.Adapter<RecyclerView.ViewHolde
         listData = new HashSet<String>();
         type = sp.getString("TYPE", null);
         dabba = sp.getString("DABBA", null);
-        Log.d("AdapterDabba***", dabba);
-        Log.d("TypeA", type);
+        /*Log.d("AdapterDabba***", dabba);
+        Log.d("TypeA", type);*/
         str = myHolder.checkBox.getText().toString();
-        Log.d("Checkbox", str);
+        //Log.d("Checkbox", str);
         if (dabba.equals("fixedHeavy")) {
             listData = sp.getStringSet("LIST", null);
             List listOfNames = new ArrayList(listData);
