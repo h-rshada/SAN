@@ -54,6 +54,8 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:1.3.0'
     compile 'com.yinglan.keyboard:hidekeyboard:1.1.3'
     implementation 'am.appwise.components:NoInternetDialog:1.1.3'
+    compile 'com.yarolegovich:lovely-dialog:1.0.7'
+
 }
 
 

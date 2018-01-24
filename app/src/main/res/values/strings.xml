@@ -37,6 +37,12 @@
     <string name="com_auth0_client_id">h_i6G0RspJqXkTLapUvSATf1Pfhn8WN8</string>
     <string name="com_auth0_domain">san2.auth0.com</string>
 
+    <string name="string_txt">Delete Tiffin...</string>
+    <string name="string_txt1">Are you sure to delete tiffin from cart ?</string>
+
+    <string name="subji1">Extra Charges...</string>
+    <string name="subji2">For another  subji you have to pay extra charges...</string>
+
 
     <!--for_welcome_screen-->
 
