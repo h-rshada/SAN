@@ -225,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void putUserInfo() {
-
         urlRequest = UrlRequest.getObject();
         urlRequest.setContext(getApplicationContext());
         Log.d("Url", "http://sansmealbox.com/admin/routes/server/app/userData.rfa.php?name=" + name + "&auth_id=" + userProfile.getId() + "&phone=" + phone + "&address=" + address + "&email=" + email2);
@@ -244,7 +243,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if (response.contains("UPDATED")) {
-
                         editor.putString("AUTH_ID", userProfile.getId());
                         editor.commit();
                         // onBackPressed();
@@ -281,6 +279,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Profile.class);
         finish();
         startActivity(intent);
-
     }
 }
